@@ -1,0 +1,3 @@
+sim-profile -pcstat sim_num_insn base_quicksort >& quick.out
+sslittle-na-sstrix-objdump --full-contents --line-numbers --disassemble-all --syms --all-headers base_quicksort > quick.dis
+textprof.pl quick.dis quick.out sim_num_insn_by_pc > a

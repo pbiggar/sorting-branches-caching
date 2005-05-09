@@ -1,0 +1,48 @@
+#!/usr/bin/perl -w
+$dir = "scripts";
+
+opendir (SCRIPT_DIR, $dir);
+@files = readdir(SCRIPT_DIR);
+@files = grep {!/\.\./} @files;
+@files = grep {!/\./} @files;
+@files = grep {!/CVS/} @files;
+closedir SCRIPT_DIR;
+
+foreach $file (@files)
+{
+	# open the file
+	# read all the input
+	open(FILE, $dir."/".$file) || die("cant read $file");
+	@lines = <FILE>;
+	close(FILE);
+	
+	# change it
+	foreach $line (@lines)
+	{
+		if ($line =~ /color/)
+		{
+			$line =~ s/ color//;
+		}
+	}
+
+	# print it
+	open(FILE, ">".$dir."/".$file) || die("cant write $file");
+	print FILE @lines;
+	close(FILE);
+
+}
+
+chdir $dir;
+foreach $file (@files)
+{
+	@output = `gnuplot $file`;
+	if (scalar(@output) > 0)
+	{
+
+		foreach $out (@output)
+		{
+			print $out;
+		}
+		die("$file - bad\n");
+	}
+}

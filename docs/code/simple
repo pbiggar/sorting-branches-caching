@@ -1,0 +1,341 @@
+#!/usr/bin/perl -w
+use Getopt::Std;
+$command_line = $0;
+foreach (@ARGV) { $command_line .= " $_"; }
+
+# -------------------------------------------------------
+# 					Do the options
+# -------------------------------------------------------
+
+my %options=();
+getopts("c:L:ihlm:M:s",\%options);
+
+if (defined($options{"h"}) || (scalar(@ARGV) == 0))
+{
+	die ("simple [options] sort\noptions are:\n\t
+		-c comment - comment with which to name log\n\t
+		-l list commands simple will execute\n\t
+		-s do a short run\n\t
+		-h this help message\n\t
+		-L length - cache line length\n\t
+		-i just count instructions\n\t
+		-m - specify minimum sort size\n\t
+		-M - specify maximum sort size\n");
+}
+
+# i means just get an instruction count, nothing else
+$just_instruction = 0;
+if (defined($options{"i"})) { $just_instruction = 1; } 
+
+#redfine the max and minimum number of items
+$min_num_items = 4096;
+$max_num_items = 4194304;
+
+if (defined($options{"m"})) { $min_num_items = $options{"m"}; }
+if (defined($options{"M"})) { $max_num_items = $options{"M"}; }
+
+$line_length = 32; # the length of a cache line
+if (defined($options{"L"})) { $line_length = $options{"L"}; }
+
+# check if a short run is desired
+$short_run = 0;
+if (defined($options{"s"})) { $short_run = 1; }
+
+# check if just the list of commands is wanted
+$just_list = 0;
+if (defined($options{"l"})) { $just_list = 1; }
+
+# set the comment
+$comment = localtime();
+if (defined($options{"c"})) { $comment = $options{"c"}; }
+$comment =~ s/[\s:]/_/g;
+
+# ----------------------------------------------------------
+# 							set the constants
+# ----------------------------------------------------------
+
+# the simulator details
+@simulators = ( "sim-cache", "sim-bpred" ) ;
+
+# put in the keywords
+$keywords{"sim-cache"} = 
+	[
+		"sim_num_insn", "sim_num_refs", "dl1.accesses", "dl1.hits",
+		"dl1.misses", "dl1.replacements", "dl1.writebacks", "dl1.miss_rate",
+		"dl1.repl_rate", "dl2.accesses", "dl2.hits", "dl2.misses",
+		"dl2.replacements", "dl2.writebacks", "dl2.miss_rate", "dl2.repl_rate",
+		"mem.page_mem"
+	];
+$keywords{"sim-bpred"} = 
+	[
+		"sim_num_branches", "sim_IPB", "bpred_bimod.lookups",
+		"bpred_bimod.updates", "bpred_bimod.addr_hits", "bpred_bimod.dir_hits",
+		"bpred_bimod.misses", "bpred_bimod.bpred_addr_rate",
+		"bpred_bimod.bpred_dir_rate", "bpred_2lev.lookups",
+		"bpred_2lev.updates", "bpred_2lev.addr_hits", "bpred_2lev.dir_hits",
+		"bpred_2lev.misses", "bpred_2lev.bpred_addr_rate",
+		"bpred_2lev.bpred_dir_rate"
+	];
+
+#<name>:<nsets>:<bsize>:<assoc>:<repl>
+# cache sizes are 2 and 4 MB, with a line size of 32 Bytes.
+# This mean either the associativity or #sets is 65536/131072 and l1 is 256.
+# we make l1 FA
+
+$size_4_meg = 4 * 1024 * 1024 / $line_length;
+$size_2_meg = 2 * 1024 * 1024 / $line_length;
+$size_8_k = 8 * 1024 / $line_length;
+
+$params{"sim-cache"}[0] = "-cache:dl1 dl1:$size_8_k:$line_length:1:l
+		-cache:dl2 dl2:$size_4_meg:$line_length:1:l
+		-cache:il1 il1:$size_8_k:$line_length:1:l -cache:il2 dl2"; 
+	
+$params{"sim-cache"}[1] = "-cache:dl1 dl1:$size_8_k:$line_length:1:l
+		-cache:dl2 dl2:$size_2_meg:$line_length:1:l
+		-cache:il1 il1:$size_8_k:$line_length:1:l -cache:il2 dl2";
+$params{"sim-cache"}[2] = "-cache:dl1 dl1:1:$line_length:$size_8_k:l
+		-cache:dl2 dl2:1:$line_length:$size_4_meg:l 
+		-cache:il1 il1:1:$line_length:$size_8_k:l -cache:il2 dl2";
+$params{"sim-cache"}[3] = "-cache:dl1 dl1:1:$line_length:$size_8_k:l
+		-cache:dl2 dl2:1:$line_length:$size_2_meg:l
+		-cache:il1 il1:1:$line_length:$size_8_k:l -cache:il2 dl2";
+
+$params{"sim-bpred"}[0] = "-bpred bimod -bpred:bimod 512";
+$params{"sim-bpred"}[1] = "-bpred bimod -bpred:bimod 1024";
+$params{"sim-bpred"}[2] = "-bpred bimod -bpred:bimod 2048";
+
+$params{"sim-bpred"}[3] = "-bpred 2lev -bpred:2lev 1 512 10 1";
+$params{"sim-bpred"}[4] = "-bpred 2lev -bpred:2lev 1 1024 10 1";
+$params{"sim-bpred"}[5] = "-bpred 2lev -bpred:2lev 1 2048 10 1";
+$params{"sim-bpred"}[6] = "-bpred 2lev -bpred:2lev 1 4096 10 1";
+
+if ($short_run)
+{
+	# reduce the number of items
+	$max_num_items = 32768; # this is caled down from (4096 * 1024) ie by 128
+
+	# now simulate a smaller cache
+
+	$params{"sim-cache"}[0] = "-cache:dl1 dl1:16:32:1:l
+			-cache:dl2 dl2:256:32:1:l -cache:il1 il1:16:32:1:l
+			-cache:il2 il2:256:32:1:l"; 
+	$params{"sim-cache"}[1] = "-cache:dl1 dl1:16:32:1:l 
+			-cache:dl2 dl2:512:32:1:l -cache:il1 il1:16:32:1:l
+			-cache:il2 il2:512:32:1:l";
+	$params{"sim-cache"}[2] = "-cache:dl1 dl1:1:32:16:l
+			-cache:dl2 dl2:1:32:256:l -cache:il1 il1:16:32:1:l
+			-cache:il2 il2:1:32:256:l";
+	$params{"sim-cache"}[3] = "-cache:dl1 dl1:1:32:16:l 
+			-cache:dl2 dl2:1:32:512:l -cache:il1 il1:16:32:1:l
+			-cache:il2 il2:1:32:512:l";
+	
+}
+
+$number_of_items = $min_num_items;
+
+while($number_of_items < $max_num_items)
+{
+	push(@ns, $number_of_items);
+	$number_of_items *= 2;
+}
+push(@ns, $max_num_items);
+
+$log_directory = "./logs/";
+
+# compiler settings
+$CC = "sslittle-na-sstrix-gcc";
+$CFLAGS = "-Wall -O3 -funroll-loops -finline-functions";
+$SIMPLEFLAGS = ""; #-lm
+
+select STDOUT;
+
+$dashes = "-------------------------------------------------------\n";
+# each sort, do a cache for each size, then a bpred for each size
+
+
+if ($just_instruction)
+{
+	$sortname = $ARGV[0];
+	@seeds = ( "0", "20", "1234", "63345", "23" );
+	# we max out at 32768 unless you specify more with the -m.
+	# you can specify less with the -M
+	if ($max_num_items >= 32768)
+	{
+		$max_num_items = 32768;
+	}
+	if ($min_num_items > $max_num_items)
+	{
+		$max_num_items = $min_num_items;
+	}
+
+	foreach $seed (@seeds)
+	{
+		@instruction_count = ();
+		$comp_command = "$CC $CFLAGS $SIMPLEFLAGS -funroll-loops
+		-finline-functions -DRANDOM_SIZE=$max_num_items -DSEED=$seed
+		-DSORT=$sortname $sortname.c simpleMain.c -o special_file";
+		# run the command
+		# capture the compiler errors (STDERR)
+		$comp_output = `$comp_command 2>&1 1>/dev/null`; 
+
+		# if it doesnt compile stop and print out errors
+		if ($comp_output =~ /./)
+		{
+			die("This command returned errors:
+				\"$comp_command\"\n$comp_output");
+		}
+		$sim_command = "sim-fast special_file";
+		@sim_output = `$sim_command 2>&1 1>/dev/null`;
+
+		@instruction_count = grep(/sim_num_insn/, @sim_output);
+		print $instruction_count[0];
+	}
+
+	system("rm special_file");
+	exit;
+}
+
+
+SORT: foreach $sortname (@ARGV)
+{
+	$sortfile = $sortname.int(rand(2147483648)).".c";
+	$object_file = $sortname.int(rand(2147483648));
+	system("cp $sortname.c $sortfile");
+
+
+	# make a temp file
+	$n_count = 0;
+	foreach $n (@ns) # ther should be num_sim_runs * count($n) columns.
+	{
+		$comp_command = "$CC $CFLAGS $SIMPLEFLAGS -DRANDOM_SIZE=$n -DSEED=0
+			-DSORT=$sortname $sortfile simpleMain.c -o $object_file";
+
+		print $comp_command."\n";
+		push (@command_list, $comp_command);
+
+		# run the command
+		# capture the compiler errors (STDERR)
+		$comp_output = `$comp_command 2>&1 1>/dev/null`; 
+
+		# if it doesnt compile stop and print out errors
+		if ($comp_output =~ /./)
+		{
+			print $comp_output;
+			next SORT;
+		}
+
+		foreach $simulator (@simulators) # run each of the simulators
+		{
+			$order_count = 0;
+			$run_count = 0;
+			foreach $param (@{$params{$simulator}})
+			{
+				$sim_command = "$simulator $param $object_file";
+				push (@command_list, $sim_command);
+				print $sim_command."\n";
+				if ($just_list) { next; } 
+
+				@sim_output = `nice -19 $sim_command 2>&1 1>/dev/null`;
+
+				# ignore the headers we dont want
+				while($line = shift(@sim_output))
+				{
+					if ($line =~ /sim: \*\* simulation statistics \*\*/)
+						{ last; }
+					if ($line =~ /fatal/)
+						{ die("Fatal error with 
+							command $sim_command"); }
+				}
+
+				# fill the array with data in the correct order
+				while(shift(@sim_output) =~ /(\S+)\s+(\S+).*/) 
+				{
+					# once for each simulator
+					if (!($results{$simulator}{$1})) 
+					{
+						$order{$simulator}[$order_count++] = $1; 
+					}
+					@{ $results{$simulator}{$1} }[$n_count *
+						scalar(@{$params{$simulator}}) + $run_count]
+						=  $2;
+				}
+				$run_count++;
+			}
+		}
+		$n_count++;
+		system("rm -f $object_file");
+	}
+
+	if ($just_list) 
+	{
+		system("rm $sortfile");
+		exit;
+	}
+
+	push (@my_output, "\n$dashes Results for $sortname\n$dashes");
+	foreach $simulator (@simulators)
+	{
+		@output = ();
+		for ($i = 0; $i < scalar(@{$order{$simulator}}); $i++)
+		{
+			$keyword = $order{$simulator}[$i];
+			$output_string = sprintf("%-36s ", $keyword);
+			@result_array = @{ $results{$simulator}{$keyword} };
+			foreach $result (@result_array)
+			{
+				if (defined($result)) 
+					{ $output_string .= sprintf("%13s |", $result);}
+				else { $output_string .= "xxxxxxxxxxxxx |"; }
+			}
+			$output_string .= "\n";
+			push (@output, $output_string);
+		}
+		
+		# do headers here
+		$header = "$dashes";
+		$header .= sprintf("%-36s ", $simulator);
+		foreach $n (@ns)
+		{
+			foreach $param (@{$params{$simulator}})
+			{
+				$header .= sprintf("%13s |", $n);
+			}
+		}
+		foreach $param (@{$params{$simulator}})
+		{
+			$header .= "\n$param";
+		}
+		$header .= "\n$dashes";
+		
+		push (@log_output, $header);
+		push (@log_output, @output);
+		
+		$keyword_string = join ("|", @{$keywords{$simulator}});
+		@temp = grep { /$keyword_string/; } @output;
+		
+		push (@my_output, $header);
+		push (@my_output, @temp);
+		
+	}
+	
+	
+	# we store the complete log
+	$logname = "$sortname\_$comment";
+	open(LOG, ">".$log_directory.$logname);
+	print LOG "".localtime()."\n";
+	print LOG "Run as: \"$command_line\"\n";
+	print LOG @log_output;
+
+	print LOG "\nCommand list: \n";
+	foreach $command (@command_list)
+	{
+		print LOG "\t".$command."\n";
+	}
+
+	close(LOG);
+
+	# remove the temp
+	system("rm $sortfile");
+
+}
+print @my_output;

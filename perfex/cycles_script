@@ -1,0 +1,32 @@
+set key top left Left reverse
+set xrange [4096:4194304]
+set yrange [0:]
+set xtics (8192,16384,32768,65536,131072,262144,524288,1048576,2097152)
+set format x "%8.0f"
+set logscale axis
+set data style linespoints
+set term postscript eps
+set output '../docs/plots/all_cycles.eps'
+set xlabel 'set size in keys'
+set ylabel 'Cycles per key'
+plot \
+'processed_cycles_data' using 1:5 title 'base quicksort',\
+'processed_cycles_data' using 1:6 title 'cache quicksort',\
+'processed_cycles_data' using 1:7 title 'multi quicksort',\
+'processed_cycles_data' using 1:10 title 'base mergesort',\
+'processed_cycles_data' using 1:14 title 'double tiled mergesort',\
+'processed_cycles_data' using 1:16 title 'double multi-mergesort',\
+'processed_cycles_data' using 1:9 title 'base radixsort'
+
+#'processed_cycles_data' using 1:3 title 'cache_heapsort',\
+#'processed_cycles_data' using 1:8 title 'multi_quicksort_seq',\
+#'processed_cycles_data' using 1:11 title 'knuth_base_mergesort',\
+#'processed_cycles_data' using 1:12 title 'knuth_other_base_mergesort',\
+#'processed_cycles_data' using 1:15 title 'multi_mergesort',\
+#'processed_cycles_data' using 1:13 title 'tiled_mergesort',\
+#'processed_cycles_data' using 1:17 title 'on2_insertsort',\
+#'processed_cycles_data' using 1:18 title 'on2_selectsort',\
+#'processed_cycles_data' using 1:19 title 'on2_bubblesort',\
+#'processed_cycles_data' using 1:20 title 'on2_shakersort'
+#'processed_cycles_data' using 1:2 title 'base_heapsort',\
+#'processed_cycles_data' using 1:4 title 'cache4_heapsort',\

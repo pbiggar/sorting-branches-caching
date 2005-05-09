@@ -1,0 +1,59 @@
+\begin{slide}
+\begin{stitle}
+Results
+\end{stitle}
+
+\begin{itemize}
+\item Caches
+	\begin{itemize}
+	\item LaMarca's cache assertions are correct
+	\plot{.82}{demo1}
+	\pagebreak
+	\plot{1.05}{demo2}
+	\pagebreak
+	\item Fully Associative can be worse than Direct Mapped
+	\plot{.95}{demo3}
+	\pagebreak
+	\end{itemize}
+\item Branch Predictors
+	\begin{itemize}
+	\item Two-level predictor needs large tables to rival bimodal
+	\plot{.9}{demo4}
+	\pagebreak
+	\item Bimodal predictors perform the same regardless of size, for small functions, while two-level adaptive predictors don't
+	\plot{.9}{demo4}
+	\pagebreak
+	\item Avoiding flow control misses is possible
+		\begin{itemize}
+		\item Radixsort
+		\plotdouble{.51}{demo6-1}{demo6-2}
+		\pagebreak
+		\end{itemize}
+	\item Some standard algorithms have very good prediction rates
+		\begin{itemize}
+		\item Insertion sort has N branch misses
+		\plotdouble{.51}{demo7-1}{demo7-2}
+		%insertion sort vs selection and bubble
+		% put these two beside each other
+		\pagebreak
+		\item Binary search is worse than sequential search for small lists
+		\plotdouble{.51}{demo8-1}{demo8-2}
+		\pagebreak
+		%binary vs sequential, next to each other again
+		\item Radixsort has no comparison misses
+		\plot{.95}{demo6-2}
+		\pagebreak
+		\end{itemize}
+	\item Unsorted lists perform badly
+		\begin{itemize}
+		\item 4 / 8 heaps - Very complex to replace with sorted lists
+		\plotdouble{.51}{demo9-2}{demo9-1}
+		\pagebreak
+		%compare 2 heap to 4/8 heap
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+
+
+\end{slide}

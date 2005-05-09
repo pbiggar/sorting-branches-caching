@@ -1,0 +1,17 @@
+#!/bin/sh
+
+cd /home/paul/fs/docs/
+mkdir plots
+cd plots
+scp -r ciaran@summers.cs.tcd.ie:fs/plots/* .
+
+cd /home/paul/fs/docs/
+rm -R inputs
+mkdir inputs
+cd inputs
+scp -r ciaran@summers.cs.tcd.ie:fs/gnuplot_logs/* .
+
+cd /home/paul/fs/docs/
+mkdir scripts
+cd scripts
+scp -r ciaran@summers.cs.tcd.ie:fs/plot_inputs/* .

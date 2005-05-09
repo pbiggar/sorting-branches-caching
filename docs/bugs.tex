@@ -1,0 +1,45 @@
+\section{Bugs}
+This section lists some of the bugs that exist in the remaining code. In a
+project of limited timescale, it is not possible to remove every possible bug
+from the code. These bugs are listed here in order that it is possible to
+continue on this work with minimal difficutly.
+
+\section{Algorithmic}
+
+\label{bug1}
+In multi-quicksort, the results include the sentinel check which should have
+been removed before the results were measured. This adds one branch per \cc{N /
+THRESHOLD} keys , and the same number of extra instructions. In the same
+algorithm, the old number of 1018 is the number of keys in a block of a list.
+The effects of this are not significant. Also, the check for the sentinel was
+not removed, though the effect of this is minor.
+
+\label{bug2}
+In several of the mergesorts, it is possible that an extra merge step is being
+taken. This has not been properly analysed, due to time restrictions. It is,
+however, obvious from the level 2 miss graph of all the merges, that this
+does not affect base mergesort, but it does affect both double mergesorts, and
+the tiled mergesort. It is uncertain if multi mergesort is affected. The problem
+stems from the end condition of the merge. It should end once the size of the next
+merge is equal the size of the array, rather than greater than. However, the
+algorithms do not properly merge when this is the case.
+
+\label{bug4}
+Double tiled mergesort and double multi-mergesort were optimized to sort in the
+level 1 cache first. The number of keys that fit into the cache was fixed at
+2048; this number should have been half that, since the sort is out of place.
+This probably resulted in thrashing, especially since the arrays were aligned.
+Removing this would improve the sorts.
+
+\section{Results}
+\label{bug3}
+To reduce the costs of creating the array of random numbers, this time was
+measured and subtracted from the results. While this works as expected for
+instruction count, the effects on cache misses is less clear. Subtracting level
+2 cache misses incurred during filling removes compulsory misses from the
+equation. For shorter lists, the compulsory misses are completely removed.
+For longer lists, those greater than the size of the cache, compulsory misses
+come back, since the keys at the start of the array are flushed from the cache
+by the time they begin to be sorted. LaMarca's work centers around
+reducing conflict misses, however, so this is not necessarily a problem, just
+something to be aware of.

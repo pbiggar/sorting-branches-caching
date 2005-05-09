@@ -1,0 +1,15 @@
+set key top left Left reverse
+set xrange [4096:4194304]
+set yrange [0:]
+set xtics (8192,16384,32768,65536,131072,262144,524288,1048576,2097152)
+set format x "%8.0f"
+set logscale axis
+set data style linespoints
+set term postscript eps
+set output '../plots/radix_-_Branch_misses.eps'
+set xlabel 'set size in keys'
+set ylabel 'Branch misses per key'
+plot \
+'../inputs/base_radixsort_/base_radixsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:12 title 'radixsort - 2 Level Adaptive - 512 2nd level entries',\
+'../inputs/base_radixsort_/base_radixsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:12 title 'radixsort - 2 Level Adaptive - 4096 2nd level entries',\
+'../inputs/base_radixsort_/base_radixsort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'radixsort - Bimodal - 512 byte table'

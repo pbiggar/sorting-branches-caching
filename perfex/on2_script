@@ -1,0 +1,16 @@
+set key top left Left reverse
+set xrange [4096:262144]
+set yrange [0:]
+set xtics (8192,16384,32768,65536,131072,262144)
+set format x "%8.0f"
+set logscale axis
+set data style linespoints
+set term postscript eps
+set output '../docs/plots/on2_-_cycles.eps'
+set xlabel 'set size in keys'
+set ylabel 'Cycles per key'
+plot \
+'processed_cycles_data' using 1:17 title 'insertion sort',\
+'processed_cycles_data' using 1:18 title 'selection sort',\
+'processed_cycles_data' using 1:19 title 'bubblesort',\
+'processed_cycles_data' using 1:20 title 'shakersort'

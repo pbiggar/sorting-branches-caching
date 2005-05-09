@@ -1,0 +1,26 @@
+sort the 8 heap
+why?
+	because the way I'm doing it, ive log(8) == 3 misses every time (and 8 checks) i fix down
+	instead, ill have only 1 check, .5 misses, and everything else just shuffles down as that'll be the biggest there (wont even have to sort it)
+
+disadvantages:
+	fixup become much longer - at the moment its practically free
+	we could do it while its still in the cache
+		when the last item of the 8 is shifted into, thats when we sort them.
+		then at the end we sort all the ones in the bottom row
+		we could count out when its going to happen so it can be unrolled :)
+
+
+implementation
+	we do the sorting in the fix up stage
+		dont sort after the first swap, cause we dont want to ort right on the bottom
+
+
+
+
+its not going to work, but its an idea:
+	as we fix up, the new final new parent is shifted left
+
+	when we shift it away, the structure of the tree is broken
+		it will shift a larger item to its new place, and one of the children may be larger than this
+		so no chance

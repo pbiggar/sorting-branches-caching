@@ -1,0 +1,11 @@
+CC = sslittle-na-sstrix-gcc
+CFLAGS = -Wall -O3 -g
+SIMPLEFLAGS = 
+
+all:
+	$(CC) $(CFLAGS) $(SIMPLEFLAGS) -DSORT=base_heapsort base_heapsort.c simpleMain.c -o base_heapsort
+	$(CC) $(CFLAGS) $(SIMPLEFLAGS) -DSORT=base_quicksort base_quicksort.c simpleMain.c -o base_quicksort
+	$(CC) $(CFLAGS) $(SIMPLEFLAGS) -DSORT=base_radixsort base_radixsort.c simpleMain.c -o base_radixsort
+	$(CC) $(CFLAGS) $(SIMPLEFLAGS) -DSORT=base_mergesort base_mergesort.c simpleMain.c -o base_mergesort
+clean:
+	rm -f *.o base_heapsort base_quicksort base_radixsort base_mergesort

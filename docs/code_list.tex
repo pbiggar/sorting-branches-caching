@@ -1,0 +1,71 @@
+\section{Simple Script}
+Below is the code for the script used to run the SimpleScalar simulations.
+
+\lgrindfile{code/simple_code}
+\label{Simple Script}
+
+\section{Sample Simulation Run}
+\label{Simple List}
+The instructions listed below form a sample simulation run of SimpleScalar. Each
+of the commands is run in turn and its results stored by \cc{simple}.
+
+\lgrindfile{code/sample_sim_list}
+
+\section{Sample Simulation}
+The text below is an output of a simgle run of \cc{sim-bpred}.
+\label{Sample Simulation}
+
+\lgrindfile{code/sample_output}
+
+\section{Convert Script}
+The following is the source code to the script used to convert data from the
+stored format of the \cc{simple} script to that required by gnuplot.
+\label{Convert Script}
+
+\lgrindfile{code/convert}
+
+\section{Sample Gnuplot Script}
+\label{Sample Gnuplot Script}
+The following script is used to make plot results. The image made by this file
+is in Figure \vref{All cycles}.
+
+\lgrindfile{code/cycles_script}
+
+\section{Sort listings}
+Included below is a code listing of the sorts used in this project. Note that
+the code is not exact. It is edited for brevity and clarity, and may not even
+compile. In addition, loops are rolled, edge-cases are removed and variable
+declarations are moved or removed. The actual code used is contained on the CD
+accompanying this project.
+\label{Sort Listings}
+
+Base heapsort is listed in Figure \ref{Simple Base Heapsort}.\\
+\textbf{Cache Heapsort:}
+\lgrindfile{code/cache_heapsort_code}
+
+\textbf{Base Mergesort:}
+\lgrindfile{code/base_mergesort_code}
+
+Tiled Mergesort is very similar to double-tiled mergesort, and so is not
+included. Merge and presort functions are also not included, as they are very
+similar to those of base mergesort.\\
+\textbf{Double Tiled Mergesort:}
+\lgrindfile{code/double_tiled_mergesort_code}
+
+\textbf{Double Multi-Mergesort:}
+\lgrindfile{code/double_multi_mergesort_code}
+
+\textbf{Base Quicksort:}
+\lgrindfile{code/base_quicksort_code}
+
+\textbf{Cache Quicksort:}
+\lgrindfile{code/cache_quicksort_code}
+
+\textbf{Multi-Quicksort:}
+\lgrindfile{code/multi_quicksort_code}
+
+\textbf{Sequential Multi-Quicksort:}
+\lgrindfile{code/multi_quicksort_seq_code}
+
+\textbf{Radixsort:}
+\lgrindfile{code/radixsort_code}
