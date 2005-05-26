@@ -1,0 +1,71 @@
+#!/usr/bin/perl -w
+
+# seeing as we used vim macros last time, we need to write this properly
+
+# first get it out of the file and into a data thing
+
+open(DATA, "played");
+
+
+while($line = <DATA>) # gets the name/size/seed
+{
+	$line2 = <DATA>; # gets the tsc
+
+	$line =~ /([0-9a-zA-Z_]+)-([0-9]+)-([0-9]+)/;
+	# the order of this is name,size,iteration
+	# hence hash, hash, array
+	$sort = $1;
+	$size = $2;
+
+	if (!$data{$sort}{$size})
+	{
+		$data{$sort}{$size} = 0;
+		$iteration_count{$sort}{$size} = 0;
+	}
+
+	if ($line2 =~ /perfex: child did not exit normally/)
+	{}else
+	{
+		$line2 =~ /tsc\s+([0-9]*)/;
+		$data{$sort}{$size} += $1;
+		$iteration_count{$sort}{$size} += 1;
+	}
+
+
+
+}
+
+close(DATA);
+
+
+@sorts = sort (keys %data);
+@sorts = grep {!/do_nothing/} @sorts;
+open(OUTPUT, "> processed_running_times");
+
+printf OUTPUT "%7s", "#";
+foreach $sort (@sorts)
+{
+	printf OUTPUT "%30s", $sort;
+}
+
+@keys = sort { $a <=> $b } (keys %{($data{"do_nothing"})});
+
+foreach $size (@keys)
+{
+	printf OUTPUT "\n%7d", $size;
+	foreach $sort (@sorts)
+	{
+		if ($data{$sort}{$size})
+		{
+			$value = $data{$sort}{$size};
+			$value /= $iteration_count{$sort}{$size};
+			$value -= ($data{"do_nothing"}{$size}/190);
+			$value /= $size;
+			printf OUTPUT "%30f", $value;
+		}
+		else
+		{
+			printf OUTPUT "%30d", 0;
+		}
+	}
+}

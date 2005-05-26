@@ -1,0 +1,286 @@
+\documentclass[dvips]{report}
+\usepackage{ifthen}
+\usepackage{varioref}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{lgrind}
+
+\usepackage[intlimits]{amsmath}
+\usepackage{eufrak}
+\usepackage[mathscr]{euscript}
+\usepackage{afterpage}
+
+\newenvironment{changemargin}{%
+ \begin{list}{}{%
+\setlength{\textwidth}{\paperwidth}
+\setlength{\textheight}{\paperheight}
+%\setlength{\oddsidemargin}{-1in}
+%\setlength{\evensidemargin}{-1in}
+\setlength{\topmargin}{-1in}
+\setlength{\topsep}{-1in}%
+	\setlength{\leftmargin}{-1.5in}%
+	\setlength{\rightmargin}{-1.5in}%
+	\setlength{\listparindent}{\parindent}%
+	\setlength{\itemindent}{\parindent}%
+	\setlength{\parsep}{\parskip}%
+ }%
+\centering%
+\item[]%
+}{\end{list}}
+
+\newcommand{\cc}[1]{\texttt{#1}}
+\newcommand{\n}[1]{\textit{#1}}
+\newcommand{\code}[2]{\begin{figure}\lstinputlisting{code/#2}\caption{#1}\label{#1}\end{figure}}
+
+\newcommand{\myscale}{1.2}
+\newcommand{\plot}[7]{
+% 3 figures first, then 3 page for them
+\afterpage{
+\setcounter{subfigure}{0}
+
+\thispagestyle{empty}
+\clearpage
+\enlargethispage{14em}
+\vspace*{-8em}
+\begin{figure}[H]
+\begin{changemargin}
+\subfigure[Cycles per key - this was measured on a Pentium 4 using hardware performance counters. #2]
+{\label{#1 cycles}\includegraphics[scale=\myscale]{plots/#1_-_cycles.eps}}
+\subfigure[Instructions per key - this was simulated using SimpleScalar \cc{sim-cache}. #3]	
+{\label{#1 instructions}\includegraphics[scale=\myscale]{plots/#1_-_Instructions.eps}}
+\end{changemargin}
+\vspace*{7em}
+\caption{Simulated Instruction count and empiric cycle count for #1sort}
+\label{Simulated Instruction count and empiric cycle count for #1sort}
+\end{figure}
+\newpage
+
+\thispagestyle{empty}
+\clearpage
+\enlargethispage{14em}
+\vspace*{-8em}
+\begin{figure}[H]
+\begin{changemargin}
+\subfigure[Level 1 cache misses per key - this was simulated using SimpleScalar \cc{sim-cache}, simulating an 8KB data
+cache with a 32 byte cache line and separate instruction cache. #4]
+{\label{#1 level 1 misses}\includegraphics[scale=\myscale]{plots/#1_-_Level_1_misses.eps}}\\
+\subfigure[Level 2 cache misses per key - this was simulated using SimpleScalar \cc{sim-cache}, simulating a 2MB data
+and instruction cache and a 32 byte cache line. #5]
+{\label{#1 level 2 misses}\includegraphics[scale=\myscale]{plots/#1_-_Level_2_misses.eps}}\\
+\end{changemargin}
+\vspace*{7em}
+\caption{Cache Simulation results for #1sort}
+\label{Cache Simulation results for #1sort}
+\end{figure}
+\newpage
+
+\thispagestyle{empty}
+\clearpage
+\enlargethispage{14em}
+\vspace*{-7em}
+\begin{figure}[H]
+\begin{changemargin}
+\centering
+\subfigure[Branches per key - this was simulated using \cc{sim-bpred}. #6]
+{\label{#1 branches}\includegraphics[scale=\myscale]{plots/#1_-_Branches.eps}}
+\subfigure[Branches misses per key - this was simulated using \cc{sim-bpred}, with bimodal and two-level adaptive
+predictors. The simulated two-level adaptive predictor used a 10 bit branch history register which was XOR-ed with the
+program counter. #7]
+{\label{#1 branch misses}\includegraphics[scale=\myscale]{plots/#1_-_Branch_misses.eps}}
+\end{changemargin}
+\vspace*{6em}
+\caption{Branch Simulation results for #1sort}
+\label{Branch Simulation results for #1sort}
+\end{figure}
+}}
+
+
+
+\newcommand{\smallscale}{.74}
+\newcommand{\smallplot}[2]{
+\setcounter{subfigure}{0}
+\thispagestyle{empty}
+\clearpage
+\enlargethispage{14em}
+\vspace*{-5em}
+\begin{figure}[H]
+\begin{changemargin}
+\subfigure[Instructions per key] {\includegraphics[scale=0.74]{plots/#1_-_Instructions.eps}}\\
+\subfigure[Level 1 cache misses per key]	{\includegraphics[scale=0.74]{plots/#1_-_Level_1_misses.eps}}
+\subfigure[Level 2 cache misses per key]	{\includegraphics[scale=0.74]{plots/#1_-_Level_2_misses.eps}}
+\subfigure[Branches per key]				{\includegraphics[scale=0.74]{plots/#1_-_Branches.eps}}
+\subfigure[Branch misses per key]			{\includegraphics[scale=0.74]{plots/#1_-_Branch_misses.eps}}
+\end{changemargin}
+\vspace*{6em}
+\caption{Simulation results for #2}
+\label{Simulation results for #2}
+\end{figure}
+\newpage
+}
+
+\newcommand{\sixplot}[7]{
+\afterpage{
+\setcounter{subfigure}{0}
+\thispagestyle{empty}
+\clearpage
+\enlargethispage{14em}
+\vspace*{-5em}
+\begin{figure}[H]
+\begin{changemargin}
+\subfigure[]{\includegraphics[scale=0.74]{../counters/#1}}
+\ifthenelse{\equal{#2}{}}{}{\subfigure[]{\includegraphics[scale=0.74]{../counters/#2}}}
+\ifthenelse{\equal{#3}{}}{}{\subfigure[]{\includegraphics[scale=0.74]{../counters/#3}}}
+\ifthenelse{\equal{#4}{}}{}{\subfigure[]{\includegraphics[scale=0.74]{../counters/#4}}}
+\ifthenelse{\equal{#5}{}}{}{\subfigure[]{\includegraphics[scale=0.74]{../counters/#5}}}
+\ifthenelse{\equal{#6}{}}{}{\subfigure[]{\includegraphics[scale=0.74]{../counters/#6}}}
+\end{changemargin}
+\vspace*{6em}
+\caption{Branch prediction performance for #7. All graphs use the same scale.}
+\label{Branch prediction performance for #7}
+\end{figure}
+\newpage
+}}
+
+\lstset{language=c,tabsize=3,basicstyle=\small,visiblespaces=false,visibletabs=false,stringspaces=false,labelstep=1,labelstyle=\small,frame=tblr}
+
+\long\def\symbolfootnote[#1]#2{\begingroup\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup}
+
+%\topmargin 0.2cm
+%\textwidth 16cm
+%\textheight 21cm
+%\oddsidemargin 0.0cm
+%\evensidemargin 0.0cm
+
+\title{Fast Sorting on Modern Computers}
+\author{Paul Biggar\\ B.A. (Mod.) Computer Science \\ Final Year Project April 2004 \\ Supervisor: Dr. David Gregg}
+\date{}
+
+\bibliographystyle{these}
+
+\hyphenation{La-Marca}
+
+%TODO make the page wider
+%TODO aspell in UK english
+
+% ----------------------------------------------------------------------------------
+% END OF PREAMBLE
+% ----------------------------------------------------------------------------------
+\begin{document}
+
+\begin{titlepage}
+        \begin{center}
+                \vspace*{95mm}
+                \LARGE Fast Sorting on Modern Computers\\
+                \vspace{1em}
+                \large Paul Biggar\\
+                \large B.A. (Mod.) Computer Science \\
+                \large Final Year Project April 2004\\
+                \large Supervisor: Dr. David Gregg\\
+        \end{center}
+\end{titlepage}
+
+%\maketitle
+
+\chapter*{Declaration}
+
+I hereby declare that this thesis is entirely my own work and that it has not
+been submitted as an exercise for a degree at any other university.
+
+\begin{center}
+\vspace*{2in}
+
+\underline{\hspace*{3in}} \today
+
+Paul Biggar
+\end{center}
+
+\chapter*{Acknowledgments}
+I would like to thank my supervisor, Dr. David Gregg, for his help and advice
+during this project. I'd also like to thank those who read my first draft, and
+my friends and family for their support during the last year, and my entire time
+at college. Thank you.
+\newpage
+
+\begin{abstract}
+This project attempts to create and analyse sorts designed to take advantage of
+features of modern processors. The work on cache-conscious sorting by LaMarca
+and Ladner is the starting point; this is implemented and analysed using a
+hardware simulator. Results relating to a variety of cache and branch predictor
+configurations are obtained and analysed for a variety of sorts, beginning with
+insertion and selection sorts, bubblesort and shakersort, and continuing to
+heapsort, mergesort, quicksort and radixsort. Actual and expected results are
+compared together and to the results of LaMarca's research.
+\end{abstract}
+
+\tableofcontents
+\listoffigures
+
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0ex}
+
+\chapter{Introduction}
+
+\input intro.tex
+
+\chapter{Background Information}
+
+\input background.tex
+
+\chapter{Tools and Method}
+
+\input method.tex
+
+\chapter{Elementary Sorts}
+
+\input ordernsquared.tex
+
+\chapter{Heapsort}
+
+\input heap.tex
+
+\chapter{Mergesort}
+
+\input merge.tex
+
+\chapter{Quicksort}
+
+\input quick.tex
+
+\chapter{Radixsort}
+
+\input radix.tex
+
+\chapter{Shellsort}
+
+\input shell.tex
+
+\chapter{Conclusions}
+
+\input conclusions.tex
+
+\appendix
+
+\chapter{Simulation Result Listing}
+\input result_list.tex
+
+%\chapter{Software Predictor Result Listing}
+%\input software_predictor.tex
+
+\chapter{Code Listing}
+\input code_list.tex
+
+% the bugs are now fixed (actually, one of them was only mistakenly a bg :)
+% the only remaining thing is the compulsory cache subtraction.
+\chapter{Bug List}
+\input bugs.tex
+
+\chapter{SimpleScalar installation}
+\input simplescalar.tex
+
+\bibliography{report} % param is the name of the .bib file
+\nocite{*}
+
+\end{document}

@@ -1,0 +1,1687 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%Title: ../plots/merge_-_Direction_hits.eps
+%%Creator: gnuplot 4.0 patchlevel 0
+%%CreationDate: Thu Jul 22 18:54:05 2004
+%%DocumentFonts: (atend)
+%%BoundingBox: 50 50 410 302
+%%Orientation: Portrait
+%%EndComments
+/gnudict 256 dict def
+gnudict begin
+/Color false def
+/Solid false def
+/gnulinewidth 5.000 def
+/userlinewidth gnulinewidth def
+/vshift -46 def
+/dl {10.0 mul} def
+/hpt_ 31.5 def
+/vpt_ 31.5 def
+/hpt hpt_ def
+/vpt vpt_ def
+/Rounded false def
+/M {moveto} bind def
+/L {lineto} bind def
+/R {rmoveto} bind def
+/V {rlineto} bind def
+/N {newpath moveto} bind def
+/C {setrgbcolor} bind def
+/f {rlineto fill} bind def
+/vpt2 vpt 2 mul def
+/hpt2 hpt 2 mul def
+/Lshow { currentpoint stroke M
+  0 vshift R show } def
+/Rshow { currentpoint stroke M
+  dup stringwidth pop neg vshift R show } def
+/Cshow { currentpoint stroke M
+  dup stringwidth pop -2 div vshift R show } def
+/UP { dup vpt_ mul /vpt exch def hpt_ mul /hpt exch def
+  /hpt2 hpt 2 mul def /vpt2 vpt 2 mul def } def
+/DL { Color {setrgbcolor Solid {pop []} if 0 setdash }
+ {pop pop pop 0 setgray Solid {pop []} if 0 setdash} ifelse } def
+/BL { stroke userlinewidth 2 mul setlinewidth
+      Rounded { 1 setlinejoin 1 setlinecap } if } def
+/AL { stroke userlinewidth 2 div setlinewidth
+      Rounded { 1 setlinejoin 1 setlinecap } if } def
+/UL { dup gnulinewidth mul /userlinewidth exch def
+      dup 1 lt {pop 1} if 10 mul /udl exch def } def
+/PL { stroke userlinewidth setlinewidth
+      Rounded { 1 setlinejoin 1 setlinecap } if } def
+/LTw { PL [] 1 setgray } def
+/LTb { BL [] 0 0 0 DL } def
+/LTa { AL [1 udl mul 2 udl mul] 0 setdash 0 0 0 setrgbcolor } def
+/LT0 { PL [] 1 0 0 DL } def
+/LT1 { PL [4 dl 2 dl] 0 1 0 DL } def
+/LT2 { PL [2 dl 3 dl] 0 0 1 DL } def
+/LT3 { PL [1 dl 1.5 dl] 1 0 1 DL } def
+/LT4 { PL [5 dl 2 dl 1 dl 2 dl] 0 1 1 DL } def
+/LT5 { PL [4 dl 3 dl 1 dl 3 dl] 1 1 0 DL } def
+/LT6 { PL [2 dl 2 dl 2 dl 4 dl] 0 0 0 DL } def
+/LT7 { PL [2 dl 2 dl 2 dl 2 dl 2 dl 4 dl] 1 0.3 0 DL } def
+/LT8 { PL [2 dl 2 dl 2 dl 2 dl 2 dl 2 dl 2 dl 4 dl] 0.5 0.5 0.5 DL } def
+/Pnt { stroke [] 0 setdash
+   gsave 1 setlinecap M 0 0 V stroke grestore } def
+/Dia { stroke [] 0 setdash 2 copy vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath stroke
+  Pnt } def
+/Pls { stroke [] 0 setdash vpt sub M 0 vpt2 V
+  currentpoint stroke M
+  hpt neg vpt neg R hpt2 0 V stroke
+  } def
+/Box { stroke [] 0 setdash 2 copy exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V closepath stroke
+  Pnt } def
+/Crs { stroke [] 0 setdash exch hpt sub exch vpt add M
+  hpt2 vpt2 neg V currentpoint stroke M
+  hpt2 neg 0 R hpt2 vpt2 V stroke } def
+/TriU { stroke [] 0 setdash 2 copy vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath stroke
+  Pnt  } def
+/Star { 2 copy Pls Crs } def
+/BoxF { stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V  hpt2 0 V  0 vpt2 V
+  hpt2 neg 0 V  closepath fill } def
+/TriUF { stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath fill } def
+/TriD { stroke [] 0 setdash 2 copy vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath stroke
+  Pnt  } def
+/TriDF { stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath fill} def
+/DiaF { stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath fill } def
+/Pent { stroke [] 0 setdash 2 copy gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath stroke grestore Pnt } def
+/PentF { stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath fill grestore } def
+/Circle { stroke [] 0 setdash 2 copy
+  hpt 0 360 arc stroke Pnt } def
+/CircleF { stroke [] 0 setdash hpt 0 360 arc fill } def
+/C0 { BL [] 0 setdash 2 copy moveto vpt 90 450  arc } bind def
+/C1 { BL [] 0 setdash 2 copy        moveto
+       2 copy  vpt 0 90 arc closepath fill
+               vpt 0 360 arc closepath } bind def
+/C2 { BL [] 0 setdash 2 copy moveto
+       2 copy  vpt 90 180 arc closepath fill
+               vpt 0 360 arc closepath } bind def
+/C3 { BL [] 0 setdash 2 copy moveto
+       2 copy  vpt 0 180 arc closepath fill
+               vpt 0 360 arc closepath } bind def
+/C4 { BL [] 0 setdash 2 copy moveto
+       2 copy  vpt 180 270 arc closepath fill
+               vpt 0 360 arc closepath } bind def
+/C5 { BL [] 0 setdash 2 copy moveto
+       2 copy  vpt 0 90 arc
+       2 copy moveto
+       2 copy  vpt 180 270 arc closepath fill
+               vpt 0 360 arc } bind def
+/C6 { BL [] 0 setdash 2 copy moveto
+      2 copy  vpt 90 270 arc closepath fill
+              vpt 0 360 arc closepath } bind def
+/C7 { BL [] 0 setdash 2 copy moveto
+      2 copy  vpt 0 270 arc closepath fill
+              vpt 0 360 arc closepath } bind def
+/C8 { BL [] 0 setdash 2 copy moveto
+      2 copy vpt 270 360 arc closepath fill
+              vpt 0 360 arc closepath } bind def
+/C9 { BL [] 0 setdash 2 copy moveto
+      2 copy  vpt 270 450 arc closepath fill
+              vpt 0 360 arc closepath } bind def
+/C10 { BL [] 0 setdash 2 copy 2 copy moveto vpt 270 360 arc closepath fill
+       2 copy moveto
+       2 copy vpt 90 180 arc closepath fill
+               vpt 0 360 arc closepath } bind def
+/C11 { BL [] 0 setdash 2 copy moveto
+       2 copy  vpt 0 180 arc closepath fill
+       2 copy moveto
+       2 copy  vpt 270 360 arc closepath fill
+               vpt 0 360 arc closepath } bind def
+/C12 { BL [] 0 setdash 2 copy moveto
+       2 copy  vpt 180 360 arc closepath fill
+               vpt 0 360 arc closepath } bind def
+/C13 { BL [] 0 setdash  2 copy moveto
+       2 copy  vpt 0 90 arc closepath fill
+       2 copy moveto
+       2 copy  vpt 180 360 arc closepath fill
+               vpt 0 360 arc closepath } bind def
+/C14 { BL [] 0 setdash 2 copy moveto
+       2 copy  vpt 90 360 arc closepath fill
+               vpt 0 360 arc } bind def
+/C15 { BL [] 0 setdash 2 copy vpt 0 360 arc closepath fill
+               vpt 0 360 arc closepath } bind def
+/Rec   { newpath 4 2 roll moveto 1 index 0 rlineto 0 exch rlineto
+       neg 0 rlineto closepath } bind def
+/Square { dup Rec } bind def
+/Bsquare { vpt sub exch vpt sub exch vpt2 Square } bind def
+/S0 { BL [] 0 setdash 2 copy moveto 0 vpt rlineto BL Bsquare } bind def
+/S1 { BL [] 0 setdash 2 copy vpt Square fill Bsquare } bind def
+/S2 { BL [] 0 setdash 2 copy exch vpt sub exch vpt Square fill Bsquare } bind def
+/S3 { BL [] 0 setdash 2 copy exch vpt sub exch vpt2 vpt Rec fill Bsquare } bind def
+/S4 { BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt Square fill Bsquare } bind def
+/S5 { BL [] 0 setdash 2 copy 2 copy vpt Square fill
+       exch vpt sub exch vpt sub vpt Square fill Bsquare } bind def
+/S6 { BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt vpt2 Rec fill Bsquare } bind def
+/S7 { BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt vpt2 Rec fill
+       2 copy vpt Square fill
+       Bsquare } bind def
+/S8 { BL [] 0 setdash 2 copy vpt sub vpt Square fill Bsquare } bind def
+/S9 { BL [] 0 setdash 2 copy vpt sub vpt vpt2 Rec fill Bsquare } bind def
+/S10 { BL [] 0 setdash 2 copy vpt sub vpt Square fill 2 copy exch vpt sub exch vpt Square fill
+       Bsquare } bind def
+/S11 { BL [] 0 setdash 2 copy vpt sub vpt Square fill 2 copy exch vpt sub exch vpt2 vpt Rec fill
+       Bsquare } bind def
+/S12 { BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill Bsquare } bind def
+/S13 { BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill
+       2 copy vpt Square fill Bsquare } bind def
+/S14 { BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill
+       2 copy exch vpt sub exch vpt Square fill Bsquare } bind def
+/S15 { BL [] 0 setdash 2 copy Bsquare fill Bsquare } bind def
+/D0 { gsave translate 45 rotate 0 0 S0 stroke grestore } bind def
+/D1 { gsave translate 45 rotate 0 0 S1 stroke grestore } bind def
+/D2 { gsave translate 45 rotate 0 0 S2 stroke grestore } bind def
+/D3 { gsave translate 45 rotate 0 0 S3 stroke grestore } bind def
+/D4 { gsave translate 45 rotate 0 0 S4 stroke grestore } bind def
+/D5 { gsave translate 45 rotate 0 0 S5 stroke grestore } bind def
+/D6 { gsave translate 45 rotate 0 0 S6 stroke grestore } bind def
+/D7 { gsave translate 45 rotate 0 0 S7 stroke grestore } bind def
+/D8 { gsave translate 45 rotate 0 0 S8 stroke grestore } bind def
+/D9 { gsave translate 45 rotate 0 0 S9 stroke grestore } bind def
+/D10 { gsave translate 45 rotate 0 0 S10 stroke grestore } bind def
+/D11 { gsave translate 45 rotate 0 0 S11 stroke grestore } bind def
+/D12 { gsave translate 45 rotate 0 0 S12 stroke grestore } bind def
+/D13 { gsave translate 45 rotate 0 0 S13 stroke grestore } bind def
+/D14 { gsave translate 45 rotate 0 0 S14 stroke grestore } bind def
+/D15 { gsave translate 45 rotate 0 0 S15 stroke grestore } bind def
+/DiaE { stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath stroke } def
+/BoxE { stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V closepath stroke } def
+/TriUE { stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath stroke } def
+/TriDE { stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath stroke } def
+/PentE { stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath stroke grestore } def
+/CircE { stroke [] 0 setdash 
+  hpt 0 360 arc stroke } def
+/Opaque { gsave closepath 1 setgray fill grestore 0 setgray closepath } def
+/DiaW { stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V Opaque stroke } def
+/BoxW { stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V Opaque stroke } def
+/TriUW { stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V Opaque stroke } def
+/TriDW { stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V Opaque stroke } def
+/PentW { stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  Opaque stroke grestore } def
+/CircW { stroke [] 0 setdash 
+  hpt 0 360 arc Opaque stroke } def
+/BoxFill { gsave Rec 1 setgray fill grestore } def
+/BoxColFill {
+  gsave Rec
+  /Fillden exch def
+  currentrgbcolor
+  /ColB exch def /ColG exch def /ColR exch def
+  /ColR ColR Fillden mul Fillden sub 1 add def
+  /ColG ColG Fillden mul Fillden sub 1 add def
+  /ColB ColB Fillden mul Fillden sub 1 add def
+  ColR ColG ColB setrgbcolor
+  fill grestore } def
+%
+% PostScript Level 1 Pattern Fill routine
+% Usage: x y w h s a XX PatternFill
+%	x,y = lower left corner of box to be filled
+%	w,h = width and height of box
+%	  a = angle in degrees between lines and x-axis
+%	 XX = 0/1 for no/yes cross-hatch
+%
+/PatternFill { gsave /PFa [ 9 2 roll ] def
+    PFa 0 get PFa 2 get 2 div add PFa 1 get PFa 3 get 2 div add translate
+    PFa 2 get -2 div PFa 3 get -2 div PFa 2 get PFa 3 get Rec
+    gsave 1 setgray fill grestore clip
+    currentlinewidth 0.5 mul setlinewidth
+    /PFs PFa 2 get dup mul PFa 3 get dup mul add sqrt def
+    0 0 M PFa 5 get rotate PFs -2 div dup translate
+	0 1 PFs PFa 4 get div 1 add floor cvi
+	{ PFa 4 get mul 0 M 0 PFs V } for
+    0 PFa 6 get ne {
+	0 1 PFs PFa 4 get div 1 add floor cvi
+	{ PFa 4 get mul 0 2 1 roll M PFs 0 V } for
+    } if
+    stroke grestore } def
+%
+/Symbol-Oblique /Symbol findfont [1 0 .167 1 0 0] makefont
+dup length dict begin {1 index /FID eq {pop pop} {def} ifelse} forall
+currentdict end definefont pop
+end
+%%EndProlog
+gnudict begin
+gsave
+50 50 translate
+0.050 0.050 scale
+0 setgray
+newpath
+(Helvetica) findfont 140 scalefont setfont
+1.000 UL
+LTb
+630 420 M
+63 0 V
+6269 0 R
+-63 0 V
+546 420 M
+gsave 0 setgray
+( 0) Rshow
+grestore
+1.000 UL
+LTb
+630 1056 M
+63 0 V
+6269 0 R
+-63 0 V
+-6353 0 R
+gsave 0 setgray
+( 10) Rshow
+grestore
+1.000 UL
+LTb
+630 1692 M
+63 0 V
+6269 0 R
+-63 0 V
+-6353 0 R
+gsave 0 setgray
+( 20) Rshow
+grestore
+1.000 UL
+LTb
+630 2328 M
+63 0 V
+6269 0 R
+-63 0 V
+-6353 0 R
+gsave 0 setgray
+( 30) Rshow
+grestore
+1.000 UL
+LTb
+630 2964 M
+63 0 V
+6269 0 R
+-63 0 V
+-6353 0 R
+gsave 0 setgray
+( 40) Rshow
+grestore
+1.000 UL
+LTb
+630 3600 M
+63 0 V
+6269 0 R
+-63 0 V
+-6353 0 R
+gsave 0 setgray
+( 50) Rshow
+grestore
+1.000 UL
+LTb
+630 4236 M
+63 0 V
+6269 0 R
+-63 0 V
+-6353 0 R
+gsave 0 setgray
+( 60) Rshow
+grestore
+1.000 UL
+LTb
+630 4872 M
+63 0 V
+6269 0 R
+-63 0 V
+-6353 0 R
+gsave 0 setgray
+( 70) Rshow
+grestore
+1.000 UL
+LTb
+6329 420 M
+0 63 V
+0 4389 R
+0 -63 V
+0 -4529 R
+gsave 0 setgray
+( 2097152) Cshow
+grestore
+1.000 UL
+LTb
+5696 420 M
+0 63 V
+0 4389 R
+0 -63 V
+0 -4529 R
+gsave 0 setgray
+( 1048576) Cshow
+grestore
+1.000 UL
+LTb
+5062 420 M
+0 63 V
+0 4389 R
+0 -63 V
+0 -4529 R
+gsave 0 setgray
+(  524288) Cshow
+grestore
+1.000 UL
+LTb
+4429 420 M
+0 63 V
+0 4389 R
+0 -63 V
+0 -4529 R
+gsave 0 setgray
+(  262144) Cshow
+grestore
+1.000 UL
+LTb
+3796 420 M
+0 63 V
+0 4389 R
+0 -63 V
+0 -4529 R
+gsave 0 setgray
+(  131072) Cshow
+grestore
+1.000 UL
+LTb
+3163 420 M
+0 63 V
+0 4389 R
+0 -63 V
+0 -4529 R
+gsave 0 setgray
+(   65536) Cshow
+grestore
+1.000 UL
+LTb
+2530 420 M
+0 63 V
+0 4389 R
+0 -63 V
+0 -4529 R
+gsave 0 setgray
+(   32768) Cshow
+grestore
+1.000 UL
+LTb
+1896 420 M
+0 63 V
+0 4389 R
+0 -63 V
+0 -4529 R
+gsave 0 setgray
+(   16384) Cshow
+grestore
+1.000 UL
+LTb
+1263 420 M
+0 63 V
+0 4389 R
+0 -63 V
+0 -4529 R
+gsave 0 setgray
+(    8192) Cshow
+grestore
+1.000 UL
+LTb
+1.000 UL
+LTb
+630 420 M
+6332 0 V
+0 4452 V
+-6332 0 V
+630 420 L
+LTb
+140 2646 M
+gsave 0 setgray
+currentpoint gsave translate 90 rotate 0 0 M
+(Direction hits per key) Cshow
+grestore
+grestore
+LTb
+3796 70 M
+gsave 0 setgray
+(set size in keys) Cshow
+grestore
+1.000 UP
+1.000 UP
+1.000 UL
+LT0
+LTb
+1281 4739 M
+gsave 0 setgray
+(base mergesort  - 2 Level Adaptive - 1024 2nd level entries) Lshow
+grestore
+LT0
+798 4739 M
+399 0 V
+630 1482 M
+633 98 V
+633 87 V
+634 100 V
+633 86 V
+633 101 V
+633 86 V
+633 102 V
+634 86 V
+633 103 V
+633 86 V
+630 1482 Pls
+1263 1580 Pls
+1896 1667 Pls
+2530 1767 Pls
+3163 1853 Pls
+3796 1954 Pls
+4429 2040 Pls
+5062 2142 Pls
+5696 2228 Pls
+6329 2331 Pls
+6962 2417 Pls
+998 4739 Pls
+1.000 UP
+1.000 UL
+LT1
+LTb
+1281 4599 M
+gsave 0 setgray
+(base mergesort  - 2 Level Adaptive - 2048 2nd level entries) Lshow
+grestore
+LT1
+798 4599 M
+399 0 V
+630 1489 M
+633 99 V
+633 88 V
+634 101 V
+633 87 V
+633 102 V
+633 87 V
+633 102 V
+634 86 V
+633 103 V
+633 86 V
+630 1489 Crs
+1263 1588 Crs
+1896 1676 Crs
+2530 1777 Crs
+3163 1864 Crs
+3796 1966 Crs
+4429 2053 Crs
+5062 2155 Crs
+5696 2241 Crs
+6329 2344 Crs
+6962 2430 Crs
+998 4599 Crs
+1.000 UP
+1.000 UL
+LT2
+LTb
+1281 4459 M
+gsave 0 setgray
+(base mergesort  - 2 Level Adaptive - 4096 2nd level entries) Lshow
+grestore
+LT2
+798 4459 M
+399 0 V
+630 1504 M
+633 101 V
+633 90 V
+634 103 V
+633 88 V
+633 103 V
+633 88 V
+633 104 V
+634 88 V
+633 104 V
+633 87 V
+630 1504 Star
+1263 1605 Star
+1896 1695 Star
+2530 1798 Star
+3163 1886 Star
+3796 1989 Star
+4429 2077 Star
+5062 2181 Star
+5696 2269 Star
+6329 2373 Star
+6962 2460 Star
+998 4459 Star
+1.000 UP
+1.000 UL
+LT3
+LTb
+1281 4319 M
+gsave 0 setgray
+(base mergesort  - 2 Level Adaptive - 512 2nd level entries) Lshow
+grestore
+LT3
+798 4319 M
+399 0 V
+630 1472 M
+633 95 V
+633 84 V
+634 100 V
+633 86 V
+633 100 V
+633 85 V
+633 101 V
+634 85 V
+633 101 V
+633 85 V
+630 1472 Box
+1263 1567 Box
+1896 1651 Box
+2530 1751 Box
+3163 1837 Box
+3796 1937 Box
+4429 2022 Box
+5062 2123 Box
+5696 2208 Box
+6329 2309 Box
+6962 2394 Box
+998 4319 Box
+1.000 UP
+1.000 UL
+LT4
+LTb
+1281 4179 M
+gsave 0 setgray
+(base mergesort  - Bimodal - 1024 byte table) Lshow
+grestore
+LT4
+798 4179 M
+399 0 V
+630 1496 M
+633 98 V
+633 85 V
+634 101 V
+633 89 V
+633 103 V
+633 87 V
+633 104 V
+634 87 V
+633 105 V
+633 87 V
+630 1496 BoxF
+1263 1594 BoxF
+1896 1679 BoxF
+2530 1780 BoxF
+3163 1869 BoxF
+3796 1972 BoxF
+4429 2059 BoxF
+5062 2163 BoxF
+5696 2250 BoxF
+6329 2355 BoxF
+6962 2442 BoxF
+998 4179 BoxF
+1.000 UP
+1.000 UL
+LT5
+LTb
+1281 4039 M
+gsave 0 setgray
+(base mergesort  - Bimodal - 2048 byte table) Lshow
+grestore
+LT5
+798 4039 M
+399 0 V
+630 1496 M
+633 98 V
+633 85 V
+634 101 V
+633 89 V
+633 103 V
+633 87 V
+633 104 V
+634 87 V
+633 105 V
+633 87 V
+630 1496 Circle
+1263 1594 Circle
+1896 1679 Circle
+2530 1780 Circle
+3163 1869 Circle
+3796 1972 Circle
+4429 2059 Circle
+5062 2163 Circle
+5696 2250 Circle
+6329 2355 Circle
+6962 2442 Circle
+998 4039 Circle
+1.000 UP
+1.000 UL
+LT6
+LTb
+1281 3899 M
+gsave 0 setgray
+(base mergesort  - Bimodal - 512 byte table) Lshow
+grestore
+LT6
+798 3899 M
+399 0 V
+630 1496 M
+633 98 V
+633 85 V
+634 101 V
+633 89 V
+633 103 V
+633 87 V
+633 104 V
+634 87 V
+633 105 V
+633 87 V
+630 1496 CircleF
+1263 1594 CircleF
+1896 1679 CircleF
+2530 1780 CircleF
+3163 1869 CircleF
+3796 1972 CircleF
+4429 2059 CircleF
+5062 2163 CircleF
+5696 2250 CircleF
+6329 2355 CircleF
+6962 2442 CircleF
+998 3899 CircleF
+1.000 UP
+1.000 UL
+LT7
+LTb
+1281 3759 M
+gsave 0 setgray
+(double multi mergesort  - 2 Level Adaptive - 1024 2nd level entries) Lshow
+grestore
+LT7
+798 3759 M
+399 0 V
+630 1773 M
+633 41 V
+633 143 V
+634 43 V
+633 146 V
+633 43 V
+633 95 V
+633 1117 V
+634 325 V
+633 257 V
+633 237 V
+630 1773 TriU
+1263 1814 TriU
+1896 1957 TriU
+2530 2000 TriU
+3163 2146 TriU
+3796 2189 TriU
+4429 2284 TriU
+5062 3401 TriU
+5696 3726 TriU
+6329 3983 TriU
+6962 4220 TriU
+998 3759 TriU
+1.000 UP
+1.000 UL
+LT8
+LTb
+1281 3619 M
+gsave 0 setgray
+(double multi mergesort  - 2 Level Adaptive - 2048 2nd level entries) Lshow
+grestore
+LT8
+798 3619 M
+399 0 V
+630 1781 M
+633 48 V
+633 135 V
+634 52 V
+633 137 V
+633 53 V
+633 95 V
+633 1117 V
+634 336 V
+633 264 V
+633 258 V
+630 1781 TriUF
+1263 1829 TriUF
+1896 1964 TriUF
+2530 2016 TriUF
+3163 2153 TriUF
+3796 2206 TriUF
+4429 2301 TriUF
+5062 3418 TriUF
+5696 3754 TriUF
+6329 4018 TriUF
+6962 4276 TriUF
+998 3619 TriUF
+1.000 UP
+1.000 UL
+LT0
+LTb
+1281 3479 M
+gsave 0 setgray
+(double multi mergesort  - 2 Level Adaptive - 4096 2nd level entries) Lshow
+grestore
+LT0
+798 3479 M
+399 0 V
+630 1785 M
+633 53 V
+633 131 V
+634 57 V
+633 133 V
+633 58 V
+633 95 V
+633 1126 V
+634 340 V
+633 278 V
+633 277 V
+630 1785 TriD
+1263 1838 TriD
+1896 1969 TriD
+2530 2026 TriD
+3163 2159 TriD
+3796 2217 TriD
+4429 2312 TriD
+5062 3438 TriD
+5696 3778 TriD
+6329 4056 TriD
+6962 4333 TriD
+998 3479 TriD
+1.000 UP
+1.000 UL
+LT1
+LTb
+1281 3339 M
+gsave 0 setgray
+(double multi mergesort  - 2 Level Adaptive - 512 2nd level entries) Lshow
+grestore
+LT1
+798 3339 M
+399 0 V
+630 1764 M
+633 37 V
+633 147 V
+634 36 V
+633 151 V
+633 37 V
+633 94 V
+633 1121 V
+634 298 V
+633 240 V
+633 227 V
+630 1764 TriDF
+1263 1801 TriDF
+1896 1948 TriDF
+2530 1984 TriDF
+3163 2135 TriDF
+3796 2172 TriDF
+4429 2266 TriDF
+5062 3387 TriDF
+5696 3685 TriDF
+6329 3925 TriDF
+6962 4152 TriDF
+998 3339 TriDF
+1.000 UP
+1.000 UL
+LT2
+LTb
+1281 3199 M
+gsave 0 setgray
+(double multi mergesort  - Bimodal - 1024 byte table) Lshow
+grestore
+LT2
+798 3199 M
+399 0 V
+630 1778 M
+633 73 V
+633 109 V
+634 76 V
+633 115 V
+633 77 V
+633 96 V
+633 1062 V
+634 335 V
+633 244 V
+633 278 V
+630 1778 Dia
+1263 1851 Dia
+1896 1960 Dia
+2530 2036 Dia
+3163 2151 Dia
+3796 2228 Dia
+4429 2324 Dia
+5062 3386 Dia
+5696 3721 Dia
+6329 3965 Dia
+6962 4243 Dia
+998 3199 Dia
+1.000 UP
+1.000 UL
+LT3
+LTb
+1281 3059 M
+gsave 0 setgray
+(double multi mergesort  - Bimodal - 2048 byte table) Lshow
+grestore
+LT3
+798 3059 M
+399 0 V
+630 1778 M
+633 73 V
+633 109 V
+634 76 V
+633 115 V
+633 77 V
+633 96 V
+633 1062 V
+634 335 V
+633 244 V
+633 278 V
+630 1778 DiaF
+1263 1851 DiaF
+1896 1960 DiaF
+2530 2036 DiaF
+3163 2151 DiaF
+3796 2228 DiaF
+4429 2324 DiaF
+5062 3386 DiaF
+5696 3721 DiaF
+6329 3965 DiaF
+6962 4243 DiaF
+998 3059 DiaF
+1.000 UP
+1.000 UL
+LT4
+LTb
+1281 2919 M
+gsave 0 setgray
+(double multi mergesort  - Bimodal - 512 byte table) Lshow
+grestore
+LT4
+798 2919 M
+399 0 V
+630 1778 M
+633 73 V
+633 109 V
+634 76 V
+633 115 V
+633 77 V
+633 96 V
+633 1062 V
+634 335 V
+633 244 V
+633 278 V
+630 1778 Pent
+1263 1851 Pent
+1896 1960 Pent
+2530 2036 Pent
+3163 2151 Pent
+3796 2228 Pent
+4429 2324 Pent
+5062 3386 Pent
+5696 3721 Pent
+6329 3965 Pent
+6962 4243 Pent
+998 2919 Pent
+1.000 UP
+1.000 UL
+LT5
+LTb
+1281 2779 M
+gsave 0 setgray
+(double tiled mergesort  - 2 Level Adaptive - 1024 2nd level entries) Lshow
+grestore
+LT5
+798 2779 M
+399 0 V
+630 1768 M
+633 40 V
+633 140 V
+634 43 V
+633 145 V
+633 45 V
+633 143 V
+633 120 V
+634 142 V
+633 47 V
+633 142 V
+630 1768 PentF
+1263 1808 PentF
+1896 1948 PentF
+2530 1991 PentF
+3163 2136 PentF
+3796 2181 PentF
+4429 2324 PentF
+5062 2444 PentF
+5696 2586 PentF
+6329 2633 PentF
+6962 2775 PentF
+998 2779 PentF
+1.000 UP
+1.000 UL
+LT6
+LTb
+1281 2639 M
+gsave 0 setgray
+(double tiled mergesort  - 2 Level Adaptive - 2048 2nd level entries) Lshow
+grestore
+LT6
+798 2639 M
+399 0 V
+630 1783 M
+633 49 V
+633 132 V
+634 53 V
+633 135 V
+633 56 V
+633 133 V
+633 132 V
+634 132 V
+633 58 V
+633 132 V
+630 1783 C0
+1263 1832 C0
+1896 1964 C0
+2530 2017 C0
+3163 2152 C0
+3796 2208 C0
+4429 2341 C0
+5062 2473 C0
+5696 2605 C0
+6329 2663 C0
+6962 2795 C0
+998 2639 C0
+1.000 UP
+1.000 UL
+LT7
+LTb
+1281 2499 M
+gsave 0 setgray
+(double tiled mergesort  - 2 Level Adaptive - 4096 2nd level entries) Lshow
+grestore
+LT7
+798 2499 M
+399 0 V
+630 1786 M
+633 51 V
+633 131 V
+634 55 V
+633 134 V
+633 57 V
+633 132 V
+633 133 V
+634 131 V
+633 59 V
+633 131 V
+630 1786 C1
+1263 1837 C1
+1896 1968 C1
+2530 2023 C1
+3163 2157 C1
+3796 2214 C1
+4429 2346 C1
+5062 2479 C1
+5696 2610 C1
+6329 2669 C1
+6962 2800 C1
+998 2499 C1
+1.000 UP
+1.000 UL
+LT8
+LTb
+1281 2359 M
+gsave 0 setgray
+(double tiled mergesort  - 2 Level Adaptive - 512 2nd level entries) Lshow
+grestore
+LT8
+798 2359 M
+399 0 V
+630 1759 M
+633 37 V
+633 143 V
+634 39 V
+633 148 V
+633 39 V
+633 147 V
+633 116 V
+634 145 V
+633 42 V
+633 146 V
+630 1759 C2
+1263 1796 C2
+1896 1939 C2
+2530 1978 C2
+3163 2126 C2
+3796 2165 C2
+4429 2312 C2
+5062 2428 C2
+5696 2573 C2
+6329 2615 C2
+6962 2761 C2
+998 2359 C2
+1.000 UP
+1.000 UL
+LT0
+LTb
+7476 4739 M
+gsave 0 setgray
+(double tiled mergesort  - Bimodal - 1024 byte table) Lshow
+grestore
+LT0
+6993 4739 M
+399 0 V
+630 1778 M
+633 73 V
+633 109 V
+634 76 V
+633 115 V
+633 77 V
+633 113 V
+633 150 V
+634 112 V
+633 80 V
+633 112 V
+630 1778 C3
+1263 1851 C3
+1896 1960 C3
+2530 2036 C3
+3163 2151 C3
+3796 2228 C3
+4429 2341 C3
+5062 2491 C3
+5696 2603 C3
+6329 2683 C3
+6962 2795 C3
+7193 4739 C3
+1.000 UP
+1.000 UL
+LT1
+LTb
+7476 4599 M
+gsave 0 setgray
+(double tiled mergesort  - Bimodal - 2048 byte table) Lshow
+grestore
+LT1
+6993 4599 M
+399 0 V
+630 1778 M
+633 73 V
+633 109 V
+634 76 V
+633 115 V
+633 77 V
+633 113 V
+633 150 V
+634 112 V
+633 80 V
+633 112 V
+630 1778 C4
+1263 1851 C4
+1896 1960 C4
+2530 2036 C4
+3163 2151 C4
+3796 2228 C4
+4429 2341 C4
+5062 2491 C4
+5696 2603 C4
+6329 2683 C4
+6962 2795 C4
+7193 4599 C4
+1.000 UP
+1.000 UL
+LT2
+LTb
+7476 4459 M
+gsave 0 setgray
+(double tiled mergesort  - Bimodal - 512 byte table) Lshow
+grestore
+LT2
+6993 4459 M
+399 0 V
+630 1778 M
+633 73 V
+633 109 V
+634 76 V
+633 115 V
+633 77 V
+633 113 V
+633 150 V
+634 112 V
+633 80 V
+633 112 V
+630 1778 C5
+1263 1851 C5
+1896 1960 C5
+2530 2036 C5
+3163 2151 C5
+3796 2228 C5
+4429 2341 C5
+5062 2491 C5
+5696 2603 C5
+6329 2683 C5
+6962 2795 C5
+7193 4459 C5
+1.000 UP
+1.000 UL
+LT3
+LTb
+7476 4319 M
+gsave 0 setgray
+(multi mergesort  - 2 Level Adaptive - 1024 2nd level entries) Lshow
+grestore
+LT3
+6993 4319 M
+399 0 V
+630 1493 M
+633 98 V
+633 86 V
+634 102 V
+633 88 V
+633 101 V
+633 88 V
+633 1071 V
+634 332 V
+633 177 V
+633 169 V
+630 1493 C6
+1263 1591 C6
+1896 1677 C6
+2530 1779 C6
+3163 1867 C6
+3796 1968 C6
+4429 2056 C6
+5062 3127 C6
+5696 3459 C6
+6329 3636 C6
+6962 3805 C6
+7193 4319 C6
+1.000 UP
+1.000 UL
+LT4
+LTb
+7476 4179 M
+gsave 0 setgray
+(multi mergesort  - 2 Level Adaptive - 2048 2nd level entries) Lshow
+grestore
+LT4
+6993 4179 M
+399 0 V
+630 1501 M
+633 98 V
+633 88 V
+634 103 V
+633 88 V
+633 102 V
+633 88 V
+633 1075 V
+634 338 V
+633 184 V
+633 185 V
+630 1501 C7
+1263 1599 C7
+1896 1687 C7
+2530 1790 C7
+3163 1878 C7
+3796 1980 C7
+4429 2068 C7
+5062 3143 C7
+5696 3481 C7
+6329 3665 C7
+6962 3850 C7
+7193 4179 C7
+1.000 UP
+1.000 UL
+LT5
+LTb
+7476 4039 M
+gsave 0 setgray
+(multi mergesort  - 2 Level Adaptive - 4096 2nd level entries) Lshow
+grestore
+LT5
+6993 4039 M
+399 0 V
+630 1504 M
+633 100 V
+633 90 V
+634 103 V
+633 89 V
+633 103 V
+633 88 V
+633 1082 V
+634 341 V
+633 186 V
+633 200 V
+630 1504 C8
+1263 1604 C8
+1896 1694 C8
+2530 1797 C8
+3163 1886 C8
+3796 1989 C8
+4429 2077 C8
+5062 3159 C8
+5696 3500 C8
+6329 3686 C8
+6962 3886 C8
+7193 4039 C8
+1.000 UP
+1.000 UL
+LT6
+LTb
+7476 3899 M
+gsave 0 setgray
+(multi mergesort  - 2 Level Adaptive - 512 2nd level entries) Lshow
+grestore
+LT6
+6993 3899 M
+399 0 V
+630 1486 M
+633 94 V
+633 84 V
+634 101 V
+633 87 V
+633 101 V
+633 87 V
+633 1062 V
+634 316 V
+633 148 V
+633 162 V
+630 1486 C9
+1263 1580 C9
+1896 1664 C9
+2530 1765 C9
+3163 1852 C9
+3796 1953 C9
+4429 2040 C9
+5062 3102 C9
+5696 3418 C9
+6329 3566 C9
+6962 3728 C9
+7193 3899 C9
+1.000 UP
+1.000 UL
+LT7
+LTb
+7476 3759 M
+gsave 0 setgray
+(multi mergesort  - Bimodal - 1024 byte table) Lshow
+grestore
+LT7
+6993 3759 M
+399 0 V
+630 1497 M
+633 97 V
+633 85 V
+634 101 V
+633 89 V
+633 103 V
+633 87 V
+633 1053 V
+634 331 V
+633 189 V
+633 216 V
+630 1497 C10
+1263 1594 C10
+1896 1679 C10
+2530 1780 C10
+3163 1869 C10
+3796 1972 C10
+4429 2059 C10
+5062 3112 C10
+5696 3443 C10
+6329 3632 C10
+6962 3848 C10
+7193 3759 C10
+1.000 UP
+1.000 UL
+LT8
+LTb
+7476 3619 M
+gsave 0 setgray
+(multi mergesort  - Bimodal - 2048 byte table) Lshow
+grestore
+LT8
+6993 3619 M
+399 0 V
+630 1497 M
+633 97 V
+633 85 V
+634 101 V
+633 89 V
+633 103 V
+633 87 V
+633 1053 V
+634 331 V
+633 189 V
+633 216 V
+630 1497 C11
+1263 1594 C11
+1896 1679 C11
+2530 1780 C11
+3163 1869 C11
+3796 1972 C11
+4429 2059 C11
+5062 3112 C11
+5696 3443 C11
+6329 3632 C11
+6962 3848 C11
+7193 3619 C11
+1.000 UP
+1.000 UL
+LT0
+LTb
+7476 3479 M
+gsave 0 setgray
+(multi mergesort  - Bimodal - 512 byte table) Lshow
+grestore
+LT0
+6993 3479 M
+399 0 V
+630 1497 M
+633 97 V
+633 85 V
+634 101 V
+633 89 V
+633 103 V
+633 87 V
+633 1053 V
+634 331 V
+633 189 V
+633 216 V
+630 1497 C12
+1263 1594 C12
+1896 1679 C12
+2530 1780 C12
+3163 1869 C12
+3796 1972 C12
+4429 2059 C12
+5062 3112 C12
+5696 3443 C12
+6329 3632 C12
+6962 3848 C12
+7193 3479 C12
+1.000 UP
+1.000 UL
+LT1
+LTb
+7476 3339 M
+gsave 0 setgray
+(tiled mergesort  - 2 Level Adaptive - 1024 2nd level entries) Lshow
+grestore
+LT1
+6993 3339 M
+399 0 V
+630 1493 M
+633 99 V
+633 87 V
+634 102 V
+633 88 V
+633 102 V
+633 88 V
+633 103 V
+634 87 V
+633 104 V
+633 87 V
+630 1493 C13
+1263 1592 C13
+1896 1679 C13
+2530 1781 C13
+3163 1869 C13
+3796 1971 C13
+4429 2059 C13
+5062 2162 C13
+5696 2249 C13
+6329 2353 C13
+6962 2440 C13
+7193 3339 C13
+1.000 UP
+1.000 UL
+LT2
+LTb
+7476 3199 M
+gsave 0 setgray
+(tiled mergesort  - 2 Level Adaptive - 2048 2nd level entries) Lshow
+grestore
+LT2
+6993 3199 M
+399 0 V
+630 1502 M
+633 99 V
+633 89 V
+634 103 V
+633 88 V
+633 103 V
+633 88 V
+633 103 V
+634 88 V
+633 104 V
+633 88 V
+630 1502 C14
+1263 1601 C14
+1896 1690 C14
+2530 1793 C14
+3163 1881 C14
+3796 1984 C14
+4429 2072 C14
+5062 2175 C14
+5696 2263 C14
+6329 2367 C14
+6962 2455 C14
+7193 3199 C14
+1.000 UP
+1.000 UL
+LT3
+LTb
+7476 3059 M
+gsave 0 setgray
+(tiled mergesort  - 2 Level Adaptive - 4096 2nd level entries) Lshow
+grestore
+LT3
+6993 3059 M
+399 0 V
+630 1503 M
+633 102 V
+633 88 V
+634 103 V
+633 89 V
+633 103 V
+633 88 V
+633 103 V
+634 88 V
+633 104 V
+633 88 V
+630 1503 C15
+1263 1605 C15
+1896 1693 C15
+2530 1796 C15
+3163 1885 C15
+3796 1988 C15
+4429 2076 C15
+5062 2179 C15
+5696 2267 C15
+6329 2371 C15
+6962 2459 C15
+7193 3059 C15
+1.000 UP
+1.000 UL
+LT4
+LTb
+7476 2919 M
+gsave 0 setgray
+(tiled mergesort  - 2 Level Adaptive - 512 2nd level entries) Lshow
+grestore
+LT4
+6993 2919 M
+399 0 V
+630 1491 M
+633 97 V
+633 86 V
+634 101 V
+633 88 V
+633 101 V
+633 88 V
+633 103 V
+634 87 V
+633 103 V
+633 87 V
+630 1491 S0
+1263 1588 S0
+1896 1674 S0
+2530 1775 S0
+3163 1863 S0
+3796 1964 S0
+4429 2052 S0
+5062 2155 S0
+5696 2242 S0
+6329 2345 S0
+6962 2432 S0
+7193 2919 S0
+1.000 UP
+1.000 UL
+LT5
+LTb
+7476 2779 M
+gsave 0 setgray
+(tiled mergesort  - Bimodal - 1024 byte table) Lshow
+grestore
+LT5
+6993 2779 M
+399 0 V
+630 1493 M
+633 97 V
+633 85 V
+634 101 V
+633 89 V
+633 103 V
+633 87 V
+633 106 V
+634 88 V
+633 105 V
+633 88 V
+630 1493 S1
+1263 1590 S1
+1896 1675 S1
+2530 1776 S1
+3163 1865 S1
+3796 1968 S1
+4429 2055 S1
+5062 2161 S1
+5696 2249 S1
+6329 2354 S1
+6962 2442 S1
+7193 2779 S1
+1.000 UP
+1.000 UL
+LT6
+LTb
+7476 2639 M
+gsave 0 setgray
+(tiled mergesort  - Bimodal - 2048 byte table) Lshow
+grestore
+LT6
+6993 2639 M
+399 0 V
+630 1493 M
+633 97 V
+633 85 V
+634 101 V
+633 89 V
+633 103 V
+633 87 V
+633 106 V
+634 88 V
+633 105 V
+633 88 V
+630 1493 S2
+1263 1590 S2
+1896 1675 S2
+2530 1776 S2
+3163 1865 S2
+3796 1968 S2
+4429 2055 S2
+5062 2161 S2
+5696 2249 S2
+6329 2354 S2
+6962 2442 S2
+7193 2639 S2
+1.000 UP
+1.000 UL
+LT7
+LTb
+7476 2499 M
+gsave 0 setgray
+(tiled mergesort  - Bimodal - 512 byte table) Lshow
+grestore
+LT7
+6993 2499 M
+399 0 V
+630 1493 M
+633 97 V
+633 85 V
+634 101 V
+633 89 V
+633 103 V
+633 87 V
+633 106 V
+634 88 V
+633 105 V
+633 88 V
+630 1493 S3
+1263 1590 S3
+1896 1675 S3
+2530 1776 S3
+3163 1865 S3
+3796 1968 S3
+4429 2055 S3
+5062 2161 S3
+5696 2249 S3
+6329 2354 S3
+6962 2442 S3
+7193 2499 S3
+1.000 UL
+LTb
+630 420 M
+6332 0 V
+0 4452 V
+-6332 0 V
+630 420 L
+1.000 UP
+stroke
+grestore
+end
+showpage
+%%Trailer
+%%DocumentFonts: Helvetica

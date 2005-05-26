@@ -1,0 +1,42 @@
+#!/usr/bin/perl -w
+
+use strict
+
+$sortlist = "./sortlist";
+$makefile = "./simpleMakefile";
+$script = "./simple";
+
+$makestart = <<MAKESTART;
+CC = sslittle-na-sstrix-gcc
+CFLAGS = -Wall -O3
+SIMPLEFLAGS = -lm
+
+all:
+MAKESTART
+
+$scriptstart = "#!/bin/bash\nmake -f ".$makefile."\n";
+$clean = "clean:\n\trm -f *.o";
+
+$simplecommand = "sim-safe";
+
+# start code here
+open(MAKEFILE, ">".$makefile) || die("Couldnt open the makefile: ".$makefile);
+print MAKEFILE $makestart;
+
+open(SCRIPT, ">".$script);
+print SCRIPT $scriptstart || die("Couldnt open the script: ".$script);
+
+open(SORTLIST, $sortlist) || die("Couldnt open the sortlist: ".$sortlist);
+while(<SORTLIST>)
+{
+	chomp;
+	print MAKEFILE "\t\$(CC) \$(CFLAGS) \$(SIMPLEFLAGS) -DSORT=$_ $_.c simpleMain.c -o $_\n";
+	$clean .= " ".$_;
+	print SCRIPT $simplecommand." ".$_."\n";
+}
+
+print MAKEFILE $clean;
+
+close(MAKEFILE);
+close(SCRIPT);
+close(SORTLIST);

@@ -1,0 +1,143 @@
+Sun Jul 11 06:19:27 2004
+Run as: "./simple -c extra -m 65536 -M 65536 on2_bubblesort2"
+-------------------------------------------------------------------------------------------------
+sim-cache                                    65536 |        65536 |        65536 |        65536 |
+-cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2
+-cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2
+-cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2
+-cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2
+-------------------------------------------------------------------------------------------------
+sim_num_insn                           17171373568 |  17171373568 |  17171373568 |  17171373568 |
+sim_num_refs                            6437350981 |   6437350981 |   6437350981 |   6437350981 |
+sim_elapsed_time                              4583 |         4573 |         4632 |         4621 |
+sim_inst_rate                         3746753.9969 | 3754947.2049 | 3707118.6459 | 3715943.2088 |
+il1.accesses                           17171373568 |  17171373568 |  17171373568 |  17171373568 |
+il1.hits                               17171373191 |  17171373191 |  17171373247 |  17171373247 |
+il1.misses                                     377 |          377 |          321 |          321 |
+il1.replacements                               167 |          167 |           65 |           65 |
+il1.writebacks                                   0 |            0 |            0 |            0 |
+il1.invalidations                                0 |            0 |            0 |            0 |
+il1.miss_rate                               0.0000 |       0.0000 |       0.0000 |       0.0000 |
+il1.repl_rate                               0.0000 |       0.0000 |       0.0000 |       0.0000 |
+il1.wb_rate                                 0.0000 |       0.0000 |       0.0000 |       0.0000 |
+il1.inv_rate                                0.0000 |       0.0000 |       0.0000 |       0.0000 |
+dl1.accesses                            6437613205 |   6437613205 |   6437613205 |   6437613205 |
+dl1.hits                                6169671321 |   6169671321 |   6169418404 |   6169418404 |
+dl1.misses                               267941884 |    267941884 |    268194801 |    268194801 |
+dl1.replacements                         267941628 |    267941628 |    268194545 |    268194545 |
+dl1.writebacks                           241598242 |    241598242 |    241644120 |    241644120 |
+dl1.invalidations                                0 |            0 |            0 |            0 |
+dl1.miss_rate                               0.0416 |       0.0416 |       0.0417 |       0.0417 |
+dl1.repl_rate                               0.0416 |       0.0416 |       0.0417 |       0.0417 |
+dl1.wb_rate                                 0.0375 |       0.0375 |       0.0375 |       0.0375 |
+dl1.inv_rate                                0.0000 |       0.0000 |       0.0000 |       0.0000 |
+dl2.accesses                             509540503 |    509540503 |    509839242 |    509839242 |
+dl2.hits                                 509531573 |    509531573 |    509830316 |    509830316 |
+dl2.misses                                    8930 |         8930 |         8926 |         8926 |
+dl2.replacements                                74 |           74 |            0 |            0 |
+dl2.writebacks                                   0 |            0 |            0 |            0 |
+dl2.invalidations                                0 |            0 |            0 |            0 |
+dl2.miss_rate                               0.0000 |       0.0000 |       0.0000 |       0.0000 |
+dl2.repl_rate                               0.0000 |       0.0000 |       0.0000 |       0.0000 |
+dl2.wb_rate                                 0.0000 |       0.0000 |       0.0000 |       0.0000 |
+dl2.inv_rate                                0.0000 |       0.0000 |       0.0000 |       0.0000 |
+itlb.accesses                          17171373568 |  17171373568 |  17171373568 |  17171373568 |
+itlb.hits                              17171373557 |  17171373557 |  17171373557 |  17171373557 |
+itlb.misses                                     11 |           11 |           11 |           11 |
+itlb.replacements                                0 |            0 |            0 |            0 |
+itlb.writebacks                                  0 |            0 |            0 |            0 |
+itlb.invalidations                               0 |            0 |            0 |            0 |
+itlb.miss_rate                              0.0000 |       0.0000 |       0.0000 |       0.0000 |
+itlb.repl_rate                              0.0000 |       0.0000 |       0.0000 |       0.0000 |
+itlb.wb_rate                                0.0000 |       0.0000 |       0.0000 |       0.0000 |
+itlb.inv_rate                               0.0000 |       0.0000 |       0.0000 |       0.0000 |
+dtlb.accesses                           6437613205 |   6437613205 |   6437613205 |   6437613205 |
+dtlb.hits                               6437613134 |   6437613134 |   6437613134 |   6437613134 |
+dtlb.misses                                     71 |           71 |           71 |           71 |
+dtlb.replacements                                0 |            0 |            0 |            0 |
+dtlb.writebacks                                  0 |            0 |            0 |            0 |
+dtlb.invalidations                               0 |            0 |            0 |            0 |
+dtlb.miss_rate                              0.0000 |       0.0000 |       0.0000 |       0.0000 |
+dtlb.repl_rate                              0.0000 |       0.0000 |       0.0000 |       0.0000 |
+dtlb.wb_rate                                0.0000 |       0.0000 |       0.0000 |       0.0000 |
+dtlb.inv_rate                               0.0000 |       0.0000 |       0.0000 |       0.0000 |
+ld_text_base                            0x00400000 |   0x00400000 |   0x00400000 |   0x00400000 |
+ld_text_size                                 73840 |        73840 |        73840 |        73840 |
+ld_data_base                            0x10000000 |   0x10000000 |   0x10000000 |   0x10000000 |
+ld_data_size                                  8244 |         8244 |         8244 |         8244 |
+ld_stack_base                           0x7fffc000 |   0x7fffc000 |   0x7fffc000 |   0x7fffc000 |
+ld_stack_size                                16384 |        16384 |        16384 |        16384 |
+ld_prog_entry                           0x00400140 |   0x00400140 |   0x00400140 |   0x00400140 |
+ld_environ_base                         0x7fff8000 |   0x7fff8000 |   0x7fff8000 |   0x7fff8000 |
+ld_target_big_endian                             0 |            0 |            0 |            0 |
+mem.page_count                                  90 |           90 |           90 |           90 |
+mem.page_mem                                  360k |         360k |         360k |         360k |
+mem.ptab_misses                                 90 |           90 |           90 |           90 |
+mem.ptab_accesses                      81561178734 |  81561178734 |  81561178734 |  81561178734 |
+mem.ptab_miss_rate                          0.0000 |       0.0000 |       0.0000 |       0.0000 |
+-------------------------------------------------------------------------------------------------
+sim-bpred                                    65536 |        65536 |        65536 |        65536 |        65536 |        65536 |        65536 |
+-bpred bimod -bpred:bimod 512
+-bpred bimod -bpred:bimod 1024
+-bpred bimod -bpred:bimod 2048
+-bpred 2lev -bpred:2lev 1 512 10 1
+-bpred 2lev -bpred:2lev 1 1024 10 1
+-bpred 2lev -bpred:2lev 1 2048 10 1
+-bpred 2lev -bpred:2lev 1 4096 10 1
+-------------------------------------------------------------------------------------------------
+sim_num_insn                           17171373568 |  17171373568 |  17171373568 |  17171373568 |  17171373568 |  17171373568 |  17171373568 |
+sim_num_refs                            6437350981 |   6437350981 |   6437350981 |   6437350981 |   6437350981 |   6437350981 |   6437350981 |
+sim_elapsed_time                              1886 |         1867 |         1865 |         1977 |         1889 |         1893 |         1895 |
+sim_inst_rate                         9104651.9449 | 9197307.7493 | 9207170.8139 | 8685570.8488 | 9090192.4659 | 9070984.4522 | 9061410.8538 |
+sim_num_branches                        2683930029 |   2683930029 |   2683930029 |   2683930029 |   2683930029 |   2683930029 |   2683930029 |
+sim_IPB                                     6.3978 |       6.3978 |       6.3978 |       6.3978 |       6.3978 |       6.3978 |       6.3978 |
+bpred_bimod.lookups                     2683930029 |   2683930029 |   2683930029 |
+bpred_bimod.updates                     2683930029 |   2683930029 |   2683930029 |
+bpred_bimod.addr_hits                   2070628512 |   2070628516 |   2070628516 |
+bpred_bimod.dir_hits                    2070628604 |   2070628605 |   2070628604 |
+bpred_bimod.misses                       613301425 |    613301424 |    613301425 |
+bpred_bimod.jr_hits                             55 |           55 |           55 |
+bpred_bimod.jr_seen                             56 |           56 |           56 |
+bpred_bimod.jr_non_ras_hits.PP                   0 |            0 |            0 |
+bpred_bimod.jr_non_ras_seen.PP                   0 |            0 |            0 |
+bpred_bimod.bpred_addr_rate                 0.7715 |       0.7715 |       0.7715 |
+bpred_bimod.bpred_dir_rate                  0.7715 |       0.7715 |       0.7715 |
+bpred_bimod.bpred_jr_rate                   0.9821 |       0.9821 |       0.9821 |
+bpred_bimod.bpred_jr_non_ras_rate.PP       <error: |      <error: |      <error: |
+bpred_bimod.retstack_pushes                     58 |           58 |           58 |
+bpred_bimod.retstack_pops                       56 |           56 |           56 |
+bpred_bimod.used_ras.PP                         56 |           56 |           56 |
+bpred_bimod.ras_hits.PP                         55 |           55 |           55 |
+bpred_bimod.ras_rate.PP                     0.9821 |       0.9821 |       0.9821 |
+bpred_2lev.lookups                   xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |   2683930029 |   2683930029 |   2683930029 |   2683930029 |
+bpred_2lev.updates                   xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |   2683930029 |   2683930029 |   2683930029 |   2683930029 |
+bpred_2lev.addr_hits                 xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |   2001144546 |   2026434205 |   2047968845 |   2052462946 |
+bpred_2lev.dir_hits                  xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |   2001144657 |   2026434312 |   2047968946 |   2052463042 |
+bpred_2lev.misses                    xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |    682785372 |    657495717 |    635961083 |    631466987 |
+bpred_2lev.jr_hits                   xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |           55 |           55 |           55 |           55 |
+bpred_2lev.jr_seen                   xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |           56 |           56 |           56 |           56 |
+bpred_2lev.jr_non_ras_hits.PP        xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |            0 |            0 |            0 |            0 |
+bpred_2lev.jr_non_ras_seen.PP        xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |            0 |            0 |            0 |            0 |
+bpred_2lev.bpred_addr_rate           xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.7456 |       0.7550 |       0.7630 |       0.7647 |
+bpred_2lev.bpred_dir_rate            xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.7456 |       0.7550 |       0.7630 |       0.7647 |
+bpred_2lev.bpred_jr_rate             xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9821 |       0.9821 |       0.9821 |       0.9821 |
+bpred_2lev.bpred_jr_non_ras_rate.PP  xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |      <error: |      <error: |      <error: |      <error: |
+bpred_2lev.retstack_pushes           xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |           58 |           58 |           58 |           58 |
+bpred_2lev.retstack_pops             xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |           56 |           56 |           56 |           56 |
+bpred_2lev.used_ras.PP               xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |           56 |           56 |           56 |           56 |
+bpred_2lev.ras_hits.PP               xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |           55 |           55 |           55 |           55 |
+bpred_2lev.ras_rate.PP               xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9821 |       0.9821 |       0.9821 |       0.9821 |
+
+Command list: 
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=65536 -DSEED=0 -DSORT=on2_bubblesort2 on2_bubblesort21826356322.c simpleMain.c -o on2_bubblesort2311028644
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 on2_bubblesort2311028644
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 on2_bubblesort2311028644
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 on2_bubblesort2311028644
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 on2_bubblesort2311028644
+	sim-bpred -bpred bimod -bpred:bimod 512 on2_bubblesort2311028644
+	sim-bpred -bpred bimod -bpred:bimod 1024 on2_bubblesort2311028644
+	sim-bpred -bpred bimod -bpred:bimod 2048 on2_bubblesort2311028644
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 on2_bubblesort2311028644
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 on2_bubblesort2311028644
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 on2_bubblesort2311028644
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 on2_bubblesort2311028644

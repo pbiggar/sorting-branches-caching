@@ -1,0 +1,74 @@
+\label{SimpleScalar Install}
+
+
+This section details how to install SimpleScalar on a Pentium 4 running RedHat
+Linux 7. The reason for its inclusion is that the installation was difficult,
+and solutions to problems encountered were not easily available on the
+SimpleScalar website, nor were emails answered by the authors.
+
+The primary guide this is based on is \cite{SimpleScalarInstall}. However, that
+guide is more general than this.
+
+\section{Download}
+Go to \textit{http://www.simplescalar.com/tools}. The simulations in this
+project used the standard packages provided on this page. Links to other
+packages here were not used. Download simplesim-3v0d.tgz, simplesim-3v0d.tgz
+and simplesim-3v0d.tgz. Unzip the tools. The following directories should be
+present: binutils-2.5.2,  f2c-1994.09.27,  gcc-2.6.3,  glibc-1.09,
+simplesim-3.0, ssbig-na-sstrix and sslittle-na-sstrix.
+
+\section{Compile}
+Run the following commands:
+\begin{verbatim}
+cd binutils-2.5.2
+./configure --host=i386-redhat-linux --target=sslittle-na-sstrix 
+	--with-gnu-as --with-gnu-ld --prefix=/home/ciaran/simple
+
+make
+make install
+cd ../simplesim-3.0
+make
+cd ../gcc-2.6.3
+./configure --host=i386-redhat-linux --target=sslittle-na-sstrix 
+	--with-gnu-as --with-gnu-ld --prefix=/home/ciaran/simple
+make LANGUAGES=c
+\end{verbatim}
+
+The following error may occur at this point:
+\begin{verbatim}
+cccp.c:194: conflicting types for `sys_errlist'
+/usr/include/stdio.h:554: previous declaration of `sys_errlist'
+\end{verbatim}
+
+Comment out line 194 of \texttt{cccp.c}.
+
+This error then occurs:
+\begin{verbatim}
+gcc -c -DCROSS_COMPILE -DIN_GCC -DPOSIX 
+	-g -I. -I. -I./config sdbout.c
+sdbout.c:57:18: syms.h: No such file or directory
+\end{verbatim}
+
+This can be resolved\footnote{Credit for this is due to
+http://moss.csc.ncsu.edu/~mueller/rt/rt02/g1/sim2install.txt} by changing line
+57 of \texttt{sdbout.c} from \verb!#include <syms.h>! to \verb!#include "gsyms.h"!.
+
+\begin{verbatim}
+bc-typecd.def: In function `bc_emit_instruction':
+bc-typecd.def:17: `SFtype' is promoted to `double' 
+					when passed through `...'
+bc-typecd.def:17: (so you should pass `double' not 
+					`SFtype' to `va_arg')
+\end{verbatim}
+
+In line 17 of \texttt{bc-typecd.def}, change \texttt{SFtype} to \texttt{DFtype}.
+
+\begin{verbatim}
+gcc.c:172: conflicting types for `sys_errlist'
+/usr/include/stdio.h:554: previous declaration of `sys_errlist'
+\end{verbatim}
+
+Comment out line 172 of \texttt{gcc.c}
+
+The tools should now be compiled. For speed, the architecture type could be
+changed to \texttt{i686} and the \texttt{-O3} flag could be set.

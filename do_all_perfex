@@ -1,0 +1,23 @@
+#!/bin/sh
+
+for ((  i = 0 ;  i < 1024;  i++  ))
+do
+# do the faster sorts first
+	for j in do_nothing base_heapsort cache_heapsort cache4_heapsort base_quicksort cache_quicksort multi_quicksort multi_quicksort_seq base_radixsort cache_radixsort base_mergesort knuth_base_mergesort knuth_other_base_mergesort tiled_mergesort double_tiled_mergesort shellsort old_shellsort
+	do
+		for k in 4096 8192 16384 32768 65536 131072 262144 524288 1048576 2097152 4194304
+		do
+			do_perfex $j $i $k
+		done
+	done 
+
+# now do the on^2 sorts
+	for j in on2_insertsort on2_selectsort on2_bubblesort on2_bubblesort2 on2_shakersort on2_shakersort2 
+	do
+		for k in 4096 8192 16384 32768 65536 131072 262144
+		do
+			do_perfex $j $i $k
+		done
+	done 
+
+done

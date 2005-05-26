@@ -1,0 +1,52 @@
+#include "base_sorts.h"
+
+#define THRESHHOLD 10
+
+#define bitsword 32
+#define bitsbyte 8
+#define bytesword 4
+#define Radix (1 << bitsbyte)
+
+#define digit(A, B) (((A) >> (bitsword-((B)+1)*bitsbyte)) & (Radix-1))
+
+unsigned int* radix_aux;
+
+void
+radixLSD(unsigned int a[], int l, int r)
+{
+	/* R is the size of a digit, hence the number of bins */
+	int i, j, w, count[Radix+1]; 
+
+	/* this is from lsb. 3 == lsByte, 0 == msByte */
+	for(w = bytesword - 1; w >= 0; w--) 
+	{
+		/* set the counts to 0 */
+		for(j = 0; j < Radix; j++) count[j] = 0; 
+		for(i = l; i <= r; i++) /* count each digit */
+		{
+			count[digit(a[i], w) + 1]++;
+		}
+		/* make the count cumulatative */
+		for(j = 1; j < Radix; j++) 
+		{
+			count[j] += count[j-1];
+		}
+		/* when we look up the array, we now have its position */
+		for(i = l; i <= r; i++) 
+		{
+			radix_aux[count[digit(a[i], w)]++] = a[i];
+		}
+		for(i = l; i <= r; i++) /* copy it back */
+		{
+			a[i] = radix_aux[i];
+		}
+	}
+}
+
+void
+base_radixsort(unsigned int a[], int N)
+{
+	radix_aux = malloc(N * sizeof(unsigned int));
+	radixLSD(a, 0, N-1);
+	free(radix_aux);
+}

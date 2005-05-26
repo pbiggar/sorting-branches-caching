@@ -1,0 +1,148 @@
+#!/usr/bin/perl -w
+
+use Getopt::Std;
+my %options=();
+getopts("lhc:b:2:",\%options);
+
+if (defined($options{"h"}))
+{
+	die ("do_all_plot [options]\noptions are:\n\t-l list commands do_all_plot will execute\n\t-c cache file to choose(proably alphabetical, default 0)\n\t-b bimod file to choose(proably alphabetical, default 0)\n\t-2 2level file to choose(probably alphabetical, default 0)\n\t\n\t-h this help message\n");
+}
+
+$list = 0;
+if (defined($options{"l"})) { $list = 1; } 
+
+$cache_file_index = 0;
+if (defined($options{"c"})) { $cache_file_index = $options{"c"}; } 
+
+$level_file_index = 0;
+if (defined($options{"2"})) { $level_file_index = $options{"2"}; } 
+
+$bimod_file_index = 0;
+if (defined($options{"b"})) { $bimod_file_index = $options{"b"}; } 
+
+# first list the ones you need
+$sorts[0] = "quick";
+$sorts[1] = "merge";
+$sorts[2] = "radix";
+$sorts[3] = "heap";
+$sorts[5] = "shell";
+$sorts[4] = "on2";
+
+@types = ("basic", "sim-cache", "sim-bpred");
+$col_num{"basic"} = [ 2, 3];
+$col_num{"sim-cache"} = [ 18, 16, 28, 26];
+$col_num{"sim-bpred"} = [ 6, 10, 11, 12];
+$col_name{"basic"} = [ "Instructions", "References"];
+$col_name{"sim-cache"} = [ "Level 1 misses", "Level 1 accesses", "Level 2 misses", "Level 2 accesses"];
+$col_name{"sim-bpred"} = [ "Branches", "Address hits", "Direction hits", "Branch misses"];
+
+$converted_dir = "gnuplot_logs";
+
+# get the folder info
+opendir (CONVERTED_DIR, $converted_dir) || die("can't opendir : $converted_dir\n");
+@sub_dirs = readdir(CONVERTED_DIR);
+@sub_dirs = grep {!/CVS/} @sub_dirs;
+@sub_dirs = grep {!/^\./} @sub_dirs;
+closedir CONVERTED_DIR;
+
+# do each folders plots
+foreach $dir (@sub_dirs)
+{
+	opendir (CONVERTED_DIR, $converted_dir."/".$dir) || die("can't opendir : $converted_dir\n");
+	@all_files = readdir(CONVERTED_DIR);
+	closedir CONVERTED_DIR;
+
+	foreach $type (@types)
+	{
+		$type_to_search_for = $type;
+		$max_count = scalar(@{$col_num{$type}});
+		if ($type eq "basic") { $max_count = 1; $type_to_search_for = "sim-cache"; } # the basic data is in the cache logs
+		@files = grep {/$type_to_search_for/} @all_files;
+		for($i = 0; $i < $max_count; $i++)
+		{
+			$num = $col_num{$type}[$i];
+			$name = $col_name{$type}[$i];
+			$command = "plot -y $num -Y \"$name\" -t \"$dir - $name\"";
+			foreach $file (@files)
+			{
+				$command .= " $converted_dir/$dir/$file";
+			}
+			if ($list)
+			{
+				print $command."\n\n";
+			}
+			else
+			{
+				@output = `$command 2>&1`;
+				if (@output)
+				{
+					print $command."\n";
+					print @output;
+					print "\n";
+				}
+			}
+		}
+	}
+}
+
+# do each sorts plots
+foreach $sort (@sorts)
+{
+#	print "\n\n$sort\n";
+	@sort_dirs = grep {/$sort/} @sub_dirs;
+	if (scalar(@sort_dirs) == 0) { next;}
+		
+	@all_sort_files = ();
+	foreach $sort_dir (@sort_dirs) # read every file from the directory
+	{
+		opendir (CONVERTED_DIR, $converted_dir."/".$sort_dir) || die("can't opendir : $sort_dir\n");
+		@sort_files = readdir(CONVERTED_DIR);
+		closedir CONVERTED_DIR;
+
+		# we only want 1 cache and 1 bpred file here
+		@local_sort_files = ();
+		foreach $sort_file (@sort_files)
+		{
+			push @local_sort_files, "$sort_dir/$sort_file";
+		}
+		@local_sort_files = sort @local_sort_files; # fully assoc first, 131 > 65
+
+#		push @all_sort_files, (grep {/sim-cache/} @local_sort_files)[$cache_file_index];
+#		push @all_sort_files, (grep {/sim-bpred_-bpred_bimod_/} @local_sort_files)[$bimod_file_index];
+#		push @all_sort_files, (grep {/sim-bpred_-bpred_2lev_/} @local_sort_files)[$level_file_index];
+		push @all_sort_files, @local_sort_files;
+	}
+	
+	foreach $type (@types)
+	{
+		$type_to_search_for = $type;
+		$max_count = scalar(@{$col_num{$type}});
+		if ($type eq "basic") { $max_count = 1; $type_to_search_for = "sim-cache"; } # the basic data is in the cache logs
+		@files = grep {/$type_to_search_for/} @all_sort_files;
+		for($i = 0; $i < $max_count; $i++)
+		{
+			$num = $col_num{$type}[$i];
+			$name = $col_name{$type}[$i];
+			$command = "plot -y $num -Y \"$name\" -t \"$sort - $name\"";
+			foreach $file (@files)
+			{
+				$command .= " $converted_dir/".$file;
+			}
+			if ($list)
+			{
+				print $command."\n\n";
+			}
+			else
+			{
+				@output = `$command 2>&1`;
+				if (@output)
+				{
+					print $command."\n";
+					print @output;
+					print "\n";
+				}
+			}
+		}
+	}
+}

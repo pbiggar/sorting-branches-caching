@@ -1,0 +1,18 @@
+\section{Bugs}
+This section lists some of the bugs that exist in the remaining code. In a
+project of limited timescale, it is not possible to remove every possible bug
+from the code. These bugs are listed here in order that it is possible to
+continue on this work with minimal difficutly.
+
+\section{Results}
+\label{bug3}
+To reduce the costs of creating the array of random numbers, this time was
+measured and subtracted from the results. While this works as expected for
+instruction count, the effects on cache misses is less clear. Subtracting level
+2 cache misses incurred during filling removes compulsory misses from the
+equation. For shorter lists, the compulsory misses are completely removed.
+For longer lists, those greater than the size of the cache, compulsory misses
+come back, since the keys at the start of the array are flushed from the cache
+by the time they begin to be sorted. LaMarca's work centers around
+reducing conflict misses, however, so this is not necessarily a problem, just
+something to be aware of.

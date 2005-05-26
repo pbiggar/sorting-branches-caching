@@ -1,0 +1,36 @@
+Base Quicksort5 - i:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                   95663512      76090260      90564033     171198619     433516424
+correct_count:                  57145423      38518090      52991862     118206757     266862132
+incorrect_count:                38518089      37572170      37572171      52991862     166654292
+taken_count:                    38518089      37572170      52991862     118206757     247288878
+not_taken_count:                57145423      38518090      37572171      52991862     186227546
+current state:              NT saturated
+
+Base Quicksort5 - j:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                   91133125      76100563      95094421     185019871     447347980
+correct_count:                  53466812      37666313      56660171     128359700     276152996
+incorrect_count:                37666313      38434250      38434250      56660171     171194984
+taken_count:                    37666313      38434250      56660171     128359700     261120434
+not_taken_count:                53466812      37666313      38434250      56660171     186227546
+current state:                         T
+
+Base Quicksort5 - partition end:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                  181934665       4207806         82696          2379     186227546
+correct_count:                 177807221       4127444          2333            46     181937044
+incorrect_count:                 4127444         80362         80363          2333       4290502
+taken_count:                     4127444         80362          2333            46       4210185
+not_taken_count:               177807221       4127444         80363          2333     182017361
+current state:                        NT
+
+Base Quicksort5 - insertion:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                   15181659      17316159      26761361      72823206     132082385
+correct_count:                   6165216       9016443      18461645      54361561      88004865
+incorrect_count:                 9016443       8299716       8299716      18461645      44077520
+taken_count:                     9016443       8299716      18461645      54361561      90139365
+not_taken_count:                 6165216       9016443       8299716      18461645      41943020
+current state:                         T
+

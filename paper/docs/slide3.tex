@@ -1,0 +1,60 @@
+\begin{slide}
+
+
+\begin{stitle}
+Method and Tools
+\end{stitle}
+
+\begin{itemize}
+\item Preparation
+\begin{itemize}
+\item Compile SimpleScalar - non-trivial
+\item Read thesis
+\item Relearn caches, branch predictors.
+\item Learn 2 Level Adaptive
+\end{itemize}
+
+\item Write Algorithm
+\begin{itemize}
+\item lamarca $\rightarrow$ sedgewick $\rightarrow$ papers
+\item does it work?
+\item resolve edge cases - test class
+\item avoid overflow / underflow - valgrind
+\end{itemize}
+\pagebreak
+\item Should timing test be done?
+\begin{itemize}
+\item Theoretical Behavioural Analysis - visual
+\item Is sort optimal? - code review
+\item Quick Instruction Count - sim-fast
+\item Script
+\end{itemize}
+
+\item Positive Results
+\begin{itemize}
+\item Check incidental results
+\end{itemize}
+
+\item  Negative Results
+\begin{itemize}
+\item Check why. instruction count? bad cache effects? branch effects?
+\item fixable?
+\item if not, record, and check incidental results
+\end{itemize}
+
+\pagebreak
+\item Pretty pictures
+\begin{itemize}
+\item Graphs
+\item ie, constant number of x, linear increases, things go mental when it doesnt fit in the cache
+\end{itemize}
+
+\item Extrapolate
+\begin{itemize}
+\item Anything useful.
+\end{itemize}
+
+\end{itemize}
+
+\end{slide}
+

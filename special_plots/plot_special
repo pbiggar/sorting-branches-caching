@@ -1,0 +1,16 @@
+#!/usr/bin/perl -w
+
+#open the special plot directory
+
+opendir (DIR, "./");
+@files = readdir(DIR);
+$0 =~ /.*\/(.*)/;
+@files = grep {!/$1/} @files;
+closedir DIR;
+
+foreach $file (@files)
+{
+	$output = `gnuplot $file`;
+	print $output;
+}
+

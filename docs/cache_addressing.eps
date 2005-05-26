@@ -1,0 +1,61 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%BoundingBox: 0 0 320 20
+% define the variables used
+/height 10 def
+/width 10 def
+/origin_x 0 def
+/origin_y 0 def
+/text_y 2 def
+
+% set up the font
+/Times-Roman findfont
+10 scalefont
+setfont
+
+% write the text
+origin_x 4.5 width mul add text_y moveto
+(tag) show
+origin_x 18 width mul add text_y moveto
+(index) show
+origin_x 28.5 width mul add text_y moveto
+(offset) show
+
+% put in the indices
+/Times-Roman findfont
+8 scalefont
+setfont
+% 31
+origin_x text_y height add moveto
+(31) show
+% 22 21
+origin_x 11 width mul add 2 add text_y height add moveto
+(21) show
+width -2 mul 0 rmoveto
+(22) show
+%5 4
+origin_x 27 width mul add 3 add text_y height add moveto
+(4) show
+width -1.35 mul 0 rmoveto
+(5) show
+% 0
+origin_x 31 width mul add 6 add text_y height add moveto
+(0) show
+
+% make the box
+origin_x origin_y moveto % move to start
+32 width mul 0 rlineto % bottom 
+0 height rlineto % right
+-32 width mul 0 rlineto % top 
+origin_x origin_y lineto  % left
+
+% draw the first boundary
+11 width mul 0 rmoveto
+0 height rlineto
+0 -1 height mul rmoveto
+
+% draw the second boundary
+16 width mul 0 rmoveto
+0 height rlineto
+0 -1 height mul rmoveto
+
+stroke

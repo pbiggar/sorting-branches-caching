@@ -1,0 +1,28 @@
+set key top left Left reverse
+set xrange [4096:4194304]
+set yrange [0:]
+set xtics (4096,8192,16384,32768,65536,131072,262144,524288,1048576,2097152,4194304)
+set format x "%8.0f"
+set logscale axis
+set data style linespoints
+set term postscript eps color
+set output 'plots/heap_-_Level_2_misses.eps'
+set xlabel 'set size in keys'
+set ylabel 'Level 2 misses per key'
+plot \
+'gnuplot_logs/base_heapsort_/base_heapsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:28 title 'base heapsort  - Fully Associative - 4MB - 32 byte line',\
+'gnuplot_logs/base_heapsort_/base_heapsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:28 title 'base heapsort  - Fully Associative - 2MB - 32 byte line',\
+'gnuplot_logs/base_heapsort_/base_heapsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'base heapsort  - Direct Mapped - 4MB - 32 byte line',\
+'gnuplot_logs/base_heapsort_/base_heapsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'base heapsort  - Direct Mapped - 2MB - 32 byte line',\
+'gnuplot_logs/cache4_heapsort_16_byte_cache_line/cache4_heapsort_16_byte_cache_line_sim-cache_-cache:dl1_dl1:1:16:512:l_-cache:dl2_dl2:1:16:131072:l_-cache:il1_il1:1:16:512:l_-cache:il2_dl2' using 1:28 title 'cache4 heapsort 16 byte cache line - Fully Associative - 2MB - 16 byte line',\
+'gnuplot_logs/cache4_heapsort_16_byte_cache_line/cache4_heapsort_16_byte_cache_line_sim-cache_-cache:dl1_dl1:1:16:512:l_-cache:dl2_dl2:1:16:262144:l_-cache:il1_il1:1:16:512:l_-cache:il2_dl2' using 1:28 title 'cache4 heapsort 16 byte cache line - Fully Associative - 4MB - 16 byte line',\
+'gnuplot_logs/cache4_heapsort_16_byte_cache_line/cache4_heapsort_16_byte_cache_line_sim-cache_-cache:dl1_dl1:512:16:1:l_-cache:dl2_dl2:131072:16:1:l_-cache:il1_il1:512:16:1:l_-cache:il2_dl2' using 1:28 title 'cache4 heapsort 16 byte cache line - Direct Mapped - 2MB - 16 byte line',\
+'gnuplot_logs/cache4_heapsort_16_byte_cache_line/cache4_heapsort_16_byte_cache_line_sim-cache_-cache:dl1_dl1:512:16:1:l_-cache:dl2_dl2:262144:16:1:l_-cache:il1_il1:512:16:1:l_-cache:il2_dl2' using 1:28 title 'cache4 heapsort 16 byte cache line - Direct Mapped - 4MB - 16 byte line',\
+'gnuplot_logs/cache4_heapsort_/cache4_heapsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:28 title 'cache4 heapsort  - Fully Associative - 4MB - 32 byte line',\
+'gnuplot_logs/cache4_heapsort_/cache4_heapsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:28 title 'cache4 heapsort  - Fully Associative - 2MB - 32 byte line',\
+'gnuplot_logs/cache4_heapsort_/cache4_heapsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'cache4 heapsort  - Direct Mapped - 4MB - 32 byte line',\
+'gnuplot_logs/cache4_heapsort_/cache4_heapsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'cache4 heapsort  - Direct Mapped - 2MB - 32 byte line',\
+'gnuplot_logs/cache_heapsort_/cache_heapsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:28 title 'cache heapsort  - Fully Associative - 4MB - 32 byte line',\
+'gnuplot_logs/cache_heapsort_/cache_heapsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:28 title 'cache heapsort  - Fully Associative - 2MB - 32 byte line',\
+'gnuplot_logs/cache_heapsort_/cache_heapsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'cache heapsort  - Direct Mapped - 4MB - 32 byte line',\
+'gnuplot_logs/cache_heapsort_/cache_heapsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'cache heapsort  - Direct Mapped - 2MB - 32 byte line'

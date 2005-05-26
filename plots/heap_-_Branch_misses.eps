@@ -1,0 +1,1237 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%Title: plots/heap_-_Branch_misses.eps
+%%Creator: gnuplot 3.7 patchlevel 3
+%%CreationDate: Mon Jul 12 14:32:19 2004
+%%DocumentFonts: (atend)
+%%BoundingBox: 50 50 410 302
+%%Orientation: Portrait
+%%EndComments
+/gnudict 256 dict def
+gnudict begin
+/Color true def
+/Solid false def
+/gnulinewidth 5.000 def
+/userlinewidth gnulinewidth def
+/vshift -46 def
+/dl {10 mul} def
+/hpt_ 31.5 def
+/vpt_ 31.5 def
+/hpt hpt_ def
+/vpt vpt_ def
+/M {moveto} bind def
+/L {lineto} bind def
+/R {rmoveto} bind def
+/V {rlineto} bind def
+/vpt2 vpt 2 mul def
+/hpt2 hpt 2 mul def
+/Lshow { currentpoint stroke M
+  0 vshift R show } def
+/Rshow { currentpoint stroke M
+  dup stringwidth pop neg vshift R show } def
+/Cshow { currentpoint stroke M
+  dup stringwidth pop -2 div vshift R show } def
+/UP { dup vpt_ mul /vpt exch def hpt_ mul /hpt exch def
+  /hpt2 hpt 2 mul def /vpt2 vpt 2 mul def } def
+/DL { Color {setrgbcolor Solid {pop []} if 0 setdash }
+ {pop pop pop Solid {pop []} if 0 setdash} ifelse } def
+/BL { stroke userlinewidth 2 mul setlinewidth } def
+/AL { stroke userlinewidth 2 div setlinewidth } def
+/UL { dup gnulinewidth mul /userlinewidth exch def
+      dup 1 lt {pop 1} if 10 mul /udl exch def } def
+/PL { stroke userlinewidth setlinewidth } def
+/LTb { BL [] 0 0 0 DL } def
+/LTa { AL [1 udl mul 2 udl mul] 0 setdash 0 0 0 setrgbcolor } def
+/LT0 { PL [] 1 0 0 DL } def
+/LT1 { PL [4 dl 2 dl] 0 1 0 DL } def
+/LT2 { PL [2 dl 3 dl] 0 0 1 DL } def
+/LT3 { PL [1 dl 1.5 dl] 1 0 1 DL } def
+/LT4 { PL [5 dl 2 dl 1 dl 2 dl] 0 1 1 DL } def
+/LT5 { PL [4 dl 3 dl 1 dl 3 dl] 1 1 0 DL } def
+/LT6 { PL [2 dl 2 dl 2 dl 4 dl] 0 0 0 DL } def
+/LT7 { PL [2 dl 2 dl 2 dl 2 dl 2 dl 4 dl] 1 0.3 0 DL } def
+/LT8 { PL [2 dl 2 dl 2 dl 2 dl 2 dl 2 dl 2 dl 4 dl] 0.5 0.5 0.5 DL } def
+/Pnt { stroke [] 0 setdash
+   gsave 1 setlinecap M 0 0 V stroke grestore } def
+/Dia { stroke [] 0 setdash 2 copy vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath stroke
+  Pnt } def
+/Pls { stroke [] 0 setdash vpt sub M 0 vpt2 V
+  currentpoint stroke M
+  hpt neg vpt neg R hpt2 0 V stroke
+  } def
+/Box { stroke [] 0 setdash 2 copy exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V closepath stroke
+  Pnt } def
+/Crs { stroke [] 0 setdash exch hpt sub exch vpt add M
+  hpt2 vpt2 neg V currentpoint stroke M
+  hpt2 neg 0 R hpt2 vpt2 V stroke } def
+/TriU { stroke [] 0 setdash 2 copy vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath stroke
+  Pnt  } def
+/Star { 2 copy Pls Crs } def
+/BoxF { stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V  hpt2 0 V  0 vpt2 V
+  hpt2 neg 0 V  closepath fill } def
+/TriUF { stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath fill } def
+/TriD { stroke [] 0 setdash 2 copy vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath stroke
+  Pnt  } def
+/TriDF { stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath fill} def
+/DiaF { stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath fill } def
+/Pent { stroke [] 0 setdash 2 copy gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath stroke grestore Pnt } def
+/PentF { stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath fill grestore } def
+/Circle { stroke [] 0 setdash 2 copy
+  hpt 0 360 arc stroke Pnt } def
+/CircleF { stroke [] 0 setdash hpt 0 360 arc fill } def
+/C0 { BL [] 0 setdash 2 copy moveto vpt 90 450  arc } bind def
+/C1 { BL [] 0 setdash 2 copy        moveto
+       2 copy  vpt 0 90 arc closepath fill
+               vpt 0 360 arc closepath } bind def
+/C2 { BL [] 0 setdash 2 copy moveto
+       2 copy  vpt 90 180 arc closepath fill
+               vpt 0 360 arc closepath } bind def
+/C3 { BL [] 0 setdash 2 copy moveto
+       2 copy  vpt 0 180 arc closepath fill
+               vpt 0 360 arc closepath } bind def
+/C4 { BL [] 0 setdash 2 copy moveto
+       2 copy  vpt 180 270 arc closepath fill
+               vpt 0 360 arc closepath } bind def
+/C5 { BL [] 0 setdash 2 copy moveto
+       2 copy  vpt 0 90 arc
+       2 copy moveto
+       2 copy  vpt 180 270 arc closepath fill
+               vpt 0 360 arc } bind def
+/C6 { BL [] 0 setdash 2 copy moveto
+      2 copy  vpt 90 270 arc closepath fill
+              vpt 0 360 arc closepath } bind def
+/C7 { BL [] 0 setdash 2 copy moveto
+      2 copy  vpt 0 270 arc closepath fill
+              vpt 0 360 arc closepath } bind def
+/C8 { BL [] 0 setdash 2 copy moveto
+      2 copy vpt 270 360 arc closepath fill
+              vpt 0 360 arc closepath } bind def
+/C9 { BL [] 0 setdash 2 copy moveto
+      2 copy  vpt 270 450 arc closepath fill
+              vpt 0 360 arc closepath } bind def
+/C10 { BL [] 0 setdash 2 copy 2 copy moveto vpt 270 360 arc closepath fill
+       2 copy moveto
+       2 copy vpt 90 180 arc closepath fill
+               vpt 0 360 arc closepath } bind def
+/C11 { BL [] 0 setdash 2 copy moveto
+       2 copy  vpt 0 180 arc closepath fill
+       2 copy moveto
+       2 copy  vpt 270 360 arc closepath fill
+               vpt 0 360 arc closepath } bind def
+/C12 { BL [] 0 setdash 2 copy moveto
+       2 copy  vpt 180 360 arc closepath fill
+               vpt 0 360 arc closepath } bind def
+/C13 { BL [] 0 setdash  2 copy moveto
+       2 copy  vpt 0 90 arc closepath fill
+       2 copy moveto
+       2 copy  vpt 180 360 arc closepath fill
+               vpt 0 360 arc closepath } bind def
+/C14 { BL [] 0 setdash 2 copy moveto
+       2 copy  vpt 90 360 arc closepath fill
+               vpt 0 360 arc } bind def
+/C15 { BL [] 0 setdash 2 copy vpt 0 360 arc closepath fill
+               vpt 0 360 arc closepath } bind def
+/Rec   { newpath 4 2 roll moveto 1 index 0 rlineto 0 exch rlineto
+       neg 0 rlineto closepath } bind def
+/Square { dup Rec } bind def
+/Bsquare { vpt sub exch vpt sub exch vpt2 Square } bind def
+/S0 { BL [] 0 setdash 2 copy moveto 0 vpt rlineto BL Bsquare } bind def
+/S1 { BL [] 0 setdash 2 copy vpt Square fill Bsquare } bind def
+/S2 { BL [] 0 setdash 2 copy exch vpt sub exch vpt Square fill Bsquare } bind def
+/S3 { BL [] 0 setdash 2 copy exch vpt sub exch vpt2 vpt Rec fill Bsquare } bind def
+/S4 { BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt Square fill Bsquare } bind def
+/S5 { BL [] 0 setdash 2 copy 2 copy vpt Square fill
+       exch vpt sub exch vpt sub vpt Square fill Bsquare } bind def
+/S6 { BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt vpt2 Rec fill Bsquare } bind def
+/S7 { BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt vpt2 Rec fill
+       2 copy vpt Square fill
+       Bsquare } bind def
+/S8 { BL [] 0 setdash 2 copy vpt sub vpt Square fill Bsquare } bind def
+/S9 { BL [] 0 setdash 2 copy vpt sub vpt vpt2 Rec fill Bsquare } bind def
+/S10 { BL [] 0 setdash 2 copy vpt sub vpt Square fill 2 copy exch vpt sub exch vpt Square fill
+       Bsquare } bind def
+/S11 { BL [] 0 setdash 2 copy vpt sub vpt Square fill 2 copy exch vpt sub exch vpt2 vpt Rec fill
+       Bsquare } bind def
+/S12 { BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill Bsquare } bind def
+/S13 { BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill
+       2 copy vpt Square fill Bsquare } bind def
+/S14 { BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill
+       2 copy exch vpt sub exch vpt Square fill Bsquare } bind def
+/S15 { BL [] 0 setdash 2 copy Bsquare fill Bsquare } bind def
+/D0 { gsave translate 45 rotate 0 0 S0 stroke grestore } bind def
+/D1 { gsave translate 45 rotate 0 0 S1 stroke grestore } bind def
+/D2 { gsave translate 45 rotate 0 0 S2 stroke grestore } bind def
+/D3 { gsave translate 45 rotate 0 0 S3 stroke grestore } bind def
+/D4 { gsave translate 45 rotate 0 0 S4 stroke grestore } bind def
+/D5 { gsave translate 45 rotate 0 0 S5 stroke grestore } bind def
+/D6 { gsave translate 45 rotate 0 0 S6 stroke grestore } bind def
+/D7 { gsave translate 45 rotate 0 0 S7 stroke grestore } bind def
+/D8 { gsave translate 45 rotate 0 0 S8 stroke grestore } bind def
+/D9 { gsave translate 45 rotate 0 0 S9 stroke grestore } bind def
+/D10 { gsave translate 45 rotate 0 0 S10 stroke grestore } bind def
+/D11 { gsave translate 45 rotate 0 0 S11 stroke grestore } bind def
+/D12 { gsave translate 45 rotate 0 0 S12 stroke grestore } bind def
+/D13 { gsave translate 45 rotate 0 0 S13 stroke grestore } bind def
+/D14 { gsave translate 45 rotate 0 0 S14 stroke grestore } bind def
+/D15 { gsave translate 45 rotate 0 0 S15 stroke grestore } bind def
+/DiaE { stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath stroke } def
+/BoxE { stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V closepath stroke } def
+/TriUE { stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath stroke } def
+/TriDE { stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath stroke } def
+/PentE { stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath stroke grestore } def
+/CircE { stroke [] 0 setdash 
+  hpt 0 360 arc stroke } def
+/Opaque { gsave closepath 1 setgray fill grestore 0 setgray closepath } def
+/DiaW { stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V Opaque stroke } def
+/BoxW { stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V Opaque stroke } def
+/TriUW { stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V Opaque stroke } def
+/TriDW { stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V Opaque stroke } def
+/PentW { stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  Opaque stroke grestore } def
+/CircW { stroke [] 0 setdash 
+  hpt 0 360 arc Opaque stroke } def
+/BoxFill { gsave Rec 1 setgray fill grestore } def
+/Symbol-Oblique /Symbol findfont [1 0 .167 1 0 0] makefont
+dup length dict begin {1 index /FID eq {pop pop} {def} ifelse} forall
+currentdict end definefont pop
+end
+%%EndProlog
+gnudict begin
+gsave
+50 50 translate
+0.050 0.050 scale
+0 setgray
+newpath
+(Helvetica) findfont 140 scalefont setfont
+1.000 UL
+LTb
+630 420 M
+63 0 V
+6269 0 R
+-63 0 V
+546 420 M
+( 0) Rshow
+630 915 M
+63 0 V
+6269 0 R
+-63 0 V
+546 915 M
+( 2) Rshow
+630 1409 M
+63 0 V
+6269 0 R
+-63 0 V
+-6353 0 R
+( 4) Rshow
+630 1904 M
+63 0 V
+6269 0 R
+-63 0 V
+-6353 0 R
+( 6) Rshow
+630 2399 M
+63 0 V
+6269 0 R
+-63 0 V
+-6353 0 R
+( 8) Rshow
+630 2893 M
+63 0 V
+6269 0 R
+-63 0 V
+-6353 0 R
+( 10) Rshow
+630 3388 M
+63 0 V
+6269 0 R
+-63 0 V
+-6353 0 R
+( 12) Rshow
+630 3883 M
+63 0 V
+6269 0 R
+-63 0 V
+-6353 0 R
+( 14) Rshow
+630 4377 M
+63 0 V
+6269 0 R
+-63 0 V
+-6353 0 R
+( 16) Rshow
+630 4872 M
+63 0 V
+6269 0 R
+-63 0 V
+-6353 0 R
+( 18) Rshow
+630 420 M
+0 63 V
+0 4389 R
+0 -63 V
+630 280 M
+(    4096) Cshow
+1263 420 M
+0 63 V
+0 4389 R
+0 -63 V
+0 -4529 R
+(    8192) Cshow
+1896 420 M
+0 63 V
+0 4389 R
+0 -63 V
+0 -4529 R
+(   16384) Cshow
+2530 420 M
+0 63 V
+0 4389 R
+0 -63 V
+0 -4529 R
+(   32768) Cshow
+3163 420 M
+0 63 V
+0 4389 R
+0 -63 V
+0 -4529 R
+(   65536) Cshow
+3796 420 M
+0 63 V
+0 4389 R
+0 -63 V
+0 -4529 R
+(  131072) Cshow
+4429 420 M
+0 63 V
+0 4389 R
+0 -63 V
+0 -4529 R
+(  262144) Cshow
+5062 420 M
+0 63 V
+0 4389 R
+0 -63 V
+0 -4529 R
+(  524288) Cshow
+5696 420 M
+0 63 V
+0 4389 R
+0 -63 V
+0 -4529 R
+( 1048576) Cshow
+6329 420 M
+0 63 V
+0 4389 R
+0 -63 V
+0 -4529 R
+( 2097152) Cshow
+6962 420 M
+0 63 V
+0 4389 R
+0 -63 V
+0 -4529 R
+( 4194304) Cshow
+1.000 UL
+LTb
+630 420 M
+6332 0 V
+0 4452 V
+-6332 0 V
+630 420 L
+140 2646 M
+currentpoint gsave translate 90 rotate 0 0 M
+(Branch misses per key) Cshow
+grestore
+3796 70 M
+(set size in keys) Cshow
+1.000 UP
+1.000 UL
+LT0
+1281 4739 M
+(base heapsort  - 2 Level Adaptive - 1024 2nd level entries) Lshow
+798 4739 M
+399 0 V
+630 2260 M
+633 111 V
+633 108 V
+634 115 V
+633 126 V
+633 122 V
+633 125 V
+633 128 V
+634 126 V
+633 126 V
+633 128 V
+630 2260 Pls
+1263 2371 Pls
+1896 2479 Pls
+2530 2594 Pls
+3163 2720 Pls
+3796 2842 Pls
+4429 2967 Pls
+5062 3095 Pls
+5696 3221 Pls
+6329 3347 Pls
+6962 3475 Pls
+998 4739 Pls
+1.000 UP
+1.000 UL
+LT1
+1281 4599 M
+(base heapsort  - 2 Level Adaptive - 2048 2nd level entries) Lshow
+798 4599 M
+399 0 V
+630 2230 M
+633 101 V
+633 103 V
+634 114 V
+633 123 V
+633 118 V
+633 125 V
+633 127 V
+634 125 V
+633 125 V
+633 126 V
+630 2230 Crs
+1263 2331 Crs
+1896 2434 Crs
+2530 2548 Crs
+3163 2671 Crs
+3796 2789 Crs
+4429 2914 Crs
+5062 3041 Crs
+5696 3166 Crs
+6329 3291 Crs
+6962 3417 Crs
+998 4599 Crs
+1.000 UP
+1.000 UL
+LT2
+1281 4459 M
+(base heapsort  - 2 Level Adaptive - 4096 2nd level entries) Lshow
+798 4459 M
+399 0 V
+630 2167 M
+633 98 V
+633 96 V
+634 112 V
+633 120 V
+633 117 V
+633 124 V
+633 123 V
+634 123 V
+633 123 V
+633 125 V
+630 2167 Star
+1263 2265 Star
+1896 2361 Star
+2530 2473 Star
+3163 2593 Star
+3796 2710 Star
+4429 2834 Star
+5062 2957 Star
+5696 3080 Star
+6329 3203 Star
+6962 3328 Star
+998 4459 Star
+1.000 UP
+1.000 UL
+LT3
+1281 4319 M
+(base heapsort  - 2 Level Adaptive - 512 2nd level entries) Lshow
+798 4319 M
+399 0 V
+630 2261 M
+633 115 V
+633 112 V
+634 119 V
+633 128 V
+633 125 V
+633 124 V
+633 129 V
+634 126 V
+633 128 V
+633 127 V
+630 2261 Box
+1263 2376 Box
+1896 2488 Box
+2530 2607 Box
+3163 2735 Box
+3796 2860 Box
+4429 2984 Box
+5062 3113 Box
+5696 3239 Box
+6329 3367 Box
+6962 3494 Box
+998 4319 Box
+1.000 UP
+1.000 UL
+LT4
+1281 4179 M
+(base heapsort  - Bimodal - 1024 byte table) Lshow
+798 4179 M
+399 0 V
+630 2097 M
+633 120 V
+633 123 V
+634 120 V
+633 128 V
+633 121 V
+633 123 V
+633 124 V
+634 123 V
+633 124 V
+633 124 V
+630 2097 BoxF
+1263 2217 BoxF
+1896 2340 BoxF
+2530 2460 BoxF
+3163 2588 BoxF
+3796 2709 BoxF
+4429 2832 BoxF
+5062 2956 BoxF
+5696 3079 BoxF
+6329 3203 BoxF
+6962 3327 BoxF
+998 4179 BoxF
+1.000 UP
+1.000 UL
+LT5
+1281 4039 M
+(base heapsort  - Bimodal - 2048 byte table) Lshow
+798 4039 M
+399 0 V
+630 2097 M
+633 120 V
+633 123 V
+634 120 V
+633 128 V
+633 121 V
+633 123 V
+633 124 V
+634 123 V
+633 124 V
+633 124 V
+630 2097 Circle
+1263 2217 Circle
+1896 2340 Circle
+2530 2460 Circle
+3163 2588 Circle
+3796 2709 Circle
+4429 2832 Circle
+5062 2956 Circle
+5696 3079 Circle
+6329 3203 Circle
+6962 3327 Circle
+998 4039 Circle
+1.000 UP
+1.000 UL
+LT6
+1281 3899 M
+(base heapsort  - Bimodal - 512 byte table) Lshow
+798 3899 M
+399 0 V
+630 2097 M
+633 120 V
+633 123 V
+634 120 V
+633 128 V
+633 121 V
+633 123 V
+633 124 V
+634 123 V
+633 124 V
+633 124 V
+630 2097 CircleF
+1263 2217 CircleF
+1896 2340 CircleF
+2530 2460 CircleF
+3163 2588 CircleF
+3796 2709 CircleF
+4429 2832 CircleF
+5062 2956 CircleF
+5696 3079 CircleF
+6329 3203 CircleF
+6962 3327 CircleF
+998 3899 CircleF
+1.000 UP
+1.000 UL
+LT7
+1281 3759 M
+(cache4 heapsort 16 byte cache line - 2 Level Adaptive - 1024 2nd level entries) Lshow
+798 3759 M
+399 0 V
+630 2579 M
+633 168 V
+633 159 V
+634 158 V
+633 158 V
+633 164 V
+633 158 V
+633 159 V
+634 162 V
+633 162 V
+633 158 V
+630 2579 TriU
+1263 2747 TriU
+1896 2906 TriU
+2530 3064 TriU
+3163 3222 TriU
+3796 3386 TriU
+4429 3544 TriU
+5062 3703 TriU
+5696 3865 TriU
+6329 4027 TriU
+6962 4185 TriU
+998 3759 TriU
+1.000 UP
+1.000 UL
+LT8
+1281 3619 M
+(cache4 heapsort 16 byte cache line - 2 Level Adaptive - 2048 2nd level entries) Lshow
+798 3619 M
+399 0 V
+630 2461 M
+633 150 V
+633 156 V
+634 148 V
+633 156 V
+633 158 V
+633 158 V
+633 155 V
+634 160 V
+633 157 V
+633 157 V
+630 2461 TriUF
+1263 2611 TriUF
+1896 2767 TriUF
+2530 2915 TriUF
+3163 3071 TriUF
+3796 3229 TriUF
+4429 3387 TriUF
+5062 3542 TriUF
+5696 3702 TriUF
+6329 3859 TriUF
+6962 4016 TriUF
+998 3619 TriUF
+1.000 UP
+1.000 UL
+LT0
+1281 3479 M
+(cache4 heapsort 16 byte cache line - 2 Level Adaptive - 4096 2nd level entries) Lshow
+798 3479 M
+399 0 V
+630 2286 M
+633 129 V
+633 137 V
+634 133 V
+633 147 V
+633 147 V
+633 146 V
+633 148 V
+634 148 V
+633 151 V
+633 146 V
+630 2286 TriD
+1263 2415 TriD
+1896 2552 TriD
+2530 2685 TriD
+3163 2832 TriD
+3796 2979 TriD
+4429 3125 TriD
+5062 3273 TriD
+5696 3421 TriD
+6329 3572 TriD
+6962 3718 TriD
+998 3479 TriD
+1.000 UP
+1.000 UL
+LT1
+1281 3339 M
+(cache4 heapsort 16 byte cache line - 2 Level Adaptive - 512 2nd level entries) Lshow
+798 3339 M
+399 0 V
+630 2685 M
+633 169 V
+633 177 V
+634 182 V
+633 170 V
+633 180 V
+633 171 V
+633 177 V
+634 175 V
+633 178 V
+633 173 V
+630 2685 TriDF
+1263 2854 TriDF
+1896 3031 TriDF
+2530 3213 TriDF
+3163 3383 TriDF
+3796 3563 TriDF
+4429 3734 TriDF
+5062 3911 TriDF
+5696 4086 TriDF
+6329 4264 TriDF
+6962 4437 TriDF
+998 3339 TriDF
+1.000 UP
+1.000 UL
+LT2
+1281 3199 M
+(cache4 heapsort 16 byte cache line - Bimodal - 1024 byte table) Lshow
+798 3199 M
+399 0 V
+630 2281 M
+633 145 V
+633 141 V
+634 156 V
+633 144 V
+633 154 V
+633 142 V
+633 155 V
+634 143 V
+633 156 V
+633 141 V
+630 2281 Dia
+1263 2426 Dia
+1896 2567 Dia
+2530 2723 Dia
+3163 2867 Dia
+3796 3021 Dia
+4429 3163 Dia
+5062 3318 Dia
+5696 3461 Dia
+6329 3617 Dia
+6962 3758 Dia
+998 3199 Dia
+1.000 UP
+1.000 UL
+LT3
+1281 3059 M
+(cache4 heapsort 16 byte cache line - Bimodal - 2048 byte table) Lshow
+798 3059 M
+399 0 V
+630 2280 M
+633 146 V
+633 141 V
+634 156 V
+633 144 V
+633 154 V
+633 142 V
+633 155 V
+634 143 V
+633 156 V
+633 141 V
+630 2280 DiaF
+1263 2426 DiaF
+1896 2567 DiaF
+2530 2723 DiaF
+3163 2867 DiaF
+3796 3021 DiaF
+4429 3163 DiaF
+5062 3318 DiaF
+5696 3461 DiaF
+6329 3617 DiaF
+6962 3758 DiaF
+998 3059 DiaF
+1.000 UP
+1.000 UL
+LT4
+1281 2919 M
+(cache4 heapsort 16 byte cache line - Bimodal - 512 byte table) Lshow
+798 2919 M
+399 0 V
+630 2281 M
+633 145 V
+633 141 V
+634 156 V
+633 144 V
+633 154 V
+633 142 V
+633 155 V
+634 143 V
+633 156 V
+633 141 V
+630 2281 Pent
+1263 2426 Pent
+1896 2567 Pent
+2530 2723 Pent
+3163 2867 Pent
+3796 3021 Pent
+4429 3163 Pent
+5062 3318 Pent
+5696 3461 Pent
+6329 3617 Pent
+6962 3758 Pent
+998 2919 Pent
+1.000 UP
+1.000 UL
+LT5
+1281 2779 M
+(cache4 heapsort  - 2 Level Adaptive - 1024 2nd level entries) Lshow
+798 2779 M
+399 0 V
+630 2579 M
+633 168 V
+633 159 V
+634 158 V
+633 158 V
+633 164 V
+633 158 V
+633 159 V
+634 162 V
+633 162 V
+633 158 V
+630 2579 PentF
+1263 2747 PentF
+1896 2906 PentF
+2530 3064 PentF
+3163 3222 PentF
+3796 3386 PentF
+4429 3544 PentF
+5062 3703 PentF
+5696 3865 PentF
+6329 4027 PentF
+6962 4185 PentF
+998 2779 PentF
+1.000 UP
+1.000 UL
+LT6
+1281 2639 M
+(cache4 heapsort  - 2 Level Adaptive - 2048 2nd level entries) Lshow
+798 2639 M
+399 0 V
+630 2461 M
+633 150 V
+633 156 V
+634 148 V
+633 156 V
+633 158 V
+633 158 V
+633 155 V
+634 160 V
+633 157 V
+633 157 V
+630 2461 C0
+1263 2611 C0
+1896 2767 C0
+2530 2915 C0
+3163 3071 C0
+3796 3229 C0
+4429 3387 C0
+5062 3542 C0
+5696 3702 C0
+6329 3859 C0
+6962 4016 C0
+998 2639 C0
+1.000 UP
+1.000 UL
+LT7
+1281 2499 M
+(cache4 heapsort  - 2 Level Adaptive - 4096 2nd level entries) Lshow
+798 2499 M
+399 0 V
+630 2286 M
+633 129 V
+633 137 V
+634 133 V
+633 147 V
+633 147 V
+633 146 V
+633 148 V
+634 148 V
+633 151 V
+633 146 V
+630 2286 C1
+1263 2415 C1
+1896 2552 C1
+2530 2685 C1
+3163 2832 C1
+3796 2979 C1
+4429 3125 C1
+5062 3273 C1
+5696 3421 C1
+6329 3572 C1
+6962 3718 C1
+998 2499 C1
+1.000 UP
+1.000 UL
+LT8
+1281 2359 M
+(cache4 heapsort  - 2 Level Adaptive - 512 2nd level entries) Lshow
+798 2359 M
+399 0 V
+630 2685 M
+633 169 V
+633 177 V
+634 182 V
+633 170 V
+633 180 V
+633 171 V
+633 177 V
+634 175 V
+633 178 V
+633 173 V
+630 2685 C2
+1263 2854 C2
+1896 3031 C2
+2530 3213 C2
+3163 3383 C2
+3796 3563 C2
+4429 3734 C2
+5062 3911 C2
+5696 4086 C2
+6329 4264 C2
+6962 4437 C2
+998 2359 C2
+1.000 UP
+1.000 UL
+LT0
+1281 2219 M
+(cache4 heapsort  - Bimodal - 1024 byte table) Lshow
+798 2219 M
+399 0 V
+-567 62 R
+633 145 V
+633 141 V
+634 156 V
+633 144 V
+633 154 V
+633 142 V
+633 155 V
+634 143 V
+633 156 V
+633 141 V
+630 2281 C3
+1263 2426 C3
+1896 2567 C3
+2530 2723 C3
+3163 2867 C3
+3796 3021 C3
+4429 3163 C3
+5062 3318 C3
+5696 3461 C3
+6329 3617 C3
+6962 3758 C3
+998 2219 C3
+1.000 UP
+1.000 UL
+LT1
+1281 2079 M
+(cache4 heapsort  - Bimodal - 2048 byte table) Lshow
+798 2079 M
+399 0 V
+630 2280 M
+633 146 V
+633 141 V
+634 156 V
+633 144 V
+633 154 V
+633 142 V
+633 155 V
+634 143 V
+633 156 V
+633 141 V
+630 2280 C4
+1263 2426 C4
+1896 2567 C4
+2530 2723 C4
+3163 2867 C4
+3796 3021 C4
+4429 3163 C4
+5062 3318 C4
+5696 3461 C4
+6329 3617 C4
+6962 3758 C4
+998 2079 C4
+1.000 UP
+1.000 UL
+LT2
+1281 1939 M
+(cache4 heapsort  - Bimodal - 512 byte table) Lshow
+798 1939 M
+399 0 V
+630 2281 M
+633 145 V
+633 141 V
+634 156 V
+633 144 V
+633 154 V
+633 142 V
+633 155 V
+634 143 V
+633 156 V
+633 141 V
+630 2281 C5
+1263 2426 C5
+1896 2567 C5
+2530 2723 C5
+3163 2867 C5
+3796 3021 C5
+4429 3163 C5
+5062 3318 C5
+5696 3461 C5
+6329 3617 C5
+6962 3758 C5
+998 1939 C5
+1.000 UP
+1.000 UL
+LT3
+1281 1799 M
+(cache heapsort  - 2 Level Adaptive - 1024 2nd level entries) Lshow
+798 1799 M
+399 0 V
+630 2659 M
+633 133 V
+633 151 V
+634 258 V
+633 145 V
+633 155 V
+633 256 V
+633 158 V
+634 139 V
+633 255 V
+633 151 V
+630 2659 C6
+1263 2792 C6
+1896 2943 C6
+2530 3201 C6
+3163 3346 C6
+3796 3501 C6
+4429 3757 C6
+5062 3915 C6
+5696 4054 C6
+6329 4309 C6
+6962 4460 C6
+998 1799 C6
+1.000 UP
+1.000 UL
+LT4
+1281 1659 M
+(cache heapsort  - 2 Level Adaptive - 2048 2nd level entries) Lshow
+798 1659 M
+399 0 V
+630 2520 M
+633 88 V
+633 154 V
+634 238 V
+633 124 V
+633 157 V
+633 243 V
+633 133 V
+634 143 V
+633 247 V
+633 127 V
+630 2520 C7
+1263 2608 C7
+1896 2762 C7
+2530 3000 C7
+3163 3124 C7
+3796 3281 C7
+4429 3524 C7
+5062 3657 C7
+5696 3800 C7
+6329 4047 C7
+6962 4174 C7
+998 1659 C7
+1.000 UP
+1.000 UL
+LT5
+1281 1519 M
+(cache heapsort  - 2 Level Adaptive - 4096 2nd level entries) Lshow
+798 1519 M
+399 0 V
+630 2415 M
+633 73 V
+633 132 V
+634 217 V
+633 114 V
+633 144 V
+633 225 V
+633 126 V
+634 136 V
+633 229 V
+633 121 V
+630 2415 C8
+1263 2488 C8
+1896 2620 C8
+2530 2837 C8
+3163 2951 C8
+3796 3095 C8
+4429 3320 C8
+5062 3446 C8
+5696 3582 C8
+6329 3811 C8
+6962 3932 C8
+998 1519 C8
+1.000 UP
+1.000 UL
+LT6
+1281 1379 M
+(cache heapsort  - 2 Level Adaptive - 512 2nd level entries) Lshow
+798 1379 M
+399 0 V
+630 2785 M
+633 135 V
+633 166 V
+634 265 V
+633 164 V
+633 164 V
+633 259 V
+633 174 V
+634 152 V
+633 256 V
+633 164 V
+630 2785 C9
+1263 2920 C9
+1896 3086 C9
+2530 3351 C9
+3163 3515 C9
+3796 3679 C9
+4429 3938 C9
+5062 4112 C9
+5696 4264 C9
+6329 4520 C9
+6962 4684 C9
+998 1379 C9
+1.000 UP
+1.000 UL
+LT7
+1281 1239 M
+(cache heapsort  - Bimodal - 1024 byte table) Lshow
+798 1239 M
+399 0 V
+630 2312 M
+633 126 V
+633 136 V
+634 194 V
+633 160 V
+633 137 V
+633 194 V
+633 159 V
+634 128 V
+633 199 V
+633 155 V
+630 2312 C10
+1263 2438 C10
+1896 2574 C10
+2530 2768 C10
+3163 2928 C10
+3796 3065 C10
+4429 3259 C10
+5062 3418 C10
+5696 3546 C10
+6329 3745 C10
+6962 3900 C10
+998 1239 C10
+1.000 UP
+1.000 UL
+LT8
+1281 1099 M
+(cache heapsort  - Bimodal - 2048 byte table) Lshow
+798 1099 M
+399 0 V
+630 2312 M
+633 126 V
+633 136 V
+634 194 V
+633 160 V
+633 137 V
+633 194 V
+633 159 V
+634 128 V
+633 199 V
+633 155 V
+630 2312 C11
+1263 2438 C11
+1896 2574 C11
+2530 2768 C11
+3163 2928 C11
+3796 3065 C11
+4429 3259 C11
+5062 3418 C11
+5696 3546 C11
+6329 3745 C11
+6962 3900 C11
+998 1099 C11
+1.000 UP
+1.000 UL
+LT0
+1281 959 M
+(cache heapsort  - Bimodal - 512 byte table) Lshow
+798 959 M
+399 0 V
+630 2312 M
+633 126 V
+633 136 V
+634 194 V
+633 160 V
+633 137 V
+633 194 V
+633 159 V
+634 128 V
+633 199 V
+633 155 V
+630 2312 C12
+1263 2438 C12
+1896 2574 C12
+2530 2768 C12
+3163 2928 C12
+3796 3065 C12
+4429 3259 C12
+5062 3418 C12
+5696 3546 C12
+6329 3745 C12
+6962 3900 C12
+998 959 C12
+stroke
+grestore
+end
+showpage
+%%Trailer
+%%DocumentFonts: Helvetica

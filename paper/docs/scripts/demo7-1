@@ -1,0 +1,14 @@
+set key top left Left reverse
+set xrange [4096:65536]
+set yrange [0:]
+set xtics (8192,16384,32768,65536,131072,262144,524288,1048576,2097152)
+set format x "%8.0f"
+set logscale x
+set data style linespoints
+set term postscript eps
+set output '../plots/demo7-1.eps'
+set xlabel 'set size in keys'
+set ylabel 'Branch misses per key'
+plot \
+'../inputs/on2_insertsort_/on2_insertsort__sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:12 title 'insertsort',\
+'../inputs/on2_selectsort_/on2_selectsort__sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:12 title 'selectsort'

@@ -1,0 +1,10 @@
+latex report.tex
+latex report.tex
+latex report.tex
+dvips -Ppdf -o report.ps report.dvi
+ps2pdf report.ps
+cp report.pdf ~/www/
+dvips -o report.ps report.dvi
+cp report.ps ~/www/
+gzip -f report.ps
+cp report.ps.gz ~/www/

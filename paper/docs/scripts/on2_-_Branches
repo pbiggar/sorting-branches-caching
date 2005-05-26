@@ -1,0 +1,18 @@
+set key top left Left reverse
+set xrange [4096:65536]
+set yrange [0:]
+set xtics (8192,16384,32768,65536)
+set format x "%8.0f"
+set logscale x
+set data style linespoints
+set term postscript eps
+set output '../plots/on2_-_Branches.eps'
+set xlabel 'set size in keys'
+set ylabel 'Branches per key'
+plot \
+'../inputs/on2_insertsort_/on2_insertsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'insertion sort',\
+'../inputs/on2_selectsort_/on2_selectsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'selection sort',\
+'../inputs/on2_bubblesort_/on2_bubblesort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'bubblesort',\
+'../inputs/on2_bubblesort2_/on2_bubblesort2__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'bubblesort2',\
+'../inputs/on2_shakersort_/on2_shakersort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'shakersort',\
+'../inputs/on2_shakersort2_/on2_shakersort2__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'shakersort2'

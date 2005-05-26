@@ -1,0 +1,13 @@
+#!/bin/sh
+
+for ((  i = 0 ;  i < 190;  i++  ))
+do
+# do the faster sorts first
+	for j in multi_mergesort double_multi_mergesort
+	do
+		for k in 4096 8192 16384 32768 65536 131072 262144 524288 1048576 2097152 4194304
+		do
+			do_perfex $j $i $k
+		done
+	done 
+done

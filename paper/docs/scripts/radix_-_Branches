@@ -1,0 +1,14 @@
+set key top left Left reverse
+set xrange [4096:4194304]
+set yrange [0:]
+set xtics (8192,16384,32768,65536,131072,262144,524288,1048576,2097152)
+set format x "%8.0f"
+set logscale x
+set data style linespoints
+set term postscript eps
+set output '../plots/radix_-_Branches.eps'
+set xlabel 'set size in keys'
+set ylabel 'Branches per key'
+plot \
+'../inputs/base_radixsort_/base_radixsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'base radixsort',\
+'../inputs/cache_radixsort_/cache_radixsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'cache radixsort'
