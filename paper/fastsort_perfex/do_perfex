@@ -1,8 +1,0 @@
-#!/bin/sh
-
-for i in 4096 8192 16384 32768 65536 131072 262144 524288 1048576 2097152 4194304
-do
-	gcc -Wall -O3 -funroll-loops -finline-functions -DRANDOM_SIZE=$i -DSEED=$2 -DSORT=$1 $1.c simpleMain.c -o $1
-	echo "$i-$1-$2"
-	perfex $1
-done
