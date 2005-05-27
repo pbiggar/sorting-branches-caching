@@ -155,7 +155,7 @@ program counter. #7]
 %\evensidemargin 0.0cm
 
 \title{Fast Sorting on Modern Computers}
-\author{Paul Biggar\\ B.A. (Mod.) Computer Science \\ Final Year Project April 2004 \\ Supervisor: Dr. David Gregg}
+\author{Paul Biggar, David Gregg}
 \date{}
 
 \bibliographystyle{these}
@@ -170,39 +170,7 @@ program counter. #7]
 % ----------------------------------------------------------------------------------
 \begin{document}
 
-\begin{titlepage}
-        \begin{center}
-                \vspace*{95mm}
-                \LARGE Fast Sorting on Modern Computers\\
-                \vspace{1em}
-                \large Paul Biggar\\
-                \large B.A. (Mod.) Computer Science \\
-                \large Final Year Project April 2004\\
-                \large Supervisor: Dr. David Gregg\\
-        \end{center}
-\end{titlepage}
-
 %\maketitle
-
-\chapter*{Declaration}
-
-I hereby declare that this thesis is entirely my own work and that it has not
-been submitted as an exercise for a degree at any other university.
-
-\begin{center}
-\vspace*{2in}
-
-\underline{\hspace*{3in}} \today
-
-Paul Biggar
-\end{center}
-
-\chapter*{Acknowledgments}
-I would like to thank my supervisor, Dr. David Gregg, for his help and advice
-during this project. I'd also like to thank those who read my first draft, and
-my friends and family for their support during the last year, and my entire time
-at college. Thank you.
-\newpage
 
 \begin{abstract}
 This project attempts to create and analyse sorts designed to take advantage of
@@ -266,19 +234,13 @@ compared together and to the results of LaMarca's research.
 \chapter{Simulation Result Listing}
 \input result_list.tex
 
-%\chapter{Software Predictor Result Listing}
+%TODO \chapter{Software Predictor Result Listing}
 %\input software_predictor.tex
 
-\chapter{Code Listing}
-\input code_list.tex
-
-% the bugs are now fixed (actually, one of them was only mistakenly a bg :)
+% TODO the bugs are now fixed (actually, one of them was only mistakenly a bg :)
 % the only remaining thing is the compulsory cache subtraction.
 \chapter{Bug List}
 \input bugs.tex
-
-\chapter{SimpleScalar installation}
-\input simplescalar.tex
 
 \bibliography{report} % param is the name of the .bib file
 \nocite{*}
