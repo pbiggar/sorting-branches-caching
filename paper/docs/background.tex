@@ -218,7 +218,7 @@ A two-level adaptive predictor uses branch history to predict future branches. A
 global branch history register keeps track of the last few branches, and uses
 this to index a table of 2-bit predictors, which predict the result of the
 branch. Frequently, the program counter is also included, either concatenated or
-exclusive-ored with the branch history to form the table index.
+exclusive-ORed with the branch history to form the table index.
 
 This type of predictor can predict the two cases above perfectly.  However, the
 table can take time to fill, leading to cold-start misses, much like those of a
