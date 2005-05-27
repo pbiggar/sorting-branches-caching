@@ -132,7 +132,7 @@ two or eight. A large increase of instruction count was realized by sorting to
 lists of length two, so a length of eight was used. When an even number was
 required, four was used.
 
-The final impriovement was to fully sort keys in the level 1 cache, before
+The final improvement was to fully sort keys in the level 1 cache, before
 continuing to level 2 cache as in the tiled mergesort. The expected improvement
 is not as significant as in the case of the level 2 cache, since is the penalty
 for level 1 misses is not great. For this reason, this sort is called Double
@@ -311,13 +311,13 @@ both LaMarca's theory and results.
 
 figure a shows Algorithm N, knuths natural merge. N3, N5 and N9 indicate parts of the flow chart. 'N3 i==j' is the second branch in N3.
 
-The reuslts show that the seconsary loops are always taken. Taken here means broken out of, hence seldom used. The main action occurs in N3, the main comparator, which has a 50\% prediction ratio.
+The results show that the secondary loops are always taken. Taken here means broken out of, hence seldom used. The main action occurs in N3, the main comparator, which has a 50\% prediction ratio.
 
 Algorithm S in graph B shows the same. I never really understood how it worked though.
 
 
 
-Figure c shows base mergesort. This shows a lower number of branches and a higher precentage of correct predictions. The lower number of branches is probably due to the presort. there is a higher percentage of correct predictions, but the actual number of correct predictions in the same. This implies that doing the presort removes incorrect predictions (or, more to the point, moves incorrect predictions to another part of the algorithm). Note too, that both sides are used equally, which doesnt happen later. Two thirds of the branches are not-taken, which means loops execute twice before breaking. this is the same results that we found in quicksort later. Im sure knuth explains this somewhere in the fine print.
+Figure c shows base mergesort. This shows a lower number of branches and a higher percentage of correct predictions. The lower number of branches is probably due to the presort. there is a higher percentage of correct predictions, but the actual number of correct predictions in the same. This implies that doing the presort removes incorrect predictions (or, more to the point, moves incorrect predictions to another part of the algorithm). Note too, that both sides are used equally, which doesn't happen later. Two thirds of the branches are not-taken, which means loops execute twice before breaking. this is the same results that we found in quicksort later. I'm sure knuth explains this somewhere in the fine print.
 
 Figure d shows double tiled mergesort. The total number fo branches is a 10\% increase over the base mergesort. Not sure why this is. 15\% increase in correct predictions so this incrase into predictable range, which should be avoidable (according to what we guess in quicksort).
 

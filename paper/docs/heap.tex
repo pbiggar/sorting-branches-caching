@@ -96,7 +96,7 @@ to this is the last parent. It is possible that this has only one child, and it
 is necessary to check for this as a result. This occurs every two heapifies, as
 one key is removed from the heap every step. Therefore it is not possible to just
 pretend the heap is slightly smaller, and sift up the final key later, as it
-might be with a staticly sized heap.
+might be with a statically sized heap.
 
 LaMarca overcomes the problem by inserting a maximal key at the end of a heap if
 there's an even number of nodes in the array. This gives a second child to the
@@ -237,7 +237,7 @@ blocks in the cache, and uses each block fully.  This may be due to the extra
 compulsory misses due to having twice as many blocks to load. The difference
 between fully associative and direct mapped is only minor.
 
-In the graph, the base heapsort results flat-line for a step longer than the
+In the graph, the base heapsort's results flat-line for a step longer than the
 other heapsorts' results. This is due to being in-place, since twice as many
 keys fit in the cache without a corresponding increase in misses. For the same
 reason, the base heapsorts have half as many level 2 cache misses of the later,

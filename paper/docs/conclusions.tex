@@ -15,7 +15,7 @@ those results - a sharp increase in cache misses followed by a flat-lined graph
 
 The quicksort results were also very similar, though the multi-quicksort results
 had a very different shape to LaMarca's. However, the instruction count
-results for each quicksorts agreed with LaMarca's results, as did cache miss
+results for each quicksort agreed with LaMarca's results, as did cache miss
 results of the base and cache-conscious versions.
 
 The two sets of radixsort results were slightly similar. The rise and plateau of
@@ -69,9 +69,9 @@ it is important to remember that sorts have different purposes and properties,
 so this shall be considered. A comparative chart of the fastest sorts is shown
 in Figure \ref{All cycles}. This shows the cycles per key of each of the major
 sorts and their derivatives, measured using Pentium 4 performance counters.
-Neither the elementary sorts nor heapsorts are on the chart, as their results
+None of the elementary sorts or heapsorts are on the chart, as their results
 are significantly worse than the other results, which makes it difficult to
-accurately see those results.
+accurately see them.
 
 \afterpage{
 \thispagestyle{empty}
@@ -96,7 +96,7 @@ stable sort is, sadly, insertion sort. The best elementary sort is also
 insertion sort; as such it should be only used for very small data sets.  The
 best sort for very large data sets is radixsort. The best overall sort was
 quicksort, though radixsort is very close, and the radixsort considered here was
-not optimised. It is expected that an optimised radixsort would beat quicksort
+not optimized. It is expected that an optimized radixsort would beat quicksort
 for smaller sets.
 % TODO redo above paragraph
 
