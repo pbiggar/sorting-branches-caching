@@ -1,45 +1,14 @@
 \label{method}
-%TODO rewrite this
-This section discusses the method and framework used to complete this project.
-From the point of view of a Final Year Project, this is a description of what I
-did all year, what I spent my time on, what went right and wrong during the
-project, and what I learned. The first section discusses the steps involved in
-creating the project, programming the sorts and getting results. The second
-section discusses tools that I used or created in the course of the project.
+This section discusses the method and framework used to complete this research.
+The first section discusses the steps involved in creating a testing framework,
+programming the sorts and getting results. The second section discusses tools
+that I used or created to do this.
 
 \section{Method}
-i
-%TODO remove this
-The following is the initial project description:
-\begin{quotation}
-Sorting is one of the most important and studied problems in computer science.
-Many good algorithms exist which offer various trade-offs in efficiency,
-simplicity, and memory use.  One weakness of classical sorting algorithms is
-that they are not designed for modern computers.
 
-Cache memories, pipelines, and branch prediction have greatly changed the
-relative strengths of different algorithms. For example, comparison based
-sorting algorithms (such as Quicksort) can be inefficient on modern machines,
-because they involve difficult to predict branches.
-
-The goal of this project is to design, implement and experiment with sorting
-algorithms designed to make the best use of modern architectural features.
-Several cache-conscious sorting algorithms have been proposed, and the first
-step would be to implement these algorithms and compare their performance with
-traditional algorithms.  The next step is to consider modifications to the
-algorithms to make better use of the processor pipeline and multiple execution
-units and reduce branch mispredictions. The project will also involve a detailed
-study of the behaviour of the algorithms using a processor simulator or
-performance counters on a real machine.
-
-To do this project, you should have a reasonable knowledge of computer
-architecture and traditional sorting algorithms. You should also be enthusiastic
-about algorithm design, and making things go faster.  All programming is in C or
-C++.
-\end{quotation}
-After discussion with my supervisor, the following project goals were agreed upon:
+The following were the objectives of the research:
 \begin{itemize}
-\item Implement heapsort, mergesort, quicksort, radixsort, and the four
+\item Implement heapsort, mergesort, quicksort, radixsort, shellsort and the four
 elementary sorts: insertion sort, selection sort, bubblesort and shakersort.
 \item Simulate these sorts using the SimpleScalar architecture simulator, using a
 variety of branch predictors and cache configurations.
@@ -47,26 +16,26 @@ variety of branch predictors and cache configurations.
 \cite{LaMarca99}.
 \item Investigate and analyse the increase in speed, reduction in cache misses, 
 and change in branch prediction accuracy as a result of these changes.
+\item Determine if any changes can be made to improved the sorts' performance.
 \end{itemize}
 
-Several steps were necessary to prepare for the project. The first of these was
-to compile SimpleScalar. A guide to repeating this is included in Section
-\ref{SimpleScalar Install}. A framework was required by which I could test sorts
-as they were developed. This is discussed in Section \ref{Main}. It was also necessary
-to fully understand the technologies to be used in the project. Several texts
-were used for this: cache and branch predictors are both in
-\cite{HennessyPatterson90}; branch predictors in
-\cite{Uht97}, as well as in \cite{McFarling93}
-and \cite{Smith81}; sorts are discussed in \cite{Sedgewick02} and
-\cite{Knuth98}; cache-conscious sorts are discussed \cite{LaMarca96},
-\cite{LaMarca99} and \cite{LaMarcaHeap96}.
+% TODO maybe remoe this?
+Several steps were necessary to prepare for the research.  A framework was
+required by which sorts could be tested as they were being developed. This is
+discussed in Section \ref{Main}. It was also necessary to fully understand the
+technologies to be used in the project. Several texts were used for this: cache
+and branch predictors are both in \cite{HennessyPatterson90}; branch predictors
+in \cite{Uht97}, as well as in \cite{McFarling93} and \cite{Smith81}; sorts are
+discussed in \cite{Sedgewick02} and \cite{Knuth98}; cache-conscious sorts are
+discussed \cite{LaMarca96}, \cite{LaMarca99} and \cite{LaMarcaHeap96}.
 
-There were several steps involved in writing each iteration of the algorithms.
-The elementary sorts and radixsort had just one of these iterations; the other sorts had more
-than one\footnote{Quicksort, for example, had four: base quicksort, tuned
-quicksort, multi-quicksort and sequential multi-quicksort.}. A flowchart of these
-steps appears in Figure \vref{Flowchart}.
+There were many steps involved in writing each iteration of the algorithms.
+Insertion and selection sort had just one of these iterations; the other
+sorts had more than one\footnote{Quicksort, for example, had four: base
+quicksort, tuned quicksort, multi-quicksort and sequential multi-quicksort.}. A
+flowchart of these steps appears in Figure \vref{Flowchart}.
 
+%TODO this is going to have to be updated
 \begin{figure}
 \scalebox{0.57}{\includegraphics*[0pt,165pt][600pt,802pt]{flowchart}}
 \caption{Flowchart describing the development of an algorithm}
@@ -74,7 +43,7 @@ steps appears in Figure \vref{Flowchart}.
 \end{figure}
 
 
-The first step was to write the algorithm. \cite{Sedgewick02} was the primary
+The first step in each case was to write the algorithm. \cite{Sedgewick02} was the primary
 source of these, though in several cases LaMarca specified a particular version
 which he used. When a step involved in an algorithm wasn't clear, the paper
 describing the algorithm was used to clarify the meaning.
@@ -126,10 +95,10 @@ two arrays below this, the merge continues.
 
 While it was not known in advance the desired instruction count of an algorithm,
 a certain range was implied by LaMarca's descriptions. The relationship between
-one iteration of an algorithm, or between base versions of several algorithms was
-known ahead of time. One configuration of the \cc{simple} script (see
-Section \ref{Simple Script}) ran quick tests using the \cc{sim-fast} simulator,
-giving instruction counts which could be compared to other versions. 
+one iteration of an algorithm, or between base versions of several algorithms
+was known ahead of time. One configuration of the \cc{simple} script ran quick
+tests using the \cc{sim-fast} simulator, giving instruction counts which could
+be compared to other versions. 
 
 If both these tests and the visual display of the sort's behaviour seemed
 correct, then the full collection of simulations was run. The results of the
@@ -141,37 +110,30 @@ repeated.
 The results were then turned into graphs, from which conclusions about the
 performance of the algorithm could be reached, and patterns could be spotted.
 More details of this are in Section \ref{Gnuplot}. The next iteration of the
-algorithm was then begun, and the process repeated for each of the
-algorithm's iterations.
+algorithm was then begun, and the process repeated for each of the algorithm's
+iterations.
 
 \section{Tools}
 
-\subsection{SimpleScalar}
-\cc{SimpleScalar} is an architecture simulator. It works by compiling code into its
-native instruction set, PISA, then emulating a processor as it runs the program.
-SimpleScalar can be found at \n{http://www.simplescalar.com}. Documentation on how
-to use and modify SimpleScalar are \cite{Burger97}, \cite{Austin02},
-\cite{Tutorialv4}, \cite{Tutorialv2} and \cite{SimpleScalarUserGuide}.
-
-The installation of SimpleScalar can be difficult. A step by step description
-for installing it on an x86 linux machine is in Section \ref{SimpleScalar
-Install}.
+\subsection{SimpleScalar} \cc{SimpleScalar} is an architecture simulator. It
+works by compiling code into its native instruction set, PISA, then emulating a
+processor as it runs the program.  SimpleScalar can be found at
+\n{http://www.simplescalar.com}. Documentation on how to use and modify
+SimpleScalar are \cite{Burger97}, \cite{Austin02}, \cite{Tutorialv4},
+\cite{Tutorialv2} and \cite{SimpleScalarUserGuide}.
 
 SimpleScalar works by compiling code into its own instruction set. It provides a
-compiler - a port of gcc 2.63 - with related tools such as a linker and assembler.
-Several simulators are then provided: \cc{sim-fast} only counts instruction,
-quickly; \cc{sim-cache} simulates a cache and counts level 1 and level 2 cache
-misses; \cc{sim-bpred} simulates a branch predictor and counts branch hits and
-misses. Other simulators are provided, but they were not used in this project.
+compiler - a port of gcc 2.63 - with related tools such as a linker and
+assembler.  Several simulators are then provided: \cc{sim-fast} only counts
+instruction, quickly; \cc{sim-cache} simulates a cache and counts level 1 and
+level 2 cache misses; \cc{sim-bpred} simulates a branch predictor and counts
+branch hits and misses. Other simulators are provided, but they were not used in
+this project.
 
-The output of SimpleScalar is human readable (see Section \ref{Sample
-Simulation} for an example) but is not conducive to collecting large amounts of
-data. To that end, a script was written to run each required set of simulations. The
-script was written in perl, and recorded data from the simulations into a single
-file for later retrieval. The source code to the script, \cc{simple}, is in
-section \ref{Simple Script}.  A sample list of commands executed by \cc{simple} are
-in section \ref{Simple List}. The data file produced was suitable to reading
-with a \cc{diff} program.
+The output of SimpleScalar is human readable, but is not conducive to collecting
+large amounts of data. To that end, a script was written to run each required
+set of simulations. It recorded data from the simulations into a single file for
+later retrieval. This file was suitable to reading with a \cc{diff} program.
 
 The SimpleScalar settings were chosen to be similar to LaMarca's simulations.
 LaMarca used the \n{Atom} simulator, which was used to test software for the DEC
@@ -189,10 +151,9 @@ There were several steps involved in using gnuplot for the data. Firstly, the
 data was not in the correct format for gnuplot, and had to be converted. It also
 needed to be offset by the cost of filling the array with random variables, and
 scaled to so that the y-axis could be in the form of \n{plotted data per key},
-both to be more readable, and to be consistent with LaMarca's graphs. The source
-code to the script to do this is in Figure \ref{Convert Script}. Once the data
-was converted, a script to run gnuplot (see Section \ref{Sample Gnuplot Script}
-for an example) was required. The number of graphs required made this an
+both to be more readable, and to be consistent with LaMarca's graphs. Once the data
+was converted, it was necessary to generate a gnuplot script for each graph.
+The number of graphs required made this an
 impossible manual task, and so another script had to be written.  Some graphs
 still needed to be tweaked by hand, due to difficulties in the script, but the
 task was much shortened by this, and the tweaking was mostly accomplished using
@@ -238,18 +199,7 @@ branch predictor could have been measured. Since access was
 provided late in the project, limited measurements were taken to supplement the
 SimpleScalar results.
 
-\subsection{Incidental Tools}
-The algorithms in this project were written in C using \cc{vim}, a powerful text
-editor. \cc{gcc} was used to compile the framework, when not using SimpleScalar.
-The report was written using \LaTeX, and diagrams were written is
-\cc{postscript}, or drawn using \cc{OpenOffice.org}, an open-source office
-suite. Many files had to be edited in the same way, and this was accomplished
-either using \cc{vim} macros, or by writing a short \cc{perl} script.
-
 \section{Implementation of sorts}
-
-The \cc{C} code written for this project was approximately 8000 lines long.
-Appendix \ref{Sort Listings} lists many of the key parts of this code.
 
 To show an example of the creation of a sort, mergesort will now be discussed.
 Descriptions of some of the terms here is saved for discussion in Chapter
@@ -332,9 +282,8 @@ to be debugged and simulated. The results were compared with the expected
 results and frequently the sorts needed to be edited to reduce the cost of a
 feature.
 
-Each of the three $O(NlogN)$ sorts was treated in this fashion. The mergesorts
-accounted for over 3000 lines of the 8000 lines of code in this project. Key
-portions of this code are shown in Section \ref{Sort Listings}.
+%TODO another sentence here
+Each of the four $O(NlogN)$ sorts and radixsort, was treated in this fashion.
 
 \section{Future work}
 An improvement that would have yielded interesting results would be to do simulations
