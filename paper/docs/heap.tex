@@ -1,3 +1,4 @@
+\label{heap}
 %\section{Description}
 
 Heapsort is an in-place sort which works in $O(NlogN)$ time in the average and
@@ -71,7 +72,7 @@ notes speed improvements only when comparisons are move expensive than swaps,
 such as in the case of sorting strings. For integers, this step should not be
 done.
 
-\subsubsection{Out-of-place sorting}
+\subsubsection{Out-of-place Sorting}
 Up until this point, the heap property used has been that a parent will be
 larger than its child. If this property is change so that the parent is always
 smaller than its child, then the result is an out-of-place sort. The smallest
@@ -79,7 +80,7 @@ key is removed from the heap, and placed in its final place in the array. The
 heap is then re-heapified. LaMarca refers to the steps involved as
 \n{Remove-min}.
 
-\section{Base heapsort}
+\section{Base Heapsort}
 LaMarca recommends to use of the Repeated-Adds algorithm for reducing
 cache misses. As such, his base heapsort uses Floyd's method, ostensibly at
 the behest of major textbooks, each of whom claim Floyd's method gives better

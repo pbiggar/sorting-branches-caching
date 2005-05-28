@@ -1,5 +1,5 @@
 %\section{Description}
-\label{Mergesort}
+\label{merge}
 Merging is a technique which takes two sorted lists, and combines them into a
 single sorted list. Starting at the smallest key on both lists, it writes the
 smaller key to a third list. It then compares the smallest key on one list with
@@ -59,6 +59,7 @@ however, used set sizes such as 4096000, which at times would suffer from this
 type of problem.
 
 \subsection{Base Mergesort}
+\label{base mergesort}
 Three optimisations are described by LaMarca for the base mergesort. Firstly, a
 bitonic sort, as described in \cite{Sedgewick02}, removes instructions from the
 inner loop. Every second array is created in reverse, so that the larger keys  

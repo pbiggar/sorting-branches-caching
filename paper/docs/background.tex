@@ -1,3 +1,4 @@
+\label{background}
 \section{Sorting}
 
 Sorting algorithms are used to arrange items consisting of \n{record}s and
@@ -8,11 +9,11 @@ names and addresses.
 Sorts are frequently classified as \n{in-place} and \n{out-of-place}. An
 out-of-place sort typically uses an extra array of the same size as the array to
 be sorted. This may require the results to be copied back at the end. An
-in-place sort does not, though it may use a large stack, especially in recursive
-algorithms.
+in-place sort does not require this extra array, though it may use a large
+stack, especially in recursive algorithms.
 
 A \n{stable} sort is one in which records which have the same key stay in the
-same order across the sort. All the elementary sorts are stable, as are
+same relative order during the sort. All the elementary sorts are stable, as are
 mergesort and radixsort. Quicksort, heapsort and shellsort are not stable.
 
 Sorting algorithms tend to be written using an \n{Abstract Data Type}, rather
@@ -25,12 +26,12 @@ The ADT interface in this project is taken from \cite{Sedgewick02}. An \cc{Item}
 is a record, and a function is defined to extract its key.  Comparisons are done
 via the \cc{less} function, and swapping is done using the \cc{exch} function.
 These are replaced with their actual functions by the C preprocessor. The code
-used for ADTs is in Figure \vref{Definitions used by the ADT}. Items in this
-project were \cc{unsigned integer}s, and were compared using a simple
-\n{less-than} function\footnote{This abstraction broke down in several cases,
-such as where a \n{greater-than} function was required, such as in quicksort}.
-In this case, a record and key are equivalent, and the word \n{key} is used to
-refer to items to be sorted.
+used for ADTs is in Figure \vref{Definitions used by the ADT}. The tests
+presented in this report use \cc{unsigned integer}s as Items, which were
+compared using a simple \n{less-than} function\footnote{This abstraction broke
+down in several cases, such as where a \n{greater-than} function was required,
+i.e. in quicksort.}.  In this case, a record and key are equivalent, and the
+word \n{key} is used to refer to items to be sorted.
 
 \code{Definitions used by the ADT}{adt.h}
 
@@ -44,7 +45,7 @@ case one on each letter.
 Sorts which are not comparison based also exist. These sorts are called counting
 based sorts, as they count the number of keys to be put in each segment of an
 array before putting them in place. The most important of these is radixsort,
-discussed in Chapter \ref{Radixsort}.
+discussed in Chapter \ref{radix}.
 
 Sorts sometimes use a sentinel to avoid exceeding bounds of an array. If an
 algorithm spends its time moving a key right based on a comparison with the key
@@ -61,7 +62,7 @@ overcome this problem, a \n{cache hierarchy} is used. A cache contains a small
 subset of main memory in a smaller memory, which is much faster to access than
 main memory. Modern computers typically contain many levels of cache, each with
 increasing size and \n{latency}\footnote{Latency is the time between a request
-being made, and its successful execution.}. For example, it may take twice as
+being made and its successful execution.}. For example, it may take twice as
 long to access the level 1 cache as it does to access a register. It may take
 ten times as long as that to access the level 2 cache, and fifty times as long
 to access main memory.
@@ -245,6 +246,8 @@ whereas elementary sorts, such as insertion sort, selection sort, bubblesort and
 shakersort are $O(N^2)$ algorithms. Radixsort is $O(N)$, but can be more
 expensive than quicksort, due to the cost of each step.  These are discussed in
 later chapters.
+%TODO what's shellsort in Big O notation
+TODO what's shellsort in Big O notation
 
 An important thing to note is that the time the algorithms take to execute are
 proportion to their Order, but different constants of proportionality are used

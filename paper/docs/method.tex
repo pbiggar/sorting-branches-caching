@@ -1,3 +1,5 @@
+\label{method}
+%TODO rewrite this
 This section discusses the method and framework used to complete this project.
 From the point of view of a Final Year Project, this is a description of what I
 did all year, what I spent my time on, what went right and wrong during the
@@ -6,7 +8,8 @@ creating the project, programming the sorts and getting results. The second
 section discusses tools that I used or created in the course of the project.
 
 \section{Method}
-
+i
+%TODO remove this
 The following is the initial project description:
 \begin{quotation}
 Sorting is one of the most important and studied problems in computer science.
@@ -82,7 +85,7 @@ different random data sets. Testing was also performed on a very large data set.
 This test was timed and the results were considered. The results of this test
 were not accurate: the program took up to a minute to run, during which time the
 computer was being used by multiple users and processes, leading to context
-switches,sharing of resources and scheduling. Despite these inaccuracies, it was
+switches, sharing of resources and scheduling. Despite these inaccuracies, it was
 possible to use the results relative to each other, and to determine whether,
 for example, memory-tuned quicksort was running faster than base quicksort.
 
@@ -110,15 +113,16 @@ the auxiliary array}
 \label{Visual Sort}
 \end{figure}
 
-This shows two stages of a bitonic mergesort. The top of the image shows the
-source array being merged into the target array below. The source array shows
-three large segments of the array and four smaller segments. The first two large
-segments have been merged into one segment in the target array. The third of
-these has been merged into the corresponding target array segment. The first of
-the smaller segments has begun being merged with the other small segments. The
-rest of the target array is uninitialised.  Below that is a small amount of
-debugging information. $i == j$ is a key point in the program and is printed as
-debugging information. In the two arrays below this, the merge continues.
+This shows two stages of a bitonic mergesort which is described in Section \ref{base
+mergesort}. The top of the image shows the source array being merged into the
+target array below. The source array shows three large segments of the array and
+four smaller segments. The first two large segments have been merged into one
+segment in the target array. The third of these has been merged into the
+corresponding target array segment. The first of the smaller segments has begun
+being merged with the other small segments. The rest of the target array is
+uninitialised.  Below that is a small amount of debugging information. $i == j$
+is a key point in the program and is printed as debugging information. In the
+two arrays below this, the merge continues.
 
 While it was not known in advance the desired instruction count of an algorithm,
 a certain range was implied by LaMarca's descriptions. The relationship between
@@ -249,7 +253,7 @@ Appendix \ref{Sort Listings} lists many of the key parts of this code.
 
 To show an example of the creation of a sort, mergesort will now be discussed.
 Descriptions of some of the terms here is saved for discussion in Chapter
-\ref{Mergesort}.
+\ref{merge}.
 
 The base mergesort described by LaMarca is Algorithm N. Three improvements
 were prescribed by LaMarca: changing the sort to be bitonic to eliminate bounds
@@ -302,7 +306,7 @@ initial version, which performed the same number of instructions as the same as
 algorithm N, and the optimised version, was about 30\%.
 
 A tiled mergesort was then written, based on LaMarca's guidance. Firstly, this
-was aligned in memory so that the number misses due to conflicts would be
+was aligned in memory so that the number of misses due to conflicts would be
 reduced.  Then it fully sorted segments of the array, each half the size of the
 cache, so that temporal locality would be exploited. Finally, all these segments
 were merged together in the remaining merge steps.
@@ -319,7 +323,7 @@ the level 2 cache. Double multi-mergesort was a combination of this and of
 multi-mergesort. The rewrite was based on the base mergesort, and was written
 far more cleanly, being more readable and efficient. These were also found to
 reduce the instruction count, as well as the level 2 cache miss count. These
-results are discussed in more detail in \ref{Mergesort results}.
+results are discussed in more detail in Section \ref{Mergesort results}.
 
 Each of these sort variations had to be fully written from the descriptions in
 LaMarca's thesis. Only the base algorithm was available from textbooks, and this
@@ -333,26 +337,13 @@ accounted for over 3000 lines of the 8000 lines of code in this project. Key
 portions of this code are shown in Section \ref{Sort Listings}.
 
 \section{Future work}
-SimpleScalar ran very slowly, with each simulation run taking at least $2
-\frac{1}{2}$ hours. Several steps could be taken to lower this time. Firstly,
-compiling SimpleScalar with the \cc{-03} flag, which performs a significant
-number of optimisations on the program. This was not done because of the
-difficulty of compiling the program in the first place.
-
-\cc{lib-cheetah} is a SimpleScalar library used to simulate multiple
-caches in the same simulation. Over half the simulation time was taken by four
-cache simulations, and running them concurrently might have significantly
-decreased the running time. This was not a significant worry during this project,
-but decreasing the running time would be necessary if the either the number of
-simulations or the number of sorts was to change dramatically.
-
 An improvement that would have yielded interesting results would be to do simulations
 which only consisted of flow control, with no comparisons. This would allow a
 division of flow control misses and comparative misses. However, this would not
-always be possible; sorts like quicksort and heapsort mix use their data to
+always be possible; sorts like quicksort and heapsort use their data to
 control the flow of the program. In addition, bubblesort, shakersort and
 selection sort have (analytically) predictable flow control, while radixsort has
-no misses at all. Mergesort may benefit from this, however, especially versions
+no comparison misses at all. Mergesort may benefit from this, however, especially versions
 with difficult flow control diagrams, such as \n{algorithm N} and \n{algorithm
 S} (see Section \ref{Algorithm N}).
 
