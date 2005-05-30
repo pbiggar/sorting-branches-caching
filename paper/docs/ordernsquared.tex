@@ -37,8 +37,8 @@ and selection sort performs very badly from a cache perspective. There are $N$
 traversals of the array, leading to bad temporal reuse. If the array doesn't fit
 inside the cache, then there will be no temporal reuse.
 
-The level 1 cache should have equally bad performance as a result. Since it is
-smaller than the array, the performance of the level 1 cache should simulate the
+The level 1 cache should have bad performance as a result. Since it is smaller
+than the array, the performance of the level 1 cache should simulate the
 performance of the level 2 cache.
 
 \label{selection branches logn}
@@ -64,6 +64,8 @@ The length of the array to be considered in $N/2$ on average, and an average
 total of $Nlog_2(N/2)$ branch misses will occur. This assumes randomly sorted
 keys.
 
+%TODO look at knuths number here
+TODO Knuth has a formula which I will look up.
 \section{Insertion sort}
 
 Insertion sort, as its name suggests, is used to insert a single key into its
@@ -144,12 +146,12 @@ should decrease. The number of flow control misses should be very low.
 
 \section{Bubblesort2}
 Bubblesort2 incorporates an improvement to end bubblesort early. The bubblesort
-implementation above ends early if it detects that the array is fully sorted.
-It keeps a binary flag to indicate if there were any exchanges along the way.
-Instead, bubblesort2 keeps track of the last exchange made, and starts the next
-iteration from there. This means that any pockets of sorted keys are skipped
-over, not just if they occur at the end. Bubblesort2 code is in Figure
-\vref{Bubblesort2 code}
+implementation described in the previous section ends early if it detects that
+the array is fully sorted.  It keeps a binary flag to indicate if there were any
+exchanges along the way.  Instead, bubblesort2 keeps track of the last exchange
+made, and starts the next iteration from there. This means that any pockets of
+sorted keys are skipped over, not just if they occur at the end. Bubblesort2
+code is shown in Figure \vref{Bubblesort2 code}.
 
 \code{Bubblesort2 code}{on2_bubblesort2.c}
 \subsection{Testing}
@@ -165,7 +167,7 @@ should be reduced along with instruction count.
 Shakersort is sometimes called back-bubblesort. It behaves like a bubblesort
 which moves in both directions rather than just one way. Both ends of the array
 become sorted in this manner, with the larger keys slowly moving right and the
-smaller keys moving left. Sample code for shakersort is in Figure
+smaller keys moving left. Sample code for shakersort is shown in Figure
 \vref{Shakersort code}.
 
 \code{Shakersort code}{on2_shakersort.c}
@@ -175,14 +177,13 @@ The instruction count of shakersort is expected to be exactly the same as
 bubblesort. The version of shakersort used here, however, does not incorporate
 the improvement to end the sort early if the array is already sorted. This will
 probably slightly reduce the instruction count as the sort is unlikely to end
-early for random keys. In addition, the worst case for bubblesort is not a
-worst case for shakersort and is less likely.
+early for random keys. 
 
 The cache performance of shakersort is expected to be superior to that of
 bubblesort. A small amount of temporal reuse occurs at the ends of the array,
 as each key is used twice once its loaded into the cache. In addition, when the
 array is not more than twice the size of the cache, then the keys in the centre
-of the array are not ejected from the array at all.
+of the array are not ejected from the cache at all.
 
 Finally, the branch prediction results are expected to be the same as in bubble
 sort, with one difference.  Keys which must travel the entire way across the
@@ -209,6 +210,9 @@ than its original form.
 
 \section{Simulation Results}
 
+%TODO check that this is put in after the titlepage
+%TODO check that the captions are the same as the captions at the end of the
+%other chapters
 % I'm doing a slightly different result here. Level 2 doesn't interest us, so put
 % in 2 prediction results instead - 1 for select/insert, 1 for bubble/shaker
 \afterpage{
@@ -295,7 +299,7 @@ sort and shakersort, showing that ending early is helpful in its case. This does
 not appear to be the case with bubblesort2 though, which performs identically to
 bubblesort.
 
-Insertion sort performs best of the four sorts in relation to cache misses. This
+Insertion sort performs best of these sorts in relation to cache misses. This
 is due to the fact that the keys it considered most recently are used again for
 the next key. These keys will be swapped out fairly regularly, however, but not
 nearly as often as selection sort, where they are swapped out at nearly every
