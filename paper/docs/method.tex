@@ -43,10 +43,10 @@ flowchart of these steps appears in Figure \vref{Flowchart}.
 \end{figure}
 
 
-The first step in each case was to write the algorithm. \cite{Sedgewick02} was the primary
-source of these, though in several cases LaMarca specified a particular version
-which he used. When a step involved in an algorithm wasn't clear, the paper
-describing the algorithm was used to clarify the meaning.
+The first step in each case was to write the algorithm. \cite{Sedgewick02} was
+the primary source of these, though in several cases LaMarca specified a
+particular version which he used. When a step involved in an algorithm wasn't
+clear, the paper describing the algorithm was used to clarify the meaning.
 
 Once the algorithm was written, a testing framework was used. This tested for
 edge-cases in the algorithms by testing sorts sized from $8$ to $255$ keys, with
@@ -112,6 +112,13 @@ performance of the algorithm could be reached, and patterns could be spotted.
 More details of this are in Section \ref{Gnuplot}. The next iteration of the
 algorithm was then begun, and the process repeated for each of the algorithm's
 iterations.
+
+Finally, a software predictor was added in order to pin-point the cause of the
+branch mispredictions. This meant altering the code of the algorithms to call
+functions which updated simulated branch predictors. Each important branch was
+allocated a predictor, which was updated independantly of the other predictors.
+This allowed the performance to be analysed down to the individual branch, and
+blame apportioned appropriately.
 
 \section{Tools}
 
@@ -198,6 +205,15 @@ because perfex measures results on a real machine, only one type of cache and
 branch predictor could have been measured. Since access was
 provided late in the project, limited measurements were taken to supplement the
 SimpleScalar results.
+
+\subsection{Software Predictor}
+The software predictor used was a series of macros and functions which
+maintained the state of a branch predictor at a particular point in the program.
+Statistics about each branch were collected, and dumped into text files, from
+which scripts created graphs to display them. Some sample code is shown in
+Figure \ref{Sample code using the software predictor}.
+
+\code{Sample code using the software predictor}{quick.c}
 
 \section{Implementation of sorts}
 

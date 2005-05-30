@@ -2,9 +2,10 @@
 %\section{Description}
 
 Heapsort is an in-place sort which works in $O(NlogN)$ time in the average and
-worst case. It begins by creating a structure known as a \n{heap}, which stores
-its largest key at the top, then removing keys from the top and placing them in
-their final position in the array.
+worst case. It begins by creating a structure known as a \n{heap}, a binary tree
+in which a parent is always larger its child, and the largest key is at the top
+of the heap. It then repeatedly removes the largest key from the top and places
+it in its final position in the array, fixing the heap as it goes.
 
 \subsection{Implicit heaps}
 
@@ -41,7 +42,7 @@ known as \n{heapifying}, and can be performed in two ways.
 
 The first method involves \n{sifting}\footnote{Sifting up and down is also
 referred to as fixing up and down, and algorithms that do this are called
-\n{fix-up} or \n{sift-up}, and \n{fix-down} or \n{sift-down}} keys up the heap.
+\n{fix-up} or \n{sift-up}, and \n{fix-down} or \n{sift-down}.} keys up the heap.
 Assuming that a heap already exists, adding a key and re-heapifying will
 maintain the heap property. This can be done by adding the key at the end of
 the heap, then moving the key up the tree, swapping it with smaller parents
@@ -56,7 +57,7 @@ a parent is compared to its two children and swapped down if it is smaller. This
 continues upwards until the root of the heap is reached. This is the technique
 specified by Floyd and LaMarca refers to this as Floyd's method.
 
-The second step is to destroy the heap, leaving a sorted array.
+The second step, described next, is to destroy the heap, leaving a sorted array.
 
 \subsubsection{In-place sorting}
 For an in-place sort, a heap is created as specified above. Then the root of the
@@ -105,8 +106,8 @@ last element of the heap. This is an effective technique for building the heap,
 as the number of keys is static. When destroying the heap, however, the
 maximal key must be added to every second operation. This can be avoided
 relatively simply with no extra instructions. If the last key in the heap is
-left in the heap while its being sifted down the heap, it will provide a
-sentinel for the sift down operation. The key from the top of the heap is then
+left in place aswell as being sifted down the heap, it will provide a
+sentinel for the sift-down operation. The key from the top of the heap is then
 put into place at the end. This technique reduces instruction count by
 approximately 10\%.
 
@@ -118,19 +119,20 @@ heap. This has minimal affect, however.
 LaMarca notes that the Repeated-Adds algorithm has a much lower number of cache
 misses than Floyd's. The reason for this is simple. Consider the number of keys 
 touched when a new key is added to the heap. In the case of Floyd's method, the
-keys being heapified are not related to the last keys that were heapified. Reuse
+key being heapified is not related to the last key that was heapified. Reuse
 only occurs upon reaching a much higher level of the heap. For large heaps, these
 keys may be swapped out of the cache by this time. As a result, Floyd's method
 has poor temporal locality.
 
 The Repeated-Adds algorithm, however, displays excellent temporal locality. A
-key has a 50\% chance of having same parent, a 75\% of the same grandparent and
-so on. The number of instructions, however, increases significantly, and the
-sort becomes out-of-place.
+key has a 50\% chance of having the same parent, a 75\% of the same grandparent
+and so on. The number of instructions, however, increases significantly, and the
+sort becomes out-of-place. For this reason, the Repeated-Adds algorithm is used
+for cache heapsort.
 
 The cost of building the heap is completely dominated by the cost of
 destroying it. Less than 10\% of heapsort's time is spent building the heap.
-Therefore optimisations must be applied when destroying the heap.
+Therefore optimizations must be applied when destroying the heap.
 
 LaMarca's first step is to increase spatial locality. When sifting down the
 heap, it is necessary to compare the parent with both children. Therefore it is
@@ -178,6 +180,10 @@ than the bounds check, however, as the bounds check will need to be performed
 $NlogN$ times, compared to $N$ times for the sentinel. The cost of the sentinel
 write is more expensive but the extra $logN$ instructions saved will mean that
 this increase will be an order of magnitude lower than the bounds check.
+
+%TODO this isnt true is it? placing the nsentinel is cheaper than a bounds check
+%(a write to a variable thats going to be written to in a second vs a comparison?)
+%and there arent an extra logN instructions, theres logN times as many
 
 \section{Results}
 All simulations in this project are performed on 32 byte cache lines. As a
@@ -241,8 +247,8 @@ between fully associative and direct mapped is only minor.
 In the graph, the base heapsort's results flat-line for a step longer than the
 other heapsorts' results. This is due to being in-place, since twice as many
 keys fit in the cache without a corresponding increase in misses. For the same
-reason, the base heapsorts have half as many level 2 cache misses of the later,
-out-of-place sorts (See Figure \ref{heap level 2 misses}).
+reason, the base heapsorts have approximately half as many level 2 cache misses
+as the out-of-place sorts (See Figure \ref{heap level 2 misses}).
 
 The branch prediction behaves similarly to the expected results, in that the
 prediction ratio gets worse as the fanout gets larger. However, the difference
@@ -255,27 +261,27 @@ results, shown in Figure \ref{heap branch misses}. The largest table size is
 shown for the two-level predictor. The smallest table size is shown for the
 bimodal predictor, as all the bimodal table sizes show identical results.  In
 the case of the 2- and 8-heaps, the bimodal predictor works better than the
-two-level adaptive predictor. The warm-up time is visible in the base heapsort,
-though it's amortised for larger data sets. There is no difference between
-predictors for the 4-heap.
+two-level adaptive predictor. The warm-up time of the table-driven predictors is
+visible in the base heapsort results, though it's amortised for larger data
+sets.
 
 Figure \ref{heap cycles} shows the actual time taken for heap sort on a Pentium
 4 1.8GHz machine, which has an 8-way associative 256KB level 2 cache with a 64 byte
 cache line, a 4-way associative 8KB level 1 data cache, and a maximum branch
-misprediction delay of 20 cycles.\footnote{This is determined from the Pentium
+misprediction delay of 20 cycles\footnote{This is determined from the Pentium
 4's 20 stage pipeline. This number is not exact, and is probably slightly lower,
 with the possibility of occasionally rising higher (in the case of an
 instruction cache miss, which is exceptionally unlikely for small routines like
-sorts).} Its static branch prediction strategy is backward taken and forward
+sorts).}. Its static branch prediction strategy is backward taken and forward
 not taken; its dynamic strategy is unspecified: though \cite{Intel248966-010}
 mentions a branch history so it is likely a two-level adaptive predictor.
 
-The figure shows that the base heapsort performs best while the data set fits in
+The figure shows that the base heapsort performs best when the data set fits in
 the cache. After that point, the 8-heap performs best, and its cycle count increases
 with a smaller slope. This shows the importance of LaMarca's cache-conscious
-design even eight years after his thesis. It also shows the importance of reduced
+design even nine years after his thesis. It also shows the importance of reduced
 branch mispredictions: the base heapsort has more instructions and level 1 cache
-misses, but still outperforms the 4-heap, before level 2 cache misses take over.
+misses, but still outperforms the 4-heap, until level 2 cache misses take over.
 However, this is hardly conclusive: the lower level 2 cache misses may account
 for this.
 
@@ -298,18 +304,19 @@ the results presented here. LaMarca's results indicate that the cache heapsort
 has better results the entire way through the cache. This may relate to the
 associativity: LaMarca's tests were performed on a DEC AlphaStation 250 with a
 direct mapped cache. The Pentium 4's cache is 8-way associative, and so the
-unoptimised algorithm would not suffer as much.
+unoptimized algorithm would not suffer as much.
 
-\section{Predictor results}
+\section{Predictor Results}
 
 \sixplot{base_heapsort-0.eps}{cache4_heapsort-0.eps}{cache_heapsort-0.eps}{cache_heapsort-1.eps}{}{}{base and cache heapsorts}
 
 The results of the software predictor show the relation of the branches
 in the creation and destruction of the heap. The base heapsort results in
-Figure \ref{base and cache heapsorts-1} show that the time taken to create the
-heap is not significant relative to the time taken to sort from the heap.
+Figure \ref{base and cache heapsorts-1} show
+that the time taken to create the heap is not significant relative to the time
+taken to sort from the heap.
 
-The most interesting thing is the relation between the predictivity of the
+The most interesting thing is the relation between the predictablility of the
 comparisons in the destruction of the 2-, 4- and 8-heaps, which are shown in
 Figure \ref{Branch prediction performance for base and cache heapsorts}.
 Overall, the 4-heap is half as high as the 2-heap, and twice as high as the
@@ -331,7 +338,8 @@ hints from the compiler would do a better job at making correct predictions.
 LaMarca later published heapsort code in \cite{LaMarcaHeap96}. The ACM
 Journal of Experimental Algorithms requires that source code be published, and
 comparing simulated results from there to the sorts created here might have
-interesting results.
+interesting results and would explain the discreptancies highlighted in this
+chapter.
 
 Comparing the 4-heap with a 16 byte cache line to the 4-heap with a 32 byte
 cache line is not as interesting as it would be to compare it to an 8-heap on a
