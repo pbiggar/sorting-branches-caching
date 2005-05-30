@@ -312,26 +312,45 @@ unoptimized algorithm would not suffer as much.
 
 The results of the software predictor show the relation of the branches
 in the creation and destruction of the heap. The base heapsort results in
-Figure \ref{base and cache heapsorts-1} show
-that the time taken to create the heap is not significant relative to the time
-taken to sort from the heap.
+Figure \ref{base and cache heapsorts-1} show that the time taken to create the
+heap is not significant relative to the time taken to sort from the heap.
 
 The most interesting thing is the relation between the predictablility of the
-comparisons in the destruction of the 2-, 4- and 8-heaps, which are shown in
-Figure \ref{Branch prediction performance for base and cache heapsorts}.
-Overall, the 4-heap is half as high as the 2-heap, and twice as high as the
-8-heap, but has to make more comparisons. However, there are three comparisons
-in the 4-heap and seven comparisons in the 8-heap. In total, there are 50\% more
-comparisons in the 4-heap, and 150\% more in the 8-heap.
+comparisons during the destruction of the 2-, 4- and 8-heaps. Compare the
+columns marked `\cc{Destruction, child comparison}' and `\cc{Destruction, child
+promotion}' in Figure \ref{base and cache heapsorts-1} (the 2-heap), with the
+columns marked `\cc{comparison 1}' to `\cc{child promotion}' in Figure \ref{base and
+cache heapsorts-2} (the 4-heap) and Figures \ref{base and cache heapsorts-3} and
+\ref{base and cache heapsorts-4} (the 8-heap).
 
-These branches become more predictable. The first predicts correctly 50\% of the
-time, while the next predicts correctly 60\% of the time, then 71\%, 77\%, and
-so on in a curve. This curve is shown in Figure TODO.
-%TODO make a pretty graph for this.
+Though the number of times each comparison is used shrinks
+as the size of the fanout increased, overall the number of branches increases.
+In total, there are 50\% more comparisons in the 4-heap than the 2-heap, and
+150\% more in the 8-heap.
 
-Also notable from the results is that branches are more often not-taken then
-they are correctly predicted, implying that a semi-static predictor based on
-hints from the compiler would do a better job at making correct predictions.
+More importantly, the accuracy of the each
+successive comparison increases in the same way as selection sort (see Section
+\ref{selection branches logn}), becoming more predictable as the fanout
+increases. For example, in the 8-heap, shown in Figures \ref{base and cache heapsorts-3}
+and \ref{base and cache heapsorts-4},
+the first comparison is predicted correctly 50\% of the
+time, while the next is predicted correctly 61\% of the time, then 71\%, 77\%, and
+so on in a curve, which is shown in Figure \ref{cache heapsort curve}.
+
+\begin{figure}
+\includegraphics{../counters/curve.eps}
+\caption{Predictability of branches in cache heapsort, with a fanout of eight}
+\label{cache heapsort curve}
+\end{figure}
+
+\label{heapsort entropy}
+We observe here that the more branches there are, the more are correctly
+predicted, and that there is a threshold below which the number of branches will
+not drop. This is discussed in more Section \ref{quicksort entropy}.
+
+Also notable from the results is that branches are slightly more often not-taken
+then they are correctly predicted, implying that a semi-static predictor based
+on hints from the compiler could do a better job at making correct predictions.
 
 \section{Future Work}
 
