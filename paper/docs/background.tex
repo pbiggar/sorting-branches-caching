@@ -22,7 +22,7 @@ as library functions. An example from the C standard library is the \cc{qsort}
 function, which performs a sort on an arbitrary data type based on a comparative
 function passed to it.
 
-The ADT interface in this project is taken from \cite{Sedgewick02}. An \cc{Item}
+The ADT interface used here is taken from \cite{Sedgewick02}. An \cc{Item}
 is a record, and a function is defined to extract its key.  Comparisons are done
 via the \cc{less} function, and swapping is done using the \cc{exch} function.
 These are replaced with their actual functions by the C preprocessor. The code
@@ -121,7 +121,7 @@ disk controllers.}. Several optimizations in later chapters use the address to
 offset arrays so that conflicts are not caused. However, because a program
 cannot be sure of what type of addressing is used, the actual manipulated
 address may not directly relate to the index used to address the cache. This
-problem is not encountered in simulations in this project, as SimpleScalar
+problem is not encountered in our simulations, as SimpleScalar
 addresses its caches by virtual address.
 
 Caches work on the principle of \n{locality}. It is expected that after some
@@ -129,7 +129,7 @@ data has been used once, it is likely to be used again in the near future. This
 is called \n{\label{temporal locality}temporal locality}. Similarly, if some data is being used, it is
 likely that data near it will also be used soon, such as two consecutive
 elements of an array. This is called \n{spatial locality}. Many of the
-algorithms in this project are designed to take advantage of locality. Spatial
+algorithms presented here are designed to take advantage of locality. Spatial
 locality is exploited by ensuring that once a cache line is loaded, each key in
 the cache line is used. Temporal locality is exploited by ensuring that an
 algorithm uses data as much as it can as soon as it is loaded, rather than over
@@ -156,7 +156,7 @@ the same as if a branch predictor had not been used. During this delay, the
 pipeline must be emptied, the instructions already executed must be discarded,
 and the next instruction must be fetched.
 
-For this project, I split branches into two types. The first is a \n{flow
+In this report, we split branches into two types. The first is a \n{flow
 control branch}. Flow control refers to controlling the flow of execution of a
 program, and branches of this type are loops and other control statements.
 The second type is a \n{comparative branch}: these are comparisons between two
@@ -167,8 +167,8 @@ comparative branch should not be easily predictable; a flow control branch
 should be easy to predict based on previous predictions of the same branch.
 
 There are several kinds of branch predictors: \n{static}, \n{semi-static} and
-\n{dynamic}. This project is only interested in dynamic predictors, due to
-their high levels of accuracy. The other types are none-the-less discussed
+\n{dynamic}. This report only deals with dynamic predictors, which are of
+interest due to their high accuracy. The other types are none-the-less discussed
 below, as an introduction to dynamic predictors. A good discussion on predictor
 types is \cite{Uht97}, from which the percentages below are taken. These
 predictors were tested by Uht on the SPECint92 benchmarking suite. This is a

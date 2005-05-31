@@ -2,7 +2,7 @@
 This section discusses the method and framework used to complete this research.
 The first section discusses the steps involved in creating a testing framework,
 programming the sorts and getting results. The second section discusses tools
-that I used or created to do this.
+that were used or created to do this.
 
 \section{Method}
 
@@ -58,7 +58,7 @@ switches, sharing of resources and scheduling. Despite these inaccuracies, it wa
 possible to use the results relative to each other, and to determine whether,
 for example, memory-tuned quicksort was running faster than base quicksort.
 
-Early in the project, it was decided that exceeding the bounds of an array
+Early on, it was decided that exceeding the bounds of an array
 during a sort was to be forbidden. No serious sorting library or application
 could acceptably work in this manner, and any results obtained while allowing
 this were only of academic interest. It isn't possible, from a normal run of a
@@ -135,7 +135,8 @@ assembler.  Several simulators are then provided: \cc{sim-fast} only counts
 instruction, quickly; \cc{sim-cache} simulates a cache and counts level 1 and
 level 2 cache misses; \cc{sim-bpred} simulates a branch predictor and counts
 branch hits and misses. Other simulators are provided, but they were not used in
-this project.
+our tests.
+
 
 The output of SimpleScalar is human readable, but is not conducive to collecting
 large amounts of data. To that end, a script was written to run each required
@@ -174,9 +175,10 @@ and branch predictors against other branch predictors for each sort.
 \subsection{Main}
 \label{Main}
 
-The main program provided the framework for the project. Imaginatively called
-\cc{main.c}, this program provided the means for testing and (roughly)
-timing each sort. Figure \vref{Key sections of Main.c} contains this code.
+The main program provided the framework for the development of the sorts.
+Imaginatively called \cc{main.c}, this program provided the means for testing
+and (roughly) timing each sort. Figure \vref{Key sections of Main.c} contains
+this code.
 
 \code{Key sections of Main.c}{main.c}
 
@@ -202,9 +204,8 @@ registers, actual real world results could have been measured. Using perfex
 instead of SimpleScalar was an option reviewed at the start, but the difficulty
 involved in setting up a machine to use it was considerable. Additionally,
 because perfex measures results on a real machine, only one type of cache and
-branch predictor could have been measured. Since access was
-provided late in the project, limited measurements were taken to supplement the
-SimpleScalar results.
+branch predictor could have been measured. We have provided limited
+measurements to supplement the SimpleScalar results.
 
 \subsection{Software Predictor}
 The software predictor used was a series of macros and functions which
@@ -232,8 +233,8 @@ step guide is provided, but very little detail of how the sort actually works is
 included. Therefore, the first step was to understand how this sort worked. This
 was done by first analysing the flow control of the algorithm. The steps of the
 sort are described in assembly, and while they can be written in C, the result
-is a very low-level version. I attempted to rewrite the algorithm without
-\cc{goto} statements and labels, but instead using standard flow control
+is a very low-level version. An attempt was made to rewrite the algorithm
+without \cc{goto} statements and labels, instead using standard flow control
 statements such as \cc{if}, \cc{while} and \cc{do-while}. Despite the time spent
 on this, it was impossible to faithfully reproduce the behaviour without
 duplicating code.
@@ -323,5 +324,5 @@ sort may indicate areas for potential improvement.
 As well as the number of cycles, Pentium 4 performance registers can also provide
 most of the same information as SimpleScalar, with different parameters. For
 example, the cache line of a Pentium 4 machine is 128 bytes whereas 32 byte
-cache lines were used in SimpleScalar.  The addition of real world data would
-strengthen the results from this project.
+cache lines were used in SimpleScalar. The addition of real world data would
+strengthen our results.
