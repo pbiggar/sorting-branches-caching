@@ -1,0 +1,8 @@
+Confirm all these:
+
+6.1.1 Description of algorithm N 
+
+why doesnt his graph show less misses for when the in-place fits in the cache
+and the out of place doesnt
+
+radix sort: did he say it couldnt be done?

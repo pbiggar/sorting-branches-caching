@@ -55,8 +55,8 @@ and performs only slightly more slowly.
 A disadvantage of this method is that if an array has slightly more than $2^x$
 keys, an entire extra merge step would be required, which would considerably
 slow the algorithm. This problem is shared by all other versions of mergesort
-considered here, except algorithm N. However, since this project uses exact
-powers of two as set sizes, this problem does not affect the results. LaMarca,
+considered here, except algorithm N. However, since our tests use exact
+powers of two as set sizes, this problem does not affect them. LaMarca,
 however, used set sizes such as 4096000, which at times would suffer from this
 type of problem.
 
@@ -89,12 +89,12 @@ to reduce the instruction count, but in fact the instruction count stays the
 same, and the branch prediction suffers as a result.
 
 Finally, the inner loop is \n{unrolled}\footnote{Unrolling a loop means
-executing several steps of the loop between iterations, reducing the number of
-iterations, and lowering the loop overhead, as well as allowing for better
-scheduling of the instructions.}.  There are actually two inner loops, and they
-are both unrolled 8 times. The compiler is also set to unroll loops. However,
-the observed difference between unrolling manually and compiler unrolling is up
-to 10\% of instruction count, so manual unrolling is used.
+executing several steps of the loop between iterations and reducing the number
+of iterations, which lowers the loop overhead and allows for better scheduling
+of the instructions.}. There are actually two inner loops, and they are both
+unrolled 8 times. The compiler is also set to unroll loops. However, the
+observed difference between unrolling manually and compiler unrolling is up to
+10\% of instruction count, so manual unrolling is used.
 
 Overall, these three optimizations reduced the instruction count by 30\%.
 
@@ -108,6 +108,8 @@ parts of the cache. To do this, an additional amount of memory the same size as
 the cache is allocated, which can be expensive for small arrays. The address of
 the auxiliary array is then offset such that $index(source) + index(auxiliary) =
 C$.
+
+%TODO what does this formula mean. look up LaMarcas paper
 
 While this step makes sense, whether this is valuable is very much a platform
 dependant issue. Since virtual addresses are used, it may be possible that the
