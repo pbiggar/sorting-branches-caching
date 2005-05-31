@@ -21,6 +21,8 @@ all: $(DOCUMENT)
 
 again:
 	$(LATEX) $(LATEXFLAGS) $(TITLE)
+	$(BIBTEX) $(TITLE)
+	$(LATEX) $(LATEXFLAGS) $(TITLE)
 	$(LATEX) $(LATEXFLAGS) $(TITLE)
 
 %.dvi: %.tex $(FILES)

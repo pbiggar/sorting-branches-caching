@@ -126,7 +126,7 @@ The next problem considered is that of temporal locality. Once a key is loaded
 into the array, it's only used once per merge step. If the data does not fit in
 half the cache, then conflict misses will occur, and no temporal reuse will
 occur at all. The solution is to apply a technique used in compilers called
-\n{tiling}. Using this technique, the number of keys which fit in the cache will
+\n{tiling}. Using this technique, an entire cache sized portion of the array will
 be fully sorted before moving on to the next set. When all the sets have been
 sorted in the manner, they are all merged together as usual.
 
@@ -139,7 +139,7 @@ required, four was used.
 
 The final improvement was to fully sort keys in the level 1 cache, before
 continuing to level 2 cache as in the tiled mergesort. The expected improvement
-is not as significant as in the case of the level 2 cache, since is the penalty
+is not as significant as in the case of the level 2 cache, since the penalty
 for level 1 misses is not great. For this reason, this sort is called Double
 Tiled Mergesort instead of Tiled Mergesort, however, it is referred to as both
 in this report.
@@ -152,10 +152,10 @@ temporal locality by merging these lists together in a single merge step. There
 are $k$ lists and this is called a \n{k-way merge}. It is possible to do a
 search across each of these keys, maintaining a list of indices to the smallest
 unused key from each list. When there is a small number of lists, this isn't a
-problem, however, when the lists grow big, the overhead involved in this is
-substantial. It is necessary to check each of the lists, and each key searched
-would cause a cache miss, since each array segment is aligned, and map to
-the same cache block.
+problem, however, when the number of lists increases significanty, the overhead
+involved in this is substantial. It is necessary to check each of the lists, and
+each key searched would cause a cache miss, since each array segment is aligned,
+and map to the same cache block.
 
 To avoid this, a priority queue is used. The smallest key from each list is
 added to the queue, and then put into the final target array. This reduces the
@@ -164,7 +164,7 @@ problem of the search overhead, but does not reduce the problem of
 cache block, and the constant access of one followed by the other causes every
 access to be a miss.}.  To avoid this, an entire cache line is added at a time
 to the priority queue. There will still be conflict misses, but there will be no
-thrashing since key overwritten in the cache will not be needed again.
+thrashing since the keys overwritten in the cache will not be needed again.
 
 LaMarca used a 4-heap for his priority queue, and an 8-heap is used here, for
 the same reasons as before. The heap is aligned, and a cache line
@@ -183,8 +183,8 @@ The reason the sorted list is used is that no details of the tagging is
 provided. The sorted list is $k$ keys long, and only needs to be properly sorted
 once. The next time it needs to be sorted is when a new line is added, but in
 this case only one key is out of place, and can be put in place with a single
-insertion sort run. This is linear at worst, and has excellent branch prediction
-properties, as shown earlier.
+insertion sort run. This is linear at worst, and will have only 1 branch
+misprediction.
 
 When a list is fully consumed, the next keys inserted will be from the next
 list. This could be fixed with a bounds check, however, since the lists are
@@ -194,8 +194,8 @@ without harmful effect. A harmful effect is possible, though, when lots of keys
 with the same value are in the array. All these keys would be inserted at a
 similar time, and when the first one is taken off the heap, a list would add
 eight keys, even though it had just added eight. In this manner, the size of the
-heap could be overrun. With random keys in the array, this is unlikely, and so
-this is not addressed.
+heap could be overrun. With random keys over a large range, as in our tests,
+this is unlikely, and so this is not addressed.
 
 The heap used for the k-way merge should result in a large increase in
 instructions, and a significant reduction in level 2 cache misses. The addition
@@ -209,12 +209,12 @@ block, for a total of one miss for every two keys in the array.
 
 \section{Results}
 \subsection{Test Parameters}
-The level 1 cache is 8, so 2048 keys can be sorted in the level 1 cache.
-The number of keys to be sorted in the level 2 cache is 262144.  When arrays
-were pre-sorted, they were pre-sorted to a size four, or eight if the number of passes
-was going to be odd. These were reversed for the double multi-mergesort; since
-it does a k-way merge into the source array, the sorted cache sized segments
-need to be in the auxiliary array. An 8-heap was used for the multi-mergesorts.
+The level 1 cache is 8k, so 2048 keys can be sorted in the level 1 cache.
+262144 keys can be sorted in the level 2 cache. When arrays were pre-sorted,
+they were pre-sorted to a size four, or eight if the number of passes was going
+to be odd. These were reversed for the double multi-mergesort; since it does a
+k-way merge into the source array, the sorted cache sized segments need to be in
+the auxiliary array. An 8-heap was used for the multi-mergesorts.
 
 \subsection{Expected Performance}
 
@@ -251,6 +251,7 @@ Figure \ref{merge level 2 misses} are also as expected, although the
 multi-mergesort does not show the same improvement over tiled mergesort as in
 LaMarca's results.
 
+%TODO look over lamarcas results
 The prediction results in Figure \ref{Branch Simulation results for mergesort}
 are as expected. Very little variation exists between the types of mergesort. It
 is noticeable, though, that the spike in branch misses due to the

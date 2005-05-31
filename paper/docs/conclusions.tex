@@ -5,6 +5,7 @@ science by this project.
 
 \section{Cache Results}
 
+% TODO more details in this
 The test results in this project mostly agreed with LaMarca's results.  The
 heapsort graphs had nearly exactly the same shape as LaMarca's, and the ratios
 between the base and cache-conscious versions were nearly identical. The
@@ -113,6 +114,11 @@ prediction analysis of major sorts - which to my knowledge has not been done
 before - and developing a framework by which these results can be repeated and
 expanded upon.
 
+%TODO claims that it backed
+% TODO claims that it refuted or found problems with
+% - cache in heapsort
+% - algorithm N, can those improvements really be made
+
 Several discoveries were made and analysed: insertion sort has one misprediction
 per key; selection sort has $log_2(N/2)$ branch mispredictions per key - an
 explanation of this was also provided; tiling mergesort can be done in two
@@ -121,6 +127,13 @@ sentinel and still remove the bounds check from a standard 2-heap, simply by
 reordering the steps involved; sequential searches are far cheaper than binary
 searches across small lists, due to a low branch misprediction rate.
 
+%TODO add novel contributions
+% - avoid copying back in mergesort
+% - remove bounds check without sentinel in base heapsort
+% - double-tiling
+
+
+%TODO look over these
 In addition, several ideas were conceived although not implemented, which relate
 to sorting algorithms: it should be possible to reduce the conflict misses of
 tiled mergesort without padding, by slightly reducing the size of the array
