@@ -2,14 +2,16 @@
 \label{merge}
 Merging is a technique which takes two sorted lists, and combines them into a
 single sorted list. Starting at the smallest key on both lists, it writes the
-smaller key to a third list. It then compares the smallest key on one list with
-the next smallest on the other, and writes the smaller to the auxiliary list.
-The merging continues until both lists are combined into a single sorted list.
+smaller key to a third list. It then compares the next smallest key on that list
+with the next smallest on the other, and writes the smaller to the auxiliary
+list. The merging continues until both lists are combined into a single sorted
+list.
 
 Mergesort works by treating an unsorted array of length $N$ as $N$ sorted arrays of
 length one. It then merges the first two arrays into one array of length two, and
 likewise for all other pairs. These arrays are then merged with their neighbours
-into arrays of length four, and so on, until the arrays are completely sorted.
+into arrays of length four, then eight, and so on until the arrays are
+completely sorted.
 
 Mergesort is an out-of-place sort, and uses an auxiliary array of the same size
 for the merging. Since a lot of steps are required, it is more efficient to
@@ -18,9 +20,9 @@ auxiliary array as the target, then using the auxiliary array as the source and
 the initial array as the target - rather than merging to the auxiliary array and
 copying back before the next merge step.
 
-The number of merges required is $log_2(N)$, and if this number is even then
-the final merge puts the array in the correct place. Otherwise, the result will
-need to be copied back into the initial array.
+The number of merges required is $log_2(N)$, and if this number is even then the
+final merge puts the array in the correct place. Otherwise, the sorted array
+will need to be copied back into the initial array.
 
 \section{Base Mergesort}
 
@@ -35,7 +37,7 @@ However, algorithm N does not work in this fashion. Instead, it works as a
 point, lists are merged according to the initial ordering. If it happens that
 there exists an ascending list on one side, this is exploited by the algorithm.
 While this results in good performance, the merge is not perfectly regular, and
-it is difficult or impossible to perform several of the optimisations LaMarca
+it is difficult or impossible to perform several of the optimizations LaMarca
 describes on it.
 
 \subsection{Algorithm S}
@@ -45,7 +47,7 @@ Knuth's algorithm S is a \n{straight} merge, and works as described above. It ha
 random data, which algorithm N is not designed for. On more regular data, or
 semi-sorted data, this will probably not occur.}. Algorithm S, like algorithm N,
 is a very difficult algorithm to modify. Knuth describes it in assembly, and
-making the optimisations that LaMarca describes on it is more difficult than
+making the optimizations that LaMarca describes on it is more difficult than
 rewriting the algorithm more simply. The rewritten algorithm, referred to from
 here on as `base mergesort', is a simple higher level version of algorithm S,
 and performs only slightly more slowly.
@@ -60,7 +62,7 @@ type of problem.
 
 \subsection{Base Mergesort}
 \label{base mergesort}
-Three optimisations are described by LaMarca for the base mergesort. Firstly, a
+Three optimizations are described by LaMarca for the base mergesort. Firstly, a
 bitonic sort, as described in \cite{Sedgewick02}, removes instructions from the
 inner loop. Every second array is created in reverse, so that the larger keys  
 are next to each other in the middle. The smallest keys are at the outside,
@@ -94,7 +96,7 @@ are both unrolled 8 times. The compiler is also set to unroll loops. However,
 the observed difference between unrolling manually and compiler unrolling is up
 to 10\% of instruction count, so manual unrolling is used.
 
-Overall, these three optimisations reduced the instruction count by 30\%.
+Overall, these three optimizations reduced the instruction count by 30\%.
 
 \section{Double Tiled Mergesort}
 LaMarca's first problem with mergesort is the placement of the arrays with
@@ -116,7 +118,7 @@ them. In the event that the \n{Memory Management Unit} in the processor uses
 virtual addresses to index its cache, or has a direct mapping between virtual
 and physical or bus addresses, then this problem is very unlikely. The
 simulations presented in this project address the cache by virtual address, and
-so this optimisation is effective in this case.
+so this optimization is effective in this case.
 
 The next problem considered is that of temporal locality. Once a key is loaded
 into the array, it's only used once per merge step. If the data does not fit in
@@ -258,7 +260,7 @@ account for the increase in instruction count as a result, and it has a higher
 cycle count on the Pentium 4 (see Figure \ref{merge cycles}) as a result. The
 other sorts generally perform in $O(NlogN)$ time, with double tiled mergesort
 being the fastest. Note that the alignment of the mergesort may not work as
-desired due to the size of the cache. This was optimised for a 2MB cache, while
+desired due to the size of the cache. This was optimized for a 2MB cache, while
 the Pentium 4 cache is only 256KB. This means that the two arrays are aligned to
 the same cache block. However, since the cache is 8-way associative, this is not
 serious, and should not result in a lot of thrashing.

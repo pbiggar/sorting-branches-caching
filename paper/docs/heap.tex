@@ -111,7 +111,7 @@ sentinel for the sift-down operation. The key from the top of the heap is then
 put into place at the end. This technique reduces instruction count by
 approximately 10\%.
 
-The only other optimisation used is to unroll the loop while destroying the
+The only other optimization used is to unroll the loop while destroying the
 heap. This has minimal affect, however.
 
 \section{Cache Heapsort}
@@ -172,7 +172,7 @@ unsorted. LaMarca claims that as long as the size of the fanout is less than
 12, a reduced instruction count will be observed.
 
 In the base heapsort, an improvement was added that removed the need for a
-sentinel. Since the 4- and 8-heaps were unsorted, this optimisation had to be
+sentinel. Since the 4- and 8-heaps were unsorted, this optimization had to be
 removed. Leaving the key being copied in place was still possible, but it needs
 to be replaced by a maximal key before trying to sift the next key down the
 heap, lest it were chosen to be sifted up. Placing the sentinel is still cheaper

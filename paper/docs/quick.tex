@@ -29,11 +29,11 @@ the quicksort algorithm.
 
 \section{Base Quicksort}
 
-LaMarca uses the optimised quicksort described by Sedgewick for his base
+LaMarca uses the optimized quicksort described by Sedgewick for his base
 quicksort. This is an iterative quicksort which uses an explicit stack. In the
 worst case, this stack must be the same size as the array, and must be
 initialised at the start of the algorithm. To reduce the size of the stack,
-Sedgewick proposes sorting the smallest partition first. This optimisation
+Sedgewick proposes sorting the smallest partition first. This optimization
 reduces the maximum size of the stack to $O(logN)$. In practice, two \cc{int}s,
 the left and the right index, are required for each partition.
 

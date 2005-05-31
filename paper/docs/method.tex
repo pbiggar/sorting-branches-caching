@@ -239,7 +239,7 @@ on this, it was impossible to faithfully reproduce the behaviour without
 duplicating code.
 
 As a result, it was necessary to use the original version, and to try to perform
-optimisations on it. However, several factors made this difficult or impossible.
+optimizations on it. However, several factors made this difficult or impossible.
 LaMarca unrolled the inner loop of mergesort, but it is not clear which is the
 inner loop. The two deepest loops were executed very infrequently, and
 unrolling them had no effect on the instruction count. Unrolling the other loops
@@ -269,7 +269,7 @@ calculated in advance, and the indices of each merge step.  It was very simple
 to turn this into a bitonic array; adding pre-sorting reduced the instruction
 count, as did unrolling the loop. The reduction in instruction count from the
 initial version, which performed the same number of instructions as the same as
-algorithm N, and the optimised version, was about 30\%.
+algorithm N, and the optimized version, was about 30\%.
 
 A tiled mergesort was then written, based on LaMarca's guidance. Firstly, this
 was aligned in memory so that the number of misses due to conflicts would be
