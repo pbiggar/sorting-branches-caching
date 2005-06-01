@@ -13,7 +13,7 @@ MODULES = predictor.o utils.o visual_sorts.o $(addsuffix .o, $(SORTS))
 
 XS = $(basename $(MODULES)) fastsort
 
-all: $(MODULES) utils.h main.o
+fastsort: $(MODULES) utils.h main.o
 	$(CC) $(CFLAGS) $(MODULES) main.o -o fastsort
 
 sample: sample.o

@@ -159,6 +159,7 @@ double_tiled_mergesort(unsigned int a[], int N)
 	/* get the address we need*/
 	minusA = ((1 << BLOCK_BITS) - get_index(a));
 	aux_data = memalign(ALIGNMENT, (N + 2*LIMIT) * sizeof(unsigned int));
+	memset(aux_data, 0, (N + 2*LIMIT) * sizeof(unsigned int));
 	aux = (unsigned int*)(((unsigned int)aux_data & (~BLOCK_AND_LINE_MASK)) | (minusA << LINE_BITS));
 	if (aux < aux_data) /* then the new index is less than the old one */
 	{
@@ -683,6 +684,11 @@ merge_reverse(unsigned int source[], int N, int starting_size, unsigned int targ
 		while(1)
 		{
 #ifdef _USE_ROLLED_LOOPS
+			if (N == 17 && i == 16 && j == 0)
+			{
+				printf("\n\nsource[i] == %d\n\n", source[i]);
+				printf("\n\nsource[j] == %d\n\n", source[j]);
+			}
 			if (source[i] >= source[j])
 			{
 				branch_taken(&global_predictor[16]);
