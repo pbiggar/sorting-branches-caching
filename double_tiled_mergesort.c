@@ -21,6 +21,8 @@ static void
 presort(unsigned int a[], int N);
 static void
 presort_flexible(unsigned int a[], int N);
+static void
+presort_flexible_reverse(unsigned int a[], int N);
 
 static int presort_count = 8;
 static int double_presort_count = 16;
@@ -193,15 +195,15 @@ double_tiled_mergesort(unsigned int a[], int N)
 	/* even means it should end up in a, and the final mergre will do an even number of steps */
 	if (get_count(N) & 1)
 	{
-		level1_finish =  &level2_start;
-		level1_other = &level2_aux_start;
+		level1_finish =  &level2_aux_start;
+		level1_other = &level2_start;
 		set_presort_count(ODD_COUNT);
 		odd = 1;
 	}
 	else
 	{
-		level1_finish =  &level2_aux_start;
-		level1_other = &level2_start;
+		level1_finish =  &level2_start;
+		level1_other = &level2_aux_start;
 		set_presort_count(EVEN_COUNT);
 		odd = 0;
 	}
@@ -329,22 +331,37 @@ double_tiled_mergesort(unsigned int a[], int N)
 
 		if (final_extra) /* theres less than a full level1 sized chunk */
 		{
-			if ((get_count(final_extra) & 1) ^ odd)
+			// TODO basically, these smaller arrays arent necessarily in the array we expect
+			if (final_extra <= double_presort_count)
 			{
-				if (odd) set_presort_count(ODD_COUNT);
-				else set_presort_count(EVEN_COUNT);
+				if (!odd) set_presort_count(ODD_COUNT);
 			}
-//			set_presort_count(EVEN_COUNT);
+			else
+			{
+				if (get_count(final_extra) & 1)
+				{
+					if (odd) set_presort_count(EVEN_COUNT);
+					else set_presort_count(ODD_COUNT);
+				}
+			}
 
-			presort_flexible(level1_start, final_extra);
+//			presort_flexible(level1_start, final_extra);
 
 			/* should this be reversed or not */
-			if (!extra_level1_single) merge(level1_start, final_extra, presort_count, level1_aux_start);
-			else merge_reverse(level1_start, final_extra, presort_count, level1_aux_start);
+			if (!extra_level1_single) 
+			{
+				presort_flexible(level1_start, final_extra);
+				merge(level1_start, final_extra, presort_count, level1_aux_start);
+			}
+			else 
+			{
+				presort_flexible_reverse(level1_start, final_extra);
+				merge_reverse(level1_start, final_extra, presort_count, level1_aux_start);
+			}
 		}
 
 		/* merge the whole extra into 1 */
-		merge(*level1_other, extra_level2, 1024, *level1_finish);
+		merge(*level1_finish, extra_level2, 1024, *level1_other);
 	}
 	
 	/* now merge everything together */
@@ -890,7 +907,7 @@ merge_reverse(unsigned int source[], int N, int starting_size, unsigned int targ
 			i = track - next_count;
 
 			/* check whether we have left the building */
-			if (i <= 0)
+			if (i < 0)
 			{
 				branch_taken(&global_predictor[6]);
 				if (next_count > N) /* this means we're done */
@@ -1058,4 +1075,57 @@ presort_flexible(unsigned int a[], int N)
 		}
 		exch(a[i], a[min]);
 	}
+}
+
+static void
+presort_flexible_reverse(unsigned int a[], int N)
+{
+	/* theres no downside to doing this in reverse. we may go over cache block
+	 * boundaries, but they need to be loaded anyway, and this is only done on
+	 * arrays that fit in the level 1 cache
+	 */
+	int i;
+	int j;
+	int temp;
+	int min;
+	int extra = N % double_presort_count;
+
+	for(i = extra; i < N; i+=double_presort_count)
+	{
+		insertion(&a[i], presort_count);
+		insertion_reverse(&a[i+presort_count], presort_count);
+	}
+
+	/* do a selection sort for the next 4, if there are any */
+	temp = extra - presort_count;
+	if (temp <= 0) temp = 0;
+	for(i = 0; i < temp-1; i++)
+	{
+		min = i;
+		for(j = i+1; j < temp; j++)
+		{
+			if(less(a[j],a[min]))
+			{
+				min = j;
+			}
+		}
+		exch(a[i], a[min]);
+	}
+	/* do a reverse sort for the remaining ones, if which there should be*/
+	for(i = temp; i < extra-1; i++)
+	{
+		min = i;
+		for(j = i+1; j < extra; j++)
+		{
+			if(!less(a[j],a[min]))
+			{
+				min = j;
+			}
+		}
+		exch(a[i], a[min]);
+	}
+
+
+
+
 }
