@@ -165,7 +165,7 @@ double_tiled_mergesort(unsigned int a[], int N)
 		aux = (unsigned int*)((unsigned int)aux + (1 << (BLOCK_AND_LINE_BITS)));
 	}
 
-	if (N < 2048) /* fits in the level 1 cache */
+	if (N <= 1024) /* fits in the level 1 cache */
 	{
 		if (get_count(N) & 1) set_presort_count(ODD_COUNT);
 		else set_presort_count(EVEN_COUNT);
@@ -179,10 +179,10 @@ double_tiled_mergesort(unsigned int a[], int N)
 /*	OUT(N); */
 
 	level2_count = N / LIMIT; /* the number of standard LIMIT sized passes */
-	level1_count = LIMIT / 2048; /* the number of standard 8k sized passes */
+	level1_count = LIMIT / 1024; /* the number of standard 4k sized passes, per level 2 iteration */
 	extra_level2 = N % LIMIT; /* the number of extra items left, after the level 2 passes*/
-	extra_level1_count = extra_level2 / 2048; /* number of extra level 1 passes  */
-	final_extra = extra_level2 % 2048; /* number of items left over */
+	extra_level1_count = extra_level2 / 1024; /* number of extra level 1 passes  */
+	final_extra = extra_level2 % 1024; /* number of items left over */
 
 	level2_start = a;
 	level2_aux_start = aux;
@@ -216,21 +216,21 @@ double_tiled_mergesort(unsigned int a[], int N)
 		for(j = 0; j < level1_count; j+=2) /* merge the level 1 cache first */
 		{
 /*			printf("going into level1: j=%d\n", j); */
-			presort(level1_start, 2048);
-			merge(level1_start, 2048, presort_count, level1_aux_start);
-			level1_start += 2048;
-			level1_aux_start += 2048;
+			presort(level1_start, 1024);
+			merge(level1_start, 1024, presort_count, level1_aux_start);
+			level1_start += 1024;
+			level1_aux_start += 1024;
 
 			/* now reverse it */
 
-			presort(level1_start, 2048);
-			merge_reverse(level1_start, 2048, presort_count, level1_aux_start);
-			level1_start += 2048;
-			level1_aux_start += 2048;
+			presort(level1_start, 1024);
+			merge_reverse(level1_start, 1024, presort_count, level1_aux_start);
+			level1_start += 1024;
+			level1_aux_start += 1024;
 		}
 
 		/* merge them all into LIMIT sized bits */
-		merge(*level1_finish, LIMIT, 2048, *level1_other);
+		merge(*level1_finish, LIMIT, 1024, *level1_other);
 
 		level2_start += LIMIT;
 		level2_aux_start += LIMIT;
@@ -241,22 +241,22 @@ double_tiled_mergesort(unsigned int a[], int N)
 		for(j = 0; j < level1_count; j+=2) /* merge the level 1 cache first */
 		{
 /*			printf("going into level1: j=%d\n", j); */
-			presort(level1_start, 2048);
-			merge(level1_start, 2048, presort_count, level1_aux_start); /* after this they end up in aux */
-			level1_start += 2048;
-			level1_aux_start += 2048;
+			presort(level1_start, 1024);
+			merge(level1_start, 1024, presort_count, level1_aux_start); /* after this they end up in aux */
+			level1_start += 1024;
+			level1_aux_start += 1024;
 
 			/* now reverse it */
 
-			presort(level1_start, 2048);
-			merge_reverse(level1_start, 2048, presort_count, level1_aux_start);
-			level1_start += 2048;
-			level1_aux_start += 2048;
+			presort(level1_start, 1024);
+			merge_reverse(level1_start, 1024, presort_count, level1_aux_start);
+			level1_start += 1024;
+			level1_aux_start += 1024;
 			/* these end up in aux */
 		}
 
 		/* merge them all into LIMIT sized bits */
-		merge_reverse(*level1_finish, LIMIT, 2048, *level1_other);
+		merge_reverse(*level1_finish, LIMIT, 1024, *level1_other);
 
 		level2_start += LIMIT;
 		level2_aux_start += LIMIT;
@@ -269,22 +269,22 @@ double_tiled_mergesort(unsigned int a[], int N)
 		for(j = 0; j < level1_count; j+=2) /* merge the level 1 cache first */
 		{
 /*			printf("going into level1: j=%d\n", j); */
-			presort(level1_start, 2048);
-			merge(level1_start, 2048, presort_count, level1_aux_start); /* after this they end up in aux */
-			level1_start += 2048;
-			level1_aux_start += 2048;
+			presort(level1_start, 1024);
+			merge(level1_start, 1024, presort_count, level1_aux_start); /* after this they end up in aux */
+			level1_start += 1024;
+			level1_aux_start += 1024;
 
 			/* now reverse it */
 
-			presort(level1_start, 2048);
-			merge_reverse(level1_start, 2048, presort_count, level1_aux_start);
-			level1_start += 2048;
-			level1_aux_start += 2048;
+			presort(level1_start, 1024);
+			merge_reverse(level1_start, 1024, presort_count, level1_aux_start);
+			level1_start += 1024;
+			level1_aux_start += 1024;
 			/* these end up in aux */
 		}
 
 		/* merge them all into LIMIT sized bits */
-		merge(*level1_finish, LIMIT, 2048, *level1_other);
+		merge(*level1_finish, LIMIT, 1024, *level1_other);
 
 		level2_start += LIMIT;
 		level2_aux_start += LIMIT;
@@ -303,26 +303,26 @@ double_tiled_mergesort(unsigned int a[], int N)
 /*		OUT(extra_level1_count); */
 		for(j = 0; j < extra_level1_count; j+=2) /* merge the level 1 cache first */
 		{
-			presort(level1_start, 2048);
-			merge(level1_start, 2048, presort_count, level1_aux_start); /* after this they end up in aux */
-			level1_start += 2048;
-			level1_aux_start += 2048;
+			presort(level1_start, 1024);
+			merge(level1_start, 1024, presort_count, level1_aux_start); /* after this they end up in aux */
+			level1_start += 1024;
+			level1_aux_start += 1024;
 
 			/* now reverse it */
 
-			presort(level1_start, 2048);
-			merge_reverse(level1_start, 2048, presort_count, level1_aux_start);
-			level1_start += 2048;
-			level1_aux_start += 2048;
+			presort(level1_start, 1024);
+			merge_reverse(level1_start, 1024, presort_count, level1_aux_start);
+			level1_start += 1024;
+			level1_aux_start += 1024;
 			/* these end up in aux */
 		}
 /*		OUT(extra_level1_single); */
 		if (extra_level1_single)/* if there a full one left, its forward */
 		{
-			presort(level1_start, 2048);
-			merge(level1_start, 2048, presort_count, level1_aux_start); /* after this they end up in aux */
-			level1_start += 2048;
-			level1_aux_start += 2048;
+			presort(level1_start, 1024);
+			merge(level1_start, 1024, presort_count, level1_aux_start); /* after this they end up in aux */
+			level1_start += 1024;
+			level1_aux_start += 1024;
 		}
 /*		OUT(final_extra); */
 
@@ -333,6 +333,7 @@ double_tiled_mergesort(unsigned int a[], int N)
 				if (odd) set_presort_count(ODD_COUNT);
 				else set_presort_count(EVEN_COUNT);
 			}
+//			set_presort_count(EVEN_COUNT);
 
 			presort_flexible(level1_start, final_extra);
 
@@ -342,7 +343,7 @@ double_tiled_mergesort(unsigned int a[], int N)
 		}
 
 		/* merge the whole extra into 1 */
-		merge(*level1_finish, extra_level2, 2048, *level1_other);
+		merge(*level1_other, extra_level2, 1024, *level1_finish);
 	}
 	
 	/* now merge everything together */
@@ -667,6 +668,10 @@ merge_reverse(unsigned int source[], int N, int starting_size, unsigned int targ
 	int track = N-1;
 	int i = N-1;
 	int j = i - (next_count - 1);
+	if (j <= 0)
+	{
+		j = 0;
+	}
 	int k = i;
 	int d = -1;
 

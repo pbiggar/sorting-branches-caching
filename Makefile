@@ -1,6 +1,7 @@
 CC = gcc
-CFLAGS = -Wall -O3 -funroll-loops -finline-functions -D_USE_SOFTWARE_PREDICTOR -D_USE_ROLLED_LOOPS
-#CFLAGS = -Wall -g
+#CFLAGS = -Wall -O3 -funroll-loops -finline-functions -D_USE_SOFTWARE_PREDICTOR -D_USE_ROLLED_LOOPS
+CFLAGS = -Wall -g -D_USE_SOFTWARE_PREDICTOR -D_USE_ROLLED_LOOPS
+
 
 ON2_SORTS = on2_insertsort on2_selectsort on2_bubblesort on2_shakersort shellsort old_shellsort on2_shakersort2 on2_bubblesort2
 BASE_SORTS = base_heapsort base_quicksort base_radixsort base_mergesort knuth_base_mergesort knuth_other_base_mergesort base_quicksort1 base_quicksort5 base_quicksort7 base_quicksort9

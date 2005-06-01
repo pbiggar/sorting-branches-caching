@@ -64,6 +64,43 @@ reset_text()
 	setcolor(RESET, WHITE, BLACK);
 }
 
+void
+print_diff_array(unsigned int a[], unsigned int b[], int N, const char* description, int left, int right, int pivot)
+{
+	int i;
+	printf("%s:\n\t", description);
+	highlight_text2();
+	for(i = 0; i < CONSOLE_WIDTH; i++) // print the row numbers
+	{
+		printf("%8d  ", i);
+	}
+	printf("\n\n0\t");
+	reset_text();
+
+	for(i = 0; i < N; i++)
+	{
+//		if (i == pivot) highlight_text2();
+//		else if ((i >= left) && (i <= right)) highlight_text();
+
+		if (a[i] != b[i]) highlight_text();
+		printf("%8u", (a[i]));
+		if (a[i] != b[i]) reset_text();
+		
+//		if ((i == pivot) || ((i >= left) && (i <= right)))  reset_text();
+		
+		printf(", ");
+
+		if ((i+1) % CONSOLE_WIDTH == 0 && (i > 1))
+		{
+//			highlight_text2();
+			printf("\n%d\t", i+1);
+//			reset_text();
+		}
+	}
+	printf("\n");
+
+}
+
 
 // prints an array of size count, with each member sized size, prefix by description, and highlighting the bits between left and right(inclusive)
 void

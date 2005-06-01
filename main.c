@@ -80,9 +80,9 @@ test_array(const char* description)
 	else
 	{
 		printf("Not sorted:\n");
-		print_int_array(random_array2, RANDOM_SIZE, description, -1, -1, -1);
+		print_diff_array(random_array2, sorted_array, RANDOM_SIZE, description, -1, -1, -1);
 		printf("\n\nWhat it should be:\n");
-		print_int_array(sorted_array, RANDOM_SIZE, "Sorted array", -1, -1, -1);
+		print_diff_array(sorted_array, random_array2, RANDOM_SIZE, "Sorted array", -1, -1, -1);
 	}
 }
 
@@ -94,13 +94,16 @@ predictor_run(void sort(unsigned int*, int), int counter_count, const char* desc
 {
 	unsigned int* temp_array = malloc(RANDOM_SIZE * sizeof(unsigned int));
 	int random_file = open("paper/BIG", O_RDONLY);
+	if (random_file == -1) goto error_predictor_run;
+
 	char filename[200];
 
 	FILE* output_file;
 	int i;
 
 	sprintf(filename, "paper/counters/%s", description);
-	output_file =  fopen(filename, "w");
+	output_file = fopen(filename, "w");
+	if (output_file == NULL) goto error_predictor_run;
 
 	for(i = 0; i < counter_count; i++)
 		init_predictor(&global_predictor[i]);
@@ -149,9 +152,12 @@ predictor_run(void sort(unsigned int*, int), int counter_count, const char* desc
 		}
 	}
 
-	free(temp_array);
 	fclose(output_file);
 	close(random_file);
+error_predictor_run:
+	printf("Error, with a value of %d and a string of '%s'\n", errno, strerror(errno));
+
+	free(temp_array);
 }
 
 static void inline
@@ -165,8 +171,8 @@ time_sort(void sort(unsigned int*, int), const char* description)
 	test_array(description);
 }
 
-#define TEST_MIN 16000
-#define TEST_MAX 17000
+#define TEST_MIN 8
+#define TEST_MAX 2051
 static void inline
 test_sort(void sort(unsigned int*, int), const char* description)
 {
@@ -182,9 +188,9 @@ test_sort(void sort(unsigned int*, int), const char* description)
 		if (memcmp(a, b, i * sizeof(unsigned int)) != 0)
 		{
 			printf("%s is not sorted (size == %d):\n", description, i);
-			print_int_array(b, i, description, -1, -1, -1);
+			print_diff_array(b, a, i, description, -1, -1, -1);
 			printf("\n\nWhat it should be:\n");
-			print_int_array(a, i, "Sorted array", -1, -1, -1);
+			print_diff_array(a, b, i, "Sorted array", -1, -1, -1);
 			exit(-1);
 		}
 		free(a);
@@ -205,12 +211,15 @@ main(int argc, char** args)
 
 	printf("N = %d\n\n", RANDOM_SIZE);
 
-//	fill_random_array(random_array, RANDOM_SIZE, 0);
+	fill_random_array(random_array, RANDOM_SIZE, 0);
 	// get a sorted array for comparison
-//	memcpy(sorted_array, random_array, sizeof(unsigned int) * RANDOM_SIZE);
-//	qsort((void*)sorted_array, RANDOM_SIZE, sizeof(unsigned int), compare_ints);
+	memcpy(sorted_array, random_array, sizeof(unsigned int) * RANDOM_SIZE);
+	qsort((void*)sorted_array, RANDOM_SIZE, sizeof(unsigned int), compare_ints);
 
 	printf("Beginning sort tests\n");
+
+	test_sort(double_tiled_mergesort, "Double Tiled Mergesort");
+	test_sort(double_multi_mergesort, "Double Multi Mergesort");
 //	predictor_run(knuth_base_mergesort, 8, "Algorithm N");
 //	predictor_run(knuth_other_base_mergesort, 10, "Algorithm S");
 //	predictor_run(base_heapsort, 6, "Base Heapsort");
@@ -227,14 +236,13 @@ main(int argc, char** args)
 
 //	predictor_run(multi_mergesort, 46, "Multi Mergesort");
 //	predictor_run(double_tiled_mergesort, 46, "Double Tiled Mergesort");
-	predictor_run(double_multi_mergesort, 59, "Double Multi Mergesort");
+//	predictor_run(double_multi_mergesort, 59, "Double Multi Mergesort");
 //	predictor_run(base_mergesort, 33, "Base Mergesort");
 
 //	predictor_run(base_quicksort5, 4, "Base Quicksort5");
 //	predictor_run(base_quicksort1, 5, "Base Quicksort1");
 //	predictor_run(base_quicksort7, 4, "Base Quicksort7");
 
-//	test_sort(double_multi_mergesort, "Double Multi Mergesort");
 //	time_sort(base_quicksort, "Base Quicksort");
 //	time_sort(base_quicksort9, "Base Quicksort9");
 //	time_sort(cache_quicksort, "Cache Quicksort");
@@ -247,7 +255,8 @@ main(int argc, char** args)
 //	time_sort(knuth_other_base_mergesort, "Knuth Other Base Mergesort");
 //	time_sort(tiled_mergesort, "Tiled Mergesort");
 //	time_sort(multi_mergesort, "Multi Mergesort"); 
-//	test_sort(double_tiled_mergesort, "Double Tiled Mergesort");
+	time_sort(double_tiled_mergesort, "Double Tiled Mergesort");
+	time_sort(double_multi_mergesort, "Double Multi Mergesort");
 /*
 	time_sort(base_radixsort, "Base Radixsort");
 	time_sort(cache_radixsort, "Cache radixsort");

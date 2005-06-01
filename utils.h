@@ -55,6 +55,7 @@ int check_sorted(unsigned int a[], int l, int r);
 
 void print_array(void* array, unsigned int count, unsigned int size, const char* description);
 void print_int_array(unsigned int array[], int N, const char* description, int left, int right, int pivot);
+void print_diff_array(unsigned int array[], unsigned int b[], int N, const char* description, int left, int right, int pivot);
 
 void fill_random_array(unsigned int a[], int size, int seed);
 
