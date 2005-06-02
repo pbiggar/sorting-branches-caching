@@ -487,8 +487,8 @@ double_multi_mergesort(unsigned int a[], int N)
 
 		if (final_extra) /* theres less than a full level1 sized chunk */
 		{
-			// these will be sorted in one go
-			// if it turns out the number should be 2049, I may need to change this
+			/* these will be sorted in one go */
+			/* if it turns out the number should be 2049, I may need to change this */
 			if (final_extra <= double_presort_count)
 			{
 				if (!odd) set_presort_count(ODD_COUNT);
@@ -969,9 +969,9 @@ merge_reverse(unsigned int source[], int N, int starting_size, unsigned int targ
 	int track = N-1;
 	int i = N-1;
 	int j = i - (next_count - 1);
-	if (j < 0) j = 0;
 	int k = i;
 	int d = -1;
+	if (j < 0) j = 0;
 
 /*	printf("merge reverse(%p, %d, %d, %p) => ", source, N, starting_size, target); */
 
