@@ -171,18 +171,19 @@ time_sort(void sort(unsigned int*, int), const char* description)
 	test_array(description);
 }
 
-#define TEST_MIN 1041
-#define TEST_MAX 2051
+#define TEST_MIN 8
+#define TEST_MAX 10000
 static void inline
 test_sort(void sort(unsigned int*, int), const char* description)
 {
+	printf("Beginning tests on %s\n", description);
 	int i;
 	for(i = TEST_MIN; i < TEST_MAX; i++)
 	{
 		unsigned int* a = malloc(i * sizeof(unsigned int));
 		unsigned int* b = malloc(i * sizeof(unsigned int));
-		memset(a, 0, i * sizeof(unsigned int));
-		memset(b, 0, i * sizeof(unsigned int));
+//		memset(a, 0, i * sizeof(unsigned int));
+//		memset(b, 0, i * sizeof(unsigned int));
 		fill_random_array(a, i, i);
 		memcpy(b, a, i * sizeof(unsigned int));
 		qsort((void*)a, i, sizeof(unsigned int), compare_ints);

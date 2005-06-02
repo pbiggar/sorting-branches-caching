@@ -22,6 +22,8 @@ static void
 presort(unsigned int a[], int N);
 static void
 presort_flexible(unsigned int a[], int N);
+static void
+presort_flexible_reverse(unsigned int a[], int N);
 
 static int presort_count = 8;
 static int double_presort_count = 16;
@@ -322,7 +324,7 @@ double_multi_mergesort(unsigned int a[], int N)
 		aux = (unsigned int*)((unsigned int)aux + (1 << (BLOCK_AND_LINE_BITS)));
 	}
 
-	if (N < 2048) /* fits in the level 1 cache */
+	if (N <= 1024) /* fits in the level 1 cache */
 	{
 		if (get_count(N) & 1) set_presort_count(ODD_COUNT);
 		else set_presort_count(EVEN_COUNT);
@@ -336,10 +338,10 @@ double_multi_mergesort(unsigned int a[], int N)
 /*	OUT(N); */
 
 	level2_count = N / LIMIT; /* the number of standard LIMIT sized passes */
-	level1_count = LIMIT / 2048; /* the number of standard 8k sized passes */
+	level1_count = LIMIT / 1024; /* the number of standard 4k sized passes */
 	extra_level2 = N % LIMIT; /* the number of extra items left, after the level 2 passes*/
-	extra_level1_count = extra_level2 / 2048; /* number of extra level 1 passes  */
-	final_extra = extra_level2 % 2048; /* number of items left over */
+	extra_level1_count = extra_level2 / 1024; /* number of extra level 1 passes  */
+	final_extra = extra_level2 % 1024; /* number of items left over */
 
 	level2_start = a;
 	level2_aux_start = aux;
@@ -349,15 +351,15 @@ double_multi_mergesort(unsigned int a[], int N)
 	/* even means it should end up in a, and the final mergre will do an even number of steps */
 	if (get_count(N) & 1)
 	{
-		level1_finish =  &level2_start;
-		level1_other = &level2_aux_start;
+		level1_finish =  &level2_aux_start;
+		level1_other = &level2_start;
 		set_presort_count(N < LIMIT ? ODD_COUNT : EVEN_COUNT);
 		odd = 1;
 	}
 	else
 	{
-		level1_finish =  &level2_aux_start;
-		level1_other = &level2_start;
+		level1_finish =  &level2_start;
+		level1_other = &level2_aux_start;
 		set_presort_count(N < LIMIT ? EVEN_COUNT : ODD_COUNT);
 		odd = 0;
 	}
@@ -373,21 +375,21 @@ double_multi_mergesort(unsigned int a[], int N)
 		for(j = 0; j < level1_count; j+=2) /* merge the level 1 cache first */
 		{
 /*			printf("going into level1: j=%d\n", j); */
-			presort(level1_start, 2048);
-			merge(level1_start, 2048, presort_count, level1_aux_start);
-			level1_start += 2048;
-			level1_aux_start += 2048;
+			presort(level1_start, 1024);
+			merge(level1_start, 1024, presort_count, level1_aux_start);
+			level1_start += 1024;
+			level1_aux_start += 1024;
 
 			/* now reverse it */
 
-			presort(level1_start, 2048);
-			merge_reverse(level1_start, 2048, presort_count, level1_aux_start);
-			level1_start += 2048;
-			level1_aux_start += 2048;
+			presort(level1_start, 1024);
+			merge_reverse(level1_start, 1024, presort_count, level1_aux_start);
+			level1_start += 1024;
+			level1_aux_start += 1024;
 		}
 
 		/* merge them all into LIMIT sized bits */
-		merge(*level1_finish, LIMIT, 2048, *level1_other);
+		merge(*level1_finish, LIMIT, 1024, *level1_other);
 
 		level2_start += LIMIT;
 		level2_aux_start += LIMIT;
@@ -398,22 +400,22 @@ double_multi_mergesort(unsigned int a[], int N)
 		for(j = 0; j < level1_count; j+=2) /* merge the level 1 cache first */
 		{
 /*			printf("going into level1: j=%d\n", j); */
-			presort(level1_start, 2048);
-			merge(level1_start, 2048, presort_count, level1_aux_start); /* after this they end up in aux */
-			level1_start += 2048;
-			level1_aux_start += 2048;
+			presort(level1_start, 1024);
+			merge(level1_start, 1024, presort_count, level1_aux_start); /* after this they end up in aux */
+			level1_start += 1024;
+			level1_aux_start += 1024;
 
 			/* now reverse it */
 
-			presort(level1_start, 2048);
-			merge_reverse(level1_start, 2048, presort_count, level1_aux_start);
-			level1_start += 2048;
-			level1_aux_start += 2048;
+			presort(level1_start, 1024);
+			merge_reverse(level1_start, 1024, presort_count, level1_aux_start);
+			level1_start += 1024;
+			level1_aux_start += 1024;
 			/* these end up in aux */
 		}
 
 		/* merge them all into LIMIT sized bits */
-		merge_reverse(*level1_finish, LIMIT, 2048, *level1_other);
+		merge_reverse(*level1_finish, LIMIT, 1024, *level1_other);
 
 		level2_start += LIMIT;
 		level2_aux_start += LIMIT;
@@ -426,22 +428,22 @@ double_multi_mergesort(unsigned int a[], int N)
 		for(j = 0; j < level1_count; j+=2) /* merge the level 1 cache first */
 		{
 /*			printf("going into level1: j=%d\n", j); */
-			presort(level1_start, 2048);
-			merge(level1_start, 2048, presort_count, level1_aux_start); /* after this they end up in aux */
-			level1_start += 2048;
-			level1_aux_start += 2048;
+			presort(level1_start, 1024);
+			merge(level1_start, 1024, presort_count, level1_aux_start); /* after this they end up in aux */
+			level1_start += 1024;
+			level1_aux_start += 1024;
 
 			/* now reverse it */
 
-			presort(level1_start, 2048);
-			merge_reverse(level1_start, 2048, presort_count, level1_aux_start);
-			level1_start += 2048;
-			level1_aux_start += 2048;
+			presort(level1_start, 1024);
+			merge_reverse(level1_start, 1024, presort_count, level1_aux_start);
+			level1_start += 1024;
+			level1_aux_start += 1024;
 			/* these end up in aux */
 		}
 
 		/* merge them all into LIMIT sized bits */
-		merge(*level1_finish, LIMIT, 2048, *level1_other);
+		merge(*level1_finish, LIMIT, 1024, *level1_other);
 
 		level2_start += LIMIT;
 		level2_aux_start += LIMIT;
@@ -460,46 +462,62 @@ double_multi_mergesort(unsigned int a[], int N)
 /*		OUT(extra_level1_count); */
 		for(j = 0; j < extra_level1_count; j+=2) /* merge the level 1 cache first */
 		{
-			presort(level1_start, 2048);
-			merge(level1_start, 2048, presort_count, level1_aux_start); /* after this they end up in aux */
-			level1_start += 2048;
-			level1_aux_start += 2048;
+			presort(level1_start, 1024);
+			merge(level1_start, 1024, presort_count, level1_aux_start); /* after this they end up in aux */
+			level1_start += 1024;
+			level1_aux_start += 1024;
 
 			/* now reverse it */
 
-			presort(level1_start, 2048);
-			merge_reverse(level1_start, 2048, presort_count, level1_aux_start);
-			level1_start += 2048;
-			level1_aux_start += 2048;
+			presort(level1_start, 1024);
+			merge_reverse(level1_start, 1024, presort_count, level1_aux_start);
+			level1_start += 1024;
+			level1_aux_start += 1024;
 			/* these end up in aux */
 		}
 /*		OUT(extra_level1_single); */
 		if (extra_level1_single)/* if there a full one left, its forward */
 		{
-			presort(level1_start, 2048);
-			merge(level1_start, 2048, presort_count, level1_aux_start); /* after this they end up in aux */
-			level1_start += 2048;
-			level1_aux_start += 2048;
+			presort(level1_start, 1024);
+			merge(level1_start, 1024, presort_count, level1_aux_start); /* after this they end up in aux */
+			level1_start += 1024;
+			level1_aux_start += 1024;
 		}
 /*		OUT(final_extra); */
 
 		if (final_extra) /* theres less than a full level1 sized chunk */
 		{
-			if ((get_count(final_extra) & 1) ^ odd)
+			// these will be sorted in one go
+			// if it turns out the number should be 2049, I may need to change this
+			if (final_extra <= double_presort_count)
 			{
-				if (odd) set_presort_count(ODD_COUNT);
-				else set_presort_count(EVEN_COUNT);
+				if (!odd) set_presort_count(ODD_COUNT);
+			}
+			else
+			{
+				if (get_count(final_extra) & 1)
+				{
+					if (odd) set_presort_count(EVEN_COUNT);
+					else set_presort_count(ODD_COUNT);
+				}
 			}
 
-			presort_flexible(level1_start, final_extra);
-
 			/* should this be reversed or not */
-			if (!extra_level1_single) merge(level1_start, final_extra, presort_count, level1_aux_start);
-			else merge_reverse(level1_start, final_extra, presort_count, level1_aux_start);
+			if (!extra_level1_single) 
+			{
+				presort_flexible(level1_start, final_extra);
+				merge(level1_start, final_extra, presort_count, level1_aux_start);
+			}
+			else 
+			{
+				presort_flexible_reverse(level1_start, final_extra);
+				merge_reverse(level1_start, final_extra, presort_count, level1_aux_start);
+			}
 		}
 
+
 		/* merge the whole extra into 1 */
-		merge(*level1_finish, extra_level2, 2048, *level1_other);
+		merge(*level1_finish, extra_level2, 1024, *level1_other);
 	}
 	
 /*#define K (((N-1) >> (LIMIT_BITS))+1)*/
@@ -643,6 +661,7 @@ double_multi_mergesort(unsigned int a[], int N)
 
 end:
 
+	free(aux_data);
 	init_predictor(&global_predictor[0]);
 	init_predictor(&global_predictor[1]);
 	init_predictor(&global_predictor[2]);
@@ -658,7 +677,6 @@ end:
 	init_predictor(&global_predictor[12]);
 	init_predictor(&global_predictor[13]);
 
-	free(aux_data);
 }
 
 
@@ -951,6 +969,7 @@ merge_reverse(unsigned int source[], int N, int starting_size, unsigned int targ
 	int track = N-1;
 	int i = N-1;
 	int j = i - (next_count - 1);
+	if (j < 0) j = 0;
 	int k = i;
 	int d = -1;
 
@@ -1163,7 +1182,7 @@ merge_reverse(unsigned int source[], int N, int starting_size, unsigned int targ
 			i = track - next_count;
 
 			/* check whether we have left the building */
-			if (i <= 0)
+			if (i < 0)
 			{
 				branch_taken(&global_predictor[6]);
 				if (next_count > N) /* this means we're done */
@@ -1331,4 +1350,58 @@ presort_flexible(unsigned int a[], int N)
 		}
 		exch(a[i], a[min]);
 	}
+}
+
+
+static void
+presort_flexible_reverse(unsigned int a[], int N)
+{
+	/* theres no downside to doing this in reverse. we may go over cache block
+	 * boundaries, but they need to be loaded anyway, and this is only done on
+	 * arrays that fit in the level 1 cache
+	 */
+	int i;
+	int j;
+	int temp;
+	int min;
+	int extra = N % double_presort_count;
+
+	for(i = extra; i < N; i+=double_presort_count)
+	{
+		insertion(&a[i], presort_count);
+		insertion_reverse(&a[i+presort_count], presort_count);
+	}
+
+	/* do a selection sort for the next 4, if there are any */
+	temp = extra - presort_count;
+	if (temp <= 0) temp = 0;
+	for(i = 0; i < temp-1; i++)
+	{
+		min = i;
+		for(j = i+1; j < temp; j++)
+		{
+			if(less(a[j],a[min]))
+			{
+				min = j;
+			}
+		}
+		exch(a[i], a[min]);
+	}
+	/* do a reverse sort for the remaining ones, if which there should be*/
+	for(i = temp; i < extra-1; i++)
+	{
+		min = i;
+		for(j = i+1; j < extra; j++)
+		{
+			if(!less(a[j],a[min]))
+			{
+				min = j;
+			}
+		}
+		exch(a[i], a[min]);
+	}
+
+
+
+
 }

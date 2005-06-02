@@ -161,7 +161,6 @@ double_tiled_mergesort(unsigned int a[], int N)
 	/* get the address we need*/
 	minusA = ((1 << BLOCK_BITS) - get_index(a));
 	aux_data = memalign(ALIGNMENT, (N + 2*LIMIT) * sizeof(unsigned int));
-	memset(aux_data, 0, (N + 2*LIMIT) * sizeof(unsigned int));
 	aux = (unsigned int*)(((unsigned int)aux_data & (~BLOCK_AND_LINE_MASK)) | (minusA << LINE_BITS));
 	if (aux < aux_data) /* then the new index is less than the old one */
 	{
@@ -331,7 +330,8 @@ double_tiled_mergesort(unsigned int a[], int N)
 
 		if (final_extra) /* theres less than a full level1 sized chunk */
 		{
-			// TODO basically, these smaller arrays arent necessarily in the array we expect
+			// these will be sorted in one go
+			// if it turns out the number should be 2049, I may need to change this
 			if (final_extra <= double_presort_count)
 			{
 				if (!odd) set_presort_count(ODD_COUNT);
@@ -344,8 +344,6 @@ double_tiled_mergesort(unsigned int a[], int N)
 					else set_presort_count(ODD_COUNT);
 				}
 			}
-
-//			presort_flexible(level1_start, final_extra);
 
 			/* should this be reversed or not */
 			if (!extra_level1_single) 
@@ -686,10 +684,7 @@ merge_reverse(unsigned int source[], int N, int starting_size, unsigned int targ
 	int track = N-1;
 	int i = N-1;
 	int j = i - (next_count - 1);
-	if (j <= 0)
-	{
-		j = 0;
-	}
+	if (j < 0) j = 0;
 	int k = i;
 	int d = -1;
 
@@ -701,11 +696,6 @@ merge_reverse(unsigned int source[], int N, int starting_size, unsigned int targ
 		while(1)
 		{
 #ifdef _USE_ROLLED_LOOPS
-			if (N == 17 && i == 16 && j == 0)
-			{
-				printf("\n\nsource[i] == %d\n\n", source[i]);
-				printf("\n\nsource[j] == %d\n\n", source[j]);
-			}
 			if (source[i] >= source[j])
 			{
 				branch_taken(&global_predictor[16]);
