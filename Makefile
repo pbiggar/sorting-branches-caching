@@ -8,7 +8,7 @@ BASE_SORTS = base_heapsort base_quicksort base_radixsort base_mergesort knuth_ba
 CACHE_SORTS = cache_heapsort cache4_heapsort tiled_mergesort multi_mergesort cache_quicksort multi_quicksort double_tiled_mergesort double_multi_mergesort cache_radixsort
 BRANCH_SORTS = multi_quicksort_seq predicated_quicksort
 
-SORTS = $(BASE_SORTS) $(BRANCH_SORTS) $(CACHE_SORTS) $(ON2_SORTS)
+SORTS = $(BASE_SORTS) $(BRANCH_SORTS) $(CACHE_SORTS) $(ON2_SORTS) do_nothing
 MODULES = predictor.o utils.o visual_sorts.o $(addsuffix .o, $(SORTS))
 
 XS = $(basename $(MODULES)) fastsort
