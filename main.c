@@ -94,12 +94,12 @@ predictor_run(void sort(unsigned int*, int), int counter_count, const char* desc
 {
 	unsigned int* temp_array = malloc(RANDOM_SIZE * sizeof(unsigned int));
 	int random_file = open("paper/BIG", O_RDONLY);
-	if (random_file == -1) goto error_predictor_run;
 
 	char filename[200];
 
 	FILE* output_file;
 	int i;
+	if (random_file == -1) goto error_predictor_run;
 
 	sprintf(filename, "paper/counters/%s", description);
 	output_file = fopen(filename, "w");
@@ -176,8 +176,8 @@ time_sort(void sort(unsigned int*, int), const char* description)
 static void inline
 test_sort(void sort(unsigned int*, int), const char* description)
 {
-	printf("Beginning tests on %s\n", description);
 	int i;
+	printf("Beginning tests on %s\n", description);
 	for(i = TEST_MIN; i < TEST_MAX; i++)
 	{
 		unsigned int* a = malloc(i * sizeof(unsigned int));
