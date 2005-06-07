@@ -164,8 +164,17 @@ double_tiled_mergesort(unsigned int a[], int N)
 	aux = (unsigned int*)(((unsigned int)aux_data & (~BLOCK_AND_LINE_MASK)) | (minusA << LINE_BITS));
 	if (aux < aux_data) /* then the new index is less than the old one */
 	{
+		/* update the cache to be half a level 1 cache off */
 		aux = (unsigned int*)((unsigned int)aux + (1 << (BLOCK_AND_LINE_BITS)));
+		aux -= (1024 * sizeof(unsigned int));
 	}
+	else
+	{
+		/* update the cache to be half a level 1 cache off */
+		aux += (1024 * sizeof(unsigned int));
+	}
+
+
 
 	if (N <= 1024) /* fits in the level 1 cache */
 	{
