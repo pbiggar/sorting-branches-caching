@@ -3,7 +3,7 @@ set xrange [4096:262144]
 set yrange [0:]
 set xtics (8192,16384,32768,65536,131072,262144)
 set format x "%8.0f"
-set logscale axis
+set logscale x
 set data style linespoints
 set term postscript eps
 set output 'on2_-_cycles.eps'
