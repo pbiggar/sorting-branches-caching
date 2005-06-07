@@ -11,15 +11,15 @@ set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
 'processed_cycles_data' using 1:4 title 'base quicksort',\
-'processed_cycles_data' using 1:8 title 'cache quicksort',\
-'processed_cycles_data' using 1:15 title 'multi quicksort',\
-'processed_cycles_data' using 1:5 title 'base radixsort',\
-'processed_cycles_data' using 1:9 title 'cache radixsort',\
+'processed_cycles_data' using 1:12 title 'cache quicksort',\
+'processed_cycles_data' using 1:19 title 'multi quicksort',\
+'processed_cycles_data' using 1:9 title 'base radixsort',\
+'processed_cycles_data' using 1:12 title 'cache radixsort',\
 'processed_cycles_data' using 1:3 title 'base mergesort',\
-'processed_cycles_data' using 1:11 title 'double tiled mergesort',\
-'processed_cycles_data' using 1:10 title 'double multi-mergesort',\
-'processed_cycles_data' using 1:17 title 'gonnet shellsort',\
-'processed_cycles_data' using 1:24 title 'improved gonnet shellsort'
+'processed_cycles_data' using 1:15 title 'double tiled mergesort',\
+'processed_cycles_data' using 1:14 title 'double multi-mergesort',\
+'processed_cycles_data' using 1:21 title 'gonnet shellsort',\
+'processed_cycles_data' using 1:28 title 'improved gonnet shellsort'
 
 #'processed_cycles_data' using 1:2 title 'base heapsort',\
 #'processed_cycles_data' using 1:7 title 'cache heapsort',\

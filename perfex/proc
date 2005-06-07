@@ -45,9 +45,12 @@ close(DATA);
 open(OUTPUT, "> processed_cycles_data");
 
 printf OUTPUT "%7s", "#";
+my $count = 1;
 foreach $sort (@sorts)
 {
+	$count++;
 	printf OUTPUT "%30s", $sort;
+	print STDOUT "$sort is in column $count\n";
 }
 
 @keys = sort { $a <=> $b } (keys %{($data{"do_nothing"})});
