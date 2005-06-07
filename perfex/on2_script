@@ -1,7 +1,7 @@
 set key top left Left reverse
-set xrange [4096:262144]
+set xrange [4096:131072]
 set yrange [0:]
-set xtics (8192,16384,32768,65536,131072,262144)
+set xtics (8192,16384,32768,65536,131072)
 set format x "%8.0f"
 set logscale x
 set data style linespoints
