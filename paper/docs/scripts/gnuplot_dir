@@ -11,6 +11,7 @@ if (defined($options{"h"}))
 
 opendir(THIS_DIR, "./") || die("can't opendir : './'\n");
 @files = readdir(THIS_DIR);
+@files = grep { !/gnuplot_dir/} @files;
 closedir THIS_DIR;
 
 foreach $file (@files)

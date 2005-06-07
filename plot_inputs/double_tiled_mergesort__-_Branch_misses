@@ -3,7 +3,7 @@ set xrange [4096:4194304]
 set yrange [0:]
 set xtics (4096,8192,16384,32768,65536,131072,262144,524288,1048576,2097152,4194304)
 set format x "%8.0f"
-set logscale axis
+set logscale x
 set data style linespoints
 set term postscript eps color
 set output 'plots/double_tiled_mergesort__-_Branch_misses.eps'

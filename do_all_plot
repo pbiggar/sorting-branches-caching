@@ -63,7 +63,7 @@ foreach $dir (@sub_dirs)
 		{
 			$num = $col_num{$type}[$i];
 			$name = $col_name{$type}[$i];
-			$command = "plot -y $num -Y \"$name\" -t \"$dir - $name\"";
+			$command = "./plot -y $num -Y \"$name\" -t \"$dir - $name\"";
 			foreach $file (@files)
 			{
 				$command .= " $converted_dir/$dir/$file";
@@ -124,7 +124,7 @@ foreach $sort (@sorts)
 		{
 			$num = $col_num{$type}[$i];
 			$name = $col_name{$type}[$i];
-			$command = "plot -y $num -Y \"$name\" -t \"$sort - $name\"";
+			$command = "./plot -y $num -Y \"$name\" -t \"$sort - $name\"";
 			foreach $file (@files)
 			{
 				$command .= " $converted_dir/".$file;

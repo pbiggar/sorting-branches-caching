@@ -4,6 +4,9 @@
 
 # first get it out of the file and into a data thing
 
+my $keynum = "693";
+print STDOUT "Hard coded to 693 keys. Edit the source to change this\n";
+
 open(DATA, "played");
 
 
@@ -17,14 +20,13 @@ while($line = <DATA>) # gets the name/size/seed
 	$sort = $1;
 	$size = $2;
 
-	if (!$data{$sort}{$size})
+	unless($data{$sort}{$size})
 	{
 		$data{$sort}{$size} = 0;
 		$iteration_count{$sort}{$size} = 0;
 	}
 
-	if ($line2 =~ /perfex: child did not exit normally/)
-	{}else
+	unless($line2 =~ /perfex: child did not exit normally/)
 	{
 		$line2 =~ /tsc\s+([0-9]*)/;
 		$data{$sort}{$size} += $1;
@@ -40,7 +42,7 @@ close(DATA);
 
 @sorts = sort (keys %data);
 @sorts = grep {!/do_nothing/} @sorts;
-open(OUTPUT, "> processed_running_times");
+open(OUTPUT, "> processed_cycles_data");
 
 printf OUTPUT "%7s", "#";
 foreach $sort (@sorts)
@@ -59,7 +61,7 @@ foreach $size (@keys)
 		{
 			$value = $data{$sort}{$size};
 			$value /= $iteration_count{$sort}{$size};
-			$value -= ($data{"do_nothing"}{$size}/190);
+			$value -= ($data{"do_nothing"}{$size}/693);
 			$value /= $size;
 			printf OUTPUT "%30f", $value;
 		}
