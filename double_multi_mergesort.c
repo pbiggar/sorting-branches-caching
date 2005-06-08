@@ -314,9 +314,9 @@ double_multi_mergesort(unsigned int a[], int N)
 
 	/* a quick explanation, cause I keep needing to be reminded how I did this:
 	 * an address is split into 3 parts: the tag, the index and the offset.
-	 * Suppose theres a 32 bit address, a 32 bit cache line and 65536 cache
+	 * Suppose theres a 32 bit address, a 32 byte cache line and 65536 cache
 	 * blocks, as in our tests. In this case, the 32 bit address is split into
-	 * a 5 bit offset (2^5 = 32 bit cache line), a 16 bit index (2^16 = 65536
+	 * a 5 bit offset (2^5 = 32 byte cache line), a 16 bit index (2^16 = 65536
 	 * cache blocks) and the rest is the tag.  Therefore, a and aux need to
 	 * have exactly the opposite index. minusA is the index aux needs to have,
 	 * which we mask in. If this results in an address lower than the one we
