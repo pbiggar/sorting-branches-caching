@@ -325,8 +325,7 @@ double_multi_mergesort(unsigned int a[], int N)
 	 */
 
 	/* get the index we need*/
-	minusA = ((1 << BLOCK_BITS) - 1); /* get the number of blocks */
-	minusA ^= get_index(a); /* thats an xor */
+	minusA = get_index(a) ^ (1 << (BLOCK_BITS - 1));
 
 	aux_data = memalign(ALIGNMENT, (N + 2*LIMIT) * sizeof(unsigned int));
 
@@ -339,7 +338,7 @@ double_multi_mergesort(unsigned int a[], int N)
 
 
 
-	if (N <= 1024) /* fits in the level 1 cache */
+	if (N <= 2048) /* fits in the level 1 cache */
 	{
 		if (get_count(N) & 1) set_presort_count(ODD_COUNT);
 		else set_presort_count(EVEN_COUNT);
