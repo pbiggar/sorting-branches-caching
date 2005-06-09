@@ -11,11 +11,7 @@
 #include <assert.h> // assert
 #include <string.h> // strerror
 #include <stdlib.h> // atoi, malloc, free
-#include <sys/types.h> // time
 #include <sys/time.h> // time
-#include <unistd.h>
-#include <fcntl.h>
-
 
 #include "on2_sorts.h"
 #include "base_sorts.h"

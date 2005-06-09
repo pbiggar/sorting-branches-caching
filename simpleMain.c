@@ -1,7 +1,5 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
 
 #include "base_sorts.h"
 #include "cache_sorts.h"
