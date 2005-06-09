@@ -24,18 +24,18 @@
 #include "visual_sorts.h"
 #include "utils.h"
 
-#define _USE_SOFTWARE_PREDICTOR
+//#define _USE_SOFTWARE_PREDICTOR
 #include "predictor.h"
 
-#define RANDOM_SIZE (4194304)
+//#define RANDOM_SIZE (4194304)
 //#define RANDOM_SIZE (534523)
-//#define RANDOM_SIZE (262144)
+#define RANDOM_SIZE (262144)
 //#define RANDOM_SIZE (32768)
 //#define RANDOM_SIZE (16384)
 //#define RANDOM_SIZE (4096)
 //#define RANDOM_SIZE (128)
 
-#define RUN_VISUAL 1
+#define RUN_VISUAL 0
 #define VISUAL_SIZE (128)
 
 unsigned int sorted_array[RANDOM_SIZE];
@@ -89,6 +89,7 @@ test_array(const char* description)
 #define RUN_COUNT 10
 // we have enough data for 10 unique runs
 
+#ifdef _USE_SOFTWARE_PREDICTOR
 static void inline
 predictor_run(void sort(unsigned int*, int), int counter_count, const char* description)
 {
@@ -159,6 +160,13 @@ error_predictor_run:
 
 	free(temp_array);
 }
+#else
+static void inline
+predictor_run(void sort(unsigned int*, int), int counter_count, const char* description)
+{
+	printf("Can't do a predictor run on %s, as support isnt compiled in\n", description);
+}
+#endif
 
 static void inline
 time_sort(void sort(unsigned int*, int), const char* description)
@@ -170,6 +178,7 @@ time_sort(void sort(unsigned int*, int), const char* description)
 	print_timer(description);
 	test_array(description);
 }
+
 
 #define TEST_MIN 8
 #define TEST_MAX 10000
@@ -205,9 +214,11 @@ test_sort(void sort(unsigned int*, int), const char* description)
 int
 main(int argc, char** args)
 {
-	//int *test;
-	int visual = 0;
-	visual = !open_visual_log("visual_sort.html", "w");
+	if (RUN_VISUAL)
+	{
+		int visual = 0;
+		visual = !open_visual_log("visual_sort.html", "w");
+	}
 
 	// make printf print upon a newline
 	setvbuf(stdout, NULL, _IOLBF, 0);
@@ -258,8 +269,8 @@ main(int argc, char** args)
 //	time_sort(knuth_other_base_mergesort, "Knuth Other Base Mergesort");
 //	time_sort(tiled_mergesort, "Tiled Mergesort");
 //	time_sort(multi_mergesort, "Multi Mergesort"); 
-	time_sort(double_tiled_mergesort, "Double Tiled Mergesort");
-	time_sort(double_multi_mergesort, "Double Multi Mergesort");
+//	time_sort(double_tiled_mergesort, "Double Tiled Mergesort");
+//	time_sort(double_multi_mergesort, "Double Multi Mergesort");
 /*
 	time_sort(base_radixsort, "Base Radixsort");
 	time_sort(cache_radixsort, "Cache radixsort");
@@ -275,10 +286,11 @@ main(int argc, char** args)
 	time_sort(on2_bubblesort, "O(N squared) Bubble");
 	time_sort(on2_shakersort, "O(N squared) Shaker");
 #endif
+*/
 
-	if (visual)
+	if (RUN_VISUAL)
 	{
-		if (RUN_VISUAL)
+		if (visual)
 		{
 			printf("Starting visual\n");
 
@@ -296,6 +308,6 @@ main(int argc, char** args)
 		close_visual_log();
 	}
 	else printf("The file did not open, and visual routines will not run\n");
-*/
+
 	return 0;
 }
