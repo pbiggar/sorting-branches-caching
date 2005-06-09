@@ -327,6 +327,9 @@ double_multi_mergesort(unsigned int a[], int N)
 	/* get the index we need*/
 	minusA = get_index(a) ^ (1 << (BLOCK_BITS - 1));
 
+	/* also align it for level 1 misses */
+	minusA  = minusA ^ (1 << (LEVEL1_BLOCK_BITS - 1));
+
 	aux_data = memalign(ALIGNMENT, (N + 2*LIMIT) * sizeof(unsigned int));
 
 	/* clear the index bits, and mask in the desired index */
@@ -352,7 +355,7 @@ double_multi_mergesort(unsigned int a[], int N)
 /*	OUT(N); */
 
 	level2_count = N / LIMIT; /* the number of standard LIMIT sized passes */
-	level1_count = LIMIT / 1024; /* the number of standard 4k sized passes */
+	level1_count = LIMIT / 1024; /* the number of standard 4k sized passes, per level 2 iteration */
 	extra_level2 = N % LIMIT; /* the number of extra items left, after the level 2 passes*/
 	extra_level1_count = extra_level2 / 1024; /* number of extra level 1 passes  */
 	final_extra = extra_level2 % 1024; /* number of items left over */

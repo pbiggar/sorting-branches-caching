@@ -19,6 +19,10 @@
 #define BLOCK_MASK 0xFFFF
 /* 65536 blocks */
 
+#define LEVEL1_BLOCK_BITS 8
+#define LEVEL1_BLOCK_MASK 256
+/* 256 blocks */
+
 #define BLOCK_AND_LINE_BITS (BLOCK_BITS + LINE_BITS)
 #define BLOCK_AND_LINE_MASK ((BLOCK_MASK << LINE_BITS) | (LINE_MASK))
 

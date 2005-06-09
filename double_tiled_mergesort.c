@@ -172,6 +172,9 @@ double_tiled_mergesort(unsigned int a[], int N)
 	/* get the index we need*/
 	minusA = get_index(a) ^ (1 << (BLOCK_BITS - 1));
 
+	/* also align it for level 1 misses */
+	minusA  = minusA ^ (1 << (LEVEL1_BLOCK_BITS - 1));
+
 	aux_data = memalign(ALIGNMENT, (N + 2*LIMIT) * sizeof(unsigned int));
 
 	/* clear the index bits, and mask in the desired index */
