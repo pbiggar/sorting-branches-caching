@@ -100,7 +100,14 @@ base_heapsort(unsigned int a[], int N)
 	
 	if (is_even)
 	{
-		compexch(a[N-1], a[(N-1)/2]);
+		/* dont use compexch so that its only used in quicksort and its easier
+		 * to code the branch_taken/branch_not_taken code */
+        if (a[(N-1)/2] < a[N-1])
+		{
+			unsigned int t = a[N-1];
+			a[N-1] = a[(N-1)/2];
+			a[(N-1)/2] = t;
+		}
 		N--;
 	}
 

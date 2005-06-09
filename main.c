@@ -214,9 +214,9 @@ test_sort(void sort(unsigned int*, int), const char* description)
 int
 main(int argc, char** args)
 {
+	int visual = 0;
 	if (RUN_VISUAL)
 	{
-		int visual = 0;
 		visual = !open_visual_log("visual_sort.html", "w");
 	}
 
