@@ -1,6 +1,8 @@
 #include <stdio.h> // printf, putchar
 #include <stdlib.h> // atoi, malloc, free
 #include <limits.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 #include "utils.h"
 
