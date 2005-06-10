@@ -201,5 +201,5 @@ open(SAVE, "> ./plot_inputs/$output_filename");
 print SAVE $redirection;
 close(SAVE);
 
-@plot_output = `gnuplot ./plot_inputs/$output_filename 2>&1`; # this also prints to STDERR
-print @plot_output;
+#@plot_output = `gnuplot ./plot_inputs/$output_filename 2>&1`; # this also prints to STDERR
+#print @plot_output;
