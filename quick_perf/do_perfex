@@ -1,5 +1,0 @@
-#!/bin/sh
-
-gcc -Wall -O3 -funroll-loops -finline-functions -DRANDOM_SIZE=$3 -DSEED=$2 -DSORT=$1 $1.c perfexMain.c -o $1
-echo "$1-$3-$2"
-perfex $1
