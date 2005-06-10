@@ -13,5 +13,7 @@ plot \
 '../inputs/algorithm_n/algorithm_n_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'algorithm N',\
 '../inputs/algorithm_s/algorithm_s_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'algorithm S',\
 '../inputs/base_mergesort_/base_mergesort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'base mergesort',\
+'../inputs/tiled_mergesort_/tiled_mergesort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'tiled mergesort',\
+'../inputs/multi_mergesort_/multi_mergesort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'multi mergesort',\
 '../inputs/double_tiled_mergesort_/double_tiled_mergesort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'double tiled mergesort',\
 '../inputs/double_multi_mergesort_/double_multi_mergesort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'double multi-mergesort'

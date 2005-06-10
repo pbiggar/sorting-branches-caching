@@ -14,5 +14,7 @@ plot \
 '../inputs/algorithm_s/algorithm_s_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'algorithm S  - Bimodal - 512 byte table',\
 '../inputs/base_mergesort_/base_mergesort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'base mergesort  - Bimodal - 512 byte table',\
 '../inputs/double_tiled_mergesort_/double_tiled_mergesort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'double tiled mergesort  - Bimodal - 512 byte table',\
+'../inputs/tiled_mergesort_/tiled_mergesort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'tiled mergesort  - Bimodal - 512 byte table',\
+'../inputs/multi_mergesort_/multi_mergesort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'multi mergesort  - Bimodal - 512 byte table',\
 '../inputs/double_multi_mergesort_/double_multi_mergesort__sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:12 title 'double multi-mergesort  - 2 Level Adaptive - 4096 2nd level entries',\
 '../inputs/double_multi_mergesort_/double_multi_mergesort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'double multi-mergesort  - Bimodal - 512 byte table'
