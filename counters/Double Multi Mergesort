@@ -1,37 +1,37 @@
 Double Multi Mergesort - forwards left:
 states                      NT saturated            NT             T   T saturated         Total
-branch_count:                  195481825      80588338       2425663           821     278496647
-correct_count:                 117318351      78163474           798            23     195482646
-incorrect_count:                78163474       2424864       2424865           798      83014001
-taken_count:                    78163474       2424864           798            23      80589159
-not_taken_count:               117318351      78163474       2424865           798     197907488
+branch_count:                  195469566      80597839       2427932           835     278496172
+correct_count:                 117298862      78170704           796            39     195470401
+incorrect_count:                78170704       2427135       2427136           796      83025771
+taken_count:                    78170704       2427135           796            39      80598674
+not_taken_count:               117298862      78170704       2427136           796     197897498
 current state:                        NT
 
 Double Multi Mergesort - forwards right:
 states                      NT saturated            NT             T   T saturated         Total
-branch_count:                  153429189      80578622       2546736         10537     236565084
-correct_count:                  75386769      78042420         10534             3     153439726
-incorrect_count:                78042420       2536202       2536202         10534      83125358
-taken_count:                    78042420       2536202         10534             3      80589159
-not_taken_count:                75386769      78042420       2536202         10534     155975925
+branch_count:                  153411310      80578249       2564333         20425     236574317
+correct_count:                  75376973      78034337         20421             4     153431735
+incorrect_count:                78034337       2543912       2543912         20421      83142582
+taken_count:                    78034337       2543912         20421             4      80598674
+not_taken_count:                75376973      78034337       2543912         20421     155975643
 current state:                         T
 
 Double Multi Mergesort - reverse left:
 states                      NT saturated            NT             T   T saturated         Total
-branch_count:                  195480502      80585062       2426464           812     278492840
-correct_count:                 117321127      78159375           776            36     195481314
-incorrect_count:                78159375       2425687       2425688           776      83011526
-taken_count:                    78159375       2425687           776            36      80585874
-not_taken_count:               117321127      78159375       2425688           776     197906966
+branch_count:                  195468121      80595942       2428915           771     278493749
+correct_count:                 117300335      78167786           758            13     195468892
+incorrect_count:                78167786       2428156       2428157           758      83024857
+taken_count:                    78167786       2428156           758            13      80596713
+not_taken_count:               117300335      78167786       2428157           758     197897036
 current state:                        NT
 
 Double Multi Mergesort - reverse right:
 states                      NT saturated            NT             T   T saturated         Total
-branch_count:                  153430128      80575133       2546376         10740     236562377
-correct_count:                  75390637      78039491         10734             7     153440869
-incorrect_count:                78039491       2535642       2535642         10733      83121508
-taken_count:                    78039491       2535642         10734             7      80585874
-not_taken_count:                75390637      78039491       2535642         10733     155976503
+branch_count:                  153412085      80576386       2564141         20326     236572938
+correct_count:                  75379519      78032566         20321             6     153432412
+incorrect_count:                78032566       2543820       2543820         20320      83140526
+taken_count:                    78032566       2543820         20321             6      80596713
+not_taken_count:                75379519      78032566       2543820         20320     155976225
 current state:               T saturated
 
 Double Multi Mergesort - fix up:

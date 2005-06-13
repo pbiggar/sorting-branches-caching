@@ -7,15 +7,15 @@ taken_count:                           0             4      39745991     2484370
 not_taken_count:                       0             0             4      39745991      39745995
 current state:                         T
 
-#Cache Heapsort - comparison 0:
-#states                      NT saturated            NT             T   T saturated         Total
-#branch_count:                  288183055             1             1             0     288183057
-#correct_count:                 288183055             1             0             0     288183056
-#incorrect_count:                       0             0             1             0             1
-#taken_count:                           0             0             0             0             0
-#not_taken_count:               288183055             1             1             0     288183057
-#current state:              NT saturated
-#
+Cache Heapsort - comparison 0:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                  288183055             1             1             0     288183057
+correct_count:                 288183055             1             0             0     288183056
+incorrect_count:                       0             0             1             0             1
+taken_count:                           0             0             0             0             0
+not_taken_count:               288183055             1             1             0     288183057
+current state:              NT saturated
+
 Cache Heapsort - comparison 1:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   79137022      74137351      69525509      65383175     288183057

@@ -1,0 +1,18 @@
+Shellsort - inner loop:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                  304848254     335383978     373231065     393811791    1407275088
+correct_count:                 142631447     162216808     200063894     193747897     698660046
+incorrect_count:               162216807     173167170     173167171     200063894     708615042
+taken_count:                   162216807     173167170     200063894     193747897     729195768
+not_taken_count:               142631447     162216808     173167171     200063894     678079320
+current state:              NT saturated
+
+Shellsort - insertion:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                    4919745      17593422      37023285      70624092     130160544
+correct_count:                   1002095       3917650      23347513      47276579      75543837
+incorrect_count:                 3917650      13675772      13675772      23347513      54616707
+taken_count:                     3917650      13675772      23347513      47276579      88217514
+not_taken_count:                 1002095       3917650      13675772      23347513      41943030
+current state:                         T
+

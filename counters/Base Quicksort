@@ -34,3 +34,30 @@ taken_count:                     9441097       8440051      17303125      473735
 not_taken_count:                 6758747       9441097       8440051      17303125      41943020
 current state:                         T
 
+Base Quicksort - median1:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                    1120161       1123728       1125370       1124067       4493326
+correct_count:                    559092        561070        562711        561356       2244229
+incorrect_count:                  561069        562658        562659        562711       2249097
+taken_count:                      561069        562658        562711        561356       2247794
+not_taken_count:                  559092        561070        562659        562711       2245532
+current state:              NT saturated
+
+Base Quicksort - median2:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                    2398867       1197503        597862        299094       4493326
+correct_count:                   1599647        799221        199579         99515       2697962
+incorrect_count:                  799220        398282        398283        199579       1795364
+taken_count:                      799220        398282        199579         99515       1496596
+not_taken_count:                 1599647        799221        398283        199579       2996730
+current state:              NT saturated
+
+Base Quicksort - median3:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                     298888        599541       1199466       2395431       4493326
+correct_count:                     99459        199429        799354       1596078       2694320
+incorrect_count:                  199429        400112        400112        799353       1799006
+taken_count:                      199429        400112        799354       1596078       2994973
+not_taken_count:                   99459        199429        400112        799353       1498353
+current state:               T saturated
+

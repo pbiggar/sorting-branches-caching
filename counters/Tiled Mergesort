@@ -1,297 +1,36 @@
-Tiled Mergesort - presort 0:
+Tiled Mergesort - forwards left:
 states                      NT saturated            NT             T   T saturated         Total
-branch_count:                    1311418       1309569       1309543       1312350       5242880
-correct_count:                    655730        655689        655662        656688       2623769
-incorrect_count:                  655688        653880        653881        655662       2619111
-taken_count:                      655688        653880        655662        656688       2621918
-not_taken_count:                  655730        655689        653881        655662       2620962
-current state:              NT saturated
-
-Tiled Mergesort - presort 1:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                    2794838       1399096        699141        349805       5242880
-correct_count:                   1861826        933013        233057        116748       3144644
-incorrect_count:                  933012        466083        466084        233057       2098236
-taken_count:                      933012        466083        233057        116748       1748900
-not_taken_count:                 1861826        933013        466084        233057       3493980
-current state:              NT saturated
-
-Tiled Mergesort - presort 2:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                     130848        393137       1180211       3538684       5242880
-correct_count:                     32535         98314        885387       2653297       3669533
-incorrect_count:                   98313        294823        294824        885387       1573347
-taken_count:                       98313        294823        885387       2653297       3931820
-not_taken_count:                   32535         98314        294824        885387       1311060
-current state:              NT saturated
-
-Tiled Mergesort - presort 3:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                    1311593       1310539       1310887       1309861       5242880
-correct_count:                    656212        655381        655729        654132       2621454
-incorrect_count:                  655381        655158        655158        655729       2621426
-taken_count:                      655381        655158        655729        654132       2620400
-not_taken_count:                  656212        655381        655158        655729       2622480
-current state:                         T
-
-Tiled Mergesort - presort 4:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                     350307        699646       1397249       2795678       5242880
-correct_count:                    117008        233299        930902       1864776       3145985
-incorrect_count:                  233299        466347        466347        930902       2096895
-taken_count:                      233299        466347        930902       1864776       3495324
-not_taken_count:                  117008        233299        466347        930902       1747556
-current state:                         T
-
-Tiled Mergesort - presort 5:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                    1314069       1311038       1309378       1308395       5242880
-correct_count:                    658195        655875        654214        654181       2622465
-incorrect_count:                  655874        655163        655164        654214       2620415
-taken_count:                      655874        655163        654214        654181       2619432
-not_taken_count:                  658195        655875        655164        654214       2623448
-current state:              NT saturated
-
-Tiled Mergesort - presort 6:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                    1313414       1312074       1308943       1308449       5242880
-correct_count:                    656742        656672        653540        654909       2621863
-incorrect_count:                  656672        655402        655403        653540       2621017
-taken_count:                      656672        655402        653540        654909       2620523
-not_taken_count:                  656742        656672        655403        653540       2622357
+branch_count:                  327998704     129473594       4883197        197339     462552834
+correct_count:                 203218127     124780577        190179          7160     328196043
+incorrect_count:               124780577       4693017       4693018        190179     134356791
+taken_count:                   124780577       4693017        190179          7160     129670933
+not_taken_count:               203218127     124780577       4693018        190179     332881901
 current state:                        NT
 
-Tiled Mergesort - presort 7:
+Tiled Mergesort - forwards right:
 states                      NT saturated            NT             T   T saturated         Total
-branch_count:                    2795935       1397257        698847        350841       5242880
-correct_count:                   1864384        931552        233141        117700       3146777
-incorrect_count:                  931551        465705        465706        233141       2096103
-taken_count:                      931551        465705        233141        117700       1748097
-not_taken_count:                 1864384        931552        465706        233141       3494783
-current state:              NT saturated
-
-Tiled Mergesort - presort 8:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                     130290        393294       1180283       3539013       5242880
-correct_count:                     32402         97888        884877       2654137       3669304
-incorrect_count:                   97888        295406        295406        884876       1573576
-taken_count:                       97888        295406        884877       2654137       3932308
-not_taken_count:                   32402         97888        295406        884876       1310572
+branch_count:                  243719720     129420474       5317381        250458     378708033
+correct_count:                 119374104     124345616        242523          7936     243970179
+incorrect_count:               124345616       5074858       5074858        242522     134737854
+taken_count:                   124345616       5074858        242523          7936     129670933
+not_taken_count:               119374104     124345616       5074858        242522     249037100
 current state:               T saturated
 
-Tiled Mergesort - presort 9:
+Tiled Mergesort - reverse left:
 states                      NT saturated            NT             T   T saturated         Total
-branch_count:                    1310000       1310615       1310300       1311965       5242880
-correct_count:                    654462        655538        655223        656742       2621965
-incorrect_count:                  655538        655077        655077        655223       2620915
-taken_count:                      655538        655077        655223        656742       2622580
-not_taken_count:                  654462        655538        655077        655223       2620300
-current state:                         T
+branch_count:                  202220607      87515483       4850750        197141     294783981
+correct_count:                 119365867      82854740        190006          7135     202417748
+incorrect_count:                82854740       4660743       4660744        190006      92366233
+taken_count:                    82854740       4660743        190006          7135      87712624
+not_taken_count:               119365867      82854740       4660744        190006     207071357
+current state:                        NT
 
-Tiled Mergesort - presort 10:
+Tiled Mergesort - reverse right:
 states                      NT saturated            NT             T   T saturated         Total
-branch_count:                     349746        699324       1398059       2795751       5242880
-correct_count:                    116532        233214        931949       1863803       3145498
-incorrect_count:                  233214        466110        466110        931948       2097382
-taken_count:                      233214        466110        931949       1863803       3495076
-not_taken_count:                  116532        233214        466110        931948       1747804
+branch_count:                  159848891      87461222       5303094        251401     252864608
+correct_count:                  77447375      82401516        243388          8014     160100293
+incorrect_count:                82401516       5059706       5059706        243387      92764315
+taken_count:                    82401516       5059706        243388          8014      87712624
+not_taken_count:                77447375      82401516       5059706        243387     165151984
 current state:               T saturated
-
-Tiled Mergesort - presort 11:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                    1308370       1311070       1311956       1311484       5242880
-correct_count:                    653382        654988        655874        655611       2619855
-incorrect_count:                  654988        656082        656082        655873       2623025
-taken_count:                      654988        656082        655874        655611       2622555
-not_taken_count:                  653382        654988        656082        655873       2620325
-current state:               T saturated
-
-Tiled Mergesort - forwards left 0:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                  212742731       5955189          4599            44     218702563
-correct_count:                 206792119       5950613            22            22     212742776
-incorrect_count:                 5950612          4576          4577            22       5959787
-taken_count:                     5950612          4576            22            22       5955232
-not_taken_count:               206792119       5950613          4577            22     212747331
-current state:              NT saturated
-
-Tiled Mergesort - forwards left 1:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                   50139837      52523629      54546765      55537100     212747331
-correct_count:                  24437339      25702498      27725634      27811466     105676937
-incorrect_count:                25702498      26821131      26821131      27725634     107070394
-taken_count:                    25702498      26821131      27725634      27811466     108060729
-not_taken_count:                24437339      25702498      26821131      27725634     104686602
-current state:                         T
-
-Tiled Mergesort - forwards left 2:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                   24147002      25246180      26613171      28680249     104686602
-correct_count:                  11818012      12328990      13695981      14984269      52827252
-incorrect_count:                12328990      12917190      12917190      13695980      51859350
-taken_count:                    12328990      12917190      13695981      14984269      53926430
-not_taken_count:                11818012      12328990      12917190      13695980      50760172
-current state:               T saturated
-
-Tiled Mergesort - forwards left 3:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                   11604815      12065638      12772946      14316773      50760172
-correct_count:                   5701098       5903717       6611024       7705749      25921588
-incorrect_count:                 5903717       6161921       6161922       6611024      24838584
-taken_count:                     5903717       6161921       6611024       7705749      26382411
-not_taken_count:                 5701098       5903717       6161922       6611024      24377761
-current state:                        NT
-
-Tiled Mergesort - forwards left 4:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                    5634586       5835785       6105547       6801843      24377761
-correct_count:                   2773598       2860988       3130749       3671094      12436429
-incorrect_count:                 2860988       2974797       2974798       3130749      11941332
-taken_count:                     2860988       2974797       3130749       3671094      12637628
-not_taken_count:                 2773598       2860988       2974798       3130749      11740133
-current state:                        NT
-
-Tiled Mergesort - forwards left 5:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                    2743520       2838580       2968359       3189674      11740133
-correct_count:                   1350997       1392523       1522302       1667372       5933194
-incorrect_count:                 1392523       1446057       1446057       1522302       5806939
-taken_count:                     1392523       1446057       1522302       1667372       6028254
-not_taken_count:                 1350997       1392523       1446057       1522302       5711879
-current state:                         T
-
-Tiled Mergesort - forwards left 6:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                    1342217       1383044       1441155       1545463       5711879
-correct_count:                    662195        680023        738133        807330       2887681
-incorrect_count:                  680022        703021        703022        738133       2824198
-taken_count:                      680022        703021        738133        807330       2928506
-not_taken_count:                  662195        680023        703022        738133       2783373
-current state:              NT saturated
-
-Tiled Mergesort - forwards left 7:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                     658754        676043        701712        746864       2783373
-correct_count:                    325884        332870        358539        388325       1405618
-incorrect_count:                  332870        343173        343173        358539       1377755
-taken_count:                      332870        343173        358539        388325       1422907
-not_taken_count:                  325884        332870        343173        358539       1360466
-current state:                         T
-
-Tiled Mergesort - forwards right 0:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                  212751125       5947814          5581             0     218704520
-correct_count:                 206808891       5942234             0             0     212751125
-incorrect_count:                 5942234          5580          5581             0       5953395
-taken_count:                     5942234          5580             0             0       5947814
-not_taken_count:               206808891       5942234          5581             0     212756706
-current state:                        NT
-
-Tiled Mergesort - forwards right 1:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                   50150442      52525470      54543557      55537237     212756706
-correct_count:                  24443344      25707099      27725185      27812052     105687680
-incorrect_count:                25707098      26818371      26818372      27725185     107069026
-taken_count:                    25707098      26818371      27725185      27812052     108062706
-not_taken_count:                24443344      25707099      26818372      27725185     104694000
-current state:              NT saturated
-
-Tiled Mergesort - forwards right 2:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                   24135791      25248751      26620385      28689073     104694000
-correct_count:                  11808110      12327681      13699314      14989759      52824864
-incorrect_count:                12327681      12921070      12921071      13699314      51869136
-taken_count:                    12327681      12921070      13699314      14989759      53937824
-not_taken_count:                11808110      12327681      12921071      13699314      50756176
-current state:                        NT
-
-Tiled Mergesort - forwards right 3:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                   11607394      12072442      12772272      14304068      50756176
-correct_count:                   5701211       5906184       6606013       7698055      25911463
-incorrect_count:                 5906183       6166258       6166259       6606013      24844713
-taken_count:                     5906183       6166258       6606013       7698055      26376509
-not_taken_count:                 5701211       5906184       6166259       6606013      24379667
-current state:              NT saturated
-
-Tiled Mergesort - forwards right 4:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                    5635009       5832440       6102627       6809591      24379667
-correct_count:                   2774802       2860207       3130394       3679198      12444601
-incorrect_count:                 2860207       2972233       2972233       3130393      11935066
-taken_count:                     2860207       2972233       3130394       3679198      12642032
-not_taken_count:                 2774802       2860207       2972233       3130393      11737635
-current state:               T saturated
-
-Tiled Mergesort - forwards right 5:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                    2747622       2836377       2966592       3187044      11737635
-correct_count:                   1354437       1393185       1523400       1663644       5934666
-incorrect_count:                 1393185       1443192       1443192       1523400       5802969
-taken_count:                     1393185       1443192       1523400       1663644       6023421
-not_taken_count:                 1354437       1393185       1443192       1523400       5714214
-current state:                         T
-
-Tiled Mergesort - forwards right 6:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                    1345123       1384806       1440690       1543595       5714214
-correct_count:                    663976        681148        737031        806564       2888719
-incorrect_count:                  681147        703658        703659        737031       2825495
-taken_count:                      681147        703658        737031        806564       2928400
-not_taken_count:                  663976        681148        703659        737031       2785814
-current state:              NT saturated
-
-Tiled Mergesort - forwards right 7:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                     661850        677267        700572        746125       2785814
-correct_count:                    327881        333970        357274        388851       1407976
-incorrect_count:                  333969        343297        343298        357274       1377838
-taken_count:                      333969        343297        357274        388851       1423391
-not_taken_count:                  327881        333970        343298        357274       1362423
-current state:              NT saturated
-
-Tiled Mergesort - forwards middle:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                  206620486      10475472        235861         10278     217342097
-correct_count:                 196370882      10249604          9992           286     206630764
-incorrect_count:                10249604        225868        225869          9992      10711333
-taken_count:                    10249604        225868          9992           286      10485750
-not_taken_count:               196370882      10249604        225869          9992     206856347
-current state:                        NT
-
-Tiled Mergesort - forwards next:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                   10482980          2600           170             0      10485750
-correct_count:                  10480550          2430             0             0      10482980
-incorrect_count:                    2430           170           170             0          2770
-taken_count:                        2430           170             0             0          2600
-not_taken_count:                10480550          2430           170             0      10483150
-current state:                         T
-
-Tiled Mergesort - forwards end:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                       2429           170             1             0          2600
-correct_count:                      2259           170             0             0          2429
-incorrect_count:                     170             0             1             0           171
-taken_count:                         170             0             0             0           170
-not_taken_count:                    2259           170             1             0          2430
-current state:                        NT
-
-Tiled Mergesort - forwards setup:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                          0             0       5240361       5242789      10483150
-correct_count:                         0             0       5240361          2429       5242790
-incorrect_count:                       0             0             0       5240360       5240360
-taken_count:                           0             0       5240361          2429       5242790
-not_taken_count:                       0             0             0       5240360       5240360
-current state:               T saturated
-
-Tiled Mergesort - forwards equal:
-states                      NT saturated            NT             T   T saturated         Total
-branch_count:                  206835608         20668            40            31     206856347
-correct_count:                 206814968         20641            12            19     206835640
-incorrect_count:                   20640            27            28            12         20707
-taken_count:                       20640            27            12            19         20698
-not_taken_count:               206814968         20641            28            12     206835649
-current state:              NT saturated
 

@@ -1,12 +1,12 @@
-#Algorithm S - S2:
-#states                      NT saturated            NT             T   T saturated         Total
-#branch_count:                          0             0           110           110           220
-#correct_count:                         0             0           110             0           110
-#incorrect_count:                       0             0             0           110           110
-#taken_count:                           0             0           110             0           110
-#not_taken_count:                       0             0             0           110           110
-#current state:                         T
-#
+Algorithm S - S2:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                          0             0           110           110           220
+correct_count:                         0             0           110             0           110
+incorrect_count:                       0             0             0           110           110
+taken_count:                           0             0           110             0           110
+not_taken_count:                       0             0             0           110           110
+current state:                         T
+
 Algorithm S - S3:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  213884516     220939804     220967119     213914442     869705881
@@ -25,24 +25,24 @@ taken_count:                          33            33      10485685     4033930
 not_taken_count:                10487093            33            33      10485684      20972843
 current state:               T saturated
 
-#Algorithm S - S6:
-#states                      NT saturated            NT             T   T saturated         Total
-#branch_count:                   26519192             1             1             0      26519194
-#correct_count:                  26519192             1             0             0      26519193
-#incorrect_count:                       0             0             1             0             1
-#taken_count:                           0             0             0             0             0
-#not_taken_count:                26519192             1             1             0      26519194
-#current state:              NT saturated
-#
-#Algorithm S - S7:
-#states                      NT saturated            NT             T   T saturated         Total
-#branch_count:                   19139530       4377354       1833313       1168997      26519194
-#correct_count:                  15859504       3280026        735984        433013      20308527
-#incorrect_count:                 3280026       1097328       1097329        735984       6210667
-#taken_count:                     3280026       1097328        735984        433013       5546351
-#not_taken_count:                15859504       3280026       1097329        735984      20972843
-#current state:                        NT
-#
+Algorithm S - S6:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                   26519192             1             1             0      26519194
+correct_count:                  26519192             1             0             0      26519193
+incorrect_count:                       0             0             1             0             1
+taken_count:                           0             0             0             0             0
+not_taken_count:                26519192             1             1             0      26519194
+current state:              NT saturated
+
+Algorithm S - S7:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                   19139530       4377354       1833313       1168997      26519194
+correct_count:                  15859504       3280026        735984        433013      20308527
+incorrect_count:                 3280026       1097328       1097329        735984       6210667
+taken_count:                     3280026       1097328        735984        433013       5546351
+not_taken_count:                15859504       3280026       1097329        735984      20972843
+current state:                        NT
+
 Algorithm S - S8:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   10484399            39      10485788     413884020     434854246
@@ -52,39 +52,39 @@ taken_count:                          21            18      10485770     4033982
 not_taken_count:                10484378            21            18      10485770      20970187
 current state:                         T
 
-#Algorithm S - S10:
-#states                      NT saturated            NT             T   T saturated         Total
-#branch_count:                   26521795           220            10             0      26522025
-#correct_count:                  26521584           211             0             0      26521795
-#incorrect_count:                     211             9            10             0           230
-#taken_count:                         211             9             0             0           220
-#not_taken_count:                26521584           211            10             0      26521805
-#current state:                        NT
-#
-#Algorithm S - S11:
-#states                      NT saturated            NT             T   T saturated         Total
-#branch_count:                   19135885       4378470       1834302       1173148      26521805
-#correct_count:                  15853890       3281995        737827        435321      20309033
-#incorrect_count:                 3281995       1096475       1096475        737827       6212772
-#taken_count:                     3281995       1096475        737827        435321       5551618
-#not_taken_count:                15853890       3281995       1096475        737827      20970187
-#current state:                         T
-#
-#Algorithm S - S12:
-#states                      NT saturated            NT             T   T saturated         Total
-#branch_count:                   41942800           220            10             0      41943030
-#correct_count:                  41942590           210             0             0      41942800
-#incorrect_count:                     210            10            10             0           230
-#taken_count:                         210            10             0             0           220
-#not_taken_count:                41942590           210            10             0      41942810
-#current state:                         T
-#
-#Algorithm S - S13:
-#states                      NT saturated            NT             T   T saturated         Total
-#branch_count:                          0             0            10           210           220
-#correct_count:                         0             0            10           200           210
-#incorrect_count:                       0             0             0            10            10
-#taken_count:                           0             0            10           200           210
-#not_taken_count:                       0             0             0            10            10
-#current state:                         T
-#
+Algorithm S - S10:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                   26521795           220            10             0      26522025
+correct_count:                  26521584           211             0             0      26521795
+incorrect_count:                     211             9            10             0           230
+taken_count:                         211             9             0             0           220
+not_taken_count:                26521584           211            10             0      26521805
+current state:                        NT
+
+Algorithm S - S11:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                   19135885       4378470       1834302       1173148      26521805
+correct_count:                  15853890       3281995        737827        435321      20309033
+incorrect_count:                 3281995       1096475       1096475        737827       6212772
+taken_count:                     3281995       1096475        737827        435321       5551618
+not_taken_count:                15853890       3281995       1096475        737827      20970187
+current state:                         T
+
+Algorithm S - S12:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                   41942800           220            10             0      41943030
+correct_count:                  41942590           210             0             0      41942800
+incorrect_count:                     210            10            10             0           230
+taken_count:                         210            10             0             0           220
+not_taken_count:                41942590           210            10             0      41942810
+current state:                         T
+
+Algorithm S - S13:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                          0             0            10           210           220
+correct_count:                         0             0            10           200           210
+incorrect_count:                       0             0             0            10            10
+taken_count:                           0             0            10           200           210
+not_taken_count:                       0             0             0            10            10
+current state:                         T
+
