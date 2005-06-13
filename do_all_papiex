@@ -7,7 +7,7 @@ do
 	do
 		for k in 4096 8192 16384 32768 65536 131072 262144 524288 1048576 2097152 4194304
 		do
-			./do_perfex $j $i $k
+			./do_papiex $j $i $k
 		done
 	done 
 
@@ -16,7 +16,7 @@ do
 	do
 		for k in 4096 8192 16384 32768 65536 131072
 		do
-			./do_perfex $j $i $k
+			./do_papiex $j $i $k
 		done
 	done 
 

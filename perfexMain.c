@@ -21,7 +21,7 @@ int main()
 {
 	/* if you segfault here, comment out _FASTSORT_STACK */
 	/* this happens because your system stack ownt take a 2 or 4meg stack variable */
-#define _FASTSORT_STACK
+/*#define _FASTSORT_STACK */
 #ifdef _FASTSORT_STACK
 	unsigned int random_array[RANDOM_SIZE];
 #else

@@ -10,7 +10,7 @@ CACHE_SORTS = cache_heapsort cache4_heapsort tiled_mergesort multi_mergesort cac
 BRANCH_SORTS = multi_quicksort_seq predicated_quicksort
 
 SORTS = $(BASE_SORTS) $(BRANCH_SORTS) $(CACHE_SORTS) $(ON2_SORTS) do_nothing
-MODULES = predictor.o utils.o visual_sorts.o $(addsuffix .o, $(SORTS))
+MODULES = main.o predictor.o utils.o visual_sorts.o $(addsuffix .o, $(SORTS))
 
 XS = $(basename $(MODULES)) fastsort
 
