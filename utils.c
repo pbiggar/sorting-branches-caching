@@ -168,7 +168,7 @@ void
 fill_random_array(unsigned int a[], int size, int seed)
 {
 	int count = 0;
-	int random_file = open("paper/BIG", O_RDONLY);
+	int random_file = open("BIG", O_RDONLY);
 	lseek(random_file, seed, SEEK_SET);
 	if (random_file)
 	{

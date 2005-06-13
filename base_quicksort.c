@@ -75,6 +75,9 @@ base_quicksort(unsigned int a[], int N)
 	describe_predictor(&global_predictor[1], "j");
 	describe_predictor(&global_predictor[2], "partition end");
 	describe_predictor(&global_predictor[3], "insertion");
+	describe_predictor(&global_predictor[4], "median1");
+	describe_predictor(&global_predictor[5], "median2");
+	describe_predictor(&global_predictor[6], "median3");
 
 	stackinit(N);
 
@@ -98,9 +101,9 @@ base_quicksort(unsigned int a[], int N)
 
 		/* median of 3 exchanges */
 		exch(a[m], a[r-1]);
-		compexch(a[l], a[r-1]);
-		compexch(a[l], a[r]);
-		compexch(a[r-1], a[r]);
+		pred_compexch(a[l], a[r-1], 4);
+		pred_compexch(a[l], a[r], 5);
+		pred_compexch(a[r-1], a[r], 6);
 
 		i = partition(a,l+1,r-1);
 

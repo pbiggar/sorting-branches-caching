@@ -90,7 +90,7 @@ static void inline
 predictor_run(void sort(unsigned int*, int), int counter_count, const char* description)
 {
 	unsigned int* temp_array = malloc(RANDOM_SIZE * sizeof(unsigned int));
-	int random_file = open("paper/BIG", O_RDONLY);
+	int random_file = open("BIG", O_RDONLY);
 
 	char filename[200];
 
@@ -177,7 +177,7 @@ time_sort(void sort(unsigned int*, int), const char* description)
 
 
 #define TEST_MIN 8
-#define TEST_MAX 10000
+#define TEST_MAX 1040
 static void inline
 test_sort(void sort(unsigned int*, int), const char* description)
 {
@@ -219,71 +219,183 @@ main(int argc, char** args)
 	// make printf print upon a newline
 	setvbuf(stdout, NULL, _IOLBF, 0);
 
-	printf("N = %d\n\n", RANDOM_SIZE);
-
 	fill_random_array(random_array, RANDOM_SIZE, 0);
 	// get a sorted array for comparison
 	memcpy(sorted_array, random_array, sizeof(unsigned int) * RANDOM_SIZE);
 	qsort((void*)sorted_array, RANDOM_SIZE, sizeof(unsigned int), compare_ints);
 
-	printf("Beginning sort tests\n");
 
+/* ****************************************************************************************************************
+ *                    tests
+ * ****************************************************************************************************************/
+	printf("Beginning sort tests (%d - %d)\n", TEST_MIN, TEST_MAX);
+	test_sort(base_heapsort, "Base Heapsort");
+	test_sort(cache_heapsort, "Cache Heapsort");
+	test_sort(cache4_heapsort, "Cache4 Heapsort");
+
+	test_sort(knuth_base_mergesort, "Algorithm N");
+	test_sort(knuth_other_base_mergesort, "Algorithm S");
+	test_sort(base_mergesort, "Base Mergesort");
+	test_sort(tiled_mergesort, "Tiled Mergesort");
+	test_sort(multi_mergesort, "Multi Mergesort");
 	test_sort(double_tiled_mergesort, "Double Tiled Mergesort");
 	test_sort(double_multi_mergesort, "Double Multi Mergesort");
-//	predictor_run(knuth_base_mergesort, 8, "Algorithm N");
-//	predictor_run(knuth_other_base_mergesort, 10, "Algorithm S");
-//	predictor_run(base_heapsort, 6, "Base Heapsort");
-//	predictor_run(base_quicksort, 4, "Base Quicksort");
-//	predictor_run(base_quicksort9, 4, "Base Quicksort9");
-//	predictor_run(cache_heapsort, 11, "Cache Heapsort");
-//	predictor_run(cache_quicksort, 4, "Cache Quicksort");
-//	predictor_run(cache4_heapsort, 7, "Cache4 Heapsort");
-//	predictor_run(multi_quicksort, 6, "Multi Quicksort");
-//	predictor_run(old_shellsort, 1, "Old Shellsort");
-//	predictor_run(multi_quicksort_seq, 5, "Sequential Multi Quicksort");
-//	predictor_run(shellsort, 2, "Shellsort");
-//	predictor_run(tiled_mergesort, 33, "Tiled Mergesort");
 
-//	predictor_run(multi_mergesort, 46, "Multi Mergesort");
-//	predictor_run(double_tiled_mergesort, 46, "Double Tiled Mergesort");
-//	predictor_run(double_multi_mergesort, 59, "Double Multi Mergesort");
-//	predictor_run(base_mergesort, 33, "Base Mergesort");
 
-//	predictor_run(base_quicksort5, 4, "Base Quicksort5");
-//	predictor_run(base_quicksort1, 5, "Base Quicksort1");
-//	predictor_run(base_quicksort7, 4, "Base Quicksort7");
+	test_sort(base_quicksort1, "Base Quicksort1");
+	test_sort(base_quicksort, "Base Quicksort");
+	test_sort(base_quicksort5, "Base Quicksort5");
+	test_sort(base_quicksort7, "Base Quicksort7");
+	test_sort(base_quicksort9, "Base Quicksort9");
+	test_sort(cache_quicksort, "Cache Quicksort");
+	test_sort(multi_quicksort, "Multi Quicksort");
+	test_sort(multi_quicksort_seq, "Sequential Multi Quicksort");
 
-//	time_sort(base_quicksort, "Base Quicksort");
-//	time_sort(base_quicksort9, "Base Quicksort9");
-//	time_sort(cache_quicksort, "Cache Quicksort");
-//	time_sort(multi_quicksort, "Multi Quicksort");
-//	time_sort(multi_quicksort_seq, "Sequential Multi Quicksort");
-//	time_sort(predicated_quicksort, "Predicated Quicksort");
 
-//	time_sort(base_mergesort, "Base Mergesort");
-//	time_sort(knuth_base_mergesort, "Knuth Base Mergesort");
-//	time_sort(knuth_other_base_mergesort, "Knuth Other Base Mergesort");
-//	time_sort(tiled_mergesort, "Tiled Mergesort");
-//	time_sort(multi_mergesort, "Multi Mergesort"); 
-//	time_sort(double_tiled_mergesort, "Double Tiled Mergesort");
-//	time_sort(double_multi_mergesort, "Double Multi Mergesort");
-/*
-	time_sort(base_radixsort, "Base Radixsort");
-	time_sort(cache_radixsort, "Cache radixsort");
+	test_sort(base_radixsort, "Base Radixsort");
+	test_sort(base_radixsort, "Cache Radixsort");
+	
+	test_sort(old_shellsort, "Old Shellsort");
+	test_sort(shellsort, "Shellsort");
 
+	if (TEST_MAX <= 4096)
+	{
+		test_sort(on2_insertsort, "O(N squared) Insertion");
+		test_sort(on2_selectsort, "O(N squared) Selection");
+	}
+	else
+	{
+		printf("No timings on on2_insertsort - TEST_MAX (%d) is too big\n", TEST_MAX);
+		printf("No timings on on2_insertsort - TEST_MAX (%d) is too big\n", TEST_MAX);
+	}
+	if (TEST_MAX <= 4096)
+	{
+		test_sort(on2_bubblesort, "O(N squared) Bubble");
+		test_sort(on2_bubblesort2, "O(N squared) Bubble2");
+		test_sort(on2_shakersort, "O(N squared) Shaker");
+		test_sort(on2_shakersort2, "O(N squared) Shaker2");
+	}
+	else
+	{
+		printf("No timings on on2_bubblesort - TEST_MAX (%d) is too big\n", TEST_MAX);
+		printf("No timings on on2_bubblesort2 - TEST_MAX (%d) is too big\n", TEST_MAX);
+		printf("No timings on on2_bubblesort - TEST_MAX (%d) is too big\n", TEST_MAX);
+		printf("No timings on on2_bubblesort2 - TEST_MAX (%d) is too big\n", TEST_MAX);
+	}
+
+
+
+/* ****************************************************************************************************************
+ *                    timings
+ * ****************************************************************************************************************/
+	printf("Beginning sort timings (for N = %d)\n", RANDOM_SIZE);
 	time_sort(base_heapsort, "Base Heapsort");
 	time_sort(cache_heapsort, "Cache Heapsort");
-	time_sort(cache4_heapsort, "Cache Heapsort, 4-heap");
-#if RANDOM_SIZE <= 32768
-	time_sort(on2_insertsort, "O(N squared) Insertion");
-	time_sort(on2_selectsort, "O(N squared) Selection");
-#endif
-#if RANDOM_SIZE <= 8192
-	time_sort(on2_bubblesort, "O(N squared) Bubble");
-	time_sort(on2_shakersort, "O(N squared) Shaker");
-#endif
-*/
+	time_sort(cache4_heapsort, "Cache4 Heapsort");
 
+	time_sort(knuth_base_mergesort, "Algorithm N");
+	time_sort(knuth_other_base_mergesort, "Algorithm S");
+	time_sort(base_mergesort, "Base Mergesort");
+	time_sort(tiled_mergesort, "Tiled Mergesort");
+	time_sort(multi_mergesort, "Multi Mergesort");
+	time_sort(double_tiled_mergesort, "Double Tiled Mergesort");
+	time_sort(double_multi_mergesort, "Double Multi Mergesort");
+
+
+	time_sort(base_quicksort1, "Base Quicksort1");
+	time_sort(base_quicksort, "Base Quicksort");
+	time_sort(base_quicksort5, "Base Quicksort5");
+	time_sort(base_quicksort7, "Base Quicksort7");
+	time_sort(base_quicksort9, "Base Quicksort9");
+	time_sort(cache_quicksort, "Cache Quicksort");
+	time_sort(multi_quicksort, "Multi Quicksort");
+	time_sort(multi_quicksort_seq, "Sequential Multi Quicksort");
+
+
+	time_sort(base_radixsort, "Base Radixsort");
+	time_sort(base_radixsort, "Cache Radixsort");
+	
+	time_sort(old_shellsort, "Old Shellsort");
+	time_sort(shellsort, "Shellsort");
+
+	if (RANDOM_SIZE <= 32768)
+	{
+		time_sort(on2_insertsort, "O(N squared) Insertion");
+		time_sort(on2_selectsort, "O(N squared) Selection");
+	}
+	else
+	{
+		printf("No timings on on2_insertsort - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
+		printf("No timings on on2_insertsort - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
+	}
+	if (RANDOM_SIZE <= 8192)
+	{
+		time_sort(on2_bubblesort, "O(N squared) Bubble");
+		time_sort(on2_bubblesort2, "O(N squared) Bubble2");
+		time_sort(on2_shakersort, "O(N squared) Shaker");
+		time_sort(on2_shakersort2, "O(N squared) Shaker2");
+	}
+	else
+	{
+		printf("No timings on on2_bubblesort - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
+		printf("No timings on on2_bubblesort2 - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
+		printf("No timings on on2_bubblesort - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
+		printf("No timings on on2_bubblesort2 - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
+	}
+
+
+/* ****************************************************************************************************************
+ *                   predictors 
+ * ****************************************************************************************************************/
+
+#ifdef _USE_SOFTWARE_PREDICTOR
+	printf("Running predictors\n");
+	if (RANDOM_SIZE != (4 * 1024 * 1024)) printf("predictors not being run with correct size\n");
+
+	printf("Not running predictors for do_nothing\n");
+
+	predictor_run(base_heapsort, 6, "Base Heapsort");
+	predictor_run(cache_heapsort, 11, "Cache Heapsort");
+	predictor_run(cache4_heapsort, 7, "Cache4 Heapsort");
+
+	predictor_run(knuth_base_mergesort, 8, "Algorithm N");
+	predictor_run(knuth_other_base_mergesort, 10, "Algorithm S");
+	predictor_run(base_mergesort, 33, "Base Mergesort");
+	predictor_run(tiled_mergesort, 33, "Tiled Mergesort");
+	predictor_run(multi_mergesort, 46, "Multi Mergesort");
+	predictor_run(double_tiled_mergesort, 46, "Double Tiled Mergesort");
+	predictor_run(double_multi_mergesort, 59, "Double Multi Mergesort");
+
+
+	predictor_run(base_quicksort1, 5, "Base Quicksort1");
+	predictor_run(base_quicksort, 7, "Base Quicksort");
+	predictor_run(base_quicksort5, 4, "Base Quicksort5");
+	predictor_run(base_quicksort7, 4, "Base Quicksort7");
+	predictor_run(base_quicksort9, 4, "Base Quicksort9");
+	predictor_run(cache_quicksort, 4, "Cache Quicksort");
+	predictor_run(multi_quicksort, 6, "Multi Quicksort");
+	predictor_run(multi_quicksort_seq, 5, "Sequential Multi Quicksort");
+
+	printf("Not running predictors for base_radixsort\n");
+	printf("Not running predictors for cache_radixsort\n");
+
+	predictor_run(old_shellsort, 1, "Old Shellsort");
+	predictor_run(shellsort, 2, "Shellsort");
+
+	printf("Not running predictors for on2_insertsort\n");
+	printf("Not running predictors for on2_selectsort\n");
+	printf("Not running predictors for on2_bubblesort\n");
+	printf("Not running predictors for on2_bubblesort2\n");
+	printf("Not running predictors for on2_shakersort\n");
+	printf("Not running predictors for on2_shakersort2\n");
+#else
+	printf("Not running predictors\n");
+#endif
+
+
+/* ****************************************************************************************************************
+ *                  visual 
+ * ****************************************************************************************************************/
 	if (RUN_VISUAL)
 	{
 		if (visual)
@@ -307,3 +419,41 @@ main(int argc, char** args)
 
 	return 0;
 }
+
+/*
+do_nothing.c
+
+base_heapsort.c
+cache4_heapsort.c
+cache_heapsort.c
+
+knuth_base_mergesort.c
+knuth_other_base_mergesort.c
+base_mergesort.c
+multi_mergesort.c
+double_multi_mergesort.c
+double_tiled_mergesort.c
+tiled_mergesort.c
+
+base_quicksort1.c
+base_quicksort.c
+base_quicksort5.c
+base_quicksort7.c
+base_quicksort9.c
+cache_quicksort.c
+multi_quicksort.c
+multi_quicksort_seq.c
+
+base_radixsort.c
+cache_radixsort.c
+
+old_shellsort.c
+shellsort.c
+
+on2_insertsort.c
+on2_selectsort.c
+on2_bubblesort2.c
+on2_bubblesort.c
+on2_shakersort2.c
+on2_shakersort.c
+*/
