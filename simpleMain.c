@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>  	 
+#include <fcntl.h>
 
 #include "base_sorts.h"
 #include "cache_sorts.h"
@@ -12,6 +14,10 @@
 
 #ifndef RANDOM_SIZE
 #error "You must define the size of the array like this: \"gcc -DRANDOM_SIZE=128\""
+#endif
+
+#ifndef OFFSET
+#error "You must define the offset to read into the random file like this: \"gcc -DOFFSET=0\""
 #endif
 
 #undef _USE_SOFTWARE_PREDICTOR
@@ -29,8 +35,15 @@ int main()
 	/* fill the array or print error message */
 	int count = 0;
 	int random_file = open("paper/BIG", O_RDONLY);
-	if (random)
+	if (random_file)
 	{
+		int to_seek = sizeof(unsigned int) * 4194304 * OFFSET;
+		int seek = lseek(random_file, to_seek, SEEK_SET);
+		if (seek != to_seek)
+		{
+			fprintf(stderr, "Error seeking\n"); /* does printing to stderr stop simple? */
+			fprintf(stdout, "Error seeking\n"); /* do this just in case */
+		}
 		count = read(random_file, random_array, sizeof(unsigned int) * RANDOM_SIZE);
 	}
 	if (count < RANDOM_SIZE)

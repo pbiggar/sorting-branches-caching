@@ -14,11 +14,11 @@ foreach (@ARGV)
 # -------------------------------------------------------------------------------------------------------------------------
 
 my %options=();
-getopts("c:L:ihlm:M:s",\%options);
+getopts("o:c:L:ihlm:M:s",\%options);
 
 if (defined($options{"h"}) || (scalar(@ARGV) == 0))
 {
-	die ("simple [options] sort\noptions are:\n\t-c comment - comment with which to name log\n\t-l list commands simple will execute\n\t-s do a short run\n\t-h this help message\n\t-L length - cache line length\n\t-i just count instructions\n\t-m - specify minimum sort size\n\t-M - specify maximum sort size\n");
+	die ("simple [options] sort\noptions are:\n\t-c comment - comment with which to name log\n\t-l list commands simple will execute\n\t-s do a short run\n\t-h this help message\n\t-L length - cache line length\n\t-i just count instructions\n\t-m - specify minimum sort size\n\t-M - specify maximum sort size\n\t-o offset (between 0 and 9) - how much to offset the random array\n");
 }
 
 # i means just get an instruction count, nothing else
@@ -51,6 +51,13 @@ if (defined($options{"c"}))
 	$comment = $options{"c"};
 }
 $comment =~ s/[\s:]/_/g;
+
+# set the offset
+$offset = 0;
+if (defined($options{"o"}))
+{
+	$offset = $options{"o"};
+}
 
 # -------------------------------------------------------------------------------------------------------------------------
 # 											set the constants
@@ -216,7 +223,7 @@ SORT: foreach $sortname (@ARGV)
 	$n_count = 0;
 	foreach $n (@ns) # ther should be num_sim_runs * count($n) columns.
 	{
-		$comp_command = "$CC $CFLAGS $SIMPLEFLAGS -DRANDOM_SIZE=$n -DSEED=0 -DSORT=$sortname $sortfile simpleMain.c -o $object_file";
+		$comp_command = "$CC $CFLAGS $SIMPLEFLAGS -DRANDOM_SIZE=$n -DOFFSET=$offset -DSORT=$sortname $sortfile simpleMain.c -o $object_file";
 
 		print $comp_command."\n";
 		push (@command_list, $comp_command);
