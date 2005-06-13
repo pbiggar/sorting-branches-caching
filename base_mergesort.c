@@ -461,7 +461,7 @@ base_mergesort(unsigned int a[], int N)
 
 	free(aux);
 
-	// which results arent interesting
+	/* which results arent interesting */
 	init_predictor(&global_predictor[0]);
 	init_predictor(&global_predictor[1]);
 	init_predictor(&global_predictor[2]);
