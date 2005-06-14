@@ -53,6 +53,7 @@ static inline unsigned int get_offset(unsigned int* address)
 #define compexch(A, B) do { if (less((B), (A))) exch((A), (B)); } while(0)
 #define pred_compexch(A, B, C) do { if (less((B), (A))) { branch_taken(&global_predictor[(C)]); exch((A), (B)); } else { branch_not_taken(&global_predictor[(C)]);} } while(0)
 
+
 #define OUT(A) do { printf(#A ": 0x%x (%d)\n", A, A); } while(0)
 
 

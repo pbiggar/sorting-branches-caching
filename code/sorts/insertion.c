@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "../aux/utils.h"
 	
 static void
 insertion_sentinel(unsigned int a[], int N)

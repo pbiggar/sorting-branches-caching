@@ -1,7 +1,7 @@
 #ifndef _CACHE_SORTS_H_
 #define _CACHE_SORTS_H_
 
-#include "utils.h"
+#include "../aux/utils.h"
 
 
 void cache_heapsort(unsigned int a[], int N); /* aligned 8 heap */

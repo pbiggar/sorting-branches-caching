@@ -15,15 +15,15 @@
 #include <unistd.h> // time
 #include <fcntl.h> // time
 
-#include "on2_sorts.h"
-#include "base_sorts.h"
-#include "branch_sorts.h"
-#include "cache_sorts.h"
-#include "visual_sorts.h"
-#include "utils.h"
+#include "sorts/on2_sorts.h"
+#include "sorts/base_sorts.h"
+#include "sorts/branch_sorts.h"
+#include "sorts/cache_sorts.h"
+#include "aux/visual_sorts.h"
+#include "aux/utils.h"
 
 //#define _USE_SOFTWARE_PREDICTOR
-#include "predictor.h"
+#include "aux/predictor.h"
 
 #define RANDOM_SIZE (4194304)
 //#define RANDOM_SIZE (534523)

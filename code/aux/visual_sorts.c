@@ -1,5 +1,5 @@
 #include "visual_sorts.h"
-#include "base_sorts.h"
+#include "../sorts/base_sorts.h"
 #include "utils.h"
 
 #include <string.h>

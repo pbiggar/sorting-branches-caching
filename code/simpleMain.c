@@ -3,10 +3,10 @@
 #include <unistd.h>  	 
 #include <fcntl.h>
 
-#include "base_sorts.h"
-#include "cache_sorts.h"
-#include "branch_sorts.h"
-#include "on2_sorts.h"
+#include "sorts/base_sorts.h"
+#include "sorts/cache_sorts.h"
+#include "sorts/branch_sorts.h"
+#include "sorts/on2_sorts.h"
 
 #ifndef SORT
 #error "You must define the sort function like this: \"gcc -DSORT=base_insertion\""

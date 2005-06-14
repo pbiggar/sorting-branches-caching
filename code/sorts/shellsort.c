@@ -1,7 +1,6 @@
-#define Item unsigned int
-#include "utils.h"
+#include "on2_sorts.h"
 
-void shellsort(Item a[], int N)
+void shellsort(unsigned int a[], int N)
 {
 	int i, h,min, bound; 
 
@@ -13,7 +12,7 @@ void shellsort(Item a[], int N)
 		for (i = h; i <= N-1; i++)
 		{
 			int j = i; 
-			Item v = a[i]; 
+			unsigned int v = a[i]; 
 			while (j >= h && less(v, a[j-h]))
 			{ 
 				branch_taken(&global_predictor[0]);
@@ -45,7 +44,7 @@ void shellsort(Item a[], int N)
 	for(i = 1; i < N; i++)
 	{
 		int j = i;
-		Item v = a[i];
+		unsigned int v = a[i];
 
 		while(less(v, a[j-1]))
 		{
