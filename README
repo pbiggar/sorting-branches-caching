@@ -52,4 +52,6 @@ on2_selectsort, and it ran 256 times, but other sorts ran 257 times, remove the
 other sorts from the results file.
 
 This produces a file in the data/ directory called processes_cycles_data which
-is in gnuplot format.
+is in gnuplot format. If you add more sorts to the framework, you'll need to
+edit the gnuplot scripts with the column numbers that are printed out.
+
