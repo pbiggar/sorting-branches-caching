@@ -25,8 +25,8 @@ foreach $file (@ARGV)
 	$base_filename = lc($file);
 	$base_filename =~ s/ /_/g;
 
-	$data_filename = $base_filename."_data";
-	$script_filename = $base_filename."_script";
+	$data_filename = "counter_$base_filename\_data";
+	$script_filename = "counter_$base_filename\_script";
 
 	# get the branch names and values
 	open(BASE, $file);
