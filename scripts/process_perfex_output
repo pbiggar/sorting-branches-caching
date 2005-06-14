@@ -7,7 +7,7 @@
 my $keynum = "245";
 print STDOUT "Hard coded to $keynum keys. Edit the source to change this\n";
 
-open(DATA, "papiex_played");
+open(DATA, $ARGV[0]);
 
 
 while($line = <DATA>) # gets the name/size/seed
@@ -42,7 +42,7 @@ close(DATA);
 
 @sorts = sort (keys %data);
 @sorts = grep {!/do_nothing/} @sorts;
-open(OUTPUT, "> processed_cycles_data");
+open(OUTPUT, "> ../data/processed_cycles_data");
 
 printf OUTPUT "%7s", "#";
 my $count = 1;
