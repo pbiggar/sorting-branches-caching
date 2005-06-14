@@ -4,10 +4,10 @@
 
 # first get it out of the file and into a data thing
 
-my $keynum = "693";
-print STDOUT "Hard coded to 693 keys. Edit the source to change this\n";
+my $keynum = "245";
+print STDOUT "Hard coded to $keynum keys. Edit the source to change this\n";
 
-open(DATA, "played");
+open(DATA, "papiex_played");
 
 
 while($line = <DATA>) # gets the name/size/seed

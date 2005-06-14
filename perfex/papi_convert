@@ -1,0 +1,22 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+# this converts it to the perfex format
+
+# open the file
+open (FILE, $ARGV[0]);
+
+while(<FILE>)
+{
+	print $_ if m/^[^\s]+$/; # no spaces means sort name
+
+	if (m/([0-9]+)\s+PAPI_TOT_CYC/)
+	{
+		print "tsc                  $1\n";
+	}
+}
+
+close (FILE);
+
