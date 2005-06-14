@@ -10,7 +10,7 @@ set output '../plots/quick_-_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
-'processed_cycles_data' using 1:4 title 'base quicksort',\
-'processed_cycles_data' using 1:12 title 'cache quicksort',\
-'processed_cycles_data' using 1:19 title 'multi quicksort',\
-'processed_cycles_data' using 1:20 title 'sequential multi quicksort'
+'../processed_cycles_data' using 1:4 title 'base quicksort',\
+'../processed_cycles_data' using 1:12 title 'cache quicksort',\
+'../processed_cycles_data' using 1:19 title 'multi quicksort',\
+'../processed_cycles_data' using 1:20 title 'sequential multi quicksort'

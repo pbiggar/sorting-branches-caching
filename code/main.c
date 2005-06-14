@@ -22,14 +22,13 @@
 #include "aux/visual_sorts.h"
 #include "aux/utils.h"
 
-//#define _USE_SOFTWARE_PREDICTOR
 #include "aux/predictor.h"
 
-#define RANDOM_SIZE (4194304)
+//#define RANDOM_SIZE (4194304)
 //#define RANDOM_SIZE (534523)
 //#define RANDOM_SIZE (262144)
 //#define RANDOM_SIZE (32768)
-//#define RANDOM_SIZE (16384)
+#define RANDOM_SIZE (16384)
 //#define RANDOM_SIZE (4096)
 //#define RANDOM_SIZE (128)
 
@@ -180,8 +179,8 @@ time_sort(void sort(unsigned int*, int), const char* description)
 }
 
 
-#define TEST_MIN 8
-#define TEST_MAX 1040
+#define TEST_MIN 1024
+#define TEST_MAX 1025
 static void inline
 test_sort(void sort(unsigned int*, int), const char* description)
 {
@@ -233,7 +232,7 @@ main(int argc, char** args)
  *                    tests
  * ****************************************************************************************************************/
 	printf("Beginning sort tests (%d - %d)\n", TEST_MIN, TEST_MAX);
-/*	test_sort(base_heapsort, "Base Heapsort");
+	test_sort(base_heapsort, "Base Heapsort");
 	test_sort(cache_heapsort, "Cache Heapsort");
 	test_sort(cache4_heapsort, "Cache4 Heapsort");
 
@@ -244,7 +243,7 @@ main(int argc, char** args)
 	test_sort(multi_mergesort, "Multi Mergesort");
 	test_sort(double_tiled_mergesort, "Double Tiled Mergesort");
 	test_sort(double_multi_mergesort, "Double Multi Mergesort");
-*/
+
 
 	test_sort(base_quicksort1, "Base Quicksort1");
 	test_sort(base_quicksort, "Base Quicksort");
@@ -254,7 +253,7 @@ main(int argc, char** args)
 	test_sort(cache_quicksort, "Cache Quicksort");
 	test_sort(multi_quicksort, "Multi Quicksort");
 	test_sort(multi_quicksort_seq, "Sequential Multi Quicksort");
-/*
+
 
 	test_sort(base_radixsort, "Base Radixsort");
 	test_sort(base_radixsort, "Cache Radixsort");
@@ -312,8 +311,8 @@ main(int argc, char** args)
 	time_sort(base_quicksort7, "Base Quicksort7");
 	time_sort(base_quicksort9, "Base Quicksort9");
 	time_sort(cache_quicksort, "Cache Quicksort");
-//	time_sort(multi_quicksort, "Multi Quicksort");
-//	time_sort(multi_quicksort_seq, "Sequential Multi Quicksort");
+	time_sort(multi_quicksort, "Multi Quicksort");
+	time_sort(multi_quicksort_seq, "Sequential Multi Quicksort");
 
 
 	time_sort(base_radixsort, "Base Radixsort");
@@ -346,7 +345,7 @@ main(int argc, char** args)
 		printf("No timings on on2_bubblesort - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
 		printf("No timings on on2_bubblesort2 - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
 	}
-*/
+
 
 // ****************************************************************************************************************
 //                   predictors 

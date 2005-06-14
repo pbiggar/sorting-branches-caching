@@ -10,5 +10,5 @@ set output '../plots/shell_-_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
-'processed_cycles_data' using 1:21 title 'gonnet shellsort',\
-'processed_cycles_data' using 1:28 title 'improved gonnet shellsort'
+'../processed_cycles_data' using 1:21 title 'gonnet shellsort',\
+'../processed_cycles_data' using 1:28 title 'improved gonnet shellsort'

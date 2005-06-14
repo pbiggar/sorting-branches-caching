@@ -1,57 +1,89 @@
 There are 4 sets of tests: hardware performance counters, testing the sorts to
 see if they work, simplescalar and software branch predictors.
 
-Not that all scripts are expected to be run from the scripts directory:
-
-cd scripts/
-run_script
+Note that all scripts are expected to be run from the scripts directory:
+	$ cd scripts/
+	$ ./run_script
 
 not:
-scripts/run_script
+	$ scripts/run_script
 
 main.c:
 
-Enter the code directory. In main.c there are a list of sorts to be tested (look
-for test_sort(). The
-#defines TEST_MIN and TEST_MAX control how many keys are to be tested. The sorts
-are tested for an array of every size between the min and max, also using that
-size as a seed for the random number generator.
+	Enter the code directory. In main.c there are a list of sorts to be tested
+	(look for test_sort(). The #defines TEST_MIN and TEST_MAX control how many
+	keys are to be tested. The sorts are tested for an array of every size
+	between the min and max, also using that size as a seed for the random
+	number generator.
 
-Some sorts do not work. Sorry. multi_quicksort and multi_quicksort_seq don't
-always work, but they do with the sizes used in the other tests.
+	Some sorts do not work. Sorry. multi_quicksort and multi_quicksort_seq
+	don't always work, but they do with the sizes used in the other tests.
 
-The #define RANDOM_SIZE controls time_sort() which gives a quick tick count or
-how long it takes to run a sort. Not very official, at all. It also defines the
-size of array used for the software predictors, which is official.
+	The #define RANDOM_SIZE controls time_sort() which gives a quick tick count
+	or how long it takes to run a sort. Not very official, at all. It also
+	defines the size of array used for the software predictors, which is
+	official.
 
-The #define RUN_VISUAL decides if the visual tests are being done. These were
-used in development, and arent that interesting.
+	The #define RUN_VISUAL decides if the visual tests are being done. These
+	were used in development, and arent that interesting.
 
 Hardware counters:
 
-In the scripts directory, call do_all_papiex or do_all_perfex. You need a
-patched kernel for this. See: http://icl.cs.utk.edu/papi/.
+	In the scripts directory, call do_all_papiex or do_all_perfex. You need a
+	patched kernel for this. See: http://icl.cs.utk.edu/papi/.
 
-Capture the output:
-./do_all_papiex > my_results
-Ctrl-C when bored, or needing results, as this will take a long time.
+	Capture the output (Ctrl-C when bored, or needing results, as this will
+	take a long time):
+		$ ./do_all_papiex > my_results
+	or
+		$ ./do_all_perfex > my_results
 
-or
-./do_all_perfex > my_results
+	If you use papiex (more accurate), then it needs to be converted to the
+	other format:
+		$ ./papi_convert my_results > new_results
 
-If you use papiex (more accurate), then it needs to be converted
-./papi_convert my_results > new_results
+	Then process the results to give you graphs:
+		$ ./process_perfex_output new_results
 
-Then process the results to give you graphs:
-./process_perfex_output new_results
+	Theres a little bit of hard coding in this script, so change $key_num to
+	the number of times perfex actually ran. Also modify the input so that only
+	completed work cycles are there. This means if the last sort you ran was
+	on2_selectsort, and it ran 256 times, but other sorts ran 257 times, remove
+	the other sorts from the results file.
 
-Theres a little bit of hard coding in this script, so change $key_num to the
-number of times perfex actually ran. Also modify the input so that only
-completed work cycles are there. This means if the last sort you ran was
-on2_selectsort, and it ran 256 times, but other sorts ran 257 times, remove the
-other sorts from the results file.
+	This produces a file in the data/ directory called processes_cycles_data
+	which is in gnuplot format. If you add more sorts to the framework, you'll
+	need to edit the gnuplot scripts in data/perfex_gnuplot_scripts/ with the
+	column numbers that are printed out.
 
-This produces a file in the data/ directory called processes_cycles_data which
-is in gnuplot format. If you add more sorts to the framework, you'll need to
-edit the gnuplot scripts with the column numbers that are printed out.
+	To create the gnuplot images, enter the data/perfex_gnuplot_scripts/
+	directory and:
+		$ gnuplot *
+
+	The images appear in the data/plots/ directory.
+
+Software branch predictors:
+
+	To run the branch predictors, enter the code/ directory, and ensure that
+	-D_USE_SOFTWARE_PREDICTOR is set in the CFLAGS line. Then:
+		$ make
+		$ ./fastsort
+
+	
+	The software counters will appear in data/counters/. To process these,
+	enter that directory and run:
+		$ ./process_counter *
+
+	This will print out the maximium branches. If this isnt slightly lower than
+	the y-axis in the gnuplot scripts, it will need to be changed (On line 8 of
+	process_counter).
+
+	This creates the gnuplot data files and the gnuplot scripts. To create the images:
+		$ gnuplot *script*
+		
+
+Simplescalar:
+
+	
+
 
