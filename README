@@ -1,11 +1,3 @@
-The organisation of the files and directories:
+Code:
 
-fs/
-	*.{c,h} - code for sorts and related functions
-	BIG - the random data (10 x 16M chunks 'cat'ed together)
-
-# sources for the papers
-	fyp_report/
-	branch_paper/
-	cache_paper/
-	tech_report/
+	All code in is the code directory. 
