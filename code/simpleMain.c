@@ -34,7 +34,7 @@ int main()
 
 	/* fill the array or print error message */
 	int count = 0;
-	int random_file = open("BIG", O_RDONLY);
+	int random_file = open("../data/BIG", O_RDONLY);
 	if (random_file)
 	{
 		int to_seek = sizeof(unsigned int) * 4194304 * OFFSET;

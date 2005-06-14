@@ -92,7 +92,7 @@ static void inline
 predictor_run(void sort(unsigned int*, int), int counter_count, const char* description)
 {
 	unsigned int* temp_array = malloc(RANDOM_SIZE * sizeof(unsigned int));
-	int random_file = open("BIG", O_RDONLY);
+	int random_file = open("../data/BIG", O_RDONLY);
 
 	char filename[200];
 
@@ -100,7 +100,7 @@ predictor_run(void sort(unsigned int*, int), int counter_count, const char* desc
 	int i;
 	if (random_file == -1) goto error_predictor_run;
 
-	sprintf(filename, "counters/%s", description);
+	sprintf(filename, "../data/counters/%s", description);
 	output_file = fopen(filename, "w");
 	if (output_file == NULL) goto error_predictor_run;
 
@@ -217,7 +217,7 @@ main(int argc, char** args)
 	int visual = 0;
 	if (RUN_VISUAL)
 	{
-		visual = !open_visual_log("visual_sort.html", "w");
+		visual = !open_visual_log("../visual_sort.html", "w");
 	}
 
 	// make printf print upon a newline
@@ -420,7 +420,7 @@ main(int argc, char** args)
 	return 0;
 }
 
-/*
+/* list of sorts
 do_nothing.c
 
 base_heapsort.c
