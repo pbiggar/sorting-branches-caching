@@ -72,15 +72,49 @@ med3(unsigned int array[], int l, int m, int r)
 	unsigned int c = array[r];
 	if (a < b)
 	{
-		if (b < c) return m;
-		else if (a < c) return r;
-		else return l;
+		branch_taken(&global_predictor[4]);
+		if (b < c) 
+		{
+			branch_taken(&global_predictor[5]);
+			return m;
+		}
+		else
+		{
+			branch_not_taken(&global_predictor[5]);
+			if (a < c)
+			{
+				branch_taken(&global_predictor[6]);
+				return r;
+			}
+			else
+			{
+				branch_not_taken(&global_predictor[6]);
+				return l;
+			}
+		}
 	}
 	else
 	{
-		if (c < b) return m;
-		else if (c < a) return r;
-		else return l;
+		branch_not_taken(&global_predictor[4]);
+		if (c < b)
+		{
+			branch_taken(&global_predictor[7]);
+			return m;
+		}
+		else
+		{
+			branch_not_taken(&global_predictor[7]);
+			if (c < a)
+			{
+				branch_taken(&global_predictor[8]);
+				return r;
+			}
+			else
+			{
+				branch_not_taken(&global_predictor[8]);
+				return l;
+			}
+		}
 	}
 }
 
@@ -105,6 +139,14 @@ base_quicksort5(unsigned int a[], int N)
 	describe_predictor(&global_predictor[1], "j");
 	describe_predictor(&global_predictor[2], "partition end");
 	describe_predictor(&global_predictor[3], "insertion");
+	describe_predictor(&global_predictor[4], "median of 5 ab");
+	describe_predictor(&global_predictor[5], "median of 5 bc");
+	describe_predictor(&global_predictor[6], "median of 5 ac");
+	describe_predictor(&global_predictor[7], "median of 5 cb");
+	describe_predictor(&global_predictor[8], "median of 5 ca");
+	describe_predictor(&global_predictor[9], "median of 3 cmp1");
+	describe_predictor(&global_predictor[10], "median of 3 cmp2");
+	describe_predictor(&global_predictor[11], "median of 3 cmp3");
 
 	r = N-1;
 	l = 0;
@@ -132,9 +174,9 @@ base_quicksort5(unsigned int a[], int N)
 		}
 
 		
-		compexch(a[l], a[r-1]);
-		compexch(a[l], a[r]);
-		compexch(a[r-1], a[r]);
+		pred_compexch(a[l], a[r-1], 9);
+		pred_compexch(a[l], a[r], 10);
+		pred_compexch(a[r-1], a[r], 11);
 
 		i = partition(a,l+1,r-1);
 

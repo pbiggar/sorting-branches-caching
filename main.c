@@ -12,6 +12,8 @@
 #include <string.h> // strerror
 #include <stdlib.h> // atoi, malloc, free
 #include <sys/time.h> // time
+#include <unistd.h> // time
+#include <fcntl.h> // time
 
 #include "on2_sorts.h"
 #include "base_sorts.h"
@@ -23,9 +25,9 @@
 //#define _USE_SOFTWARE_PREDICTOR
 #include "predictor.h"
 
-//#define RANDOM_SIZE (4194304)
+#define RANDOM_SIZE (4194304)
 //#define RANDOM_SIZE (534523)
-#define RANDOM_SIZE (262144)
+//#define RANDOM_SIZE (262144)
 //#define RANDOM_SIZE (32768)
 //#define RANDOM_SIZE (16384)
 //#define RANDOM_SIZE (4096)
@@ -98,7 +100,7 @@ predictor_run(void sort(unsigned int*, int), int counter_count, const char* desc
 	int i;
 	if (random_file == -1) goto error_predictor_run;
 
-	sprintf(filename, "paper/counters/%s", description);
+	sprintf(filename, "counters/%s", description);
 	output_file = fopen(filename, "w");
 	if (output_file == NULL) goto error_predictor_run;
 
@@ -151,6 +153,8 @@ predictor_run(void sort(unsigned int*, int), int counter_count, const char* desc
 
 	fclose(output_file);
 	close(random_file);
+
+
 error_predictor_run:
 	printf("Error, with a value of %d and a string of '%s'\n", errno, strerror(errno));
 
@@ -229,7 +233,7 @@ main(int argc, char** args)
  *                    tests
  * ****************************************************************************************************************/
 	printf("Beginning sort tests (%d - %d)\n", TEST_MIN, TEST_MAX);
-	test_sort(base_heapsort, "Base Heapsort");
+/*	test_sort(base_heapsort, "Base Heapsort");
 	test_sort(cache_heapsort, "Cache Heapsort");
 	test_sort(cache4_heapsort, "Cache4 Heapsort");
 
@@ -240,7 +244,7 @@ main(int argc, char** args)
 	test_sort(multi_mergesort, "Multi Mergesort");
 	test_sort(double_tiled_mergesort, "Double Tiled Mergesort");
 	test_sort(double_multi_mergesort, "Double Multi Mergesort");
-
+*/
 
 	test_sort(base_quicksort1, "Base Quicksort1");
 	test_sort(base_quicksort, "Base Quicksort");
@@ -250,7 +254,7 @@ main(int argc, char** args)
 	test_sort(cache_quicksort, "Cache Quicksort");
 	test_sort(multi_quicksort, "Multi Quicksort");
 	test_sort(multi_quicksort_seq, "Sequential Multi Quicksort");
-
+/*
 
 	test_sort(base_radixsort, "Base Radixsort");
 	test_sort(base_radixsort, "Cache Radixsort");
@@ -285,9 +289,9 @@ main(int argc, char** args)
 
 
 
-/* ****************************************************************************************************************
- *                    timings
- * ****************************************************************************************************************/
+// ****************************************************************************************************************
+//                    timings
+// ****************************************************************************************************************
 	printf("Beginning sort timings (for N = %d)\n", RANDOM_SIZE);
 	time_sort(base_heapsort, "Base Heapsort");
 	time_sort(cache_heapsort, "Cache Heapsort");
@@ -308,8 +312,8 @@ main(int argc, char** args)
 	time_sort(base_quicksort7, "Base Quicksort7");
 	time_sort(base_quicksort9, "Base Quicksort9");
 	time_sort(cache_quicksort, "Cache Quicksort");
-	time_sort(multi_quicksort, "Multi Quicksort");
-	time_sort(multi_quicksort_seq, "Sequential Multi Quicksort");
+//	time_sort(multi_quicksort, "Multi Quicksort");
+//	time_sort(multi_quicksort_seq, "Sequential Multi Quicksort");
 
 
 	time_sort(base_radixsort, "Base Radixsort");
@@ -342,13 +346,12 @@ main(int argc, char** args)
 		printf("No timings on on2_bubblesort - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
 		printf("No timings on on2_bubblesort2 - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
 	}
+*/
 
+// ****************************************************************************************************************
+//                   predictors 
+// ****************************************************************************************************************
 
-/* ****************************************************************************************************************
- *                   predictors 
- * ****************************************************************************************************************/
-
-#ifdef _USE_SOFTWARE_PREDICTOR
 	printf("Running predictors\n");
 	if (RANDOM_SIZE != (4 * 1024 * 1024)) printf("predictors not being run with correct size\n");
 
@@ -369,9 +372,9 @@ main(int argc, char** args)
 
 	predictor_run(base_quicksort1, 5, "Base Quicksort1");
 	predictor_run(base_quicksort, 7, "Base Quicksort");
-	predictor_run(base_quicksort5, 4, "Base Quicksort5");
-	predictor_run(base_quicksort7, 4, "Base Quicksort7");
-	predictor_run(base_quicksort9, 4, "Base Quicksort9");
+	predictor_run(base_quicksort5, 12, "Base Quicksort5");
+	predictor_run(base_quicksort7, 17, "Base Quicksort7");
+	predictor_run(base_quicksort9, 22, "Base Quicksort9");
 	predictor_run(cache_quicksort, 4, "Cache Quicksort");
 	predictor_run(multi_quicksort, 6, "Multi Quicksort");
 	predictor_run(multi_quicksort_seq, 5, "Sequential Multi Quicksort");
@@ -388,14 +391,11 @@ main(int argc, char** args)
 	printf("Not running predictors for on2_bubblesort2\n");
 	printf("Not running predictors for on2_shakersort\n");
 	printf("Not running predictors for on2_shakersort2\n");
-#else
-	printf("Not running predictors\n");
-#endif
 
 
-/* ****************************************************************************************************************
- *                  visual 
- * ****************************************************************************************************************/
+// ****************************************************************************************************************
+//                  visual 
+// ****************************************************************************************************************
 	if (RUN_VISUAL)
 	{
 		if (visual)
