@@ -34,3 +34,75 @@ taken_count:                     9016443       8299716      18461645      543615
 not_taken_count:                 6165216       9016443       8299716      18461645      41943020
 current state:                         T
 
+Base Quicksort5 - median of 5 ab:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                     400934        401410        401504        400903       1604751
+correct_count:                    200436        200498        200591        200312        801837
+incorrect_count:                  200498        200912        200913        200591        802914
+taken_count:                      200498        200912        200591        200312        802313
+not_taken_count:                  200436        200498        200913        200591        802438
+current state:                        NT
+
+Base Quicksort5 - median of 5 bc:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                     428285        213097        107057         53874        802313
+correct_count:                    286175        142110         36070         17804        482159
+incorrect_count:                  142110         70987         70987         36070        320154
+taken_count:                      142110         70987         36070         17804        266971
+not_taken_count:                  286175        142110         70987         36070        535342
+current state:                         T
+
+Base Quicksort5 - median of 5 ac:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                     134091        133879        133762        133610        535342
+correct_count:                     67113         66978         66860         66750        267701
+incorrect_count:                   66978         66901         66902         66860        267641
+taken_count:                       66978         66901         66860         66750        267489
+not_taken_count:                   67113         66978         66902         66860        267853
+current state:                        NT
+
+Base Quicksort5 - median of 5 cb:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                     427347        213634        107490         53967        802438
+correct_count:                    285069        142279         36134         17833        481315
+incorrect_count:                  142278         71355         71356         36134        321123
+taken_count:                      142278         71355         36134         17833        267600
+not_taken_count:                  285069        142279         71356         36134        534838
+current state:              NT saturated
+
+Base Quicksort5 - median of 5 ca:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                     133624        133415        133917        133882        534838
+correct_count:                     67218         66407         66908         66974        267507
+incorrect_count:                   66406         67008         67009         66908        267331
+taken_count:                       66406         67008         66908         66974        267296
+not_taken_count:                   67218         66407         67009         66908        267542
+current state:              NT saturated
+
+Base Quicksort5 - median of 3 cmp1:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                     955823       1004748       1077068       1172546       4210185
+correct_count:                    469688        486136        558455        614091       2128370
+incorrect_count:                  486135        518612        518613        558455       2081815
+taken_count:                      486135        518612        558455        614091       2177293
+not_taken_count:                  469688        486136        518613        558455       2032892
+current state:              NT saturated
+
+Base Quicksort5 - median of 3 cmp2:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                    2030650       1161610        652592        365333       4210185
+correct_count:                   1287314        743336        234317        131016       2395983
+incorrect_count:                  743336        418274        418275        234317       1814202
+taken_count:                      743336        418274        234317        131016       1526943
+not_taken_count:                 1287314        743336        418275        234317       2683242
+current state:                        NT
+
+Base Quicksort5 - median of 3 cmp3:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                     233594        503811       1093663       2379117       4210185
+correct_count:                     74115        159479        749331       1629787       2612712
+incorrect_count:                  159479        344332        344332        749330       1597473
+taken_count:                      159479        344332        749331       1629787       2882929
+not_taken_count:                   74115        159479        344332        749330       1327256
+current state:               T saturated
+
