@@ -1,0 +1,18 @@
+Base Mergesort - left:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                  404442452     216947638       9725265        394459     631509814
+correct_count:                 196840068     207602384        380010         14449     404836911
+incorrect_count:               207602384       9345254       9345255        380010     226672903
+taken_count:                   207602384       9345254        380010         14449     217342097
+not_taken_count:               196840068     207602384       9345255        380010     414167717
+current state:                        NT
+
+Base Mergesort - right:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                  403655807     216896532      10530828        445565     631528732
+correct_count:                 196858840     206796967        431263         14302     404101372
+incorrect_count:               206796967      10099565      10099565        431263     227427360
+taken_count:                   206796967      10099565        431263         14302     217342097
+not_taken_count:               196858840     206796967      10099565        431263     414186635
+current state:                         T
+

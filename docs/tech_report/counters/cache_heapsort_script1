@@ -1,0 +1,16 @@
+set term postscript eps
+set boxwidth 0.25 absolute
+set style fill pattern 0 border -1
+set format y "%8.0f"
+set yrange [0:156000000]
+set ticscale 0 0
+set offsets .1, .1, 0, 0
+set bmargin 3
+set title "cache_heapsort branch predictor results 1"
+set output 'cache_heapsort-1.eps'
+set xtics ("comparison 7" 0, "\nchild promotion" 1, "fix up" 2, "" 3, "" 4, "" 5, "" 6)
+plot \
+'cache_heapsort_data1' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
+'cache_heapsort_data1' using ($0-.15):2 title 'correct' with boxes lt -1,\
+'cache_heapsort_data1' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
+'cache_heapsort_data1' using ($0+.15):4 title 'taken' with boxes lt -1

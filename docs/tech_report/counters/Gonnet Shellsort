@@ -1,0 +1,9 @@
+Gonnet Shellsort - inner loop:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                  361290060     374565819     400675309     413974204    1550505392
+correct_count:                 175509496     185780565     211890054     202084150     775264265
+incorrect_count:               185780564     188785254     188785255     211890054     775241127
+taken_count:                   185780564     188785254     211890054     202084150     788540022
+not_taken_count:               175509496     185780565     188785255     211890054     761965370
+current state:              NT saturated
+

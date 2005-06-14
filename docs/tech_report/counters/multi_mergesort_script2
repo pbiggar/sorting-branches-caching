@@ -1,0 +1,16 @@
+set term postscript eps
+set boxwidth 0.25 absolute
+set style fill pattern 0 border -1
+set format y "%8.0f"
+set yrange [0:156000000]
+set ticscale 0 0
+set offsets .1, .1, 0, 0
+set bmargin 3
+set title "multi_mergesort branch predictor results 2"
+set output 'multi_mergesort-2.eps'
+set xtics ("forwards left 2" 0, "\nforwards left 3" 1, "forwards left 4" 2, "\nforwards left 5" 3, "forwards left 6" 4, "\nforwards left 7" 5, "forwards right 0" 6)
+plot \
+'multi_mergesort_data2' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
+'multi_mergesort_data2' using ($0-.15):2 title 'correct' with boxes lt -1,\
+'multi_mergesort_data2' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
+'multi_mergesort_data2' using ($0+.15):4 title 'taken' with boxes lt -1
