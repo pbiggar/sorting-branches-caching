@@ -6,9 +6,9 @@ set format x "%8.0f"
 set logscale x
 set data style linespoints
 set term postscript eps
-set output '../plots/radix_-_Branches.eps'
+set output '../data/plots/radix_-_Branches.eps'
 set xlabel 'set size in keys'
 set ylabel 'Branches per key'
 plot \
-'../inputs/base_radixsort_/base_radixsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'base radixsort',\
-'../inputs/cache_radixsort_/cache_radixsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'cache radixsort'
+'../data/converted_simple_logs/base_radixsort_/base_radixsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'base radixsort',\
+'../data/converted_simple_logs/cache_radixsort_/cache_radixsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'cache radixsort'

@@ -6,14 +6,14 @@ set format x "%8.0f"
 set logscale x
 set data style linespoints
 set term postscript eps
-set output '../plots/merge_-_Branches.eps'
+set output '../data/plots/merge_-_Branches.eps'
 set xlabel 'set size in keys'
 set ylabel 'Branches per key'
 plot \
-'../inputs/algorithm_n/algorithm_n_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'algorithm N',\
-'../inputs/algorithm_s/algorithm_s_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'algorithm S',\
-'../inputs/base_mergesort_/base_mergesort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'base mergesort',\
-'../inputs/tiled_mergesort_/tiled_mergesort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'tiled mergesort',\
-'../inputs/multi_mergesort_/multi_mergesort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'multi mergesort',\
-'../inputs/double_tiled_mergesort_/double_tiled_mergesort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'double tiled mergesort',\
-'../inputs/double_multi_mergesort_/double_multi_mergesort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'double multi-mergesort'
+'../data/converted_simple_logs/algorithm_n/algorithm_n_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'algorithm N',\
+'../data/converted_simple_logs/algorithm_s/algorithm_s_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'algorithm S',\
+'../data/converted_simple_logs/base_mergesort_/base_mergesort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'base mergesort',\
+'../data/converted_simple_logs/tiled_mergesort_/tiled_mergesort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'tiled mergesort',\
+'../data/converted_simple_logs/multi_mergesort_/multi_mergesort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'multi mergesort',\
+'../data/converted_simple_logs/double_tiled_mergesort_/double_tiled_mergesort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'double tiled mergesort',\
+'../data/converted_simple_logs/double_multi_mergesort_/double_multi_mergesort__sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'double multi-mergesort'

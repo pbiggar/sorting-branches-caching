@@ -6,9 +6,9 @@ set format x "%8.0f"
 set logscale x
 set data style linespoints
 set term postscript eps
-set output '../plots/shell_-_Instructions.eps'
+set output '../data/plots/shell_-_Instructions.eps'
 set xlabel 'set size in keys'
 set ylabel 'Instructions per key'
 plot \
-'../inputs/gonnet_shellsort_/gonnet_shellsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:2 title 'gonnet shellsort',\
-'../inputs/improved_gonnet_shellsort_/improved_gonnet_shellsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:2 title 'improved gonnet shellsort'
+'../data/converted_simple_logs/gonnet_shellsort_/gonnet_shellsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:2 title 'gonnet shellsort',\
+'../data/converted_simple_logs/improved_gonnet_shellsort_/improved_gonnet_shellsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:2 title 'improved gonnet shellsort'

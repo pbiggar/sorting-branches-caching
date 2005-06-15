@@ -6,9 +6,9 @@ set format x "%8.0f"
 set logscale x
 set data style linespoints
 set term postscript eps
-set output '../plots/radix_-_Instructions.eps'
+set output '../data/plots/radix_-_Instructions.eps'
 set xlabel 'set size in keys'
 set ylabel 'Instructions per key'
 plot \
-'../inputs/base_radixsort_/base_radixsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'base radixsort',\
-'../inputs/cache_radixsort_/cache_radixsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'cache radixsort'
+'../data/converted_simple_logs/base_radixsort_/base_radixsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'base radixsort',\
+'../data/converted_simple_logs/cache_radixsort_/cache_radixsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'cache radixsort'

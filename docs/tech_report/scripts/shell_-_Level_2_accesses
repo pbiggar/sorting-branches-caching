@@ -6,15 +6,15 @@ set format x "%8.0f"
 set logscale x
 set data style linespoints
 set term postscript eps
-set output '../plots/shell_-_Level_2_accesses.eps'
+set output '../data/plots/shell_-_Level_2_accesses.eps'
 set xlabel 'set size in keys'
 set ylabel 'Level 2 accesses per key'
 plot \
-'../inputs/gonnet_shellsort_/gonnet_shellsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'gonnet shellsort  - Fully Associative - 4MB - 32 byte line',\
-'../inputs/gonnet_shellsort_/gonnet_shellsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'gonnet shellsort  - Fully Associative - 2MB - 32 byte line',\
-'../inputs/gonnet_shellsort_/gonnet_shellsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'gonnet shellsort  - Direct Mapped - 4MB - 32 byte line',\
-'../inputs/gonnet_shellsort_/gonnet_shellsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'gonnet shellsort  - Direct Mapped - 2MB - 32 byte line',\
-'../inputs/improved_gonnet_shellsort_/improved_gonnet_shellsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'improved gonnet shellsort  - Fully Associative - 4MB - 32 byte line',\
-'../inputs/improved_gonnet_shellsort_/improved_gonnet_shellsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'improved gonnet shellsort  - Fully Associative - 2MB - 32 byte line',\
-'../inputs/improved_gonnet_shellsort_/improved_gonnet_shellsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'improved gonnet shellsort  - Direct Mapped - 4MB - 32 byte line',\
-'../inputs/improved_gonnet_shellsort_/improved_gonnet_shellsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'improved gonnet shellsort  - Direct Mapped - 2MB - 32 byte line'
+'../data/converted_simple_logs/gonnet_shellsort_/gonnet_shellsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'gonnet shellsort  - Fully Associative - 4MB - 32 byte line',\
+'../data/converted_simple_logs/gonnet_shellsort_/gonnet_shellsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'gonnet shellsort  - Fully Associative - 2MB - 32 byte line',\
+'../data/converted_simple_logs/gonnet_shellsort_/gonnet_shellsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'gonnet shellsort  - Direct Mapped - 4MB - 32 byte line',\
+'../data/converted_simple_logs/gonnet_shellsort_/gonnet_shellsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'gonnet shellsort  - Direct Mapped - 2MB - 32 byte line',\
+'../data/converted_simple_logs/improved_gonnet_shellsort_/improved_gonnet_shellsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'improved gonnet shellsort  - Fully Associative - 4MB - 32 byte line',\
+'../data/converted_simple_logs/improved_gonnet_shellsort_/improved_gonnet_shellsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'improved gonnet shellsort  - Fully Associative - 2MB - 32 byte line',\
+'../data/converted_simple_logs/improved_gonnet_shellsort_/improved_gonnet_shellsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'improved gonnet shellsort  - Direct Mapped - 4MB - 32 byte line',\
+'../data/converted_simple_logs/improved_gonnet_shellsort_/improved_gonnet_shellsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'improved gonnet shellsort  - Direct Mapped - 2MB - 32 byte line'

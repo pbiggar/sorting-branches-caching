@@ -6,23 +6,23 @@ set format x "%8.0f"
 set logscale x
 set data style linespoints
 set term postscript eps
-set output '../plots/quick_-_Level_2_accesses.eps'
+set output '../data/plots/quick_-_Level_2_accesses.eps'
 set xlabel 'set size in keys'
 set ylabel 'Level 2 accesses per key'
 plot \
-'../inputs/base_quicksort_/base_quicksort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'base quicksort - Fully Associative - 4MB - 32 byte line',\
-'../inputs/base_quicksort_/base_quicksort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'base quicksort - Fully Associative - 2MB - 32 byte line',\
-'../inputs/base_quicksort_/base_quicksort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'base quicksort - Direct Mapped - 4MB - 32 byte line',\
-'../inputs/base_quicksort_/base_quicksort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'base quicksort - Direct Mapped - 2MB - 32 byte line',\
-'../inputs/cache_quicksort_/cache_quicksort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'tuned quicksort - Fully Associative - 4MB - 32 byte line',\
-'../inputs/cache_quicksort_/cache_quicksort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'tuned quicksort - Fully Associative - 2MB - 32 byte line',\
-'../inputs/cache_quicksort_/cache_quicksort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'tuned quicksort - Direct Mapped - 4MB - 32 byte line',\
-'../inputs/cache_quicksort_/cache_quicksort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'tuned quicksort - Direct Mapped - 2MB - 32 byte line',\
-'../inputs/multi_quicksort_/multi_quicksort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'multi quicksort - Fully Associative - 4MB - 32 byte line',\
-'../inputs/multi_quicksort_/multi_quicksort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'multi quicksort - Fully Associative - 2MB - 32 byte line',\
-'../inputs/multi_quicksort_/multi_quicksort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'multi quicksort - Direct Mapped - 4MB - 32 byte line',\
-'../inputs/multi_quicksort_/multi_quicksort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'multi quicksort - Direct Mapped - 2MB - 32 byte line',\
-'../inputs/multi_quicksort_seq_/multi_quicksort_seq__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'multi quicksort seq - Fully Associative - 4MB - 32 byte line',\
-'../inputs/multi_quicksort_seq_/multi_quicksort_seq__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'multi quicksort seq - Fully Associative - 2MB - 32 byte line',\
-'../inputs/multi_quicksort_seq_/multi_quicksort_seq__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'multi quicksort seq - Direct Mapped - 4MB - 32 byte line',\
-'../inputs/multi_quicksort_seq_/multi_quicksort_seq__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'multi quicksort seq - Direct Mapped - 2MB - 32 byte line'
+'../data/converted_simple_logs/base_quicksort_/base_quicksort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'base quicksort - Fully Associative - 4MB - 32 byte line',\
+'../data/converted_simple_logs/base_quicksort_/base_quicksort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'base quicksort - Fully Associative - 2MB - 32 byte line',\
+'../data/converted_simple_logs/base_quicksort_/base_quicksort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'base quicksort - Direct Mapped - 4MB - 32 byte line',\
+'../data/converted_simple_logs/base_quicksort_/base_quicksort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'base quicksort - Direct Mapped - 2MB - 32 byte line',\
+'../data/converted_simple_logs/cache_quicksort_/cache_quicksort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'tuned quicksort - Fully Associative - 4MB - 32 byte line',\
+'../data/converted_simple_logs/cache_quicksort_/cache_quicksort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'tuned quicksort - Fully Associative - 2MB - 32 byte line',\
+'../data/converted_simple_logs/cache_quicksort_/cache_quicksort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'tuned quicksort - Direct Mapped - 4MB - 32 byte line',\
+'../data/converted_simple_logs/cache_quicksort_/cache_quicksort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'tuned quicksort - Direct Mapped - 2MB - 32 byte line',\
+'../data/converted_simple_logs/multi_quicksort_/multi_quicksort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'multi quicksort - Fully Associative - 4MB - 32 byte line',\
+'../data/converted_simple_logs/multi_quicksort_/multi_quicksort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'multi quicksort - Fully Associative - 2MB - 32 byte line',\
+'../data/converted_simple_logs/multi_quicksort_/multi_quicksort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'multi quicksort - Direct Mapped - 4MB - 32 byte line',\
+'../data/converted_simple_logs/multi_quicksort_/multi_quicksort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'multi quicksort - Direct Mapped - 2MB - 32 byte line',\
+'../data/converted_simple_logs/multi_quicksort_seq_/multi_quicksort_seq__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'multi quicksort seq - Fully Associative - 4MB - 32 byte line',\
+'../data/converted_simple_logs/multi_quicksort_seq_/multi_quicksort_seq__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:26 title 'multi quicksort seq - Fully Associative - 2MB - 32 byte line',\
+'../data/converted_simple_logs/multi_quicksort_seq_/multi_quicksort_seq__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'multi quicksort seq - Direct Mapped - 4MB - 32 byte line',\
+'../data/converted_simple_logs/multi_quicksort_seq_/multi_quicksort_seq__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:26 title 'multi quicksort seq - Direct Mapped - 2MB - 32 byte line'

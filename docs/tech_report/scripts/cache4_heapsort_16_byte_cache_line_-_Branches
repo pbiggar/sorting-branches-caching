@@ -7,8 +7,8 @@ set logscale x
 set data style linespoints
 set term postscript eps
 set nokey
-set output '../plots/cache4_heapsort_small_cache_line_-_Branches.eps'
+set output '../data/plots/cache4_heapsort_small_cache_line_-_Branches.eps'
 set xlabel 'set size in keys'
 set ylabel 'Branches per key'
 plot \
-'../inputs/cache4_heapsort_16_byte_cache_line/cache4_heapsort_16_byte_cache_line_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6
+'../data/converted_simple_logs/cache4_heapsort_16_byte_cache_line/cache4_heapsort_16_byte_cache_line_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6

@@ -1,0 +1,14 @@
+set key top left Left reverse
+set xrange [4096:4194304]
+set yrange [0:]
+set xtics (8192,16384,32768,65536,131072,262144,524288,1048576,2097152)
+set format x "%8.0f"
+set logscale x
+set data style linespoints
+set term postscript eps
+set output '../data/plots/multi_quicksort__-_Level_1_misses.eps'
+set xlabel 'set size in keys'
+set ylabel 'Level 1 misses per key'
+plot \
+'../data/converted_simple_logs/multi_quicksort_/multi_quicksort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:18 title 'Direct Mapped',\
+'../data/converted_simple_logs/multi_quicksort_/multi_quicksort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:18 title 'Fully Associative'

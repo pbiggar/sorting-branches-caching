@@ -6,13 +6,13 @@ set format x "%8.0f"
 set logscale x
 set data style linespoints
 set term postscript eps
-set output '../plots/shell_-_Branch_misses.eps'
+set output '../data/plots/shell_-_Branch_misses.eps'
 set xlabel 'set size in keys'
 set ylabel 'Branch misses per key'
 plot \
-'../inputs/gonnet_shellsort_/gonnet_shellsort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'gonnet shellsort  - Bimodal - 512 byte table',\
-'../inputs/gonnet_shellsort_/gonnet_shellsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:12 title 'gonnet shellsort  - 2 Level Adaptive - 512 2nd level entries',\
-'../inputs/gonnet_shellsort_/gonnet_shellsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:12 title 'gonnet shellsort  - 2 Level Adaptive - 4096 2nd level entries',\
-'../inputs/improved_gonnet_shellsort_/improved_gonnet_shellsort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'improved gonnet shellsort  - Bimodal - 512 byte table',\
-'../inputs/improved_gonnet_shellsort_/improved_gonnet_shellsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:12 title 'improved gonnet shellsort  - 2 Level Adaptive - 512 2nd level entries',\
-'../inputs/improved_gonnet_shellsort_/improved_gonnet_shellsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:12 title 'improved gonnet shellsort  - 2 Level Adaptive - 4096 2nd level entries'
+'../data/converted_simple_logs/gonnet_shellsort_/gonnet_shellsort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'gonnet shellsort  - Bimodal - 512 byte table',\
+'../data/converted_simple_logs/gonnet_shellsort_/gonnet_shellsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:12 title 'gonnet shellsort  - 2 Level Adaptive - 512 2nd level entries',\
+'../data/converted_simple_logs/gonnet_shellsort_/gonnet_shellsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:12 title 'gonnet shellsort  - 2 Level Adaptive - 4096 2nd level entries',\
+'../data/converted_simple_logs/improved_gonnet_shellsort_/improved_gonnet_shellsort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'improved gonnet shellsort  - Bimodal - 512 byte table',\
+'../data/converted_simple_logs/improved_gonnet_shellsort_/improved_gonnet_shellsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:12 title 'improved gonnet shellsort  - 2 Level Adaptive - 512 2nd level entries',\
+'../data/converted_simple_logs/improved_gonnet_shellsort_/improved_gonnet_shellsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:12 title 'improved gonnet shellsort  - 2 Level Adaptive - 4096 2nd level entries'

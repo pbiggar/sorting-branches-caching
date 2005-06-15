@@ -6,13 +6,13 @@ set format x "%8.0f"
 set logscale x
 set data style linespoints
 set term postscript eps
-set output '../plots/on2_-_Instructions.eps'
+set output '../data/plots/on2_-_Instructions.eps'
 set xlabel 'set size in keys'
 set ylabel 'Instructions per key'
 plot \
-'../inputs/on2_insertsort_/on2_insertsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'insertion sort',\
-'../inputs/on2_selectsort_/on2_selectsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'selection sort',\
-'../inputs/on2_bubblesort_/on2_bubblesort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'bubblesort',\
-'../inputs/on2_bubblesort2_/on2_bubblesort2__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'bubblesort2',\
-'../inputs/on2_shakersort_/on2_shakersort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'shakersort',\
-'../inputs/on2_shakersort2_/on2_shakersort2__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'shakersort2'
+'../data/converted_simple_logs/on2_insertsort_/on2_insertsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'insertion sort',\
+'../data/converted_simple_logs/on2_selectsort_/on2_selectsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'selection sort',\
+'../data/converted_simple_logs/on2_bubblesort_/on2_bubblesort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'bubblesort',\
+'../data/converted_simple_logs/on2_bubblesort2_/on2_bubblesort2__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'bubblesort2',\
+'../data/converted_simple_logs/on2_shakersort_/on2_shakersort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'shakersort',\
+'../data/converted_simple_logs/on2_shakersort2_/on2_shakersort2__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'shakersort2'

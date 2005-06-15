@@ -6,8 +6,8 @@ set format x "%8.0f"
 set logscale x
 set data style linespoints
 set term postscript eps
-set output '../plots/base_heapsort__-_Branches.eps'
+set output '../data/plots/base_heapsort_-_Branches.eps'
 set xlabel 'set size in keys'
 set ylabel 'Branches per key'
 plot \
-'../inputs/base_heapsort_/base_heapsort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6
+'../data/converted_simple_logs/base_heapsort_/base_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6
