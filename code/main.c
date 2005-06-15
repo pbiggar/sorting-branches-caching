@@ -24,11 +24,11 @@
 
 #include "aux/predictor.h"
 
-//#define RANDOM_SIZE (4194304)
+#define RANDOM_SIZE (4194304)
 //#define RANDOM_SIZE (534523)
 //#define RANDOM_SIZE (262144)
 //#define RANDOM_SIZE (32768)
-#define RANDOM_SIZE (16384)
+//#define RANDOM_SIZE (16384)
 //#define RANDOM_SIZE (4096)
 //#define RANDOM_SIZE (128)
 
@@ -228,9 +228,10 @@ main(int argc, char** args)
 	qsort((void*)sorted_array, RANDOM_SIZE, sizeof(unsigned int), compare_ints);
 
 
-/* ****************************************************************************************************************
- *                    tests
- * ****************************************************************************************************************/
+// ****************************************************************************************************************
+//                    tests
+// ****************************************************************************************************************
+
 	printf("Beginning sort tests (%d - %d)\n", TEST_MIN, TEST_MAX);
 	test_sort(base_heapsort, "Base Heapsort");
 	test_sort(cache_heapsort, "Cache Heapsort");
@@ -363,8 +364,8 @@ main(int argc, char** args)
 	predictor_run(knuth_base_mergesort, 8, "Algorithm N");
 	predictor_run(knuth_other_base_mergesort, 10, "Algorithm S");
 	predictor_run(base_mergesort, 33, "Base Mergesort");
-	predictor_run(tiled_mergesort, 33, "Tiled Mergesort");
-	predictor_run(multi_mergesort, 46, "Multi Mergesort");
+	predictor_run(tiled_mergesort, 46, "Tiled Mergesort");
+	predictor_run(multi_mergesort, 59, "Multi Mergesort");
 	predictor_run(double_tiled_mergesort, 46, "Double Tiled Mergesort");
 	predictor_run(double_multi_mergesort, 59, "Double Multi Mergesort");
 

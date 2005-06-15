@@ -67,8 +67,8 @@ Software branch predictors:
 
 	
 	The software counters will appear in data/counters/. To process these,
-	enter that directory and run:
-		$ ./process_counter *
+	from the data/ directory, run:
+		$ ../scripts/process_counter counters/*
 
 	This will print out the maximum branches. If this isn't slightly lower than
 	the y-axis in the gnuplot scripts, it will need to be changed (On line 8 of
