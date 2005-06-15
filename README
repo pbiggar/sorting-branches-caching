@@ -91,9 +91,38 @@ Simplescalar:
 	format, run:
 		$ ../scripts/do_all_convert
 
+	Aswell as gnuplot data files, stored in data/converted_simple_logs/, this
+	creates gnuplot scripts for each sort type and each sort, stored in
+	data/simplescalar_generated_gnuplot_scripts.
 
 
+Documents:
 
-Versions:
+	The are four documents in docs/. docs/fyp_report/ is the original project
+	this was all derived from. docs/tech_report/ is the expanded techincal
+	report incorporating everything you see here. docs/branch_paper/ is the
+	first paper, mostly discussing branch prediction, and docs/cache_paper/ is
+	the other paper, discussing cache performance.
+
+	The create the papers, run:
+		$ make
+
+	in the respective directories. All the papers use plots from the
+	data/plots/ directory, and have sym-links to it. Some of the plots might be
+	slightly and subtly different, so it's best to enter the /docs/*/scripts
+	directory first, and run:
+		$ ./gnuplot_dir
+
+	Running make will not check a dependency of the plots, so it will be necessary to:
+		$ make again
+		or
+		$ make clean
+		$ make
+	
+	to resolve this.
+
+	All the macros used to present the graphics are in report.tex. The code is
+	in docs/*/code/ and has been edited for readability from that which was
+	code/.
 
 
