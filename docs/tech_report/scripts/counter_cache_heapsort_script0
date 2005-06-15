@@ -7,10 +7,10 @@ set ticscale 0 0
 set offsets .1, .1, 0, 0
 set bmargin 3
 set title "cache_heapsort branch predictor results 0"
-set output 'cache_heapsort-0.eps'
+set output '../data/plots/counter_cache_heapsort_0.eps'
 set xtics ("has children" 0, "\ncomparison 1" 1, "comparison 2" 2, "\ncomparison 3" 3, "comparison 4" 4, "\ncomparison 5" 5, "comparison 6" 6)
 plot \
-'cache_heapsort_data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
-'cache_heapsort_data0' using ($0-.15):2 title 'correct' with boxes lt -1,\
-'cache_heapsort_data0' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
-'cache_heapsort_data0' using ($0+.15):4 title 'taken' with boxes lt -1
+'../data/counter_gnuplot_data/cache_heapsort_data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
+'../data/counter_gnuplot_data/cache_heapsort_data0' using ($0-.15):2 title 'correct' with boxes lt -1,\
+'../data/counter_gnuplot_data/cache_heapsort_data0' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
+'../data/counter_gnuplot_data/cache_heapsort_data0' using ($0+.15):4 title 'taken' with boxes lt -1

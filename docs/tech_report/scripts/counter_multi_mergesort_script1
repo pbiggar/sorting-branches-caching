@@ -7,10 +7,10 @@ set ticscale 0 0
 set offsets .1, .1, 0, 0
 set bmargin 3
 set title "multi_mergesort branch predictor results 1"
-set output 'multi_mergesort-1.eps'
+set output '../data/plots/counter_multi_mergesort_1.eps'
 set xtics ("presort 7" 0, "\npresort 8" 1, "presort 9" 2, "\npresort 10" 3, "presort 11" 4, "\nforwards left 0" 5, "forwards left 1" 6)
 plot \
-'multi_mergesort_data1' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
-'multi_mergesort_data1' using ($0-.15):2 title 'correct' with boxes lt -1,\
-'multi_mergesort_data1' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
-'multi_mergesort_data1' using ($0+.15):4 title 'taken' with boxes lt -1
+'../data/counter_gnuplot_data/multi_mergesort_data1' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
+'../data/counter_gnuplot_data/multi_mergesort_data1' using ($0-.15):2 title 'correct' with boxes lt -1,\
+'../data/counter_gnuplot_data/multi_mergesort_data1' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
+'../data/counter_gnuplot_data/multi_mergesort_data1' using ($0+.15):4 title 'taken' with boxes lt -1

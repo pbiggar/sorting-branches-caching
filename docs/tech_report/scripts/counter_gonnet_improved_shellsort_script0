@@ -7,10 +7,10 @@ set ticscale 0 0
 set offsets .1, .1, 0, 0
 set bmargin 3
 set title "gonnet_improved_shellsort branch predictor results 0"
-set output 'gonnet_improved_shellsort-0.eps'
+set output '../data/plots/counter_gonnet_improved_shellsort_0.eps'
 set xtics ("inner loop" 0, "\ninsertion" 1, "" 2, "" 3, "" 4, "" 5, "" 6)
 plot \
-'gonnet_improved_shellsort_data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
-'gonnet_improved_shellsort_data0' using ($0-.15):2 title 'correct' with boxes lt -1,\
-'gonnet_improved_shellsort_data0' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
-'gonnet_improved_shellsort_data0' using ($0+.15):4 title 'taken' with boxes lt -1
+'../data/counter_gnuplot_data/gonnet_improved_shellsort_data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
+'../data/counter_gnuplot_data/gonnet_improved_shellsort_data0' using ($0-.15):2 title 'correct' with boxes lt -1,\
+'../data/counter_gnuplot_data/gonnet_improved_shellsort_data0' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
+'../data/counter_gnuplot_data/gonnet_improved_shellsort_data0' using ($0+.15):4 title 'taken' with boxes lt -1

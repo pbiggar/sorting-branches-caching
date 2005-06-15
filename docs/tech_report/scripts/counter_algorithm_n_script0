@@ -7,10 +7,10 @@ set ticscale 0 0
 set offsets .1, .1, 0, 0
 set bmargin 3
 set title "algorithm_n branch predictor results 0"
-set output 'algorithm_n-0.eps'
+set output '../data/plots/counter_algorithm_n_0.eps'
 set xtics ("N3" 0, "\nN3 i == j" 1, "N5" 2, "\nN9" 3, "" 4, "" 5, "" 6)
 plot \
-'algorithm_n_data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
-'algorithm_n_data0' using ($0-.15):2 title 'correct' with boxes lt -1,\
-'algorithm_n_data0' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
-'algorithm_n_data0' using ($0+.15):4 title 'taken' with boxes lt -1
+'../data/counter_gnuplot_data/algorithm_n_data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
+'../data/counter_gnuplot_data/algorithm_n_data0' using ($0-.15):2 title 'correct' with boxes lt -1,\
+'../data/counter_gnuplot_data/algorithm_n_data0' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
+'../data/counter_gnuplot_data/algorithm_n_data0' using ($0+.15):4 title 'taken' with boxes lt -1

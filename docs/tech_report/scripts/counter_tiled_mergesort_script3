@@ -7,10 +7,10 @@ set ticscale 0 0
 set offsets .1, .1, 0, 0
 set bmargin 3
 set title "tiled_mergesort branch predictor results 3"
-set output 'tiled_mergesort-3.eps'
+set output '../data/plots/counter_tiled_mergesort_3.eps'
 set xtics ("forwards right 1" 0, "\nforwards right 2" 1, "forwards right 3" 2, "\nforwards right 4" 3, "forwards right 5" 4, "\nforwards right 6" 5, "forwards right 7" 6)
 plot \
-'tiled_mergesort_data3' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
-'tiled_mergesort_data3' using ($0-.15):2 title 'correct' with boxes lt -1,\
-'tiled_mergesort_data3' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
-'tiled_mergesort_data3' using ($0+.15):4 title 'taken' with boxes lt -1
+'../data/counter_gnuplot_data/tiled_mergesort_data3' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
+'../data/counter_gnuplot_data/tiled_mergesort_data3' using ($0-.15):2 title 'correct' with boxes lt -1,\
+'../data/counter_gnuplot_data/tiled_mergesort_data3' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
+'../data/counter_gnuplot_data/tiled_mergesort_data3' using ($0+.15):4 title 'taken' with boxes lt -1

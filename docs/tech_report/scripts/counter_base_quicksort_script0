@@ -7,10 +7,10 @@ set ticscale 0 0
 set offsets .1, .1, 0, 0
 set bmargin 3
 set title "base_quicksort branch predictor results 0"
-set output 'base_quicksort-0.eps'
+set output '../data/plots/counter_base_quicksort_0.eps'
 set xtics ("i" 0, "\nj" 1, "partition end" 2, "\ninsertion" 3, "" 4, "" 5, "" 6)
 plot \
-'base_quicksort_data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
-'base_quicksort_data0' using ($0-.15):2 title 'correct' with boxes lt -1,\
-'base_quicksort_data0' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
-'base_quicksort_data0' using ($0+.15):4 title 'taken' with boxes lt -1
+'../data/counter_gnuplot_data/base_quicksort_data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
+'../data/counter_gnuplot_data/base_quicksort_data0' using ($0-.15):2 title 'correct' with boxes lt -1,\
+'../data/counter_gnuplot_data/base_quicksort_data0' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
+'../data/counter_gnuplot_data/base_quicksort_data0' using ($0+.15):4 title 'taken' with boxes lt -1
