@@ -213,9 +213,9 @@ if ($just_instruction)
 
 SORT: foreach $sortname (@ARGV)
 {
-	$sortfile = $sortname.int(rand(2147483648)).".c";
+	$sortfile = "sorts/".$sortname.int(rand(2147483648)).".c";
 	$object_file = $sortname.int(rand(2147483648));
-	system("cp $sortname.c $sortfile");
+	system("cp sorts/$sortname.c $sortfile");
 
 
 	# make a temp file
@@ -223,7 +223,7 @@ SORT: foreach $sortname (@ARGV)
 	$n_count = 0;
 	foreach $n (@ns) # ther should be num_sim_runs * count($n) columns.
 	{
-		$comp_command = "$CC $CFLAGS $SIMPLEFLAGS -DRANDOM_SIZE=$n -DOFFSET=$offset -DSORT=$sortname sorts/$sortfile simpleMain.c -o $object_file";
+		$comp_command = "$CC $CFLAGS $SIMPLEFLAGS -DRANDOM_SIZE=$n -DOFFSET=$offset -DSORT=$sortname $sortfile simpleMain.c -o $object_file";
 
 		print $comp_command."\n";
 		push (@command_list, $comp_command);

@@ -8,6 +8,9 @@ do
 		./do_simple -c random.org$i -o $i $j
 	done
 
+	# do the 16 byte cache line heapsort
+	./do_simple -c 16_byte_cache_line_random.org$i -o $i -L 16 cache4_heapsort
+
 	for j in on2_insertsort on2_selectsort on2_bubblesort on2_bubblesort2 on2_shakersort on2_shakersort2 
 	do
 		./do_simple -c random.org$i -o $i -M 65536 $j 
