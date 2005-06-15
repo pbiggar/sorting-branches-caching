@@ -308,7 +308,7 @@ unoptimized algorithm would not suffer as much.
 
 \section{Predictor Results}
 
-\sixplot{base_heapsort-0.eps}{cache4_heapsort-0.eps}{cache_heapsort-0.eps}{cache_heapsort-1.eps}{}{}{base and cache heapsorts}
+\sixplot{base_heapsort_0.eps}{cache4_heapsort_0.eps}{cache_heapsort_0.eps}{cache_heapsort_1.eps}{}{}{base and cache heapsorts}
 
 The results of the software predictor show the relation of the branches
 in the creation and destruction of the heap. The base heapsort results in
@@ -338,7 +338,7 @@ time, while the next is predicted correctly 61\% of the time, then 71\%, 77\%, a
 so on in a curve, which is shown in Figure \ref{cache heapsort curve}.
 
 \begin{figure}
-\includegraphics{../counters/curve.eps}
+\includegraphics{plots/curve.eps}
 \caption{Predictability of branches in cache heapsort, with a fanout of eight}
 \label{cache heapsort curve}
 \end{figure}

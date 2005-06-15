@@ -291,27 +291,28 @@ both LaMarca's theory and results.
 
 \section{Predictor results}
 
-\afterpage{
-\setcounter{subfigure}{0}
-\thispagestyle{empty}
-\clearpage
-\enlargethispage{14em}
-\vspace*{-5em}
-\begin{figure}[H]
-\begin{changemargin}
-\subfigure[]{\includegraphics[scale=0.74]{../counters/algorithm_n-0.eps}}
-\subfigure[]{\includegraphics[scale=0.74]{../counters/algorithm_s-0.eps}}
-\subfigure[]{\includegraphics[scale=0.74]{../counters/base_mergesort-0.eps}}
-\subfigure[]{\includegraphics[scale=0.74]{../counters/double_tiled_mergesort-0.eps}}
-\subfigure[]{\includegraphics[scale=0.74]{../counters/double_multi_mergesort-0.eps}}
-\subfigure[]{\includegraphics[scale=0.74]{../counters/double_multi_mergesort-1.eps}}
-\end{changemargin}
-\vspace*{6em}
-\caption{Branch prediction performance for mergesorts. All graphs use the same scale.}
-\label{Branch prediction performance for mergesorts}
-\end{figure}
-\newpage
-}
+\sixplot{algorithm_n_0.eps}{algorithm_s_0.eps}{base_mergesort_0.eps}{double_tiled_mergesort_0.eps}{double_multi_mergesort_0.eps}{double_multi_mergesort_0.eps}{mergesorts}
+%\afterpage{
+%\setcounter{subfigure}{0}
+%\thispagestyle{empty}
+%\clearpage
+%\enlargethispage{14em}
+%\vspace*{-5em}
+%\begin{figure}[H]
+%\begin{changemargin}
+%\subfigure[]{\includegraphics[scale=0.74]{../counters/algorithm_n-0.eps}}
+%\subfigure[]{\includegraphics[scale=0.74]{../counters/algorithm_s-0.eps}}
+%\subfigure[]{\includegraphics[scale=0.74]{../counters/base_mergesort_0.eps}}
+%\subfigure[]{\includegraphics[scale=0.74]{../counters/double_tiled_mergesort_0.eps}}
+%\subfigure[]{\includegraphics[scale=0.74]{../counters/double_multi_mergesort_0.eps}}
+%\subfigure[]{\includegraphics[scale=0.74]{../counters/double_multi_mergesort-1.eps}}
+%\end{changemargin}
+%\vspace*{6em}
+%\caption{Branch prediction performance for mergesorts. All graphs use the same scale.}
+%\label{Branch prediction performance for mergesorts}
+%\end{figure}
+%\newpage
+%}
 
 %TODO This is a bit to rewrite
 
