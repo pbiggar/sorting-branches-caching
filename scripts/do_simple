@@ -18,7 +18,7 @@ getopts("o:c:L:ihlm:M:s",\%options);
 
 if (defined($options{"h"}) || (scalar(@ARGV) == 0))
 {
-	die ("simple [options] sort\noptions are:\n\t-c comment - comment with which to name log\n\t-l list commands simple will execute\n\t-s do a short run\n\t-h this help message\n\t-L length - cache line length\n\t-i just count instructions\n\t-m - specify minimum sort size\n\t-M - specify maximum sort size\n\t-o offset (between 0 and 9) - how much to offset the random array\n");
+	die ("do_simple [options] sort\noptions are:\n\t-c comment - comment with which to name log\n\t-l list commands simple will execute\n\t-s do a short run\n\t-h this help message\n\t-L length - cache line length\n\t-i just count instructions\n\t-m - specify minimum sort size\n\t-M - specify maximum sort size\n\t-o offset (between 0 and 9) - how much to offset the random array\n");
 }
 
 # i means just get an instruction count, nothing else
@@ -160,7 +160,7 @@ push(@ns, $max_num_items);
 
 #@ns = { "128", "4096", "32768" };
 
-$log_directory = "./logs/";
+$log_directory = "../simple_logs/";
 
 # compiler settings
 $CC = "sslittle-na-sstrix-gcc";
@@ -190,7 +190,7 @@ if ($just_instruction)
 	foreach $seed (@seeds)
 	{
 		@instruction_count = ();
-		$comp_command = "$CC $CFLAGS $SIMPLEFLAGS -funroll-loops -finline-functions -DRANDOM_SIZE=$max_num_items -DSEED=$seed -DSORT=$sortname $sortname.c simpleMain.c -o special_file_used_for_no_purpose_except_the_quick_simulation_run";
+		$comp_command = "$CC $CFLAGS $SIMPLEFLAGS -funroll-loops -finline-functions -DRANDOM_SIZE=$max_num_items -DSEED=$seed -DSORT=$sortname sorts/$sortname.c simpleMain.c -o special_file_used_for_no_purpose_except_the_quick_simulation_run";
 		# run the command
 		$comp_output = `$comp_command 2>&1 1>/dev/null`; # capture the compiler errors (STDERR)
 
@@ -223,7 +223,7 @@ SORT: foreach $sortname (@ARGV)
 	$n_count = 0;
 	foreach $n (@ns) # ther should be num_sim_runs * count($n) columns.
 	{
-		$comp_command = "$CC $CFLAGS $SIMPLEFLAGS -DRANDOM_SIZE=$n -DOFFSET=$offset -DSORT=$sortname $sortfile simpleMain.c -o $object_file";
+		$comp_command = "$CC $CFLAGS $SIMPLEFLAGS -DRANDOM_SIZE=$n -DOFFSET=$offset -DSORT=$sortname sorts/$sortfile simpleMain.c -o $object_file";
 
 		print $comp_command."\n";
 		push (@command_list, $comp_command);

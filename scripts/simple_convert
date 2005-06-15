@@ -6,7 +6,7 @@ getopts("hso",\%options);
 
 if (defined($options{"h"}) || (scalar(@ARGV) == 0))
 {
-	die("convert [options] filename\noptions are:\n\t-h - this help message\n-s - scale numeric results by the number of keys \n-o - offset everything from do_nothing\n");
+	die("simple_convert [options] filename\noptions are:\n\t-h - this help message\n-s - scale numeric results by the number of keys \n-o - offset everything from do_nothing\n");
 }
 
 $scale = 0;
@@ -17,7 +17,7 @@ if (defined($options{"o"})) { $offset = 1; }
 
 if ($offset) # read in the offset results
 {
-	$argument = "logs/do_nothing_";
+	$argument = "../data/simple_logs/do_nothing_";
 	unless (-e $argument) { die("file '$argument' does not exist\n"); }
 
 	#get the actual filename
@@ -107,7 +107,7 @@ foreach $argument (@ARGV)
 	$filename =~ s/random.org//g;
 
 	# make a directory for the logs
-	mkdir "./gnuplot_logs/$filename";
+	mkdir "../data/converted_simple_logs/$filename";
 
 	# parse the log
 	open(LOG, $argument);
@@ -219,7 +219,7 @@ foreach $argument (@ARGV)
 			}
 			$param =~ s/\ /_/g;
 			$fullname = "$filename\_$simulator\_$param";
-			open(OUT, "> ./gnuplot_logs/$filename/$fullname");
+			open(OUT, "> ../data/converted_simple_logs/$filename/$fullname");
 			print OUT $comment."\n";
 			print OUT $output;
 			close(OUT);

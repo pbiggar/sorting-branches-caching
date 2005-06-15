@@ -1,13 +1,6 @@
 There are 4 sets of tests: hardware performance counters, testing the sorts to
 see if they work, simplescalar and software branch predictors.
 
-Note that all scripts are expected to be run from the scripts directory:
-	$ cd scripts/
-	$ ./run_script
-
-not:
-	$ scripts/run_script
-
 main.c:
 
 	Enter the code directory. In main.c there are a list of sorts to be tested
@@ -29,7 +22,7 @@ main.c:
 
 Hardware counters:
 
-	In the scripts directory, call do_all_papiex or do_all_perfex. You need a
+	In the code/ directory, call do_all_papiex or do_all_perfex. You need a
 	patched kernel for this. See: http://icl.cs.utk.edu/papi/.
 
 	Capture the output (Ctrl-C when bored, or needing results, as this will
@@ -40,10 +33,10 @@ Hardware counters:
 
 	If you use papiex (more accurate), then it needs to be converted to the
 	other format:
-		$ ./papi_convert my_results > new_results
+		$ ../scripts/papi_convert my_results > new_results
 
 	Then process the results to give you graphs:
-		$ ./process_perfex_output new_results
+		$ ../scripts/process_perfex_output new_results
 
 	Theres a little bit of hard coding in this script, so change $key_num to
 	the number of times perfex actually ran. Also modify the input so that only
@@ -76,14 +69,31 @@ Software branch predictors:
 
 	This will print out the maximium branches. If this isnt slightly lower than
 	the y-axis in the gnuplot scripts, it will need to be changed (On line 8 of
-	process_counter).
+	process_counter, then rerun it).
 
-	This creates the gnuplot data files and the gnuplot scripts. To create the images:
+	This creates the gnuplot data files and the gnuplot scripts. To create the
+	images:
 		$ gnuplot *script*
 		
 
 Simplescalar:
 
-	
+	If your simplescalar binaries are big endian (if gcc is
+	ssbig-na-sstrix-gcc), then edit the $CC variable in scripts/do_simple to
+	reflect this.
+
+	In the code/ directory, run:
+		$ ./do_all_simple
+
+	This will run do_simple 10 times per sort, using data/BIG as it's input.
+	Simplescalar's output is captured by the scripts, edited and output into a
+	more human readable format, in data/simple_logs. To convert this to gnuplot
+	format, run:
+		$ ../scripts/do_all_convert
+
+
+
+
+Versions:
 
 

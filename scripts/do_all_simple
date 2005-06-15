@@ -5,11 +5,11 @@ do
 
 	for j in base_heapsort base_mergesort base_quicksort base_quicksort1 base_quicksort5 base_quicksort7 base_quicksort9 base_radixsort cache4_heapsort cache_heapsort cache_quicksort cache_radixsort do_nothing double_multi_mergesort double_tiled_mergesort knuth_base_mergesort knuth_other_base_mergesort multi_mergesort multi_quicksort multi_quicksort_seq old_shellsort shellsort tiled_mergesort
 	do
-		./simple -c random.org$i -o $i $j
+		./do_simple -c random.org$i -o $i $j
 	done
 
 	for j in on2_insertsort on2_selectsort on2_bubblesort on2_bubblesort2 on2_shakersort on2_shakersort2 
 	do
-		./simple -c random.org$i -o $i -M 65536 $j 
+		./do_simple -c random.org$i -o $i -M 65536 $j 
 	done
 done
