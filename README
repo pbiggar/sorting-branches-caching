@@ -18,7 +18,7 @@ main.c:
 	official.
 
 	The #define RUN_VISUAL decides if the visual tests are being done. These
-	were used in development, and arent that interesting.
+	were used in development, and aren't that interesting.
 
 Hardware counters:
 
@@ -38,7 +38,7 @@ Hardware counters:
 	Then process the results to give you graphs:
 		$ ../scripts/process_perfex_output new_results
 
-	Theres a little bit of hard coding in this script, so change $key_num to
+	There's a little bit of hard coding in this script, so change $key_num to
 	the number of times perfex actually ran. Also modify the input so that only
 	completed work cycles are there. This means if the last sort you ran was
 	on2_selectsort, and it ran 256 times, but other sorts ran 257 times, remove
@@ -67,13 +67,16 @@ Software branch predictors:
 	enter that directory and run:
 		$ ./process_counter *
 
-	This will print out the maximium branches. If this isnt slightly lower than
+	This will print out the maximum branches. If this isn't slightly lower than
 	the y-axis in the gnuplot scripts, it will need to be changed (On line 8 of
 	process_counter, then rerun it).
 
-	This creates the gnuplot data files and the gnuplot scripts. To create the
-	images:
-		$ gnuplot *script*
+	This creates the gnuplot data files in data/counter_gnuplot_data and
+	gnuplot scripts in the data/counter/gnuplot_generated_scripts/ directory.
+	To create the images, enter the scripts directory and run:
+		$ gnuplot *
+
+	The images are put into the /data/plots directory.
 		
 
 Simplescalar:
@@ -91,7 +94,7 @@ Simplescalar:
 	format, run:
 		$ ../scripts/do_all_convert
 
-	Aswell as gnuplot data files, stored in data/converted_simple_logs/, this
+	As well as gnuplot data files, stored in data/converted_simple_logs/, this
 	creates gnuplot scripts for each sort type and each sort, stored in
 	data/simplescalar_generated_gnuplot_scripts.
 
@@ -99,7 +102,7 @@ Simplescalar:
 Documents:
 
 	The are four documents in docs/. docs/fyp_report/ is the original project
-	this was all derived from. docs/tech_report/ is the expanded techincal
+	this was all derived from. docs/tech_report/ is the expanded technical
 	report incorporating everything you see here. docs/branch_paper/ is the
 	first paper, mostly discussing branch prediction, and docs/cache_paper/ is
 	the other paper, discussing cache performance.
@@ -108,7 +111,7 @@ Documents:
 		$ make
 
 	in the respective directories. All the papers use plots from the
-	data/plots/ directory, and have sym-links to it. Some of the plots might be
+	data/plots/ directory, and have symlinks to it. Some of the plots might be
 	slightly and subtly different, so it's best to enter the /docs/*/scripts
 	directory first, and run:
 		$ ./gnuplot_dir

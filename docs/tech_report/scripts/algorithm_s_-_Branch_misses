@@ -10,10 +10,10 @@ set output '../plots/algorithm_s_-_Branch_misses.eps'
 set xlabel 'set size in keys'
 set ylabel 'Branch misses per key'
 plot \
-'../inputs/algorithm_s/algorithm_s_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'Bimodal - 512 byte table',\
-'../inputs/algorithm_s/algorithm_s_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:12 title 'Bimodal - 1024 byte table',\
-'../inputs/algorithm_s/algorithm_s_sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:12 title 'Bimodal - 2048 byte table',\
-'../inputs/algorithm_s/algorithm_s_sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:12 title '2 Level Adaptive - 512 2nd level entries',\
-'../inputs/algorithm_s/algorithm_s_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:12 title '2 Level Adaptive - 1024 2nd level entries',\
-'../inputs/algorithm_s/algorithm_s_sim-bpred_-bpred_2lev_-bpred:2lev_1_2048_10_1' using 1:12 title '2 Level Adaptive - 2048 2nd level entries',\
-'../inputs/algorithm_s/algorithm_s_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:12 title '2 Level Adaptive - 4096 2nd level entries'
+'../inputs/algorithm_s_/algorithm_s_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'Bimodal - 512 byte table',\
+'../inputs/algorithm_s_/algorithm_s_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:12 title 'Bimodal - 1024 byte table',\
+'../inputs/algorithm_s_/algorithm_s_sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:12 title 'Bimodal - 2048 byte table',\
+'../inputs/algorithm_s_/algorithm_s_sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:12 title '2 Level Adaptive - 512 2nd level entries',\
+'../inputs/algorithm_s_/algorithm_s_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:12 title '2 Level Adaptive - 1024 2nd level entries',\
+'../inputs/algorithm_s_/algorithm_s_sim-bpred_-bpred_2lev_-bpred:2lev_1_2048_10_1' using 1:12 title '2 Level Adaptive - 2048 2nd level entries',\
+'../inputs/algorithm_s_/algorithm_s_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:12 title '2 Level Adaptive - 4096 2nd level entries'

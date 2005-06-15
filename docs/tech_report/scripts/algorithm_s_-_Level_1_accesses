@@ -10,7 +10,7 @@ set output '../plots/algorithm_s_-_Level_1_accesses.eps'
 set xlabel 'set size in keys'
 set ylabel 'Level 1 accesses per key'
 plot \
-'../inputs/algorithm_s/algorithm_s_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:16 title 'Direct Mapped - 4MB - 32 byte line',\
-'../inputs/algorithm_s/algorithm_s_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:16 title 'Direct Mapped - 2MB - 32 byte line',\
-'../inputs/algorithm_s/algorithm_s_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:16 title 'Fully Associative - 4MB - 32 byte line',\
-'../inputs/algorithm_s/algorithm_s_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:16 title 'Fully Associative - 2MB - 32 byte line'
+'../inputs/algorithm_s_/algorithm_s_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:16 title 'Direct Mapped - 4MB - 32 byte line',\
+'../inputs/algorithm_s_/algorithm_s_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:16 title 'Direct Mapped - 2MB - 32 byte line',\
+'../inputs/algorithm_s_/algorithm_s_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:16 title 'Fully Associative - 4MB - 32 byte line',\
+'../inputs/algorithm_s_/algorithm_s_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:16 title 'Fully Associative - 2MB - 32 byte line'

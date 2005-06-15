@@ -1,11 +1,13 @@
 #!/usr/bin/perl -w
 
+my $y_range = 156000000;
+
 $script = <<END_SCRIPT;
 set term postscript eps
 set boxwidth 0.25 absolute
 set style fill pattern 0 border -1
 set format y "%8.0f"
-set yrange [0:156000000]
+set yrange [0:$y_range]
 set ticscale 0 0
 set offsets .1, .1, 0, 0
 set bmargin 3
@@ -25,8 +27,8 @@ foreach $file (@ARGV)
 	$base_filename = lc($file);
 	$base_filename =~ s/ /_/g;
 
-	$data_filename = "counter_$base_filename\_data";
-	$script_filename = "counter_$base_filename\_script";
+	$data_filename = "../counter_gnuplot_data/$base_filename\_data";
+	$script_filename = "../counter_gnuplot_generated_scripts/$base_filename\_script";
 
 	# get the branch names and values
 	open(BASE, $file);
@@ -94,7 +96,7 @@ foreach $file (@ARGV)
 		# write the script file
 		$script_output = $script;
 		$script_output .= "set title \"$base_filename branch predictor results $file_count\"\n";
-		$script_output .= "set output '$base_filename-$file_count.eps'\n";
+		$script_output .= "set output '../plots/counter_$base_filename_$file_count.eps'\n";
 
 		#add the xtics
 		$script_output .= $xtics;
@@ -118,4 +120,5 @@ foreach $file (@ARGV)
 
 }
 
-print "max branches is: $max_branches\n";
+printf "%20s $max_branches\n", "max branches is:";
+printf "%20s $y_range\n", "y range is:";
