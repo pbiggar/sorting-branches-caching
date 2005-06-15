@@ -10,5 +10,5 @@ set output '../data/plots/on2_-_Branch_misses1.eps'
 set xlabel 'set size in keys'
 set ylabel 'Branch misses per key'
 plot \
-'../data/converted_simple_logs/on2_insertsort_/on2_insertsort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'insertion sort',\
-'../data/converted_simple_logs/on2_selectsort_/on2_selectsort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'selection sort'
+'../data/converted_simple_logs/on2_insertsort/on2_insertsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'insertion sort',\
+'../data/converted_simple_logs/on2_selectsort/on2_selectsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'selection sort'

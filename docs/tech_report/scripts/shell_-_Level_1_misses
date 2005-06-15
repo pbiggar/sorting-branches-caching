@@ -10,7 +10,7 @@ set output '../data/plots/shell_-_Level_1_misses.eps'
 set xlabel 'set size in keys'
 set ylabel 'Level 1 misses per key'
 plot \
-'../data/converted_simple_logs/gonnet_shellsort_/gonnet_shellsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:18 title 'gonnet shellsort - Fully Associative',\
-'../data/converted_simple_logs/gonnet_shellsort_/gonnet_shellsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:18 title 'gonnet shellsort - Direct Mapped',\
-'../data/converted_simple_logs/improved_gonnet_shellsort_/improved_gonnet_shellsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:18 title 'improved gonnet shellsort - Fully Associative',\
-'../data/converted_simple_logs/improved_gonnet_shellsort_/improved_gonnet_shellsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:18 title 'improved gonnet shellsort - Direct Mapped'
+'../data/converted_simple_logs/gonnet_shellsort/gonnet_shellsort_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:18 title 'gonnet shellsort - Fully Associative',\
+'../data/converted_simple_logs/gonnet_shellsort/gonnet_shellsort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:18 title 'gonnet shellsort - Direct Mapped',\
+'../data/converted_simple_logs/improved_gonnet_shellsort/improved_gonnet_shellsort_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:18 title 'improved gonnet shellsort - Fully Associative',\
+'../data/converted_simple_logs/improved_gonnet_shellsort/improved_gonnet_shellsort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:18 title 'improved gonnet shellsort - Direct Mapped'

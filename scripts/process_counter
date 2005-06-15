@@ -18,17 +18,19 @@ END_SCRIPT
 $max_branches = 0;
 $cols_pre_graph = 7;
 
-@ARGV = grep {!/data|script|CVS|eps|process/} @ARGV;
+@ARGV = grep {!/curve|data|script|CVS|eps|process/} @ARGV;
 
 foreach $file (@ARGV)
 {
 	%results = ();
 	@branch_names = ();
-	$base_filename = lc($file);
+	$filename = $file;
+	$filename =~ s/counters\///;
+	$base_filename = lc($filename);
 	$base_filename =~ s/ /_/g;
 
-	$data_filename = "../counter_gnuplot_data/$base_filename\_data";
-	$script_filename = "../counter_gnuplot_generated_scripts/$base_filename\_script";
+	$data_filename = "../data/counter_gnuplot_data/$base_filename\_data";
+	$script_filename = "../data/counter_gnuplot_generated_scripts/$base_filename\_script";
 
 	# get the branch names and values
 	open(BASE, $file);
@@ -38,7 +40,7 @@ foreach $file (@ARGV)
 	{
 		$line = shift(@lines); # sort name, branch name
 		if (!defined($line)) { last; } # check for EOF
-		$line =~ /$file - (.*):\n/;
+		$line =~ /$filename - (.*):/;
 		$branch_name = $1;
 		push(@branch_names, $branch_name);
 
@@ -96,7 +98,7 @@ foreach $file (@ARGV)
 		# write the script file
 		$script_output = $script;
 		$script_output .= "set title \"$base_filename branch predictor results $file_count\"\n";
-		$script_output .= "set output '../plots/counter_$base_filename_$file_count.eps'\n";
+		$script_output .= "set output '../data/plots/counter_$base_filename\_$file_count.eps'\n";
 
 		#add the xtics
 		$script_output .= $xtics;

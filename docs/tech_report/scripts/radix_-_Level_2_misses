@@ -10,11 +10,11 @@ set output '../data/plots/radix_-_Level_2_misses.eps'
 set xlabel 'set size in keys'
 set ylabel 'Level 2 misses per key'
 plot \
-'../data/converted_simple_logs/base_radixsort_/base_radixsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:28 title 'base radixsort - Fully Associative - 4MB',\
-'../data/converted_simple_logs/base_radixsort_/base_radixsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:28 title 'base radixsort - Fully Associative - 2MB',\
-'../data/converted_simple_logs/base_radixsort_/base_radixsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'base radixsort - Direct Mapped - 4MB',\
-'../data/converted_simple_logs/base_radixsort_/base_radixsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'base radixsort - Direct Mapped - 2MB',\
-'../data/converted_simple_logs/cache_radixsort_/cache_radixsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:28 title 'cache radixsort - Fully Associative - 4MB',\
-'../data/converted_simple_logs/cache_radixsort_/cache_radixsort__sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:28 title 'cache radixsort - Fully Associative - 2MB',\
-'../data/converted_simple_logs/cache_radixsort_/cache_radixsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'cache radixsort - Direct Mapped - 4MB',\
-'../data/converted_simple_logs/cache_radixsort_/cache_radixsort__sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'cache radixsort - Direct Mapped - 2MB'
+'../data/converted_simple_logs/base_radixsort/base_radixsort_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:28 title 'base radixsort - Fully Associative - 4MB',\
+'../data/converted_simple_logs/base_radixsort/base_radixsort_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:28 title 'base radixsort - Fully Associative - 2MB',\
+'../data/converted_simple_logs/base_radixsort/base_radixsort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'base radixsort - Direct Mapped - 4MB',\
+'../data/converted_simple_logs/base_radixsort/base_radixsort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'base radixsort - Direct Mapped - 2MB',\
+'../data/converted_simple_logs/cache_radixsort/cache_radixsort_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:28 title 'cache radixsort - Fully Associative - 4MB',\
+'../data/converted_simple_logs/cache_radixsort/cache_radixsort_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:28 title 'cache radixsort - Fully Associative - 2MB',\
+'../data/converted_simple_logs/cache_radixsort/cache_radixsort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'cache radixsort - Direct Mapped - 4MB',\
+'../data/converted_simple_logs/cache_radixsort/cache_radixsort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'cache radixsort - Direct Mapped - 2MB'

@@ -10,9 +10,9 @@ set output '../data/plots/heap_-_Branch_misses.eps'
 set xlabel 'set size in keys'
 set ylabel 'Branch misses per key'
 plot \
-'../data/converted_simple_logs/base_heapsort_/base_heapsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:12 title 'base heapsort  - 2 Level Adaptive - 4096 2nd level entries',\
-'../data/converted_simple_logs/base_heapsort_/base_heapsort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'base heapsort  - Bimodal - 512 byte table',\
-'../data/converted_simple_logs/cache4_heapsort_/cache4_heapsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:12 title 'cache heapsort (4-heap) - 2 Level Adaptive - 4096 2nd level entries',\
-'../data/converted_simple_logs/cache4_heapsort_/cache4_heapsort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'cache heapsort (4-heap) - Bimodal - 512 byte table',\
-'../data/converted_simple_logs/cache_heapsort_/cache_heapsort__sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:12 title 'cache heapsort (8-heap) - 2 Level Adaptive - 4096 2nd level entries',\
-'../data/converted_simple_logs/cache_heapsort_/cache_heapsort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'cache heapsort (8-heap) - Bimodal - 512 byte table'
+'../data/converted_simple_logs/base_heapsort/base_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:12 title 'base heapsort  - 2 Level Adaptive - 4096 2nd level entries',\
+'../data/converted_simple_logs/base_heapsort/base_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'base heapsort  - Bimodal - 512 byte table',\
+'../data/converted_simple_logs/cache4_heapsort/cache4_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:12 title 'cache heapsort (4-heap) - 2 Level Adaptive - 4096 2nd level entries',\
+'../data/converted_simple_logs/cache4_heapsort/cache4_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'cache heapsort (4-heap) - Bimodal - 512 byte table',\
+'../data/converted_simple_logs/cache_heapsort/cache_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:12 title 'cache heapsort (8-heap) - 2 Level Adaptive - 4096 2nd level entries',\
+'../data/converted_simple_logs/cache_heapsort/cache_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'cache heapsort (8-heap) - Bimodal - 512 byte table'

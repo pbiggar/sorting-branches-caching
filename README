@@ -1,3 +1,6 @@
+NB: Most of the scripts are hard coded, and will only work from the directories
+they are called from below.
+
 There are 4 sets of tests: hardware performance counters, testing the sorts to
 see if they work, simplescalar and software branch predictors.
 

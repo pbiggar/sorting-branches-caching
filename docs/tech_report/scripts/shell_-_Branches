@@ -10,5 +10,5 @@ set output '../data/plots/shell_-_Branches.eps'
 set xlabel 'set size in keys'
 set ylabel 'Branches per key'
 plot \
-'../data/converted_simple_logs/gonnet_shellsort_/gonnet_shellsort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6 title 'gonnet shellsort',\
-'../data/converted_simple_logs/improved_gonnet_shellsort_/improved_gonnet_shellsort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6 title 'improved gonnet shellsort'
+'../data/converted_simple_logs/gonnet_shellsort/gonnet_shellsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6 title 'gonnet shellsort',\
+'../data/converted_simple_logs/improved_gonnet_shellsort/improved_gonnet_shellsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6 title 'improved gonnet shellsort'

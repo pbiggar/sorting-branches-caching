@@ -10,7 +10,7 @@ set output '../data/plots/on2_-_Branch_misses2.eps'
 set xlabel 'set size in keys'
 set ylabel 'Branch misses per key'
 plot \
-'../data/converted_simple_logs/on2_bubblesort_/on2_bubblesort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'bubblesort',\
-'../data/converted_simple_logs/on2_bubblesort2_/on2_bubblesort2__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'bubblesort2',\
-'../data/converted_simple_logs/on2_shakersort_/on2_shakersort__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'shakersort',\
-'../data/converted_simple_logs/on2_shakersort2_/on2_shakersort2__sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'shakersort2'
+'../data/converted_simple_logs/on2_bubblesort/on2_bubblesort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'bubblesort',\
+'../data/converted_simple_logs/on2_bubblesort2/on2_bubblesort2_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'bubblesort2',\
+'../data/converted_simple_logs/on2_shakersort/on2_shakersort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'shakersort',\
+'../data/converted_simple_logs/on2_shakersort2/on2_shakersort2_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'shakersort2'

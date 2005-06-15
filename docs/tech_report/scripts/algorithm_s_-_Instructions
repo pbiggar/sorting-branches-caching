@@ -10,4 +10,4 @@ set output '../data/plots/algorithm_s_-_Instructions.eps'
 set xlabel 'set size in keys'
 set ylabel 'Instructions per key'
 plot \
-'../data/converted_simple_logs/algorithm_s_/algorithm_s_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:2
+'../data/converted_simple_logs/algorithm_s/algorithm_s_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:2

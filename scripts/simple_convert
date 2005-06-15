@@ -17,7 +17,7 @@ if (defined($options{"o"})) { $offset = 1; }
 
 if ($offset) # read in the offset results
 {
-	$argument = "../data/simple_logs/do_nothing_";
+	$argument = "../data/simple_logs/do_nothing_random.org";
 	unless (-e $argument) { die("file '$argument' does not exist\n"); }
 
 	#get the actual filename
@@ -104,7 +104,7 @@ foreach $argument (@ARGV)
 	@path = split(/\//, $argument);
 	$filename = pop(@path);
 	#HACK  TODO
-	$filename =~ s/random.org//g;
+	$filename =~ s/_random.org//g;
 
 	# make a directory for the logs
 	mkdir "../data/converted_simple_logs/$filename";

@@ -124,7 +124,7 @@ foreach $sort (@sorts)
 		{
 			$num = $col_num{$type}[$i];
 			$name = $col_name{$type}[$i];
-			$command = "./plot -y $num -Y \"$name\" -t \"$sort - $name\"";
+			$command = "../scripts/do_plot -y $num -Y \"$name\" -t \"$sort - $name\"";
 			foreach $file (@files)
 			{
 				$command .= " $converted_dir/".$file;

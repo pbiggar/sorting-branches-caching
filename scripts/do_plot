@@ -183,12 +183,12 @@ else
 #$redirection .= "set noborder";
 $redirection .= "set xrange [4096:4194304]\n";
 $redirection .= "set yrange [0:]\n";
-$redirection .= "set xtics (4096,8192,16384,32768,65536,131072,262144,524288,1048576,2097152,4194304)\n";
+$redirection .= "set xtics (8192,16384,32768,65536,131072,262144,524288,1048576,2097152)\n";
 $redirection .= "set format x \"%8.0f\"\n";
 $redirection .= "set logscale x\n";
 $redirection .= "set data style linespoints\n";
 $redirection .= "set term postscript eps color\n";
-$redirection .= "set output 'plots/$output_filename.eps'\n";
+$redirection .= "set output '../data/plots/$output_filename.eps'\n";
 $redirection .= "set xlabel '$xlabel'\n";
 $redirection .= "set ylabel '$ylabel'\n";
 $redirection .= "plot $plot\n";

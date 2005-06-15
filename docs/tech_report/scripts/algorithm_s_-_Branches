@@ -10,4 +10,4 @@ set output '../data/plots/algorithm_s_-_Branches.eps'
 set xlabel 'set size in keys'
 set ylabel 'Branches per key'
 plot \
-'../data/converted_simple_logs/algorithm_s_/algorithm_s_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6
+'../data/converted_simple_logs/algorithm_s/algorithm_s_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6
