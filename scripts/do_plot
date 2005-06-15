@@ -197,7 +197,7 @@ $redirection .= "plot $plot\n";
 # -----------------------------------------------------------------------------
 # 							run it
 # -----------------------------------------------------------------------------
-open(SAVE, "> ./plot_inputs/$output_filename");
+open(SAVE, "> ../data/simplescalar_generated_gnuplot_scripts/$output_filename");
 print SAVE $redirection;
 close(SAVE);
 

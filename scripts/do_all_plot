@@ -37,7 +37,7 @@ $col_name{"basic"} = [ "Instructions", "References"];
 $col_name{"sim-cache"} = [ "Level 1 misses", "Level 1 accesses", "Level 2 misses", "Level 2 accesses"];
 $col_name{"sim-bpred"} = [ "Branches", "Address hits", "Direction hits", "Branch misses"];
 
-$converted_dir = "gnuplot_logs";
+$converted_dir = "../data/converted_simple_logs";
 
 # get the folder info
 opendir (CONVERTED_DIR, $converted_dir) || die("can't opendir : $converted_dir\n");
@@ -63,7 +63,7 @@ foreach $dir (@sub_dirs)
 		{
 			$num = $col_num{$type}[$i];
 			$name = $col_name{$type}[$i];
-			$command = "./plot -y $num -Y \"$name\" -t \"$dir - $name\"";
+			$command = "../scripts/do_plot -y $num -Y \"$name\" -t \"$dir - $name\"";
 			foreach $file (@files)
 			{
 				$command .= " $converted_dir/$dir/$file";
