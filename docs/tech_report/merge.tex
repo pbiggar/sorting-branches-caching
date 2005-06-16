@@ -300,53 +300,42 @@ emerges the winner.
 \section{Predictor results}
 
 \sixplot{algorithm_n_0.eps}{algorithm_s_0.eps}{base_mergesort_0.eps}{double_tiled_mergesort_0.eps}{double_multi_mergesort_0.eps}{double_multi_mergesort_0.eps}{mergesorts}
-%\afterpage{
-%\setcounter{subfigure}{0}
-%\thispagestyle{empty}
-%\clearpage
-%\enlargethispage{14em}
-%\vspace*{-5em}
-%\begin{figure}[H]
-%\begin{changemargin}
-%\subfigure[]{\includegraphics[scale=0.74]{../counters/algorithm_n-0.eps}}
-%\subfigure[]{\includegraphics[scale=0.74]{../counters/algorithm_s-0.eps}}
-%\subfigure[]{\includegraphics[scale=0.74]{../counters/base_mergesort_0.eps}}
-%\subfigure[]{\includegraphics[scale=0.74]{../counters/double_tiled_mergesort_0.eps}}
-%\subfigure[]{\includegraphics[scale=0.74]{../counters/double_multi_mergesort_0.eps}}
-%\subfigure[]{\includegraphics[scale=0.74]{../counters/double_multi_mergesort-1.eps}}
-%\end{changemargin}
-%\vspace*{6em}
-%\caption{Branch prediction performance for mergesorts. All graphs use the same scale.}
-%\label{Branch prediction performance for mergesorts}
-%\end{figure}
-%\newpage
-%}
 
-%TODO This is a bit to rewrite
+Figure \ref{mergesorts-1} shows that algorithm N has the same number of branches
+and branch mispredictions as algorithm S, shown in \ref{mergesorts-2}. Base
+mergesort has the same number of mispredictions (see Figure \ref{mergesorts-3},
+indicating a possible minimum number. It has a lower number of branches,
+probably due to performing a persort first. The presort has approximately 6.8
+misses per key (not shown in the graphs). In later mergesorts, an insertion sort
+is used instead.
+%TODO ohw much better does this do? if not, move to other section
 
-figure a shows Algorithm N, knuths natural merge. N3, N5 and N9 indicate parts of the flow chart. 'N3 i==j' is the second branch in N3.
+Double-tiled mergesort (which has the same results are tiled mergesort) has a
+predilication for left and for merging forwards. This is likely to be due to the
+fact that the final merge goes forwards, and that left occurs first in the code.
 
-The results show that the secondary loops are always taken. Taken here means broken out of, hence seldom used. The main action occurs in N3, the main comparator, which has a 50\% prediction ratio.
+In both double tiled mergesort and base mergesort, approximately two thirds are
+of the loops are taken, unlike Knuth's sorts. However, this appears to indicate
+an increase in branches, as opposed to a decrease in mispredictions. Overall
+this stay is line with the idea that there is a minimum number of branch misses,
+below which comparative sorts will not drop.
 
-Algorithm S in graph B shows the same. I never really understood how it worked though.
+Double multi-mergesort sorts the arrays fully in the cache, leaving them
+bitonically arranged. This means that there is no bias for the forward branches,
+as there was in tiled mergesort. This is shown in Figures \ref{mergesorts-5} and
+\ref{mergesorts-6}. While merging the number of branches is 20\% lower than base
+mergesort, while the number of mispredictions in only 10\% lower. This implies
+that most of the mispredictions occur early in the merging process, and not in
+the final merge, which multi-mergesort leaves out.
 
+Overall, when the k-ary heap is used, there are the same number of branch
+misses. This means that using the technique to reduce cache misses does not
+adversly affect branch prediction rates (it does, however, still affect the
+instruction count).  The rate of branch misses is much the same as that in
+heapsort, and progresses in the same manner (see Figure \ref{cache heapsort
+curve}). Note that \n{comparison 0} occurs every time, and would be optimized
+out by the compiler.
 
-
-Figure c shows base mergesort. This shows a lower number of branches and a higher percentage of correct predictions. The lower number of branches is probably due to the presort. there is a higher percentage of correct predictions, but the actual number of correct predictions in the same. This implies that doing the presort removes incorrect predictions (or, more to the point, moves incorrect predictions to another part of the algorithm). Note too, that both sides are used equally, which doesn't happen later. Two thirds of the branches are not-taken, which means loops execute twice before breaking. this is the same results that we found in quicksort later. I'm sure knuth explains this somewhere in the fine print.
-
-Figure d shows double tiled mergesort. The total number fo branches is a 10\% increase over the base mergesort. Not sure why this is. 15\% increase in correct predictions so this incrase into predictable range, which should be avoidable (according to what we guess in quicksort).
-
-Figure e and f show the double mulitmergesort results. This sorts fully within the cache only, reducing the number of branches relating to this. The reason that the previous balance was so muhc in favour of forwards was that the final sort at the end was forwards. Here though, the arrays are left bitonically, so there is an even distribution betwwen forwards and backwards. There si still the bias towards left rather than right. Left comes first in the code, but this doesnt quite explain why this happens. However, the number fo misses each way is identical.
-
-The total branches is a decrease of about 20\% on base mergesort. The number of mispredictions decreases by less than 10\%. Howver, all these branches are made up by the increase in branches due to the heap. The number of extra brnahc misses due to this is 26\% of the branches misses in base mergesort. In total, the num ber fo branches isa equivalent however. So no loss by doing this (except lots of extra instructions, as seen before).
-
-Note that here and in the heaps, comparison 0 does nothing. THe compiler ought to trim it out, except that now it actually does something (increases the branch counter).
-
-
-finally, in base mergesort, there is an inline presort used. For efficiency, an insertion sort is used later. However, there are 6.8 misses per key in the inline presort, which is less than the insertion sort does. Its not as useful for presorting to 8, however. THese results hold forwards and in reverse.
-
-
-%TODO up to here
 
 \section{Future work}
 Several avenues could be pursued in order to improve the algorithms presented
@@ -367,6 +356,3 @@ It may also be possible to simply reduce the number of conflict misses of the
 k-way merge, simply by reducing the size of the initial sort by the size of
 several cache lines. In this way, the smallest keys would map to different
 cache blocks, without the need for padding.
-
-%TODO
-TODO what about level 1 cache misses if we realigned by 1024?
