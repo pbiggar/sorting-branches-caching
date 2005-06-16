@@ -1,11 +1,3 @@
-/***************************************************************************
-                          main.c  -  description
-                             -------------------
-    begin                : Sat Oct 11 2003
-    copyright            : (C) 2003 by Paul Biggar
-    email                : biggarp@tcd.ie
- ***************************************************************************/
-
 #include <stdio.h> // fopen, fgets, fclose
 #include <errno.h> // errno
 #include <assert.h> // assert
@@ -22,7 +14,6 @@
 #include "aux/visual_sorts.h"
 #include "aux/utils.h"
 
-#include "aux/predictor.h"
 
 #define RANDOM_SIZE (4194304)
 //#define RANDOM_SIZE (534523)
@@ -34,6 +25,8 @@
 
 #define RUN_VISUAL 0
 #define VISUAL_SIZE (128)
+
+#include "aux/predictor.h"
 
 unsigned int sorted_array[RANDOM_SIZE];
 unsigned int random_array[RANDOM_SIZE];
@@ -332,6 +325,7 @@ main(int argc, char** args)
 		printf("No timings on on2_insertsort - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
 		printf("No timings on on2_insertsort - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
 	}
+
 	if (RANDOM_SIZE <= 8192)
 	{
 		time_sort(on2_bubblesort, "O(N squared) Bubble");
@@ -385,11 +379,16 @@ main(int argc, char** args)
 	predictor_run(old_shellsort, 1, "Old Shellsort");
 	predictor_run(shellsort, 2, "Shellsort");
 
+	if (N <= 8192)
+	{
+		predictor_run(on2_bubblesort, N, "Bubblesort");
+		predictor_run(on2_bubblesort2, N, "Bubblesort2");
+	}
+	else printf ("not running predictors for on2_bubblesort as N is %d\n", N);
+
+	printf("Not running predictors for on2_bubblesort\n");
 	printf("Not running predictors for on2_insertsort\n");
 	printf("Not running predictors for on2_selectsort\n");
-	printf("Not running predictors for on2_bubblesort\n");
-	printf("Not running predictors for on2_bubblesort2\n");
-	printf("Not running predictors for on2_shakersort\n");
 	printf("Not running predictors for on2_shakersort2\n");
 
 

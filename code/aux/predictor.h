@@ -1,7 +1,7 @@
 #ifndef _PREDICTOR_H_
 #define _PREDICTOR_H_
 
-#define PREDICTOR_COUNT 64
+#define PREDICTOR_COUNT 8192
 
 #ifdef _USE_SOFTWARE_PREDICTOR
 #include <stdio.h>
