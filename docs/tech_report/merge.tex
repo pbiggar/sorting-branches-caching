@@ -50,7 +50,7 @@ is a very difficult algorithm to modify. Knuth describes it in assembly, and
 making the optimizations that LaMarca describes on it is more difficult than
 rewriting the algorithm more simply. The rewritten algorithm, referred to from
 here on as `base mergesort', is a simple higher level version of algorithm S,
-and performs only slightly more slowly.
+and should perform only slightly more slowly.
 
 A disadvantage of this method is that if an array has slightly more than $2^x$
 keys, an entire extra merge step would be required, which would considerably
@@ -98,7 +98,7 @@ observed difference between unrolling manually and compiler unrolling is up to
 
 Overall, these three optimizations reduced the instruction count by 30\%.
 
-\section{Double Tiled Mergesort}
+\section{Tiled Mergesort}
 LaMarca's first problem with mergesort is the placement of the arrays with
 respect to each other. If the source and target arrays map to the same cache
 block, the writing from one to the other will cause a conflict miss. The next
@@ -106,10 +106,9 @@ read will cause another conflict miss, and will continue in this manner. To
 solve this problem, the two arrays are positioned so that they map to different
 parts of the cache. To do this, an additional amount of memory the same size as
 the cache is allocated, which can be expensive for small arrays. The address of
-the auxiliary array is then offset such that $index(source) + index(auxiliary) =
-C$.
-
-%TODO what does this formula mean. look up LaMarcas paper
+the auxiliary array is then offset such that the block index in the source array
+is $CacheSize/2$ from the block index in the target array. The is achieved by
+inverting the most significant bit of the block index in the target array.
 
 While this step makes sense, whether this is valuable is very much a platform
 dependant issue. Since virtual addresses are used, it may be possible that the
@@ -137,25 +136,27 @@ two or eight. A large increase of instruction count was realized by sorting to
 lists of length two, so a length of eight was used. When an even number was
 required, four was used.
 
-The final improvement was to fully sort keys in the level 1 cache, before
-continuing to level 2 cache as in the tiled mergesort. The expected improvement
-is not as significant as in the case of the level 2 cache, since the penalty
-for level 1 misses is not great. For this reason, this sort is called Double
-Tiled Mergesort instead of Tiled Mergesort, however, it is referred to as both
-in this report.
+\section{Double Tiled Mergesort}
+Offsetting the target array to avoid conflicts reduces significantly the number
+of level 2 cache misses. However, it does this at the expense of increasing the
+number of level 1 cache misses. To avoid this, we furthur offset the target
+array by $Level1CacheSize/2$. It is expected that the number of level 1 misses
+should be greatly decreased, at the expense of very few level 2 misses. The
+expected improvement is not as great as between base mergesort and tiled
+mergesort, but some improvement should be seen.
 
-\section{Double Multi-mergesort}
+\section{Multi-mergesort}
 
-Double Multi-mergesort has two phases. The first is the same as tiled mergesort, and
-sorts the array into lists sized $C/2$. The second phase attempts to improve
-temporal locality by merging these lists together in a single merge step. There
-are $k$ lists and this is called a \n{k-way merge}. It is possible to do a
-search across each of these keys, maintaining a list of indices to the smallest
-unused key from each list. When there is a small number of lists, this isn't a
-problem, however, when the number of lists increases significanty, the overhead
-involved in this is substantial. It is necessary to check each of the lists, and
-each key searched would cause a cache miss, since each array segment is aligned,
-and map to the same cache block.
+Multi-mergesort has two phases. The first is the same as tiled mergesort, and
+sorts the array into lists half the size of the cache. The second phase attempts
+to improve temporal locality by merging these lists together in a single merge
+step. There are $k$ lists and this is called a \n{k-way merge}. It is possible
+to do a search across each of these keys, maintaining a list of indices to the
+smallest unused key from each list. When there is a small number of lists, this
+isn't a problem, however, when the number of lists increases significanty, the
+overhead involved in this is substantial. It is necessary to check each of the
+lists, and each key searched would cause a cache miss, since each array segment
+is aligned, and map to the same cache block.
 
 To avoid this, a priority queue is used. The smallest key from each list is
 added to the queue, and then put into the final target array. This reduces the
@@ -207,23 +208,31 @@ in the first phase, and the same in the second phase, although each miss will
 occur in both the source and target arrays. This sums to four misses per cache
 block, for a total of one miss for every two keys in the array.
 
+\section{Double Multi-mergesort}
+
+Double Multi-mergesort combines the double tiling of Double Tiled mergesort with
+Multi-mergesort.
+
 \section{Results}
 \subsection{Test Parameters}
-The level 1 cache is 8k, so 2048 keys can be sorted in the level 1 cache.
-262144 keys can be sorted in the level 2 cache. When arrays were pre-sorted,
-they were pre-sorted to a size four, or eight if the number of passes was going
-to be odd. These were reversed for the double multi-mergesort; since it does a
-k-way merge into the source array, the sorted cache sized segments need to be in
-the auxiliary array. An 8-heap was used for the multi-mergesorts.
+The level 1 cache is 8k, so 1024 keys from each array can be sorted in the level
+1 cache. 262144 keys can be sorted in the level 2 cache. When arrays were
+pre-sorted, they were pre-sorted to a size four, or eight if the number of
+passes was going to be odd. These were reversed for the double multi-mergesort;
+since it does a k-way merge into the source array, the sorted cache sized
+segments need to be in the auxiliary array. An 8-heap was used for the
+multi-mergesorts.
 
 \subsection{Expected Performance}
 
-Algorithm N and algorithm S are included in the results for reference, but are
-not discussed here.
+Algorithm N is not optimized for random data, and should not perform as well as
+algorithm S. Algorithm S is expected to have a lower instruction count than base
+mergesort. Neither algorithm is expected to have good cache performance, 
 
 The instruction count of mergesort is $O(NlogN)$, and does not vary
 according to input. Multi-mergesort should have a significantly higher
-instruction count once its threshold is hit.
+instruction count once its threshold is hit. The double merges have exactly the
+same flow control as the single merges, so will only differ in cache misses.
 
 The number of memory references is also $O(NlogN)$, and mergesort's cache
 performance should be very regular, so long as the data set fits in the cache. Once
@@ -232,7 +241,8 @@ multi-mergesort, they should flatten out after this, perhaps with a slight
 slope to take into account the conflict misses of the aligned array segments. The
 fully associative caches should not have these misses, and the results should be
 correspondingly lower. Due to their design, the double mergesorts should have
-better performance than their counterparts.
+better performance than their counterparts, both in level 1 misses, and overall,
+though the difference is not expected to be great.
 
 The flow control of mergesort is very regular, but there is no way to predict
 the comparisons. As a result the misprediction rate should be $O(NlogN)$ for
@@ -242,24 +252,35 @@ passed.
 \subsection{Simulation Results}
 \label{Mergesort results}
 
-\plot{merge}{}{}{Except where marked, results shown are for a Direct Mapped cache.}{
+\plot{merge}{}{}{Results shown are for a Direct Mapped cache.}{
 Results shown are for a Direct Mapped cache.}{}{}
 
-The number of instructions, shown in Figure \ref{merge instructions} is exactly
-as predicted, with a 50\% spike at multi-mergesort. Level 2 misses, shown in
-Figure \ref{merge level 2 misses} are also as expected, although the
-multi-mergesort does not show the same improvement over tiled mergesort as in
-LaMarca's results.
+As expected, algorithm N has lower instruction count than algorithm S, which
+also slightly outperforms base mergesort.  The number of instructions, shown in
+Figure \ref{merge instructions} is exactly as predicted, with a 50\% spike at
+multi-mergesort. Level 2 misses, shown in Figure \ref{merge level 2 misses} are
+also as expected, although the multi-mergesort does not show the same
+improvement over tiled mergesort as in LaMarca's results.
 
-%TODO look over lamarcas results
 The prediction results in Figure \ref{Branch Simulation results for mergesort}
 are as expected. Very little variation exists between the types of mergesort. It
 is noticeable, though, that the spike in branch misses due to the
 multi-mergesorts is considerably lessened by the two level adaptive predictor.
 The reason for this is not clear.
 
+As predicted, the rate of level 1 misses is greatly reduced by the double
+tiling, as shown in Figure \ref{merge level 1 misses}. Double multi-mergesort
+has consistantly four times fewer level 1 misses than multi-mergesort, and both
+double tiled sorts perform significantly better than the unoptimizied sorts.
+
+The level 2 cache results are startingly similar to LaMarca's. The shape of the
+Figure \ref{merge level 2 misses} is exactly that provided by LaMarca. The
+ratio's between the each of the sorts is also the same, though the numbers are
+not identical. As we use a different base algorithm from LaMarca, this is not
+unthinkable.
+
 Despite the improvement in cache misses due to multi-mergesort, it still cannot
-account for the increase in instruction count as a result, and it has a higher
+compensate for the increase in instruction count as a result, and it has a higher
 cycle count on the Pentium 4 (see Figure \ref{merge cycles}) as a result. The
 other sorts generally perform in $O(NlogN)$ time, with double tiled mergesort
 being the fastest. Note that the alignment of the mergesort may not work as
@@ -268,26 +289,13 @@ the Pentium 4 cache is only 256KB. This means that the two arrays are aligned to
 the same cache block. However, since the cache is 8-way associative, this is not
 serious, and should not result in a lot of thrashing.
 
-The results presented here differ from LaMarca's results. In the case of
-instruction count, both sets are nearly identical: the graphs are the same shape
-and have similar ratios between the base and multi-mergesorts. The cache results
-have a similar shape to LaMarca's, with a large increase in misses as soon as
-the arrays no longer fit in the cache, and similar ratios between the base and
-tiled versions.  But while LaMarca reports a very small increase in level 2
-misses once multi-mergesort's data set is larger than the cache, the results
-here show nearly the same jump as tiled mergesort. This results in half as many
-misses as the base mergesort, while LaMarca shows nearly 10 times fewer misses
-for his multi-mergesort.
-
-As a result of this discrepancy, it is not a surprise that LaMarca's results
-indicate that multi-mergesort is far faster than base-mergesort, but the same
-results are not shown here. The increase in instruction count cripples
-multi-mergesort, and tiled mergesort emerges the victor.
-
-This is not to say that LaMarca's results disagree with those here. In fact, it
-is noticeable that multi-mergesort's cache misses plateau at the edge of the
-graph, while other mergesorts' misses continue to climb. This is in keeping with
-both LaMarca's theory and results.
+The cache misses end up being the deciding factor between the performance of
+double tiled mergesort and base mergesort, the next best contender. Dispite the
+reduction in level 2 cache misses, the sharp increase in level 1 misses result
+is poor performance for tiled and multi-mergesort. Multi-mergsort is further
+encumbered with a much higher instruction count. Double tiled mergesort, with
+its low instruction count, and low cache miss rate in both level 1 and two,
+emerges the winner.
 
 \section{Predictor results}
 

@@ -6,7 +6,7 @@ set format x "%8.0f"
 set logscale x
 set data style linespoints
 set term postscript eps
-set output '../data/plots/merge_-_Branch_misses.eps'
+set output '../data/plots/demo6.eps'
 set xlabel 'set size in keys'
 set ylabel 'Branch misses per key'
 plot \
