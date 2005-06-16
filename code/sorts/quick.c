@@ -39,7 +39,7 @@ print_stack()
 	}
 }
 */
-static int
+inline static int
 partition_sans_sentinel(unsigned int a[], int l, int r)
 {
 	unsigned int v;
@@ -84,7 +84,7 @@ partition_sans_sentinel(unsigned int a[], int l, int r)
 	return i;
 }
 
-static int
+inline static int
 partition(unsigned int a[], int l, int r)
 {
 	unsigned int v;
