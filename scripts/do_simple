@@ -160,7 +160,7 @@ push(@ns, $max_num_items);
 
 #@ns = { "128", "4096", "32768" };
 
-$log_directory = "../simple_logs/";
+$log_directory = "../data/simple_logs/";
 
 # compiler settings
 $CC = "sslittle-na-sstrix-gcc";
