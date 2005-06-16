@@ -15,11 +15,12 @@
 #include "aux/utils.h"
 
 
-#define RANDOM_SIZE (4194304)
+//#define RANDOM_SIZE (4194304)
 //#define RANDOM_SIZE (534523)
 //#define RANDOM_SIZE (262144)
 //#define RANDOM_SIZE (32768)
 //#define RANDOM_SIZE (16384)
+#define RANDOM_SIZE (8192)
 //#define RANDOM_SIZE (4096)
 //#define RANDOM_SIZE (128)
 
@@ -224,7 +225,7 @@ main(int argc, char** args)
 // ****************************************************************************************************************
 //                    tests
 // ****************************************************************************************************************
-
+/*
 	printf("Beginning sort tests (%d - %d)\n", TEST_MIN, TEST_MAX);
 	test_sort(base_heapsort, "Base Heapsort");
 	test_sort(cache_heapsort, "Cache Heapsort");
@@ -378,13 +379,13 @@ main(int argc, char** args)
 
 	predictor_run(old_shellsort, 1, "Old Shellsort");
 	predictor_run(shellsort, 2, "Shellsort");
-
-	if (N <= 8192)
+*/
+	if (RANDOM_SIZE <= 8192)
 	{
-		predictor_run(on2_bubblesort, N, "Bubblesort");
-		predictor_run(on2_bubblesort2, N, "Bubblesort2");
+		predictor_run(on2_bubblesort, RANDOM_SIZE, "Bubblesort");
+		predictor_run(on2_bubblesort2, RANDOM_SIZE, "Bubblesort2");
 	}
-	else printf ("not running predictors for on2_bubblesort as N is %d\n", N);
+	else printf ("not running predictors for on2_bubblesort as N is %d\n", RANDOM_SIZE);
 
 	printf("Not running predictors for on2_bubblesort\n");
 	printf("Not running predictors for on2_insertsort\n");

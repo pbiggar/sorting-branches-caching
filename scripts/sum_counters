@@ -1,0 +1,99 @@
+#!/usr/bin/perl -w
+
+use strict;
+use warnings;
+
+foreach my $file (@ARGV)
+{
+	my %results;
+	my @branch_names;
+	my @headings;
+	my $filename = $file;
+	$filename =~ s/counters\///;
+	my $base_filename = lc($filename);
+	$base_filename =~ s/ /_/g;
+
+	# get the branch names and values
+	open(BASE, $file);
+	my @lines = <BASE>;
+	@lines = grep {!/^\#/} @lines;
+	while(my $line = shift(@lines))
+	{
+		$line =~ /$filename - (.*):/;
+		my $branch_name = $1;
+		push(@branch_names, $branch_name);
+
+		$line = shift(@lines); # column titles - SKIP
+		for(my $i = 0; $i < 5; $i++) # read all the counts
+		{
+			$line = shift(@lines);
+			$line =~ /(\w+):\s+\d+\s+\d+\s+\d+\s+\d+\s+(\d+)/;
+			my $this_result = $2;
+			$headings[$i] = $1;
+			$results{$branch_name}{$1} = $this_result;
+		}
+	
+		shift(@lines); # current state
+		shift(@lines); # blank line
+	}
+	close(BASE);
+
+	# now we've got all the data, what to do with it
+	my $count = 0;
+	my $print_list = 1;
+
+# TODO make print list CL option
+	if ($print_list)
+	{
+		print STDOUT "The available predictors are:\n";
+		foreach my $predictor (@branch_names)
+		{
+			print "\t$count\t$predictor\n";
+			$count++;
+		}
+	}
+
+# TODO chosen from command line
+#	my @chosen = ( 4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21) ;
+	my @chosen = ( 4,5) ;
+	my $output = "";
+	my $title = "predictors"; # TODO from outside
+
+	my %sum;
+	foreach my $heading (@headings)
+	{
+		$sum{$heading} = 0;
+	}
+
+	# add them all up
+	foreach my $choice (@chosen)
+	{
+		foreach my $heading (@headings)
+		{
+			$sum{$heading} += $results{$branch_names[$choice]}{$heading};
+#			print "$choice - $heading \n";
+		}
+	}
+
+	$output .= "$filename - $title\n";
+	$output .= sprintf("%-27s%13s %13s %13s %13s %13s\n", "states", "blah", "bleh", "blue", "blech", "Total");
+	foreach my $heading (@headings)
+	{
+		$output .= sprintf("%-27s", "$heading:");
+		$output .= sprintf("%13d %13d %13d %13d %13d\n", 0, 0, 0, 0, $sum{$heading});
+
+#		"$heading: 0 0 0 0 $sum{$heading}\n";
+	}
+
+	print $output;
+
+#	my $output_file = "asd";
+#	if ($output)
+#	{
+#		open(OUTPUT, ">$output");
+#		close(OUTPUT);
+#	}
+
+
+}
+

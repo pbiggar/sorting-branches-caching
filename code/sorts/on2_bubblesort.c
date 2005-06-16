@@ -6,12 +6,16 @@ on2_bubblesort(unsigned int a[], int N)
 	int i, j;
 	int sorted;
 
+#ifdef _USE_SOFTWARE_PREDICTOR
 	char string[10];
+#endif
 
 	for (i = 0; i < N-1; i++)
 	{
+#ifdef _USE_SOFTWARE_PREDICTOR
 		sprintf(string, "%d", i);
 		describe_predictor(&global_predictor[i], string);
+#endif
 
 		sorted = 1;
 		for (j = N-1; j > i; j--)
