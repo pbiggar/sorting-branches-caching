@@ -47,7 +47,7 @@ reached. At the end of the partition sorting, LaMarca places a sentinel at the
 end of the array and uses an insertion sort, eliminating the bounds check from
 the end. In this implementation, the sentinel is placed at the front, and the
 smallest of the first \cc{threshold} keys is used as a sentinel, in keeping
-with the policy of not exceeding the bounds of the array.
+with our policy of not exceeding the bounds of the array.
 
 Choosing a pivot which is close to the median of the keys to be sorted ensures
 quicksort achieves optimal performance. Hoare suggested a random pivot, but the
@@ -74,8 +74,9 @@ improvements are not included here for several reasons. Firstly, a quicksort
 which takes into account equal keys puts the equal keys at the front of the
 array, then copies them into place later. These copies would represent a lot of
 cache misses, and the results would overwhelm the improvements LaMarca makes in
-the next phase of the algorithm. Secondly, it is not as important to write a
-brilliant version of quicksort as it is to analyse LaMarca's improvements.
+the next phase of the algorithm. Secondly, when sorting random keys over a
+large range, the number of equal keys will be vewry low. It is therefore not
+worth our while to investigate this.
 
 \section{Memory-Tuned Quicksort}
 LaMarca's first step was to increase the temporal locality of the algorithm by

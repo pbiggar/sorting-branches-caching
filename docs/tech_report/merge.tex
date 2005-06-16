@@ -139,7 +139,7 @@ required, four was used.
 \section{Double Tiled Mergesort}
 Offsetting the target array to avoid conflicts reduces significantly the number
 of level 2 cache misses. However, it does this at the expense of increasing the
-number of level 1 cache misses. To avoid this, we furthur offset the target
+number of level 1 cache misses. To avoid this, we further offset the target
 array by $Level1CacheSize/2$. It is expected that the number of level 1 misses
 should be greatly decreased, at the expense of very few level 2 misses. The
 expected improvement is not as great as between base mergesort and tiled
@@ -153,7 +153,7 @@ to improve temporal locality by merging these lists together in a single merge
 step. There are $k$ lists and this is called a \n{k-way merge}. It is possible
 to do a search across each of these keys, maintaining a list of indices to the
 smallest unused key from each list. When there is a small number of lists, this
-isn't a problem, however, when the number of lists increases significanty, the
+isn't a problem, however, when the number of lists increases significantly, the
 overhead involved in this is substantial. It is necessary to check each of the
 lists, and each key searched would cause a cache miss, since each array segment
 is aligned, and map to the same cache block.
@@ -270,14 +270,13 @@ The reason for this is not clear.
 
 As predicted, the rate of level 1 misses is greatly reduced by the double
 tiling, as shown in Figure \ref{merge level 1 misses}. Double multi-mergesort
-has consistantly four times fewer level 1 misses than multi-mergesort, and both
-double tiled sorts perform significantly better than the unoptimizied sorts.
+has consistently four times fewer level 1 misses than multi-mergesort, and both
+double tiled sorts perform significantly better than the unoptimized sorts.
 
-The level 2 cache results are startingly similar to LaMarca's. The shape of the
+The level 2 cache results are startlingly similar to LaMarca's. The shape of the
 Figure \ref{merge level 2 misses} is exactly that provided by LaMarca. The
 ratio's between the each of the sorts is also the same, though the numbers are
-not identical. As we use a different base algorithm from LaMarca, this is not
-unthinkable.
+not identical, due to different \c{int} sizes in our tests.
 
 Despite the improvement in cache misses due to multi-mergesort, it still cannot
 compensate for the increase in instruction count as a result, and it has a higher
@@ -290,11 +289,11 @@ the same cache block. However, since the cache is 8-way associative, this is not
 serious, and should not result in a lot of thrashing.
 
 The cache misses end up being the deciding factor between the performance of
-double tiled mergesort and base mergesort, the next best contender. Dispite the
+double tiled mergesort and base mergesort, the next best contender. Despite the
 reduction in level 2 cache misses, the sharp increase in level 1 misses result
-is poor performance for tiled and multi-mergesort. Multi-mergsort is further
+is poor performance for tiled and multi-mergesort. Multi-mergesort is further
 encumbered with a much higher instruction count. Double tiled mergesort, with
-its low instruction count, and low cache miss rate in both level 1 and two,
+its low instruction count, and low cache miss rate in both levels 1 and 2,
 emerges the winner.
 
 \section{Predictor results}
@@ -305,14 +304,16 @@ Figure \ref{mergesorts-1} shows that algorithm N has the same number of branches
 and branch mispredictions as algorithm S, shown in \ref{mergesorts-2}. Base
 mergesort has the same number of mispredictions (see Figure \ref{mergesorts-3},
 indicating a possible minimum number. It has a lower number of branches,
-probably due to performing a persort first. The presort has approximately 6.8
+probably due to performing a presort first. The presort has approximately 6.8
 misses per key (not shown in the graphs). In later mergesorts, an insertion sort
 is used instead.
 %TODO ohw much better does this do? if not, move to other section
 
 Double-tiled mergesort (which has the same results are tiled mergesort) has a
-predilication for left and for merging forwards. This is likely to be due to the
-fact that the final merge goes forwards, and that left occurs first in the code.
+predilection for merging forwards. This is likely to be due to the fact that the
+final merge goes forwards. The left merge step is also favoured, but this is
+merely due to the fact that it occurs first in the code. While there are more
+left branches, the actual number of branches taken are the same.
 
 In both double tiled mergesort and base mergesort, approximately two thirds are
 of the loops are taken, unlike Knuth's sorts. However, this appears to indicate
@@ -330,7 +331,7 @@ the final merge, which multi-mergesort leaves out.
 
 Overall, when the k-ary heap is used, there are the same number of branch
 misses. This means that using the technique to reduce cache misses does not
-adversly affect branch prediction rates (it does, however, still affect the
+adversely affect branch prediction rates (it does, however, still affect the
 instruction count).  The rate of branch misses is much the same as that in
 heapsort, and progresses in the same manner (see Figure \ref{cache heapsort
 curve}). Note that \n{comparison 0} occurs every time, and would be optimized
