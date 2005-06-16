@@ -13,5 +13,7 @@ plot \
 '../processed_cycles_data' using 1:16 title 'algorithm n',\
 '../processed_cycles_data' using 1:17 title 'algorithm s',\
 '../processed_cycles_data' using 1:3 title 'base mergesort',\
+'../processed_cycles_data' using 1:29 title 'tiled mergesort',\
+'../processed_cycles_data' using 1:18 title 'multi-mergesort',\
 '../processed_cycles_data' using 1:15 title 'double tiled mergesort',\
 '../processed_cycles_data' using 1:14 title 'double multi-mergesort'
