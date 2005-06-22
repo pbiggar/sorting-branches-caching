@@ -312,7 +312,7 @@ main(int argc, char** args)
 
 	time_sort(base_radixsort, "Base Radixsort");
 	time_sort(cache_radixsort, "Cache Radixsort");
-	time_sort(aligned_cache_radixsort, "Cache Radixsort");
+	time_sort(aligned_cache_radixsort, "Aligned Cache Radixsort");
 	
 	time_sort(old_shellsort, "Old Shellsort");
 	time_sort(shellsort, "Shellsort");
