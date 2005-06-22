@@ -330,7 +330,7 @@ base_quicksort9(unsigned int a[], int N)
 		
 	insertion(a, N);
 
-	// add the predictors up
+	/* add the predictors up */
 	add_predictor(&global_predictor[22], &global_predictor[4]);
 	add_predictor(&global_predictor[22], &global_predictor[5]);
 	add_predictor(&global_predictor[22], &global_predictor[6]);

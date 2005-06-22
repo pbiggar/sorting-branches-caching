@@ -271,7 +271,7 @@ base_quicksort7(unsigned int a[], int N)
 		
 	insertion(a, N);
 
-	// add the predictors up
+	/* add the predictors up */
 	add_predictor(&global_predictor[17], &global_predictor[4]);
 	add_predictor(&global_predictor[17], &global_predictor[5]);
 	add_predictor(&global_predictor[17], &global_predictor[6]);
