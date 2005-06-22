@@ -78,6 +78,7 @@ base_quicksort(unsigned int a[], int N)
 	describe_predictor(&global_predictor[4], "median1");
 	describe_predictor(&global_predictor[5], "median2");
 	describe_predictor(&global_predictor[6], "median3");
+	describe_predictor(&global_predictor[7], "predictors");
 
 	stackinit(N);
 
@@ -129,4 +130,9 @@ base_quicksort(unsigned int a[], int N)
 	else insertion_sentinel(a,2*THRESHHOLD);
 		
 	insertion(a, N);
+
+	// add the predictors up
+	add_predictor(&global_predictor[7], &global_predictor[4]);
+	add_predictor(&global_predictor[7], &global_predictor[5]);
+	add_predictor(&global_predictor[7], &global_predictor[6]);
 }

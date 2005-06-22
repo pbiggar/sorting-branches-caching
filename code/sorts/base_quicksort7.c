@@ -205,6 +205,7 @@ base_quicksort7(unsigned int a[], int N)
 	describe_predictor(&global_predictor[14], "median of 3 cmp1");
 	describe_predictor(&global_predictor[15], "median of 3 cmp2");
 	describe_predictor(&global_predictor[16], "median of 3 cmp3");
+	describe_predictor(&global_predictor[17], "predictors");
 
 
 	r = N-1;
@@ -270,4 +271,18 @@ base_quicksort7(unsigned int a[], int N)
 		
 	insertion(a, N);
 
+	// add the predictors up
+	add_predictor(&global_predictor[17], &global_predictor[4]);
+	add_predictor(&global_predictor[17], &global_predictor[5]);
+	add_predictor(&global_predictor[17], &global_predictor[6]);
+	add_predictor(&global_predictor[17], &global_predictor[7]);
+	add_predictor(&global_predictor[17], &global_predictor[8]);
+	add_predictor(&global_predictor[17], &global_predictor[9]);
+	add_predictor(&global_predictor[17], &global_predictor[10]);
+	add_predictor(&global_predictor[17], &global_predictor[11]);
+	add_predictor(&global_predictor[17], &global_predictor[12]);
+	add_predictor(&global_predictor[17], &global_predictor[13]);
+	add_predictor(&global_predictor[17], &global_predictor[14]);
+	add_predictor(&global_predictor[17], &global_predictor[15]);
+	add_predictor(&global_predictor[17], &global_predictor[16]);
 }
