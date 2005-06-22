@@ -16,4 +16,5 @@ void cache_quicksort(unsigned int a[], int N); /* insertion sort at the end */
 void multi_quicksort(unsigned int a[], int N); /* sort into correct section first with linked lists */
 
 void cache_radixsort(unsigned int a[], int N);
+void aligned_cache_radixsort(unsigned int a[], int N);
 #endif

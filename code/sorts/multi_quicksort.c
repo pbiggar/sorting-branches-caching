@@ -243,6 +243,8 @@ multi_quicksort(unsigned int a[], int N)
 			break;
 		}
 	}
+
+
 	/*		printf("count = %d\n", count); */
 
 	/* restore them in place */
@@ -260,7 +262,6 @@ multi_quicksort(unsigned int a[], int N)
 
 	/* the pivot is in its final place */
 	perform_sorta(a, 0, j-2);
-	/*		push(j-2,temp); */
 	temp = j;
 
 	for(i = 1; i < pivot_count; i++)
@@ -272,14 +273,10 @@ multi_quicksort(unsigned int a[], int N)
 		a[j++] = pivots[i];
 
 		/* the pivot is in its final place */
-		/*push(j-2,temp); */
 		perform_sort(a, temp, j-2);
 		temp = j;
 	}
 
-	if (temp < N-1)
-		perform_sort(a, temp, N-1);
-	/*			push(N-1,temp); */
 
 	/* add the ones to the right of the last pivot */
 	while(lists[i]->count > 0)

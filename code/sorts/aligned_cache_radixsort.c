@@ -1,7 +1,11 @@
 #include <stdlib.h>
 #include <string.h>
+#include <malloc.h>
 
 #include "cache_sorts.h"
+
+#define LIMIT OUT_OF_PLACE_LIMIT
+#define LIMIT_BITS OUT_OF_PLACE_LIMIT_BITS
 
 #define THRESHHOLD 10
 
@@ -13,9 +17,10 @@
 #define digit(A, B) (((A) >> (BITSWORD-((B)+1)*BITSBYTE)) & (R-1))
 
 void
-cache_radixsort(unsigned int a[], int N)
+aligned_cache_radixsort(unsigned int a[], int N)
 {
-	unsigned int* aux = malloc(N * sizeof(unsigned int));
+	unsigned int* aux_data;
+	unsigned int* aux;
 	int i, j, w; /* R is the size of a digit, hence the number of bins */
 	int count0[R+1];
 	int count1[R+1];
@@ -24,8 +29,26 @@ cache_radixsort(unsigned int a[], int N)
 	int* count = count0;
 	int* next_count = count1;
 
-	unsigned int* s = a;
-	unsigned int* t = aux;
+	unsigned int* s;
+	unsigned int* t;
+
+	unsigned int minusA;
+
+	/* get the index we need*/
+	minusA = get_index(a) ^ (1 << (BLOCK_BITS - 1));
+
+	/* also align it for level 1 misses */
+	minusA  = minusA ^ (1 << (LEVEL1_BLOCK_BITS - 1));
+
+	aux_data = memalign(ALIGNMENT, (N + 2*LIMIT) * sizeof(unsigned int));
+	aux = (unsigned int*)(((unsigned int)aux_data & (~BLOCK_AND_LINE_MASK)) | (minusA << LINE_BITS));
+	if (aux < aux_data) /* then the new index is less than the old one */
+	{
+		aux = (unsigned int*)((unsigned int)aux + (1 << (BLOCK_AND_LINE_BITS)));
+	}
+
+	s = a;
+	t = aux;
 
 	/* count the digits for the first time */
 	for(j = 0; j < R; j++) count[j] = 0;
@@ -61,5 +84,5 @@ cache_radixsort(unsigned int a[], int N)
 		t[count[digit(s[i], w)]++] = s[i];
 	}
 
-	free(aux);
+	free(aux_data);
 }

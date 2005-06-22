@@ -249,9 +249,9 @@ main(int argc, char** args)
 	test_sort(multi_quicksort, "Multi Quicksort");
 	test_sort(multi_quicksort_seq, "Sequential Multi Quicksort");
 
-
 	test_sort(base_radixsort, "Base Radixsort");
-	test_sort(base_radixsort, "Cache Radixsort");
+	test_sort(cache_radixsort, "Cache Radixsort");
+	test_sort(aligned_cache_radixsort, "Aligned Cache Radixsort");
 	
 	test_sort(old_shellsort, "Old Shellsort");
 	test_sort(shellsort, "Shellsort");
@@ -311,7 +311,8 @@ main(int argc, char** args)
 
 
 	time_sort(base_radixsort, "Base Radixsort");
-	time_sort(base_radixsort, "Cache Radixsort");
+	time_sort(cache_radixsort, "Cache Radixsort");
+	time_sort(aligned_cache_radixsort, "Cache Radixsort");
 	
 	time_sort(old_shellsort, "Old Shellsort");
 	time_sort(shellsort, "Shellsort");
@@ -376,6 +377,7 @@ main(int argc, char** args)
 
 	printf("Not running predictors for base_radixsort\n");
 	printf("Not running predictors for cache_radixsort\n");
+	printf("Not running predictors for aligned_cache_radixsort\n");
 
 	predictor_run(old_shellsort, 1, "Old Shellsort");
 	predictor_run(shellsort, 2, "Shellsort");
@@ -446,6 +448,7 @@ multi_quicksort_seq.c
 
 base_radixsort.c
 cache_radixsort.c
+aligned_cache_radixsort.c
 
 old_shellsort.c
 shellsort.c
