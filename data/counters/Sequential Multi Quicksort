@@ -1,37 +1,37 @@
 Sequential Multi Quicksort - i:
 states                      NT saturated            NT             T   T saturated         Total
-branch_count:                   75305644      59659329      75522356     164300809     374788138
-correct_count:                  45485930      29819715      45682741     118618068     239606454
-incorrect_count:                29819714      29839614      29839615      45682741     135181684
-taken_count:                    29819714      29839614      45682741     118618068     223960137
-not_taken_count:                45485930      29819715      29839615      45682741     150828001
+branch_count:                   72576162      57428287      72525936     157461228     359991613
+correct_count:                  43848092      28728071      43825719     113635509     230037391
+incorrect_count:                28728070      28700216      28700217      43825719     129954222
+taken_count:                    28728070      28700216      43825719     113635509     214889514
+not_taken_count:                43848092      28728071      28700217      43825719     145102099
 current state:              NT saturated
 
 Sequential Multi Quicksort - j:
 states                      NT saturated            NT             T   T saturated         Total
-branch_count:                   75972992      59639781      74855009     161226101     371693883
-correct_count:                  46064108      29908884      45124112     116101989     237199093
-incorrect_count:                29908884      29730897      29730897      45124112     134494790
-taken_count:                    29908884      29730897      45124112     116101989     220865882
-not_taken_count:                46064108      29908884      29730897      45124112     150828001
+branch_count:                   72960856      57410691      72141243     155286170     357798960
+correct_count:                  44193653      28767203      43497755     111788415     228247026
+incorrect_count:                28767203      28643488      28643488      43497755     129551934
+taken_count:                    28767203      28643488      43497755     111788415     212696861
+not_taken_count:                44193653      28767203      28643488      43497755     145102099
 current state:                         T
 
 Sequential Multi Quicksort - partition end:
 states                      NT saturated            NT             T   T saturated         Total
-branch_count:                  146043992       4669372        111153          3484     150828001
-correct_count:                 141482385       4561607          3387            97     146047476
-incorrect_count:                 4561607        107765        107766          3387       4780525
-taken_count:                     4561607        107765          3387            97       4672856
-not_taken_count:               141482385       4561607        107766          3387     146155145
+branch_count:                  140501156       4490636        106951          3356     145102099
+correct_count:                 136114210       4386946          3260            96     140504512
+incorrect_count:                 4386946        103690        103691          3260       4597587
+taken_count:                     4386946        103690          3260            96       4493992
+not_taken_count:               136114210       4386946        103691          3260     140608107
 current state:                        NT
 
 Sequential Multi Quicksort - insertion:
 states                      NT saturated            NT             T   T saturated         Total
-branch_count:                    3696259      10382654      30569839     233579807     278228559
-correct_count:                    898332       2797927      22985112     210594695     237276066
-incorrect_count:                 2797927       7584727       7584727      22985112      40952493
-taken_count:                     2797927       7584727      22985112     210594695     243962461
-not_taken_count:                  898332       2797927       7584727      22985112      34266098
+branch_count:                    3553963       9984911      29400833      72536025     115475732
+correct_count:                    863589       2690374      22106296      50429729      76089988
+incorrect_count:                 2690374       7294537       7294537      22106296      39385744
+taken_count:                     2690374       7294537      22106296      50429729      82520936
+not_taken_count:                  863589       2690374       7294537      22106296      32954796
 current state:                         T
 
 Sequential Multi Quicksort - sequential taken:

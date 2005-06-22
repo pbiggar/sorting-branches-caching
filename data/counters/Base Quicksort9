@@ -196,3 +196,12 @@ taken_count:                      102993        280461        750274       18955
 not_taken_count:                   35986        102993        280461        750274       1169714
 current state:                         T
 
+Base Quicksort9 - predictors:
+states                      NT saturated            NT             T   T saturated         Total
+branch_count:                   40501959      31220419      29298863      35590074     136611315
+correct_count:                  23538483      16963545      15041879      20548219      76092126
+incorrect_count:                16963476      14256874      14256984      15041855      60519189
+taken_count:                    16963476      14256874      15041879      20548219      66810448
+not_taken_count:                23538483      16963545      14256984      15041855      69800867
+current state:                         T
+

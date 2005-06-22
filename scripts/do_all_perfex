@@ -3,7 +3,7 @@
 for ((  i = 0 ;  i < 1024;  i++  ))
 do
 # do the faster sorts first
-	for j in base_heapsort base_mergesort base_quicksort base_quicksort1 base_quicksort5 base_quicksort7 base_quicksort9 base_radixsort cache4_heapsort cache_heapsort cache_quicksort cache_radixsort do_nothing double_multi_mergesort double_tiled_mergesort knuth_base_mergesort knuth_other_base_mergesort multi_mergesort multi_quicksort multi_quicksort_seq old_shellsort shellsort tiled_mergesort
+	for j in aligned_cache_radixsort base_heapsort base_mergesort base_quicksort base_quicksort1 base_quicksort5 base_quicksort7 base_quicksort9 base_radixsort cache4_heapsort cache_heapsort cache_quicksort cache_radixsort do_nothing double_multi_mergesort double_tiled_mergesort knuth_base_mergesort knuth_other_base_mergesort multi_mergesort multi_quicksort multi_quicksort_seq old_shellsort shellsort tiled_mergesort
 	do
 		for k in 4096 8192 16384 32768 65536 131072 262144 524288 1048576 2097152 4194304
 		do
