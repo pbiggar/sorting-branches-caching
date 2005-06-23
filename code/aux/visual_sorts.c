@@ -345,7 +345,7 @@ visual_base_mergesort(unsigned int a[], int N)
 }
 
 void
-visual_knuth_base_mergesort(unsigned int a[], int N)
+visual_algorithm_n(unsigned int a[], int N)
 {
 	unsigned int* aux = malloc(N * sizeof(unsigned int)); /* make it twice the size to use the notation */
 

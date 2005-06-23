@@ -5,7 +5,7 @@
 #include "base_sorts.h"
 
 void
-knuth_base_mergesort(unsigned int a[], int N)
+algorithm_n(unsigned int a[], int N)
 {
 	unsigned int* aux = malloc(N * sizeof(unsigned int)); /* make it twice the size to use the notation */
 

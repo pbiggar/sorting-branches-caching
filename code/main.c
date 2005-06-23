@@ -231,8 +231,8 @@ main(int argc, char** args)
 	test_sort(cache_heapsort, "Cache Heapsort");
 	test_sort(cache4_heapsort, "Cache4 Heapsort");
 
-	test_sort(knuth_base_mergesort, "Algorithm N");
-	test_sort(knuth_other_base_mergesort, "Algorithm S");
+	test_sort(algorithm_n, "Algorithm N");
+	test_sort(algorithm_s, "Algorithm S");
 	test_sort(base_mergesort, "Base Mergesort");
 	test_sort(tiled_mergesort, "Tiled Mergesort");
 	test_sort(multi_mergesort, "Multi Mergesort");
@@ -253,8 +253,8 @@ main(int argc, char** args)
 	test_sort(cache_radixsort, "Cache Radixsort");
 	test_sort(aligned_cache_radixsort, "Aligned Cache Radixsort");
 	
-	test_sort(old_shellsort, "Old Shellsort");
 	test_sort(shellsort, "Shellsort");
+	test_sort(improved_shellsort, "Improved Shellsort");
 
 	if (TEST_MAX <= 4096)
 	{
@@ -291,8 +291,8 @@ main(int argc, char** args)
 	time_sort(cache_heapsort, "Cache Heapsort");
 	time_sort(cache4_heapsort, "Cache4 Heapsort");
 
-	time_sort(knuth_base_mergesort, "Algorithm N");
-	time_sort(knuth_other_base_mergesort, "Algorithm S");
+	time_sort(algorithm_n, "Algorithm N");
+	time_sort(algorithm_s, "Algorithm S");
 	time_sort(base_mergesort, "Base Mergesort");
 	time_sort(tiled_mergesort, "Tiled Mergesort");
 	time_sort(multi_mergesort, "Multi Mergesort");
@@ -314,8 +314,8 @@ main(int argc, char** args)
 	time_sort(cache_radixsort, "Cache Radixsort");
 	time_sort(aligned_cache_radixsort, "Aligned Cache Radixsort");
 	
-	time_sort(old_shellsort, "Old Shellsort");
 	time_sort(shellsort, "Shellsort");
+	time_sort(improved_shellsort, "Improved Shellsort");
 
 	if (RANDOM_SIZE <= 32768)
 	{
@@ -357,8 +357,8 @@ main(int argc, char** args)
 	predictor_run(cache_heapsort, 11, "Cache Heapsort");
 	predictor_run(cache4_heapsort, 7, "Cache4 Heapsort");
 
-	predictor_run(knuth_base_mergesort, 8, "Algorithm N");
-	predictor_run(knuth_other_base_mergesort, 10, "Algorithm S");
+	predictor_run(algorithm_n, 8, "Algorithm N");
+	predictor_run(algorithm_s, 10, "Algorithm S");
 	predictor_run(base_mergesort, 33, "Base Mergesort");
 	predictor_run(tiled_mergesort, 46, "Tiled Mergesort");
 	predictor_run(multi_mergesort, 59, "Multi Mergesort");
@@ -379,8 +379,8 @@ main(int argc, char** args)
 	printf("Not running predictors for cache_radixsort\n");
 	printf("Not running predictors for aligned_cache_radixsort\n");
 
-	predictor_run(old_shellsort, 1, "Old Shellsort");
-	predictor_run(shellsort, 2, "Shellsort");
+	predictor_run(shellsort, 1, "Shellsort");
+	predictor_run(improved_shellsort, 2, "Improved Shellsort");
 
 	if (RANDOM_SIZE <= 8192)
 	{
@@ -429,13 +429,13 @@ base_heapsort.c
 cache4_heapsort.c
 cache_heapsort.c
 
-knuth_base_mergesort.c
-knuth_other_base_mergesort.c
+algorithm_n.c
+algorithm_s.c
 base_mergesort.c
+tiled_mergesort.c
 multi_mergesort.c
 double_multi_mergesort.c
 double_tiled_mergesort.c
-tiled_mergesort.c
 
 base_quicksort1.c
 base_quicksort.c
@@ -450,8 +450,8 @@ base_radixsort.c
 cache_radixsort.c
 aligned_cache_radixsort.c
 
-old_shellsort.c
 shellsort.c
+improved_shellsort.c
 
 on2_insertsort.c
 on2_selectsort.c

@@ -4,7 +4,8 @@
 
 #include "base_sorts.h"
 
-void knuth_other_base_mergesort(unsigned int a[], int N)
+void 
+algorithm_s(unsigned int a[], int N)
 {
 	unsigned int* aux = malloc(N * sizeof(unsigned int));
 	int s; /* s keeps track of the target, we can write something to remove this */

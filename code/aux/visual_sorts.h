@@ -11,5 +11,5 @@ void visual_tiled_mergesort(unsigned int a[], int N);
 void visual_base_heapsort(unsigned int a[], int l, int r);
 void visual_multi_mergesort(unsigned int a[], int N);
 
-void visual_knuth_base_mergesort(unsigned int a[], int N);
+void visual_algorithm_n(unsigned int a[], int N);
 #endif
