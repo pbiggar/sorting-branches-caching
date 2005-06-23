@@ -101,7 +101,7 @@ Simplescalar:
 		$ ../scripts/do_all_plot
 
 	Though this doesnt actually run gnuplot, dispite its name.  do_all_convert
-	create gnuplot data files in data/converted_simple_logs/, and do_all_plot
+	creates gnuplot data files in data/converted_simple_logs/, and do_all_plot
 	creates gnuplot scripts for each sort type and each sort, stored in
 	data/simplescalar_generated_gnuplot_scripts.
 
