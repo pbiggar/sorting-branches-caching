@@ -1,5 +1,5 @@
 Tue Jun 14 17:38:51 2005
-Run as: "./simple -c random.org0 -o 0 knuth_other_base_mergesort"
+Run as: "./simple -c random.org0 -o 0 algorithm_s"
 -------------------------------------------------------------------------------------------------
 sim-cache                                     4096 |         4096 |         4096 |         4096 |         8192 |         8192 |         8192 |         8192 |        16384 |        16384 |        16384 |        16384 |        32768 |        32768 |        32768 |        32768 |        65536 |        65536 |        65536 |        65536 |       131072 |       131072 |       131072 |       131072 |       262144 |       262144 |       262144 |       262144 |       524288 |       524288 |       524288 |       524288 |      1048576 |      1048576 |      1048576 |      1048576 |      2097152 |      2097152 |      2097152 |      2097152 |      4194304 |      4194304 |      4194304 |      4194304 |
 -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2
@@ -129,135 +129,135 @@ bpred_2lev.ras_hits.PP               xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx
 bpred_2lev.ras_rate.PP               xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       1.0000 |       1.0000 |       1.0000 |       1.0000 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9861 |       0.9861 |       0.9861 |       0.9861 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9857 |       0.9857 |       0.9857 |       0.9857 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9861 |       0.9861 |       0.9861 |       0.9861 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9857 |       0.9857 |       0.9857 |       0.9857 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9861 |       0.9861 |       0.9861 |       0.9861 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9857 |       0.9857 |       0.9857 |       0.9857 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9861 |       0.9861 |       0.9861 |       0.9861 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       1.0000 |       1.0000 |       1.0000 |       1.0000 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       1.0000 |       1.0000 |       1.0000 |       1.0000 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       1.0000 |       1.0000 |       1.0000 |       1.0000 |
 
 Command list: 
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=4096 -DOFFSET=0 -DSORT=knuth_other_base_mergesort knuth_other_base_mergesort1650138280.c simpleMain.c -o knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 512 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 1024 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 2048 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 knuth_other_base_mergesort883425449
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=8192 -DOFFSET=0 -DSORT=knuth_other_base_mergesort knuth_other_base_mergesort1650138280.c simpleMain.c -o knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 512 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 1024 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 2048 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 knuth_other_base_mergesort883425449
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=16384 -DOFFSET=0 -DSORT=knuth_other_base_mergesort knuth_other_base_mergesort1650138280.c simpleMain.c -o knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 512 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 1024 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 2048 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 knuth_other_base_mergesort883425449
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=32768 -DOFFSET=0 -DSORT=knuth_other_base_mergesort knuth_other_base_mergesort1650138280.c simpleMain.c -o knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 512 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 1024 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 2048 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 knuth_other_base_mergesort883425449
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=65536 -DOFFSET=0 -DSORT=knuth_other_base_mergesort knuth_other_base_mergesort1650138280.c simpleMain.c -o knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 512 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 1024 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 2048 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 knuth_other_base_mergesort883425449
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=131072 -DOFFSET=0 -DSORT=knuth_other_base_mergesort knuth_other_base_mergesort1650138280.c simpleMain.c -o knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 512 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 1024 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 2048 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 knuth_other_base_mergesort883425449
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=262144 -DOFFSET=0 -DSORT=knuth_other_base_mergesort knuth_other_base_mergesort1650138280.c simpleMain.c -o knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 512 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 1024 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 2048 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 knuth_other_base_mergesort883425449
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=524288 -DOFFSET=0 -DSORT=knuth_other_base_mergesort knuth_other_base_mergesort1650138280.c simpleMain.c -o knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 512 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 1024 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 2048 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 knuth_other_base_mergesort883425449
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=1048576 -DOFFSET=0 -DSORT=knuth_other_base_mergesort knuth_other_base_mergesort1650138280.c simpleMain.c -o knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 512 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 1024 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 2048 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 knuth_other_base_mergesort883425449
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=2097152 -DOFFSET=0 -DSORT=knuth_other_base_mergesort knuth_other_base_mergesort1650138280.c simpleMain.c -o knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 512 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 1024 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 2048 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 knuth_other_base_mergesort883425449
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=4194304 -DOFFSET=0 -DSORT=knuth_other_base_mergesort knuth_other_base_mergesort1650138280.c simpleMain.c -o knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 512 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 1024 knuth_other_base_mergesort883425449
-	sim-bpred -bpred bimod -bpred:bimod 2048 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 knuth_other_base_mergesort883425449
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 knuth_other_base_mergesort883425449
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=4096 -DOFFSET=0 -DSORT=algorithm_s algorithm_s1650138280.c simpleMain.c -o algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 512 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 1024 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 2048 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 algorithm_s883425449
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=8192 -DOFFSET=0 -DSORT=algorithm_s algorithm_s1650138280.c simpleMain.c -o algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 512 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 1024 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 2048 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 algorithm_s883425449
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=16384 -DOFFSET=0 -DSORT=algorithm_s algorithm_s1650138280.c simpleMain.c -o algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 512 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 1024 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 2048 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 algorithm_s883425449
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=32768 -DOFFSET=0 -DSORT=algorithm_s algorithm_s1650138280.c simpleMain.c -o algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 512 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 1024 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 2048 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 algorithm_s883425449
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=65536 -DOFFSET=0 -DSORT=algorithm_s algorithm_s1650138280.c simpleMain.c -o algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 512 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 1024 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 2048 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 algorithm_s883425449
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=131072 -DOFFSET=0 -DSORT=algorithm_s algorithm_s1650138280.c simpleMain.c -o algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 512 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 1024 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 2048 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 algorithm_s883425449
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=262144 -DOFFSET=0 -DSORT=algorithm_s algorithm_s1650138280.c simpleMain.c -o algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 512 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 1024 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 2048 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 algorithm_s883425449
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=524288 -DOFFSET=0 -DSORT=algorithm_s algorithm_s1650138280.c simpleMain.c -o algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 512 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 1024 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 2048 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 algorithm_s883425449
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=1048576 -DOFFSET=0 -DSORT=algorithm_s algorithm_s1650138280.c simpleMain.c -o algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 512 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 1024 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 2048 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 algorithm_s883425449
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=2097152 -DOFFSET=0 -DSORT=algorithm_s algorithm_s1650138280.c simpleMain.c -o algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 512 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 1024 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 2048 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 algorithm_s883425449
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=4194304 -DOFFSET=0 -DSORT=algorithm_s algorithm_s1650138280.c simpleMain.c -o algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 512 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 1024 algorithm_s883425449
+	sim-bpred -bpred bimod -bpred:bimod 2048 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 algorithm_s883425449
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 algorithm_s883425449
