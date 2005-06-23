@@ -244,13 +244,15 @@ typically use the \n{divide-and-conquer} principle, or use a binary tree to
 reduce complexity. Quicksort, mergesort and heapsort are all of this type,
 whereas elementary sorts, such as insertion sort, selection sort, bubblesort and
 shakersort are $O(N^2)$ algorithms. Radixsort is $O(N)$, but can be more
-expensive than quicksort, due to the cost of each step.  These are discussed in
+expensive than quicksort, due to the cost of each step. These are discussed in
 later chapters.
-%TODO what's shellsort in Big O notation
-TODO what's shellsort in Big O notation
+
+Not all algorithms have an easily derivable complexity. Many studies have
+attempted to tie down the complexity of shellsort, and it is not easily
+definable in terms of the catageories above (see \ref{TODO}).
 
 An important thing to note is that the time the algorithms take to execute are
-proportion to their Order, but different constants of proportionality are used
-for different algorithms. An algorithm with $10N$ instructions is $O(N)$, and is
-not differentiated from an algorithm with $1000N$ instructions by this
+proportion to their complexity, but different constants of proportionality are
+used for different algorithms. An algorithm with $10N$ instructions is $O(N)$,
+and is not differentiated from an algorithm with $1000N$ instructions by this
 notation.
