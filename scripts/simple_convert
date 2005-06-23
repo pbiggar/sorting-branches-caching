@@ -2,11 +2,11 @@
 use Getopt::Std;
 
 my %options=();
-getopts("hso",\%options);
+getopts("ahso",\%options);
 
 if (defined($options{"h"}) || (scalar(@ARGV) == 0))
 {
-	die("simple_convert [options] filename\noptions are:\n\t-h - this help message\n-s - scale numeric results by the number of keys \n-o - offset everything from do_nothing\n");
+	die("simple_convert [options] filename\noptions are:\n\t-h - this help message\n-s - scale numeric results by the number of keys \n-o - offset everything from do_nothing\n -a use files ending in number and average them\n");
 }
 
 $scale = 0;
@@ -15,9 +15,12 @@ if (defined($options{"s"})) { $scale = 1; }
 $offset = 0;
 if (defined($options{"o"})) { $offset = 1; } 
 
+my $average = 0;
+if (defined($options{a})) { $average = 1; }
+
 if ($offset) # read in the offset results
 {
-	$argument = "../data/simple_logs/do_nothing_random.org";
+	$argument = "../data/simple_logs/do_nothing_random.org0";
 	unless (-e $argument) { die("file '$argument' does not exist\n"); }
 
 	#get the actual filename
@@ -99,85 +102,94 @@ if ($offset) # read in the offset results
 foreach $argument (@ARGV)
 {
 	unless (-e $argument) { die("file '$argument' does not exist\n"); }
+	chop $argument; # take the 0 at the end off it
 
 	#get the actual filename
 	@path = split(/\//, $argument);
 	$filename = pop(@path);
 	#HACK  TODO
-	$filename =~ s/_random.org//g;
+	$filename =~ s/_random.org0//g;
 
 	# make a directory for the logs
 	mkdir "../data/converted_simple_logs/$filename";
 
-	# parse the log
-	open(LOG, $argument);
-	@lines = <LOG>;
-	chomp @lines;
-	close(LOG);
-
-	# skip date
-	shift(@lines);
-
-	# skip "run as" and line of dashes
-	shift(@lines);
-	shift(@lines);
-
-	@simulators = ();
-	while(@lines)
+	my $i = 0; # which file
+	while(1)
 	{
+		# parse the log
+#		print "opening $argument$i\n";
+		open(LOG, $argument."$i") or last;
+#		print "opened\n";
+		@lines = <LOG>;
+		chomp @lines;
+		close(LOG);
 
-		# find out all the sizes and the simulator name
-		$simulator_sizes = shift(@lines);
-		if ($simulator_sizes eq "Command list: ") { last;} # the end
-		$simulator_sizes =~ /(\S+)\s+(.*)/;
-		$simulator = $1;
-		push @simulators, $simulator;
+		# skip date
+		shift(@lines);
 
-		@sizes = split(/\|/, $2);
-		foreach $size (@sizes) {$size =~ s/\s//g;} # remove whitespace
-		%seen = ();
-		@sizes = grep { ! $seen{$_} ++ } @sizes; # uniq it
+		# skip "run as" and line of dashes
+		shift(@lines);
+		shift(@lines);
 
-		# get the parameters
-		@local_params = ();
-		while($_ = shift(@lines))
+		@simulators = ();
+		while(@lines)
 		{
-			if ($_ =~ /\-\-/) {last;}
 
-			push @local_params, $_;
-		}
-		@{$params{$simulator}} = @local_params;
+			# find out all the sizes and the simulator name
+			$simulator_sizes = shift(@lines);
+			if ($simulator_sizes eq "Command list: ") { last;} # the end
+			$simulator_sizes =~ /(\S+)\s+(.*)/;
+			$simulator = $1;
+			push @simulators, $simulator;
 
-		# get the results
-		@local_keywords = ();
-		while($_ = shift(@lines))
-		{
-			if ($_ =~ /\-\-/) {last;} # seperator is ------------- etc
-			$_ =~ /(\S+)\s+(.*)/;
-			$keyword = $1;
-			push @local_keywords, $keyword; # save it for later
-			@local_results = split(/\|/, $2);
+			@sizes = split(/\|/, $2);
+			foreach $size (@sizes) {$size =~ s/\s//g;} # remove whitespace
+			%seen = ();
+			@sizes = grep { ! $seen{$_} ++ } @sizes; # uniq it
 
-			# now put them into the big associative array
-			foreach $n (@sizes)
+			# get the parameters
+			@local_params = ();
+			while($_ = shift(@lines))
 			{
-				foreach $param (@local_params)
+				if ($_ =~ /\-\-/) {last;}
+
+				push @local_params, $_;
+			}
+			@{$params{$simulator}} = @local_params;
+
+			# get the results
+			@local_keywords = ();
+			while($_ = shift(@lines))
+			{
+				if ($_ =~ /\-\-/) {last;} # seperator is ------------- etc
+				$_ =~ /(\S+)\s+(.*)/;
+				$keyword = $1;
+				push @local_keywords, $keyword; # save it for later
+				@local_results = split(/\|/, $2);
+
+				# now put them into the big associative array
+				foreach $n (@sizes)
 				{
-					$result = shift(@local_results);
-					if (defined($result))
+					foreach $param (@local_params)
 					{
-						$result =~ s/\s//g; # remove whitespace
-						if (!($result eq "xxxxxxxxxxxxx"))
+						$result = shift(@local_results);
+						if (defined($result))
 						{
-#							print "results{$simulator}{$param}{$n}{$keyword} = $result\n";
-							$results{$simulator}{$param}{$n}{$keyword} = $result;
+							$result =~ s/\s//g; # remove whitespace
+							if (!($result eq "xxxxxxxxxxxxx"))
+							{
+				#				print "results{$simulator}{$param}{$n}{$keyword}{$i} = $result\n";
+								$results{$simulator}{$param}{$n}{$keyword}{$i} = $result;
+							}
 						}
 					}
 				}
 			}
+			@{$keywords{$simulator}} = @local_keywords;
 		}
-		@{$keywords{$simulator}} = @local_keywords;
+		$i++;
 	}
+
 	foreach $simulator (@simulators)
 	{
 #		print "simulator = $simulator\n";
@@ -193,7 +205,44 @@ foreach $argument (@ARGV)
 				foreach $keyword (@{$keywords{$simulator}})
 				{
 #					print "keyword = $keyword\n";
-					$result = $results{$simulator}{$param}{$n}{$keyword};
+					if ($average)
+					{
+						$result = 0;
+						for($i = 0; $i < 10; $i++)
+						{
+							my $tmp = $results{$simulator}{$param}{$n}{$keyword}{$i};
+							if (defined($tmp)) 
+							{
+								if (!($tmp =~ m/\D/))
+								{
+#									print "adding $tmp to $result for $simulator,$param,$n,$keyword\n";
+									$result += $tmp;
+								}
+								else # its not numeric data
+								{
+									$result = $tmp;
+									last;
+								}
+							}
+							else # its over
+							{
+								if ($i == 0)
+								{
+									$result = undef;
+								}
+								else
+								{
+									$result /= $i;
+#									print "after dividing by $i, getting $result for $simulator,$param,$n,$keyword\n";
+								}
+								last;
+							}
+						}
+					}
+					else
+					{
+						$result += $results{$simulator}{$param}{$n}{$keyword}{0};
+					}
 					if (defined($result))
 					{
 						if ($n == $sizes[0]) # only do once
