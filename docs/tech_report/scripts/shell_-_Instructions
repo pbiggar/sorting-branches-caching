@@ -10,5 +10,5 @@ set output '../data/plots/shell_-_Instructions.eps'
 set xlabel 'set size in keys'
 set ylabel 'Instructions per key'
 plot \
-'../data/converted_simple_logs/gonnet_shellsort/gonnet_shellsort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:2 title 'gonnet shellsort',\
-'../data/converted_simple_logs/improved_gonnet_shellsort/improved_gonnet_shellsort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:2 title 'improved gonnet shellsort'
+'../data/converted_simple_logs/shellsort/shellsort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:2 title 'shellsort',\
+'../data/converted_simple_logs/improved_shellsort/improved_shellsort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:2 title 'improved shellsort'

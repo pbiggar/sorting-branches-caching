@@ -6,11 +6,11 @@ set yrange [0:156000000]
 set ticscale 0 0
 set offsets .1, .1, 0, 0
 set bmargin 3
-set title "gonnet_shellsort branch predictor results 0"
-set output '../data/plots/counter_gonnet_shellsort_0.eps'
+set title "shellsort branch predictor results 0"
+set output '../data/plots/counter_shellsort_0.eps'
 set xtics ("inner loop" 0, "" 1, "" 2, "" 3, "" 4, "" 5, "" 6)
 plot \
-'../data/counter_gnuplot_data/gonnet_shellsort_data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
-'../data/counter_gnuplot_data/gonnet_shellsort_data0' using ($0-.15):2 title 'correct' with boxes lt -1,\
-'../data/counter_gnuplot_data/gonnet_shellsort_data0' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
-'../data/counter_gnuplot_data/gonnet_shellsort_data0' using ($0+.15):4 title 'taken' with boxes lt -1
+'../data/counter_gnuplot_data/shellsort_data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
+'../data/counter_gnuplot_data/shellsort_data0' using ($0-.15):2 title 'correct' with boxes lt -1,\
+'../data/counter_gnuplot_data/shellsort_data0' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
+'../data/counter_gnuplot_data/shellsort_data0' using ($0+.15):4 title 'taken' with boxes lt -1

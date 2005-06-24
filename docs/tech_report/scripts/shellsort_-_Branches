@@ -6,8 +6,8 @@ set format x "%8.0f"
 set logscale x
 set data style linespoints
 set term postscript eps
-set output '../data/plots/gonnet_shellsort_-_Branches.eps'
+set output '../data/plots/shellsort_-_Branches.eps'
 set xlabel 'set size in keys'
 set ylabel 'Branches per key'
 plot \
-'../data/converted_simple_logs/gonnet_shellsort/gonnet_shellsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6 title ''
+'../data/converted_simple_logs/shellsort/shellsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6 title ''
