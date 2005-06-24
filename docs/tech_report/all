@@ -1,6 +1,0 @@
-latex report.tex
-latex report.tex
-latex report.tex
-#dvips -Ppdf -o report.ps report.dvi
-dvips -o report.ps report.dvi
-#ps2pdf report.ps
