@@ -50,8 +50,8 @@ set xrange [0:$max_x_range]
 set yrange [0:$max_y_range]
 set output '../data/plots/$output_file.eps'
 plot \\
-'../data/counter_gnuplot_data/$output_file' using 1:2 title 'total' with boxes lt -1,\\
-'../data/counter_gnuplot_data/$output_file' using 1:3 title 'correct' with boxes lt -1
+'../data/counter_gnuplot_data/$output_file' using 1:2 title 'total',\\
+'../data/counter_gnuplot_data/$output_file' using 1:3 title 'correct'
 SCRIPT_END
 	close(SCRIPT);
 }
