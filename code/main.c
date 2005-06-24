@@ -387,11 +387,11 @@ main(int argc, char** args)
 		predictor_run(on2_bubblesort, RANDOM_SIZE, "Bubblesort");
 		predictor_run(on2_bubblesort2, RANDOM_SIZE, "Bubblesort2");
 	}
-	else printf ("not running predictors for on2_bubblesort as N is %d\n", RANDOM_SIZE);
+	else printf ("not running predictors for on2_bubblesort i or on2_bubblesort2 as N is %d\n", RANDOM_SIZE);
 
-	printf("Not running predictors for on2_bubblesort\n");
 	printf("Not running predictors for on2_insertsort\n");
 	printf("Not running predictors for on2_selectsort\n");
+	printf("Not running predictors for on2_shakersort\n");
 	printf("Not running predictors for on2_shakersort2\n");
 
 
