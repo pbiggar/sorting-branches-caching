@@ -75,10 +75,9 @@ base_quicksort(unsigned int a[], int N)
 	describe_predictor(&global_predictor[1], "j");
 	describe_predictor(&global_predictor[2], "partition end");
 	describe_predictor(&global_predictor[3], "insertion");
-	describe_predictor(&global_predictor[4], "median1");
+	describe_predictor(&global_predictor[4], "median");
 	describe_predictor(&global_predictor[5], "median2");
 	describe_predictor(&global_predictor[6], "median3");
-	describe_predictor(&global_predictor[7], "predictors");
 
 	stackinit(N);
 
@@ -131,8 +130,9 @@ base_quicksort(unsigned int a[], int N)
 		
 	insertion(a, N);
 
-	/* add the predictors up */
-	add_predictor(&global_predictor[7], &global_predictor[4]);
-	add_predictor(&global_predictor[7], &global_predictor[5]);
-	add_predictor(&global_predictor[7], &global_predictor[6]);
+	/* add the predictors up, and clear the others */
+	add_predictor(&global_predictor[4], &global_predictor[5]);
+	add_predictor(&global_predictor[4], &global_predictor[6]);
+	init_predictor(&global_predictor[5]);
+	init_predictor(&global_predictor[6]);
 }

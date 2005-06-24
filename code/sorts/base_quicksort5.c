@@ -139,7 +139,8 @@ base_quicksort5(unsigned int a[], int N)
 	describe_predictor(&global_predictor[1], "j");
 	describe_predictor(&global_predictor[2], "partition end");
 	describe_predictor(&global_predictor[3], "insertion");
-	describe_predictor(&global_predictor[4], "median of 5 ab");
+	describe_predictor(&global_predictor[4], "median");
+/*	describe_predictor(&global_predictor[4], "median of 5 ab"); */
 	describe_predictor(&global_predictor[5], "median of 5 bc");
 	describe_predictor(&global_predictor[6], "median of 5 ac");
 	describe_predictor(&global_predictor[7], "median of 5 cb");
@@ -147,7 +148,6 @@ base_quicksort5(unsigned int a[], int N)
 	describe_predictor(&global_predictor[9], "median of 3 cmp1");
 	describe_predictor(&global_predictor[10], "median of 3 cmp2");
 	describe_predictor(&global_predictor[11], "median of 3 cmp3");
-	describe_predictor(&global_predictor[12], "predictors");
 
 	r = N-1;
 	l = 0;
@@ -205,12 +205,18 @@ base_quicksort5(unsigned int a[], int N)
 	insertion(a, N);
 
 	/* add the predictors up */
-	add_predictor(&global_predictor[12], &global_predictor[4]);
-	add_predictor(&global_predictor[12], &global_predictor[5]);
-	add_predictor(&global_predictor[12], &global_predictor[6]);
-	add_predictor(&global_predictor[12], &global_predictor[7]);
-	add_predictor(&global_predictor[12], &global_predictor[8]);
-	add_predictor(&global_predictor[12], &global_predictor[9]);
-	add_predictor(&global_predictor[12], &global_predictor[10]);
-	add_predictor(&global_predictor[12], &global_predictor[11]);
+	add_predictor(&global_predictor[4], &global_predictor[5]);
+	add_predictor(&global_predictor[4], &global_predictor[6]);
+	add_predictor(&global_predictor[4], &global_predictor[7]);
+	add_predictor(&global_predictor[4], &global_predictor[8]);
+	add_predictor(&global_predictor[4], &global_predictor[9]);
+	add_predictor(&global_predictor[4], &global_predictor[10]);
+	add_predictor(&global_predictor[4], &global_predictor[11]);
+	init_predictor(&global_predictor[5]);
+	init_predictor(&global_predictor[6]);
+	init_predictor(&global_predictor[7]);
+	init_predictor(&global_predictor[8]);
+	init_predictor(&global_predictor[9]);
+	init_predictor(&global_predictor[10]);
+	init_predictor(&global_predictor[11]);
 }
