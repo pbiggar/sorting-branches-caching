@@ -15,12 +15,12 @@
 #include "aux/utils.h"
 
 
-#define RANDOM_SIZE (4194304)
+//#define RANDOM_SIZE (4194304)
 //#define RANDOM_SIZE (534523)
 //#define RANDOM_SIZE (262144)
 //#define RANDOM_SIZE (32768)
 //#define RANDOM_SIZE (16384)
-//#define RANDOM_SIZE (8192)
+#define RANDOM_SIZE (8192)
 //#define RANDOM_SIZE (4096)
 //#define RANDOM_SIZE (128)
 
@@ -225,7 +225,7 @@ main(int argc, char** args)
 // ****************************************************************************************************************
 //                    tests
 // ****************************************************************************************************************
-
+/*
 	printf("Beginning sort tests (%d - %d)\n", TEST_MIN, TEST_MAX);
 	test_sort(base_heapsort, "Base Heapsort");
 	test_sort(cache_heapsort, "Cache Heapsort");
@@ -367,10 +367,10 @@ main(int argc, char** args)
 
 
 	predictor_run(base_quicksort1, 5, "Base Quicksort1");
-	predictor_run(base_quicksort, 8, "Base Quicksort");
-	predictor_run(base_quicksort5, 13, "Base Quicksort5");
-	predictor_run(base_quicksort7, 18, "Base Quicksort7");
-	predictor_run(base_quicksort9, 23, "Base Quicksort9");
+	predictor_run(base_quicksort, 7, "Base Quicksort");
+	predictor_run(base_quicksort5, 12, "Base Quicksort5");
+	predictor_run(base_quicksort7, 17, "Base Quicksort7");
+	predictor_run(base_quicksort9, 22, "Base Quicksort9");
 	predictor_run(cache_quicksort, 4, "Cache Quicksort");
 	predictor_run(multi_quicksort, 6, "Multi Quicksort");
 	predictor_run(multi_quicksort_seq, 5, "Sequential Multi Quicksort");
@@ -381,7 +381,7 @@ main(int argc, char** args)
 
 	predictor_run(shellsort, 1, "Shellsort");
 	predictor_run(improved_shellsort, 2, "Improved Shellsort");
-
+*/
 	if (RANDOM_SIZE <= 8192)
 	{
 		predictor_run(on2_bubblesort, RANDOM_SIZE, "Bubblesort");

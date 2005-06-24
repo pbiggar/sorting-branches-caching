@@ -246,10 +246,14 @@ and cache quicksort are the same in both sets of results, but the number of
 cache misses in multi-quicksort is much higher here than it is in LaMarca's
 findings. In addition, the shape is different. LaMarca's multi-quicksort's
 cache misses plateau, while the results here show an increasing slope.
-
+%TODO is a pseudo-median explained
 \section{Predictor results}
 
+\subsection{Different sorts}
+
 \sixplot{base_quicksort_0.eps}{base_quicksort9_0.eps}{cache_quicksort_0.eps}{multi_quicksort_0.eps}{sequential_multi_quicksort_0.eps}{}{base, cache and multi quicksorts and base quicksort9}
+
+\subsection{Different medians}
 
 \sixplot{base_quicksort1_0.eps}{base_quicksort_0.eps}{base_quicksort5_0.eps}{base_quicksort7_0.eps}{base_quicksort9_0.eps}{}{base quicksort without a median, with median of 3, and with pseudo median of 5, 7 and 9}
 
