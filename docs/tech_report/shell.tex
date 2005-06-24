@@ -36,10 +36,10 @@ Two versions of Gonnet's sort were used. The first was taken directly from the
 code presented by Sedgewick, and only slightly modified to fit into the framework used.
 The second was modified to reduce the complexity of the loop bounds, and to
 remove a sentinel check in the inner loop. Code for these is shown in Figures
-\ref{Gonnet Shellsort code} and \ref{Improved Gonnet Shellsort code}.
+\ref{Shellsort code} and \ref{Gonnet Shellsort code}.
 
-\code{Gonnet Shellsort code}{old_shellsort.c}
-\code{Improved Gonnet Shellsort code}{shellsort.c}
+\code{Shellsort code}{shellsort.c}
+\code{Improved Shellsort code}{improved_shellsort.c}
 
 \section{Results}
 \subsection{Test parameters}
@@ -89,7 +89,7 @@ heapsort.
 
 \section{Predictor results}
 
-\sixplot{gonnet_shellsort_0.eps}{gonnet_improved_shellsort_0.eps}{}{}{}{}{Shellsorts}
+\sixplot{shellsort_0.eps}{improved_shellsort_0.eps}{}{}{}{}{Shellsorts}
 
 %TODO better writing
 
