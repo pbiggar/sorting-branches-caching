@@ -1,6 +1,6 @@
-#include "on2_sorts.h"
+#include "cache_sorts.h"
 
-void shellsort(unsigned int a[], int N)
+void improved_shellsort(unsigned int a[], int N)
 {
 	int i, h,min, bound; 
 

@@ -1,6 +1,6 @@
-#include "on2_sorts.h"
+#include "cache_sorts.h"
 
-void old_shellsort(unsigned int a[], int N)
+void shellsort(unsigned int a[], int N)
 {
 	int l = 0;
 	int r = N-1;
