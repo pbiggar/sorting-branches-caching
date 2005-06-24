@@ -1,5 +1,5 @@
-NB: Most of the scripts are hard coded, and will only work from the directories
-they are called from below.
+NB: Most of the scripts and programs used here are hard coded, and will only
+work from the working directories specfied below.
 
 There are 4 sets of tests: hardware performance counters, testing the sorts to
 see if they work, simplescalar and software branch predictors.
@@ -11,9 +11,6 @@ main.c:
 	keys are to be tested. The sorts are tested for an array of every size
 	between the min and max, also using that size as a seed for the random
 	number generator.
-
-	Some sorts do not work. Sorry. multi_quicksort and multi_quicksort_seq
-	don't always work, but they do with the sizes used in the other tests.
 
 	The #define RANDOM_SIZE controls time_sort() which gives a quick tick count
 	or how long it takes to run a sort. Not very official, at all. It also
@@ -75,7 +72,7 @@ Software branch predictors:
 	process_counter, then rerun it).
 
 	This creates the gnuplot data files in data/counter_gnuplot_data and
-	gnuplot scripts in the data/counter/gnuplot_generated_scripts/ directory.
+	gnuplot scripts in the data/counter_gnuplot_generated_scripts/ directory.
 	To create the images, enter the scripts directory and run:
 		$ gnuplot *
 
@@ -135,4 +132,31 @@ Documents:
 	in docs/*/code/ and has been edited for readability from that which was
 	code/.
 
+Data:
 
+	To generate the data, download the random data from www.random.org:
+		$ wget http://www.random.org/files/10megs.001+
+		$ wget http://www.random.org/files/10megs.002
+		$ wget http://www.random.org/files/10megs.003
+		$ wget http://www.random.org/files/10megs.004
+		$ wget http://www.random.org/files/10megs.005
+		$ wget http://www.random.org/files/10megs.006
+		$ wget http://www.random.org/files/10megs.007
+		$ wget http://www.random.org/files/10megs.008
+		$ wget http://www.random.org/files/10megs.009
+		$ wget http://www.random.org/files/10megs.010
+		$ wget http://www.random.org/files/10megs.011
+		$ wget http://www.random.org/files/10megs.012
+		$ wget http://www.random.org/files/10megs.013
+		$ wget http://www.random.org/files/10megs.014
+		$ wget http://www.random.org/files/10megs.015
+		$ wget http://www.random.org/files/10megs.016
+	
+	Download these files, and concatenate them using 'cat':
+		$ cat 10megs* > BIG;
+
+	Copy the file into the data/ directory.
+
+	All these tests were done on a Pentium 4, which is little-endian, and using
+	a little-endian version of simple-scalar. If your machine is big-endian,
+	you'll need to take some steps to get the same data.
