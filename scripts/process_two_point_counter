@@ -1,0 +1,59 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+foreach my $input_file (@ARGV)
+{
+	# make the name of the output file
+	my $output_file = $input_file;
+	$output_file =~ s/.*\///g;
+	$output_file = "two_point_counter_".lc($output_file);
+
+	my $max_y_range = 0;
+	my $max_x_range = 0;
+
+	# open the files
+	open(OUTPUT, ">../data/counter_gnuplot_data/$output_file");
+	open(INPUT, $input_file);
+
+	# parse the input
+	while(<INPUT>)
+	{
+		if (/.* - (\d+):/) # the name of the predictor
+		{
+			$max_x_range = $1 unless ($max_x_range > $1);
+			print OUTPUT "$1 ";
+		}
+		elsif (/^branch_count:.*?(\d+)$/) # the number of branches
+		{
+			$max_y_range = $1 unless ($max_y_range > $1);
+			print OUTPUT "$1 ";
+		}
+		elsif (/^correct_count:.*?(\d+)$/) # the unmebr of correct predictions
+		{
+			print OUTPUT "$1\n";
+		}
+	}
+
+	# close the files
+	close(INPUT);
+	close(OUTPUT);
+
+	# do the script
+	open(SCRIPT, ">../data/counter_gnuplot_generated_scripts/$output_file");
+	print SCRIPT <<SCRIPT_END;
+set term postscript eps
+set data style lines
+set format y "%8.0f" 
+set xrange [0:$max_x_range]
+set yrange [0:$max_y_range]
+set output '../data/plots/$output_file.eps'
+plot \\
+'../data/counter_gnuplot_data/$output_file' using 1:2 title 'total' with boxes lt -1,\\
+'../data/counter_gnuplot_data/$output_file' using 1:3 title 'correct' with boxes lt -1
+SCRIPT_END
+	close(SCRIPT);
+}
+
+# there are three types of line
