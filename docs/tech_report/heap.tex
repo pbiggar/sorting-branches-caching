@@ -189,10 +189,9 @@ this increase will be an order of magnitude lower than the bounds check.
 All simulations presented here were performed on 32 byte cache lines. As a
 result, 8-heaps were used for heapsort, since 8 4-byte \n{int}s fit the cache line.
 LaMarca used 64 bit ints, and while this doesn't affect results, it means that
-fewer keys fit into his cache lines. As a result, he used a 4-heap. To try and
-emulate his results, extra tests were done using a 4-heap with a 32 byte
-cache line, and using a 4-heap using a 16 byte cache line, so that the entire
-cache line is used. \verb!UINT_MAX! was used as the sentinel.
+fewer keys fit into his cache lines. Since modern cache lines are typically
+longer than 4 bytes, we stick with 8-byte cache lines. \verb!UINT_MAX! was used
+as the sentinel.
 
 \subsection{Expected Results}
 The instruction count of heapsort is $O(Nlog_d(N))$, although a higher $d$ means
@@ -207,7 +206,7 @@ it's out-of-place equivalent. This means that the 4-heap will have a better
 instruction count, as well as better cache performance than the base heapsort.
 The 8-heap should have the best cache performance of them all, due to fully
 using each cache line, taking advantage of the spatial locality of the cache
-line. However, the 4-heap should perform just as well with a 16 byte cache line.
+line.
 
 It is expected that the number of comparison branches stays the same with
 an increased fanout. When the height of the heap halves, the number of
@@ -227,7 +226,7 @@ have far more branches than the creation phase.
 
 \subsection{Simulation Results}
 
-\plot{heap}{}{}{Cache heapsort (4-heap) was also tested with a 16 byte cache line}{Cache heapsort (4-heap) was also tested with a 16 byte cache line}{}{}
+\plot{heap}{}{}{}{}{}{}
 
 As expected, the 4-heap performs better than the base heapsort. However, the
 increased number of comparisons of the 8-heap increases the instruction count to
@@ -359,11 +358,3 @@ Journal of Experimental Algorithms requires that source code be published, and
 comparing simulated results from there to the sorts created here might have
 interesting results and would explain the discreptancies highlighted in this
 chapter.
-
-Comparing the 4-heap with a 16 byte cache line to the 4-heap with a 32 byte
-cache line is not as interesting as it would be to compare it to an 8-heap on a
-16 byte cache line.
-
-Also, it would be interesting to use performance counters to find out whether
-the cache or the branch predictors are responsible for the base heapsort being
-faster than the 4-heap, on the Pentium 4.
