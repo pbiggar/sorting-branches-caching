@@ -6,7 +6,7 @@ set yrange [0:156000000]
 set ticscale 0 0
 set offsets .1, .1, 0, 0
 set bmargin 3
-set title "multi_quicksort branch predictor results 0"
+set title "multi-quicksort (binary search) branch predictor results"
 set output '../data/plots/counter_multi_quicksort_0.eps'
 set xtics ("i" 0, "\nj" 1, "partition end" 2, "\nbinary left" 3, "binary right" 4, "\ninsertion" 5, "" 6)
 plot \

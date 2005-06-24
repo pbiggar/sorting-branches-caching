@@ -6,7 +6,7 @@ set yrange [0:156000000]
 set ticscale 0 0
 set offsets .1, .1, 0, 0
 set bmargin 3
-set title "improved_shellsort branch predictor results 0"
+set title "improved shellsort branch predictor results"
 set output '../data/plots/counter_improved_shellsort_0.eps'
 set xtics ("inner loop" 0, "\ninsertion" 1, "" 2, "" 3, "" 4, "" 5, "" 6)
 plot \

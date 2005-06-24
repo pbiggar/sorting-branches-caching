@@ -6,7 +6,7 @@ set yrange [0:156000000]
 set ticscale 0 0
 set offsets .1, .1, 0, 0
 set bmargin 3
-set title "algorithm_n branch predictor results 0"
+set title "algorithm n branch predictor results"
 set output '../data/plots/counter_algorithm_n_0.eps'
 set xtics ("N3" 0, "\nN3 i == j" 1, "N5" 2, "\nN9" 3, "" 4, "" 5, "" 6)
 plot \
