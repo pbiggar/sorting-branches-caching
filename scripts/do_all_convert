@@ -1,3 +1,4 @@
 #!/bin/bash
 
 ../scripts/simple_convert -o -s -a ../data/simple_logs/*random.org0 
+#../scripts/simple_convert -a ../data/simple_logs/*random.org0 

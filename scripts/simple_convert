@@ -10,10 +10,10 @@ if (defined($options{"h"}) || (scalar(@ARGV) == 0))
 }
 
 $scale = 0;
-if (defined($options{"s"})) { $scale = 1; } 
+if (defined($options{s})) { $scale = 1; } 
 
 $offset = 0;
-if (defined($options{"o"})) { $offset = 1; } 
+if (defined($options{o})) { $offset = 1; } 
 
 my $average = 0;
 if (defined($options{a})) { $average = 1; }
@@ -86,7 +86,8 @@ if ($offset) # read in the offset results
 						$result =~ s/\s//g; # remove whitespace
 						if (!($result eq "xxxxxxxxxxxxx"))
 						{
-#							print "results{$simulator}{$param}{$n}{$keyword} = $result\n";
+# TODO average this
+#							print "nothing{$simulator}{$param}{$n}{$keyword} = $result\n";
 							$nothing{$simulator}{$param}{$n}{$keyword} = $result;
 						}
 					}
@@ -189,19 +190,20 @@ foreach $argument (@ARGV)
 		}
 		$i++;
 	}
-
+	my $tmp;
 	foreach $simulator (@simulators)
 	{
 #		print "simulator = $simulator\n";
 		foreach $param (@{$params{$simulator}})
 		{
 #			print "param = $param\n";
-			$comment = "#set_size_in_keys";
+			$comment = sprintf("%19s ", "#set_size_in_keys");
 			$output = "";
 			foreach $n (@sizes)
 			{
 #				print "n = $n\n";
-				$output .= "$n ";
+#				$output .= "$n ";
+				$output .= sprintf("%19s ", $n);
 				foreach $keyword (@{$keywords{$simulator}})
 				{
 #					print "keyword = $keyword\n";
@@ -210,12 +212,12 @@ foreach $argument (@ARGV)
 						$result = 0;
 						for($i = 0; $i < 10; $i++)
 						{
-							my $tmp = $results{$simulator}{$param}{$n}{$keyword}{$i};
+							$tmp = $results{$simulator}{$param}{$n}{$keyword}{$i};
 							if (defined($tmp)) 
 							{
 								if (!($tmp =~ m/\D/))
 								{
-#									print "adding $tmp to $result for $simulator,$param,$n,$keyword\n";
+#									print "adding $tmp to $result\n";
 									$result += $tmp;
 								}
 								else # its not numeric data
@@ -233,7 +235,7 @@ foreach $argument (@ARGV)
 								else
 								{
 									$result /= $i;
-#									print "after dividing by $i, getting $result for $simulator,$param,$n,$keyword\n";
+									#print "after dividing by $i, getting $result\n";
 								}
 								last;
 							}
@@ -245,21 +247,30 @@ foreach $argument (@ARGV)
 					}
 					if (defined($result))
 					{
+						# check if the result (before division) is a number 
+						my $number = (!($results{$simulator}{$param}{$n}{$keyword}{0} =~ m/\D/));
 						if ($n == $sizes[0]) # only do once
 						{
-							$comment .= " $keyword";
+#							$comment .= " $keyword";
+							$comment .= sprintf("%36s ", $keyword);
 						}
-						if ($offset && (!($result =~ m/\D/)) && (!$argument =~ /do_nothing/))
+						if ($offset && $number && !($argument =~ /do_nothing/))
 						{
+							#print "BAH" unless defined ($nothing{$simulator}{$param}{$n}{$keyword});
 							$result -= $nothing{$simulator}{$param}{$n}{$keyword};
+							#print "subtracting an offset of $nothing{$simulator}{$param}{$n}{$keyword} to get $result\n";
 						}
-						if ($scale && (!($result =~ m/\D/)))
+						if ($scale && $number)
 						{
-							$output .= ($result/$n)." ";
+#							$output .= ($result/$n)." ";
+							#print "scaling $result by $n and getting ".($result/$n)."\n";
+							$output .= sprintf("%36f ", $result/$n);
+
 						}
 						else
 						{
-							$output .= "$result ";
+#							$output .= "$result ";
+							$output .= sprintf("%36s ", $result);
 						}
 
 					}
