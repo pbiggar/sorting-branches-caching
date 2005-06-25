@@ -65,7 +65,7 @@ partition_sans_sentinel(unsigned int a[], int l, int r)
 				branch_taken(&global_predictor[4]);
 				break;
 			}
-			branch_not_taken(&global_predictor[4]);
+			else branch_not_taken(&global_predictor[4]);
 		}
 		branch_not_taken(&global_predictor[1]);
 		
@@ -74,7 +74,7 @@ partition_sans_sentinel(unsigned int a[], int l, int r)
 			branch_taken(&global_predictor[2]);
 			break;
 		}
-		branch_not_taken(&global_predictor[2]);
+		else branch_not_taken(&global_predictor[2]);
 
 		exch(a[i], a[j]);
 	}
@@ -113,7 +113,7 @@ partition(unsigned int a[], int l, int r)
 			branch_taken(&global_predictor[2]);
 			break;
 		}
-		branch_not_taken(&global_predictor[2]);
+		else branch_not_taken(&global_predictor[2]);
 
 		exch(a[i], a[j]);
 	}

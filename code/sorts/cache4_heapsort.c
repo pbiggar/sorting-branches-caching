@@ -113,7 +113,7 @@ fix_down(unsigned int heap[], int parent, int N)
 			branch_taken(&global_predictor[5]);
 			break;
 		}
-		branch_not_taken(&global_predictor[5]);
+		else branch_not_taken(&global_predictor[5]);
 
 		/* move down */
 		heap[parent] = heap[child];
