@@ -62,7 +62,7 @@ N3: /* compare Ki, Kj */
 /*		printf("3,8\n"); */
 		goto N8;
 	}
-	branch_not_taken(&global_predictor[1]);
+	else branch_not_taken(&global_predictor[1]);
 
 	if (i == j)
 	{
@@ -71,7 +71,7 @@ N3: /* compare Ki, Kj */
 /*		printf("3,13\n"); */
 		goto N13;
 	}
-	branch_not_taken(&global_predictor[2]);
+	else branch_not_taken(&global_predictor[2]);
 
 /*N4:  transmit Ri */
 
@@ -89,7 +89,7 @@ N3: /* compare Ki, Kj */
 /*		printf("4,3\n"); */
 		goto N3;
 	}
-	branch_not_taken(&global_predictor[3]);
+	else branch_not_taken(&global_predictor[3]);
 
 /*	printf("4,6\n"); */
 N6: 
@@ -126,7 +126,7 @@ N8: /* transmit Rj */
 /*		printf("8,3\n"); */
 		goto N3;
 	}
-	branch_not_taken(&global_predictor[5]);
+	else branch_not_taken(&global_predictor[5]);
 
 /*	printf("8,10\n"); */
 N10: /* transmit Ri */
@@ -144,7 +144,7 @@ N10: /* transmit Ri */
 /*		printf("10,10\n"); */
 		goto N10;
 	}
-	branch_not_taken(&global_predictor[6]);
+	else branch_not_taken(&global_predictor[6]);
 
 /*	printf("10,12\n"); */
 N12: /* switch sides (of the flow graph on page 162) */

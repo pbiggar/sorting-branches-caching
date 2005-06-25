@@ -60,7 +60,7 @@ S3:
 		branch_taken(&global_predictor[1]);
 		goto S8;
 	}
-	branch_not_taken(&global_predictor[1]);
+	else branch_not_taken(&global_predictor[1]);
 
 /*S4:*/
 	k = k + d;
@@ -74,7 +74,7 @@ S3:
 		branch_taken(&global_predictor[2]);
 		goto S3;
 	}
-	branch_not_taken(&global_predictor[2]);
+	else branch_not_taken(&global_predictor[2]);
 
 S6:
 	k = k+d;
@@ -83,7 +83,7 @@ S6:
 		branch_taken(&global_predictor[3]);
 		goto S13;
 	}
-	branch_not_taken(&global_predictor[3]);
+	else branch_not_taken(&global_predictor[3]);
 
 	target[k] = source[j];
 
@@ -95,9 +95,12 @@ S6:
 		branch_taken(&global_predictor[4]);
 		goto S6;
 	}
-	branch_not_taken(&global_predictor[4]);
+	else
+	{
+		branch_not_taken(&global_predictor[4]);
+		goto S12;
+	}
 	
-	goto S12;
 
 S8:
 	k = k + d;
@@ -111,7 +114,7 @@ S8:
 		branch_taken(&global_predictor[5]);
 		goto S3;
 	}
-	branch_not_taken(&global_predictor[5]);
+	else branch_not_taken(&global_predictor[5]);
 
 S10:
 	k = k+d;
@@ -120,9 +123,11 @@ S10:
 		branch_taken(&global_predictor[6]);
 		goto S13;
 	}
-	branch_not_taken(&global_predictor[6]);
-
-	target[k] = source[i];
+	else
+	{
+		branch_not_taken(&global_predictor[6]);
+		target[k] = source[i];
+	}
 
 /*S11: */
 	i = i+1;
@@ -146,9 +151,11 @@ S12:
 		branch_taken(&global_predictor[8]);
 		goto S10;
 	}
-	branch_not_taken(&global_predictor[8]);
-
-	goto S3;
+	else
+	{
+		branch_not_taken(&global_predictor[8]);
+		goto S3;
+	}
 
 S13:
 	p = p+p;
@@ -158,7 +165,7 @@ S13:
 		s = 1-s;
 		goto S2;
 	}
-	branch_not_taken(&global_predictor[9]);
+	else branch_not_taken(&global_predictor[9]);
 
 	if (s==0)
 	{
