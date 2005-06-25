@@ -24,7 +24,10 @@ on2_bubblesort2(unsigned int a[], int N)
 				k = j;
 				exch(a[j-1],a[j]);
 			}
-			branch_not_taken(&global_predictor[i]);
+			else
+			{
+				branch_not_taken(&global_predictor[i]);
+			}
 		}
 		i = k;
 	}

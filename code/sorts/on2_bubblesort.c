@@ -26,7 +26,10 @@ on2_bubblesort(unsigned int a[], int N)
 				exch(a[j-1],a[j]);
 				sorted = 0;
 			}
-			branch_not_taken(&global_predictor[i]);
+			else
+			{
+				branch_not_taken(&global_predictor[i]);
+			}
 			
 		}
 		if (sorted) return;
