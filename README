@@ -1,8 +1,8 @@
 NB: Most of the scripts and programs used here are hard coded, and will only
 work from the working directories specfied below.
 
-There are 4 sets of tests: hardware performance counters, testing the sorts to
-see if they work, simplescalar and software branch predictors.
+There are 4 sets of tests: testing the sorts to see if they work, hardware
+performance counters, software branch predictors and simplescalar tests.
 
 main.c:
 
@@ -47,7 +47,7 @@ Hardware counters:
 	This produces a file in the data/ directory called processes_cycles_data
 	which is in gnuplot format. If you add more sorts to the framework, you'll
 	need to edit the gnuplot scripts in data/perfex_gnuplot_scripts/ with the
-	column numbers that are printed out.
+	column numbers that are printed out by process_perfex_output.
 
 	To create the gnuplot images, enter the data/perfex_gnuplot_scripts/
 	directory and:
@@ -129,8 +129,8 @@ Documents:
 	to resolve this.
 
 	All the macros used to present the graphics are in report.tex. The code is
-	in docs/*/code/ and has been edited for readability from that which was
-	code/.
+	in docs/*/code/ and has been edited for readability from that which is
+	in code/.
 
 Data:
 
@@ -159,4 +159,4 @@ Data:
 
 	All these tests were done on a Pentium 4, which is little-endian, and using
 	a little-endian version of simple-scalar. If your machine is big-endian,
-	you'll need to take some steps to get the same data.
+	you'll need to take some steps to get the same results.

@@ -4,7 +4,7 @@
 
 # first get it out of the file and into a data thing
 
-my $keynum = "245";
+my $keynum = "1024";
 print STDOUT "Hard coded to $keynum keys. Edit the source to change this\n";
 
 open(DATA, $ARGV[0]);
