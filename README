@@ -105,6 +105,7 @@ Simplescalar:
 
 Documents:
 
+	// TODO fix this. No longer shipping the fyp.
 	The are four documents in docs/. docs/fyp_report/ is the original project
 	this was all derived from. docs/tech_report/ is the expanded technical
 	report incorporating everything you see here. docs/branch_paper/ is the

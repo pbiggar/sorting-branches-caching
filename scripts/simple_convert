@@ -1,6 +1,8 @@
 #!/usr/bin/perl -w
 use Getopt::Std;
 
+use warnings;
+
 my %options=();
 getopts("ahso",\%options);
 
@@ -18,85 +20,97 @@ if (defined($options{o})) { $offset = 1; }
 my $average = 0;
 if (defined($options{a})) { $average = 1; }
 
+opendir(DIR, "../data/simple_logs/") || die("cant opendir");
+my @nothing_files = grep { /do_nothing_random\.org/ } readdir(DIR);
+closedir(DIR);
+
 if ($offset) # read in the offset results
 {
-	$argument = "../data/simple_logs/do_nothing_random.org0";
-	unless (-e $argument) { die("file '$argument' does not exist\n"); }
-
-	#get the actual filename
-	$filename = "do_nothing";
-
-	# parse the log
-	open(LOG, $argument);
-	@lines = <LOG>;
-	chomp @lines;
-	close(LOG);
-
-	# skip date
-	shift(@lines);
-
-	# skip "run as" and line of dashes
-	shift(@lines);
-	shift(@lines);
-
-	@simulators = ();
-	while(@lines)
+	for(my $i = 0; $i < @nothing_files; $i++)
 	{
+		my $nothing_file = $nothing_files[$i];
+		$argument = "../data/simple_logs/$nothing_file";
+		unless (-e $argument) { die("file '$argument' does not exist\n"); }
 
-		# find out all the sizes and the simulator name
-		$simulator_sizes = shift(@lines);
-		if ($simulator_sizes eq "Command list: ") { last;} # the end
-		$simulator_sizes =~ /(\S+)\s+(.*)/;
-		$simulator = $1;
-		push @simulators, $simulator;
+		#get the actual filename
+		$filename = "do_nothing";
 
-		@sizes = split(/\|/, $2);
-		foreach $size (@sizes) {$size =~ s/\s//g;} # remove whitespace
-		%seen = ();
-		@sizes = grep { ! $seen{$_} ++ } @sizes; # uniq it
+		# parse the log
+		open(LOG, $argument);
+		@lines = <LOG>;
+		chomp @lines;
+		close(LOG);
 
-		# get the parameters
-		@local_params = ();
-		while($_ = shift(@lines))
+		# skip date
+		shift(@lines);
+
+		# skip "run as" and line of dashes
+		shift(@lines);
+		shift(@lines);
+
+		@simulators = ();
+		while(@lines)
 		{
-			if ($_ =~ /\-\-/) {last;}
 
-			push @local_params, $_;
-		}
-		@{$params{$simulator}} = @local_params;
+			# find out all the sizes and the simulator name
+			$simulator_sizes = shift(@lines);
+			if ($simulator_sizes eq "Command list: ") { last;} # the end
+			$simulator_sizes =~ /(\S+)\s+(.*)/;
+			$simulator = $1;
+			push @simulators, $simulator;
 
-		# get the results
-		@local_keywords = ();
-		while($_ = shift(@lines))
-		{
-			if ($_ =~ /\-\-/) {last;} # seperator is ------------- etc
-			$_ =~ /(\S+)\s+(.*)/;
-			$keyword = $1;
-			push @local_keywords, $keyword; # save it for later
-			@local_results = split(/\|/, $2);
+			@sizes = split(/\|/, $2);
+			foreach $size (@sizes) {$size =~ s/\s//g;} # remove whitespace
+			%seen = ();
+			@sizes = grep { ! $seen{$_} ++ } @sizes; # uniq it
 
-			# now put them into the big associative array
-			foreach $n (@sizes)
+			# get the parameters
+			@local_params = ();
+			while($_ = shift(@lines))
 			{
-				foreach $param (@local_params)
+				if ($_ =~ /\-\-/) {last;}
+
+				push @local_params, $_;
+			}
+			@{$params{$simulator}} = @local_params;
+
+			# get the results
+			@local_keywords = ();
+			while($_ = shift(@lines))
+			{
+				if ($_ =~ /\-\-/) {last;} # seperator is ------------- etc
+				$_ =~ /(\S+)\s+(.*)/;
+				$keyword = $1;
+				push @local_keywords, $keyword; # save it for later
+				@local_results = split(/\|/, $2);
+
+				# now put them into the big associative array
+				foreach $n (@sizes)
 				{
-					$result = shift(@local_results);
-					if (defined($result))
+					foreach $param (@local_params)
 					{
-						$result =~ s/\s//g; # remove whitespace
-						if (!($result eq "xxxxxxxxxxxxx"))
+						$result = shift(@local_results);
+						if (defined($result))
 						{
+							$result =~ s/\s//g; # remove whitespace
+							unless ($result =~ /\D/)
+							{
 # TODO average this
-#							print "nothing{$simulator}{$param}{$n}{$keyword} = $result\n";
-							$nothing{$simulator}{$param}{$n}{$keyword} = $result;
+# TODO add them all.
+								$nothing{$simulator}{$param}{$n}{$keyword} += $result;
+								if ($i == @nothing_files - 1) # last iteration, using @nothing_files in scalar context
+								{
+									$nothing{$simulator}{$param}{$n}{$keyword} /= @nothing_files;
+									print "nothing{$simulator}{$param}{$n}{$keyword} = $nothing{$simulator}{$param}{$n}{$keyword}\n";
+								}
+							}
 						}
 					}
 				}
 			}
+			@{$keywords{$simulator}} = @local_keywords;
 		}
-		@{$keywords{$simulator}} = @local_keywords;
 	}
-
 }
 
 # start to actually do thing
