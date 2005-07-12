@@ -6,6 +6,7 @@ opendir (SCRIPT_DIR, $dir);
 @files = grep {!/\.\./} @files;
 @files = grep {!/\./} @files;
 @files = grep {!/CVS/} @files;
+@files = grep {!/gnuplot_dir/} @files;
 closedir SCRIPT_DIR;
 
 foreach $file (@files)

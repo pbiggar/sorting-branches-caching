@@ -1,4 +1,4 @@
-set key top left Left reverse
+set key bottom left Left reverse
 set xrange [4096:65536]
 set yrange [0:]
 set xtics (8192,16384,32768,65536)

@@ -1,0 +1,13 @@
+set nokey
+set xrange [4096:4194304]
+set yrange [0:]
+set xtics (8192,16384,32768,65536,131072,262144,524288,1048576,2097152)
+set format x "%8.0f"
+set logscale x
+set data style linespoints
+set term postscript eps
+set output '../data/plots/base_quicksort9_-_Instructions.eps'
+set xlabel ''
+set ylabel 'Instructions per key'
+plot \
+'../data/converted_simple_logs/base_quicksort9/base_quicksort9_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:2
