@@ -135,7 +135,8 @@ Documents:
 
 Data:
 
-	To generate the data, download the random data from www.random.org:
+	To generate the data, download the random data from www.random.org. From
+	the data/ directory:
 		$ wget http://www.random.org/files/10megs.001+
 		$ wget http://www.random.org/files/10megs.002
 		$ wget http://www.random.org/files/10megs.003
@@ -155,8 +156,6 @@ Data:
 	
 	Download these files, and concatenate them using 'cat':
 		$ cat 10megs* > BIG;
-
-	Copy the file into the data/ directory.
 
 	All these tests were done on a Pentium 4, which is little-endian, and using
 	a little-endian version of simple-scalar. If your machine is big-endian,
