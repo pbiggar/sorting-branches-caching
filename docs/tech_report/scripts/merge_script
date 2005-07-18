@@ -10,10 +10,10 @@ set output '../plots/merge_-_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
-'../processed_cycles_data' using 1:16 title 'algorithm n',\
-'../processed_cycles_data' using 1:17 title 'algorithm s',\
-'../processed_cycles_data' using 1:3 title 'base mergesort',\
-'../processed_cycles_data' using 1:29 title 'tiled mergesort',\
-'../processed_cycles_data' using 1:18 title 'multi-mergesort',\
-'../processed_cycles_data' using 1:15 title 'double tiled mergesort',\
-'../processed_cycles_data' using 1:14 title 'double multi-mergesort'
+'../data/processed_cycles_data' using 1:2 title 'algorithm n',\
+'../data/processed_cycles_data' using 1:3 title 'algorithm s',\
+'../data/processed_cycles_data' using 1:6 title 'base mergesort',\
+'../data/processed_cycles_data' using 1:30 title 'tiled mergesort',\
+'../data/processed_cycles_data' using 1:20 title 'multi-mergesort',\
+'../data/processed_cycles_data' using 1:18 title 'double tiled mergesort',\
+'../data/processed_cycles_data' using 1:17 title 'double multi-mergesort'

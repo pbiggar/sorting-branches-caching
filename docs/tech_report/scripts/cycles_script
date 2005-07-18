@@ -10,28 +10,33 @@ set output '../plots/all_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
-'../processed_cycles_data' using 1:4 title 'base quicksort',\
-'../processed_cycles_data' using 1:12 title 'cache quicksort',\
-'../processed_cycles_data' using 1:19 title 'multi quicksort',\
-'../processed_cycles_data' using 1:9 title 'base radixsort',\
-'../processed_cycles_data' using 1:12 title 'cache radixsort',\
-'../processed_cycles_data' using 1:3 title 'base mergesort',\
-'../processed_cycles_data' using 1:15 title 'double tiled mergesort',\
-'../processed_cycles_data' using 1:14 title 'double multi-mergesort',\
-'../processed_cycles_data' using 1:21 title 'shellsort',\
-'../processed_cycles_data' using 1:28 title 'improved shellsort'
+'../data/processed_cycles_data' using 1:7 title 'base quicksort',\
+'../data/processed_cycles_data' using 1:15 title 'cache quicksort',\
+'../data/processed_cycles_data' using 1:21 title 'multi-quicksort (binary search)',\
+'../data/processed_cycles_data' using 1:6 title 'base mergesort',\
+'../data/processed_cycles_data' using 1:18 title 'double tiled mergesort',\
+'../data/processed_cycles_data' using 1:17 title 'double multi-mergesort',\
+'../data/processed_cycles_data' using 1:12 title 'base radixsort',\
+'../data/processed_cycles_data' using 1:16 title 'cache radixsort',\
+'../data/processed_cycles_data' using 1:29 title 'shellsort',\
+'../data/processed_cycles_data' using 1:19 title 'improved shellsort'
 
-#'../processed_cycles_data' using 1:2 title 'base heapsort',\
-#'../processed_cycles_data' using 1:7 title 'cache heapsort',\
-#'../processed_cycles_data' using 1:6 title 'cache4 heapsort',\
-#'../processed_cycles_data' using 1:12 title 'algorithm n',\
-#'../processed_cycles_data' using 1:13 title 'algorithm s',\
-#'../processed_cycles_data' using 1:14 title 'multi mergesort',\
-#'../processed_cycles_data' using 1:16 title 'sequential multi quicksort',\
-#'../processed_cycles_data' using 1:18 title 'bubblesort',\
-#'../processed_cycles_data' using 1:19 title 'bubblesort2',\
-#'../processed_cycles_data' using 1:20 title 'insertsort',\
-#'../processed_cycles_data' using 1:21 title 'selectsort',\
-#'../processed_cycles_data' using 1:22 title 'shakersort',\
-#'../processed_cycles_data' using 1:23 title 'shakersort2',\
-#'../processed_cycles_data' using 1:25 title 'tiled mergesort'
+#'../data/processed_cycles_data' using 1:2 title 'algorithm N',\
+#'../data/processed_cycles_data' using 1:3 title 'algorithm S',\
+#'../data/processed_cycles_data' using 1:4 title 'aligned cache radixsort',\
+#'../data/processed_cycles_data' using 1:5 title 'base heapsort',\
+#'../data/processed_cycles_data' using 1:8 title 'base quicksort1',\
+#'../data/processed_cycles_data' using 1:9 title 'base quicksort5',\
+#'../data/processed_cycles_data' using 1:10 title 'base quicksort7',\
+#'../data/processed_cycles_data' using 1:11 title 'base quicksort9',\
+#'../data/processed_cycles_data' using 1:13 title 'cache heapsort (4-heap)',\
+#'../data/processed_cycles_data' using 1:14 title 'cache heapsort (8-heap)',\
+#'../data/processed_cycles_data' using 1:20 title 'multi-mergesort',\
+#'../data/processed_cycles_data' using 1:22 title 'multi-quicksort (sequential search)',\
+#'../data/processed_cycles_data' using 1:23 title 'bubblesort',\
+#'../data/processed_cycles_data' using 1:24 title 'improved bubblesort',\
+#'../data/processed_cycles_data' using 1:25 title 'insertsort',\
+#'../data/processed_cycles_data' using 1:26 title 'selectsort',\
+#'../data/processed_cycles_data' using 1:27 title 'shakersort',\
+#'../data/processed_cycles_data' using 1:28 title 'improved shakersort',\
+#'../data/processed_cycles_data' using 1:30 title 'tiled mergesort'

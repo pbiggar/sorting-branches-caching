@@ -10,5 +10,6 @@ set output '../plots/radix_-_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
-'../processed_cycles_data' using 1:9 title 'base radixsort',\
-'../processed_cycles_data' using 1:13 title 'cache radixsort'
+'../data/processed_cycles_data' using 1:12 title 'base radixsort',\
+'../data/processed_cycles_data' using 1:16 title 'cache radixsort',\
+'../data/processed_cycles_data' using 1:4 title 'aligned cache radixsort'

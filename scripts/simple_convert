@@ -101,7 +101,7 @@ if ($offset) # read in the offset results
 								if ($i == @nothing_files - 1) # last iteration, using @nothing_files in scalar context
 								{
 									$nothing{$simulator}{$param}{$n}{$keyword} /= @nothing_files;
-									print "nothing{$simulator}{$param}{$n}{$keyword} = $nothing{$simulator}{$param}{$n}{$keyword}\n";
+#									print "nothing{$simulator}{$param}{$n}{$keyword} = $nothing{$simulator}{$param}{$n}{$keyword}\n";
 								}
 							}
 						}
