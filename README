@@ -4,6 +4,10 @@ work from the working directories specfied below.
 There are 4 sets of tests: testing the sorts to see if they work, hardware
 performance counters, software branch predictors and simplescalar tests.
 
+Most of the results are included in this package in their rawest form. It is
+necessary to generate some graphs. Commands which must be run to do this are
+marked with a * below.
+
 main.c:
 
 	Enter the code directory. In main.c there are a list of sorts to be tested
@@ -25,8 +29,8 @@ Hardware counters:
 	In the code/ directory, call do_all_papiex or do_all_perfex. You need a
 	patched kernel for this. See: http://icl.cs.utk.edu/papi/.
 
-	Capture the output (Ctrl-C when bored, or needing results, as this will
-	take a long time):
+	Capture the output. Ctrl-C when bored, or needing results, as this will
+	take a long time (3 days or so on Pentium 4 1.8Ghz):
 		$ ./do_all_papiex > my_results
 	or
 		$ ./do_all_perfex > my_results
@@ -36,13 +40,13 @@ Hardware counters:
 		$ ../scripts/papi_convert my_results > new_results
 
 	Then process the results to give you graphs:
-		$ ../scripts/process_perfex_output new_results
+*		$ ../scripts/process_perfex_output new_results
 
 	There's a little bit of hard coding in this script, so change $key_num to
 	the number of times perfex actually ran. Also modify the input so that only
 	completed work cycles are there. This means if the last sort you ran was
 	on2_selectsort, and it ran 256 times, but other sorts ran 257 times, remove
-	the other sorts from the results file.
+	the sort results for the 257th iteration from the results file.
 
 	This produces a file in the data/ directory called processes_cycles_data
 	which is in gnuplot format. If you add more sorts to the framework, you'll
@@ -51,7 +55,7 @@ Hardware counters:
 
 	To create the gnuplot images, enter the data/perfex_gnuplot_scripts/
 	directory and:
-		$ gnuplot *
+*		$ gnuplot *
 
 	The images appear in the data/plots/ directory.
 
@@ -59,13 +63,13 @@ Software branch predictors:
 
 	To run the branch predictors, enter the code/ directory, and ensure that
 	-D_USE_SOFTWARE_PREDICTOR is set in the CFLAGS line. Then:
-		$ make
-		$ ./fastsort
+*		$ make
+*		$ ./fastsort
 
 	
 	The software counters will appear in data/counters/. To process these,
 	from the data/ directory, run:
-		$ ../scripts/process_counter counters/*
+*		$ ../scripts/process_counter counters/*
 
 	This will print out the maximum branches. If this isn't slightly lower than
 	the y-axis in the gnuplot scripts, it will need to be changed (On line 8 of
@@ -74,7 +78,7 @@ Software branch predictors:
 	This creates the gnuplot data files in data/counter_gnuplot_data and
 	gnuplot scripts in the data/counter_gnuplot_generated_scripts/ directory.
 	To create the images, enter the scripts directory and run:
-		$ gnuplot *
+*		$ gnuplot *
 
 	The images are put into the /data/plots directory.
 		
@@ -92,10 +96,10 @@ Simplescalar:
 	Simplescalar's output is captured by the scripts, edited and output into a
 	more human readable format, in data/simple_logs. To convert this to gnuplot
 	format, run:
-		$ ../scripts/do_all_convert
+*		$ ../scripts/do_all_convert
 
 	To create the gnuplot scripts for these files, run:
-		$ ../scripts/do_all_plot
+*		$ ../scripts/do_all_plot
 
 	Though this doesnt actually run gnuplot, dispite its name.  do_all_convert
 	creates gnuplot data files in data/converted_simple_logs/, and do_all_plot
@@ -105,27 +109,25 @@ Simplescalar:
 
 Documents:
 
-	// TODO fix this. No longer shipping the fyp.
-	The are four documents in docs/. docs/fyp_report/ is the original project
-	this was all derived from. docs/tech_report/ is the expanded technical
-	report incorporating everything you see here. docs/branch_paper/ is the
-	first paper, mostly discussing branch prediction, and docs/cache_paper/ is
-	the other paper, discussing cache performance.
+	The are three documents in docs/. tech_report/ is the technical report
+	incorporating everything you see here. branch_paper/ is the first paper,
+	mostly discussing branch prediction, and cache_paper/ is the other paper,
+	discussing cache performance.
 
 	The create the papers, run:
-		$ make
+*		$ make
 
 	in the respective directories. All the papers use plots from the
 	data/plots/ directory, and have symlinks to it. Some of the plots might be
 	slightly and subtly different, so it's best to enter the /docs/*/scripts
 	directory first, and run:
-		$ ./gnuplot_dir
+*		$ ./gnuplot_dir
 
 	Running make will not check a dependency of the plots, so it will be necessary to:
-		$ make again
+*		$ make again
 		or
-		$ make clean
-		$ make
+*		$ make clean
+*		$ make
 	
 	to resolve this.
 
@@ -137,25 +139,25 @@ Data:
 
 	To generate the data, download the random data from www.random.org. From
 	the data/ directory:
-		$ wget http://www.random.org/files/10megs.001+
-		$ wget http://www.random.org/files/10megs.002
-		$ wget http://www.random.org/files/10megs.003
-		$ wget http://www.random.org/files/10megs.004
-		$ wget http://www.random.org/files/10megs.005
-		$ wget http://www.random.org/files/10megs.006
-		$ wget http://www.random.org/files/10megs.007
-		$ wget http://www.random.org/files/10megs.008
-		$ wget http://www.random.org/files/10megs.009
-		$ wget http://www.random.org/files/10megs.010
-		$ wget http://www.random.org/files/10megs.011
-		$ wget http://www.random.org/files/10megs.012
-		$ wget http://www.random.org/files/10megs.013
-		$ wget http://www.random.org/files/10megs.014
-		$ wget http://www.random.org/files/10megs.015
-		$ wget http://www.random.org/files/10megs.016
+*		$ wget http://www.random.org/files/10megs.001+
+*		$ wget http://www.random.org/files/10megs.002
+*		$ wget http://www.random.org/files/10megs.003
+*		$ wget http://www.random.org/files/10megs.004
+*		$ wget http://www.random.org/files/10megs.005
+*		$ wget http://www.random.org/files/10megs.006
+*		$ wget http://www.random.org/files/10megs.007
+*		$ wget http://www.random.org/files/10megs.008
+*		$ wget http://www.random.org/files/10megs.009
+*		$ wget http://www.random.org/files/10megs.010
+*		$ wget http://www.random.org/files/10megs.011
+*		$ wget http://www.random.org/files/10megs.012
+*		$ wget http://www.random.org/files/10megs.013
+*		$ wget http://www.random.org/files/10megs.014
+*		$ wget http://www.random.org/files/10megs.015
+*		$ wget http://www.random.org/files/10megs.016
 	
 	Download these files, and concatenate them using 'cat':
-		$ cat 10megs* > BIG;
+*		$ cat 10megs* > BIG;
 
 	All these tests were done on a Pentium 4, which is little-endian, and using
 	a little-endian version of simple-scalar. If your machine is big-endian,
