@@ -254,6 +254,7 @@ cache misses plateau, while the results here show an increasing slope.
 %TODO is a pseudo-median explained
 \section{Predictor results}
 
+%TODO a bit to rewrite
 \subsection{Different sorts}
 
 \sixplot{base_quicksort_0.eps}{base_quicksort9_0.eps}{cache_quicksort_0.eps}{multi_quicksort_0.eps}{sequential_multi_quicksort_0.eps}{}{base, cache and multi quicksorts and base quicksort9}
@@ -289,57 +290,65 @@ wonder it performs so badly.
 
 Note that sequential multi-quicksort has less mispredictions than cache quicksort.
 
-
+%TO here
 
 \subsection{Different medians}
 
 \label{quick-predictors2}
 \sixplot{base_quicksort1_0.eps}{base_quicksort_0.eps}{base_quicksort5_0.eps}{base_quicksort7_0.eps}{base_quicksort9_0.eps}{}{base quicksort without a median, with median of 3, and with pseudo medians of 5, 7 and 9}
 
-%TODO a bit to rewrite
 \label{quicksort entropy}
 
-We have observed before (see Section \ref{heapsort entropy}), that the more
-branches an algorithm has, the more of them will be correctly predicted. we
-observe that using a better pivot reduces the number of exchanges made by
-quicksort. We expect to find, however, that using a better pivot reduces the
-number of correct predictions, and not the number of incorrect predictions.
+In Section \ref{heapsort entropy}, we observed that when an algorithm has more
+branches than are strictly necessary complete, these extra branches are
+predicted correctly. In quicksort, we expect to obtain similar results.
 
-Each of the \cc{while} loops in \cc{partition} is a branch, and each
-iteration of that loop corresponds to that branch being taken, while each
-exchange corresponds to that branch being not-taken. So the fewer 
+%HOW
 
+We use several variations of quicksort to test this theory. \ref{bently, i
+ithkn} suggests partitioning using a median-of-9 instead of a median-of-three. We
+created sorts using no median, a median-of-3, and pseudo-medians-of-five, -seven and
+-nine. The pseudo-medians used repeated medians-of-three instead of a real
+median, as suggestion by \ref{bently, again, i think}. 
+%use a cut off
 
+We measured the number of branches and mispredictions due to the partitioning,
+the final insertion sort, and the partitioning. It is expected to have little or
+no variance in either the number of branches and misses due to insertion sort,
+but that less time will be spent partitioning to arrays as a better median is
+found, and a corresponsing increase in time spent finding the better median.
+
+The results of these tests are shown in Figure \ref{Branch prediction
+performance for base quicksort without a median, with median of 3, and with
+pseudo medians of 5, 7 and 9}. There is little variance in insertion sort misses
+between the sorts using pseudo-medians, but the median-of-three quicksort has
+6\% fewer branches, and a corresponsing decrease in mispredictions.
 %TODO to whom do we owe the idea of a pseudo median? Bently/McIlroy?
 %TODO when does it cut out, and why did we choose tere (benlty?)
-To test this theory, we create variations of quicksort using different medians.
-We tested no median (or median-of-one), median-of-three, and pseudo-medians-of
--five, -seven and -nine. A pseudo-median-of-five is achieved by choosing five
-keys, evenly spaces across the array, including the first and last key. The
-median of the middle three keys is determined, and the pivot is chosen as the
-median of the chosen key, the first key and the last key. The median-of-seven is chosen
-similarly, using seven evenly spaced keys, and finding the median of the first
-three and the median of the last three, and choosing as the pivot the median of
-these keys and the middle key. The median of nine determines the median of three
-median-of-threes, involving the first, middle and last three keys from nine
-evenly spaced keys.
 
-We measured the number of predictions at the same points as before, aswell as
-when the predictors were being calculated, expecting that a reduction in misses
-in the partitioning due to using a better median would be made up for by an
-increase in number of mispredictions while finding the median. The results are
-shown in Figure \ref{Branch prediction performance for base quicksort without a
-median, with median of 3, and with pseudo medians of 5, 7 and 9}.
+Between a median-of-three and a pseudo-median-of-nine partitioning, there is a
+10\% reduction in branches. At the same time, there is a 20\% reduction in
+correct predictions, accounting for the entire reduction in branhces, and a 4\%
+increase in mispredictions. This is due to better partitioning. Less time is
+spent copying keys unnecessarily, resulting in a less predictable branch. The
+corresponding increase in mispredictions while calculating the median equates to
+50\% of the extra mispredictions due to partitioning.
 
-Picking a better pivot reduces the number of brnahces, but doesnt reduce th
-enumber of mispredictions, in fact, it increases them.
+This indicates the same pattern as we saw during heapsort.%
+% and mergesort?
+The less entropy due to the partitioning key, the less wasted exchanging of keys,
+which leads to a general decrease in branches. This decrease means that the
+fewer keys are exchanged due to partitioning, leading to less predictable
+partitioning. In effect, there are fewer branches pretending to be useful.
 
-The misprediction rates point to the problem. They're just not being evenly divided. The number of times the partitions end is the same, roughly, each time. However, the number of actual branches is much higher in the case of quicksort1, and decreases all the way down. At the same time, the number of mispredictions creeps up. And hence the big change in the rate of mispredictions. As predicted, the better the median, the better the partition, and the less correct predictions pretending to be useful. There must be a 50\% rate waiting to get out, so a little more than median of 9 maybe. Or a lower cut-off point (it cuts out for partitions of less than 40 keys, and uses plain old median of 3).
-
-the rate or number of insertion branches doesnt change at all.
+The pseudo-median-of-five partitioning performs slightly better than the
+median-of-three, and pseudo-median-of-seven performs slightly better again, in
+terms of branch prediction. Figure \ref{TODO} shows the cycle count of each of
+the quicksorts, showing that a pseduo-median-of-seven offers the greatest
+tradeoff between the reduced number of branches and instructions, and the
+increase in branch midpredictions. 
 
 
-%TODO up to here
 
 \section{Future Work}
 The threshold in quicksort is the point at which a simpler sort is used to sort
