@@ -135,15 +135,27 @@ very low. It is lower than even quicksort for the smallest set, and it
 flat-lines immediately (after amortisation of the loop overhead). The number of
 cache misses in Figure \ref{radix level 2 misses} is exactly the same, until
 the array no longer fits into the cache. The number of misses then leaps up to
-2.5 per key, which is roughly what was predicted.
+2.5 per key, which is slightly more than was predicted. The extra is likely due
+to the unpredictable way that the source array is accessed as the keys are
+copied to the auxilliary array.
 
 Cache radixsort performs as predicted aswell. By sorting keys between two
 arrays instead of copying a partially sorted array back, the instruction count
 has been reduced by more than 10\%, and the number of level 2 cache misses
-have been more than halved, to just over one miss per key.
+have been more than halved, to one and a quarter miss per key. This is exactly
+what is expected, due to there being nine passes over the array, and a one miss
+per pass per cache line.
+
+The number of misses while the array fits in the cache is also obvious: there
+are two compulsory misses per key - one for each array - which divided by the
+keys per cache line results in exactly one miss in four.
+
+Aligned cache radixsort performs exactly the same as cache radixsort, indicating
+that the alignment, and the potentially large memory overhead, are not
+necessary.
 
 The number of branch misses, shown in Figure \ref{radix branch misses} was also
-extremely low. Despite 10 branches per key, there was less than .08 of a branch
+extremely low. Despite 2 branches per key, there was less than .08 of a branch
 miss per key. The number of branches itself is quite low, as several of the
 sorts considered had nearly that number of misses. However, it is not
 unexpected. The number of branches reduces when copying back is removed, and
@@ -154,14 +166,10 @@ With the low number of branch misses, a much better overall performance is
 expected than is achieved. When in the cache, it performs only slightly worse
 than quicksort, but once the data set grows larger, the gap widens.  However,
 the results, shown in Figure \ref{radix cycles}, indicate that radixsort will
-never increase beyond 350 cycles per key, meaning that for larger sets it will
-perform significantly better than quicksort. Cache radixsort never increases
-beyond 300 cycles, though it has relatively more cycles when the arrays are
+not increase much beyond 350 cycles per key, meaning that for larger sets it will
+perform significantly better than quicksort. Cache radixsort does not reach 
+250 cycles per key, though it has relatively more cycles when the arrays are
 smaller. 
-
-The most curious result is that all simulations show that cache radixsort
-performing better than the base radixsort, yet the Pentium 4 results show that
-base radixsort performs better for smaller arrays.
 
 LaMarca's radixsort results are quite different to those presented here. His
 instruction count graph has a logarithmic shape: it begins very high and sharply
@@ -170,7 +178,8 @@ flat. A similar thing happens in both cache miss graphs: a sharp dip in
 LaMarca's results, and a flat-line with a slight slope in these results. Also,
 in both cases, once the array no longer fits in the cache, the number of misses
 jumps to around 2.5, where they stay. 
-
+%TODO rewrite this bit a little
+%TODO cache radixsort is faster than quicksort in all cases
 The cycles per key in both cases are unsurprising based on instruction count and
 cache miss results: LaMarca's have a sharp fall before rising slightly once the
 data set no longer fits in the cache; the result presented here flat-line before rising
@@ -179,22 +188,14 @@ for smaller sets.
 
 \section{Future Work}
 \label{radix future work}
-Combining other sorts with radixsort could also be possible. An optimization to
-mergesort was to do a k-way merge at the end, but this dramatically increased
-the instruction count. Using a type of radixsort here would be complicated, but
-may be possible. Alternatively, sorting inside the cache using radixsort is far
-faster than merging. The k-way merge could then be performed at the end. In
-practice, though, radixsort is far faster than mergesort, has a lower
-instruction count, and less cache misses. While these steps could improve
-mergesort, they are more likely to slow radixsort, with no advantage.
-
-Radixsort could also be faster than multi-quicksort's initial step. Replacing
-this with a single radix step would split the array into 256 containers, each of
-which could be quicksorted. Alternatively, a smaller radix, based on the size of
-the array, could be generated at run time. Using LaMarca's analysis,
-$C/3$ containers need to be generated. With $N$ as the number of keys in the
-array, and $C$ is the number of keys which fit in the level 2 cache, the radix
-can be calculated with the formula:
+Combining other sorts with radixsort could be possible.  Radixsort should be be
+faster than multi-quicksort's initial step. Replacing this with a single radix
+step would split the array into 256 containers, each of which could be
+quicksorted. Alternatively, a smaller radix, based on the size of the array,
+could be generated at run time. Using LaMarca's analysis, $C/3$ containers need
+to be generated. With $N$ as the number of keys in the array, and $C$ is the
+number of keys which fit in the level 2 cache, the radix can be calculated with
+the formula:
 $$2^{\lceil{}log_2(\frac{3N}{CacheSize})\rceil{}}$$
 This will only work for random, evenly distributed keys. If all the keys only
 vary in their least significant bits, then this will have no effect.
