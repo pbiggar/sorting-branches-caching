@@ -1,4 +1,4 @@
-void gonnet_shellsort(Item a[], int N)
+void shellsort(Item a[], int N)
 {
 	int l = 0, r = N-1, i ,h;
 	for (h = r-l+1; h > 0; h = ((h > 1) && (h < 5)) ? 1 : 5*h/11)

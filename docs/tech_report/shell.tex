@@ -7,9 +7,8 @@ in 1959, and described in \cite{Shell59}\footnote{Shell describes the former
 sorts as ``Merging Pairs'' and ``floating decimal sort'', respectively, and the
 latter sorts as ``finding the smallest'', ``interchanging pairs'' and ``sifting'',
 respectively.}.
-%TODO whats partial sort?
 
-Shellsort begins by considering the array to be made up of $N/2$ subarrays of
+Shell begins by considering the array to be made up of $N/2$ subarrays of
 length two, where the elements of the subarray are spaced $N/2$ keys apart.
 These subarrays are then sorted using insertion sort. The first iteration will
 be a simple exchange, but the keys which are exchanged move across the array by
@@ -24,53 +23,54 @@ insertion sort's running time to $O(N^2)$.
 Since first published, there has been much discussion about the best
 \textit{increments} to use in shellsort. Shell's original sort, described above,
 has the increments $N/2$, $N/4$, $N/8$, $N/16$ ........ $1$. \cite{Sedgewick96}
-discusses many increments used, and provides code for comparing these. Based
-on running the \textit{driver} program\footnote{see
+discusses many increments used, and provides code for comparing these. Based on
+running the \cc{driver} program\footnote{See
 http://www.cs.princeton.edu/\textasciitilde{}rs/shell/}, Gonnet's shellsort was
 seen to be the fastest on the authors local machine. As a result, this was used
-to test the performance of shellsort. This uses increments which are $5/11$ths
-of the previous increment.
-%TODO do we refer to increments from the top or bottom
+to test the performance of shellsort. This uses increments which are
+five-elevenths of the previous increment.
 
 Two versions of Gonnet's sort were used. The first was taken directly from the
-code presented by Sedgewick, and only slightly modified to fit into the framework used.
-The second was modified to reduce the complexity of the loop bounds, and to
-remove a sentinel check in the inner loop. Code for these is shown in Figures
-\ref{Shellsort code} and \ref{Improved Shellsort code}.
+code presented by Sedgewick, and only slightly modified to fit into the
+framework used.  The second was modified to reduce the complexity of the loop
+bounds, and to remove a sentinel check in the inner loop. Code for
+\cc{shellsort} and \cc{improved\_shellsort} is shown in Figures \ref{Shellsort
+code} and \ref{Improved Shellsort code}.
 
 \code{Shellsort code}{shellsort.c}
 \code{Improved Shellsort code}{improved_shellsort.c}
 
 \section{Results}
 \subsection{Test parameters}
-The increments in Gonnet's shellsort are $N*(5/11)$, $N*(5/11)^2$, $N*(5/11)^3$,
-...... $1$.
+The increments in Gonnet's shellsort are $\frac{5}{11}N$, $(\frac{5}{11})^2N$,
+$(\frac{5}{11})^3N$ ... $1$;
 
 \subsection{Expected Performance}
-Shellsort has been much analysed, but very little is known about the complexity
-of the algorithm. The instruction count is expected to be $O(NlogN)$, as this
-has been indicated by previous experient. The cycle count is expected to be of
-the same order of magnitude as the $O(NlogN)$ sorts for the same reason.
- %TODO find some experiements that showed this.
+Shellsort has been much analysed, and it has been shown that it's complexity is
+difficult to prove\footnote{See TODOA, TODOB, TODOC and TODOD.}. The instruction
+count and cycle counts are expected to be similar to $O(NlogN)$, as this has
+been indicated by previous experient. 
+
 
 The cache performance of shellsort should be regular. Each subarray is sorted in
 turn without reference to the next. Since each element of a subarray is quite
 far from its next element, an entire cache line must be loaded for each key,
 which will be used once per iteration of the sort across the subarray. If there
 are a large number of subarrays, as during the iterations with large increments,
-there will be no spatial reuse, and little temporal reuse. Once the increment is
-small enough that each subarray fits within the cache (ie quickly for L2 cache,
-and much more slowly for the L1 cache), then temporal reuse will occur. Once an
-entire subarray fits within an eighth of the size of the cache (eight being the
-number of keys that fit in a cache line), then spatial reuse will occur aswell.
-This reuse will only occur within a single iteration of shellsort. Once the next
-increment begins, nothing in the cache is likely to be valid, unless the entire
-array fits within the cache.
+there will be no spatial reuse, and little temporal reuse, so long as the
+subarray is large than the cache. Once the increment is small enough that each
+subarray fits within the cache (i.e. quickly for L2 cache, and much more slowly
+for the L1 cache), then temporal reuse will occur. Once an entire subarray fits
+within an eighth of the size of the cache (eight being the number of keys
+that fit in a cache line), then spatial reuse will occur aswell.  This reuse
+will only occur within a single iteration; once the increment with the next
+increment begins, most of the contents of the cache will be invalidated, unless
+the entire array fits within the cache.
 
 The branch performance of shellsort should be predictable. There are
-$log_{5/11}N$ iterations, each with $N$ branch misses\footnote{See Section
+$log_{(\frac{11}{5})}N$ iterations, each with $N$ branch misses\footnote{See Section
 \ref{insertion is predictable} for a discussion of the properties of insertion
-sort.}. It is expected, therefore, that there will be $log_{5/11}N$ misses per
+sort.}. It is expected, therefore, that there will be $log_{(\frac{11}{5})}N$ misses per
 key.
 
 \subsection{Simulation results}
@@ -85,18 +85,31 @@ Shellsort performs roughly double the number of branches and instructions of
 quicksort, and has more than twice as many branch mispredictions and nearly
 four times as many cache misses. It's cycle count is over three times that of
 quicksort, though it is more than 50 percent faster than the best of the
-heapsort. 
+heapsorts.a
+
+%TODO
+TODO are there log5_11 N misses
+Regenerate data before looking at this
 
 \section{Predictor results}
 
 \sixplot{shellsort_0.eps}{improved_shellsort_0.eps}{}{}{}{}{Shellsorts}
 
-%TODO better writing
+In shellsort, almost exactly half of the important branches are mispredicted.
+Simply predicting that all branches are taken would result in a slightly higher
+prediction ratio of 50.8\%. Similarly, for improved shellsort, slightly more
+than half of the branches are correctly predicted, at 50.3\%, rising to 53\%
+using a strategy of predicting all branches as taken.
 
-In the unimporved version, half the bracnhes are mispredicted. Assuming taken would provide better results. Each key moves only 1.03 spots on average. Once the insertion sort is seperated, we see that this is because the insertion sort tips it in favour of 1 spot, and in actual fact this should be 1.07 spots, on average, though the difference is not very significant. The improved insertion sort is better behaved, moving each key on average two spots. But the prediction ratio is much worse than this. There should be N mispredictions, and instead there are 1.3xN mispredictions. THis is because the counter doesnt really get time to settle properly.
+The results also show that in shellsort, a key moves only 1.03 places down the
+array, on average, during each iteration. In improved shellsort, each key moves
+over 1.07\% places each iteration, which in the final insertion sort, each key
+moves an average of 2.1 places.
 
+The expected number of branch mispredictions is $log_{(\frac{11}{5})}N$. In
+actual fact, it is almost exactly correct, being slightly lower (18.48
+mispredictions per key, instead of 19.34, for 4194304 keys).
 
-%TODO end here
 
 \section{Future Work}
 Only Gonnet's way of producing increments is measured here. Using different

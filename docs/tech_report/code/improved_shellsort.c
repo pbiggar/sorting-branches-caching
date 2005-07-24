@@ -1,4 +1,4 @@
-void improved_gonnet_shellsort(Item a[], int N)
+void improved_shellsort(Item a[], int N)
 {
 	int i, h, min, bound; 
 
