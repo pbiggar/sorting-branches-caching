@@ -11,7 +11,12 @@ insertion_sentinel(unsigned int a[], int N)
 	{
 		if(less(a[i], a[min]))
 		{
+			branch_taken(&global_predictor[1]);
 			min = i;
+		}
+		else
+		{
+			branch_not_taken(&global_predictor[1]);
 		}
 	}
 	exch(a[0], a[min]);
@@ -30,9 +35,11 @@ insertion(unsigned int a[], int N)
 
 		while(less(v, a[j-1]))
 		{
+			branch_taken(&global_predictor[0]);
 			a[j] = a[j-1];
 			j--;
 		}
+		branch_not_taken(&global_predictor[0]);
 		a[j] = v;
 	}
 }

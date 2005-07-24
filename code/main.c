@@ -384,12 +384,12 @@ main(int argc, char** args)
 */
 	if (RANDOM_SIZE <= 8192)
 	{
-		predictor_run(on2_bubblesort, RANDOM_SIZE, "Bubblesort");
-		predictor_run(on2_bubblesort2, RANDOM_SIZE, "Bubblesort2");
+//		predictor_run(on2_bubblesort, RANDOM_SIZE, "Bubblesort");
+//		predictor_run(on2_bubblesort2, RANDOM_SIZE, "Bubblesort2");
+		predictor_run(on2_insertsort, 2, "Insertion");
 	}
-	else printf ("not running predictors for on2_bubblesort i or on2_bubblesort2 as N is %d\n", RANDOM_SIZE);
+	else printf ("not running predictors for on2_bubblesort, on2_bubblesort2, or on2_insertsort as N is %d\n", RANDOM_SIZE);
 
-	printf("Not running predictors for on2_insertsort\n");
 	printf("Not running predictors for on2_selectsort\n");
 	printf("Not running predictors for on2_shakersort\n");
 	printf("Not running predictors for on2_shakersort2\n");
