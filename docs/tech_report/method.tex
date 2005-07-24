@@ -191,28 +191,29 @@ makes it particularly useful for bounds checking. No configuration was required
 for this, and simply running \cc{valgrind a.out} ran the program through
 valgrind. The homepage for valgrind is at \n{http://valgrind.kde.org/}.
 
-\subsection{perfex}
-\cc{Perfex} is a tool used to access performance counters on a Pentium 4. By default,
-it prints out the number of cycles\footnote{The processor automatically
-maintains this figure in a 40-bit register called P4\_TSC (Time Stamp Counter),
-and perfex prints this value after running the program} which a program takes to
-execute. This was used to create the graphs comparing the running time of sorts.
-The gnuplot scripts for this were short and easily written.
+\subsection{PapiEx}
+\cc{PapiEx} is a tool used to access performance counters on a Pentium 4. It
+uses the PAPI framework to count certain characteristics across a program's
+execution. We used it to count the number of cycles a sort took to run. This
+provided an accurate measure of how fast a sort executes on a Pentium 4. The
+PapiEx homepage is at \n{http://icl.cs.utk.edu/~mucci/papiex/}.
 
-Perfex was an alternative to using SimpleScalar. By using its hardware
-registers, actual real world results could have been measured. Using perfex
-instead of SimpleScalar was an option reviewed at the start, but the difficulty
-involved in setting up a machine to use it was considerable. Additionally,
-because perfex measures results on a real machine, only one type of cache and
-branch predictor could have been measured. We have provided limited
-measurements to supplement the SimpleScalar results.
+PapiEx was used to create the graphs comparing the running time of sorts.
+The gnuplot scripts for this were short and easily written by hand.
+
+PapiEx was an alternative to using SimpleScalar. By using its hardware
+registers, actual real world results could have been measured. Using PapiEx
+instead of SimpleScalar was an option reviewed at the start, but because PapiEx
+measures results on a real machine, only one type of cache and branch predictor
+could have been measured. We have instead provided limited measurements to
+supplement the SimpleScalar results.
 
 \subsection{Software Predictor}
 The software predictor used was a series of macros and functions which
-maintained the state of a branch predictor at a particular point in the program.
-Statistics about each branch were collected, and dumped into text files, from
-which scripts created graphs to display them. Some sample code is shown in
-Figure \ref{Sample code using the software predictor}.
+maintained the state of a bimodal branch predictor at a particular point in the
+program. Statistics about each branch were collected, and dumped into text
+files, from which scripts created graphs to display them. Some sample code is
+shown in Figure \ref{Sample code using the software predictor}.
 
 \code{Sample code using the software predictor}{quick.c}
 
@@ -301,6 +302,15 @@ feature.
 
 %TODO another sentence here
 Each of the four $O(NlogN)$ sorts, radixsort and shellsort, was treated in this fashion.
+
+\section{Testing details}
+%TODO a lot of this may be in the first sorts chapter, maybe heapsort.
+discuss: BIG + random.org, 64 bit in lamarca vs 32 bit, do_nothing and how it
+affects cache hits, scaling in the software branch predictors. How to compare
+and contrast varying results (branch vs softwre branhc; P4 vs simplescalar).
+What factors are used for testing: /proc/cpuinfo output, cahce and branch
+predictor data from P4, simplescalar inputs, software predictor, verfication of
+sorts.
 
 \section{Future work}
 An improvement that would have yielded interesting results would be to do simulations
