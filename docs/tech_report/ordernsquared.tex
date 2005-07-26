@@ -312,12 +312,12 @@ sorts, while Figure \ref{Branch Simulation results for elementary sorts} shows
 the branch misses per key.  Branch prediction performance is not surprising.
 Each sort has a similar number of branches, with insertion sort having half as
 many as selection and bubblesort, and shakersort being half-way between the
-two. The number of misses for bubblesort and shakersort are huge; nearly one in
-four comparisons are misses. As the data sets gets large, there are nearly
-10,000 branch misses involved in sorting a single key. The improved bubblesort
-had exactly the same number of misses and branches. The improved shakersort has
-a lot less branches, but the same number of misses. This is because skipping
-over sorted keys is predictable from the first branch miss.
+two. The number of misses for bubblesort and shakersort are huge.  As the data
+sets gets large, there are nearly 10,000 branch misses involved in sorting a
+single key. The improved bubblesort had exactly the same number of misses and
+branches. The improved shakersort has a lot less branches, but the same number
+of misses. This is because skipping over sorted keys is predictable from the
+first branch miss.
 
 Selection sort, meanwhile, has the same number of branches as bubblesort, but
 only $O(logN)$ misses per key. The most interesting result, though, is insertion

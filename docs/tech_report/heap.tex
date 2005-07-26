@@ -190,7 +190,7 @@ All simulations presented here were performed on 32 byte cache lines. As a
 result, 8-heaps were used for heapsort, since 8 4-byte \n{int}s fit the cache line.
 LaMarca used 64 bit ints, and while this doesn't affect results, it means that
 fewer keys fit into his cache lines. Since modern cache lines are typically
-longer than 4 bytes, we stick with 8-byte cache lines. \verb!UINT_MAX! was used
+longer than 4 ints, we stick with 32 byte cache lines. \verb!UINT_MAX! was used
 as the sentinel.
 
 \subsection{Expected Results}
@@ -215,9 +215,12 @@ predictable changes. The key being sifted down the heap is likely to go the
 entire way down the tree. Therefore the comparison between the smallest child
 and the parent is predictable. However, the comparisons to decide which child is
 smallest are not predictable. In a 2-heap, there is one comparison between
-children, meaning that half the branches are predictable. An 8-heap has seven
-comparisons between children, with the result that only an eighth of the branches
-are predictable.
+children, meaning that half the branches will probably be correctly predicted.
+An 8-heap has seven comparisons between children, and will probably have about
+mispredictions, as it behaves similarly to selection sort (See \ref{selection
+branches logn}). It is possible, therefore, that the 8-heap will have slightly
+fewer mispredictions due to the combination of the shallower heap and the larger
+fan-out.
 
 However, the creation of the heap will have fewer misses with a larger fanout,
 due to the reduced height. In practice though, the implications of this are
@@ -237,23 +240,27 @@ The level 1 cache results, shown in Figure \ref{heap level 1 misses}, show the
 difference between the two types of heap. The slope of the base heapsort result
 is much greater than all the others, with the 8-heap having the fewest misses.
 This continues into the level 2 cache, where the flattest slope belongs to the
-8-heap. The 4-heap with the 32-byte line has fewer misses than the 16-byte
-version, which is surprising since the 16-byte version can fit twice as many
-blocks in the cache, and uses each block fully.  This may be due to the extra
-compulsory misses due to having twice as many blocks to load. The difference
-between fully associative and direct mapped is only minor.
+8-heap. The difference between fully associative and direct mapped is only
+minor, with the fully associative performing slightly better than the direct
+mapped cache.
 
 In the graph, the base heapsort's results flat-line for a step longer than the
 other heapsorts' results. This is due to being in-place, since twice as many
 keys fit in the cache without a corresponding increase in misses. For the same
-reason, the base heapsorts have approximately half as many level 2 cache misses
-as the out-of-place sorts (See Figure \ref{heap level 2 misses}).
+reason, the base heapsorts have no compulsary misses\footnote{See Section
+\ref{TODO}.}, while the out-of-place sorts have one compulsory miss in eight,
+when the auxilliary heap is being populated.
 
-The branch prediction behaves similarly to the expected results, in that the
-prediction ratio gets worse as the fanout gets larger. However, the difference
-is minor between the 4-heap and 8-heap, and the difference for larger fanout
-would be less still. The difference between the 2-heap and 4-heap result is
-interesting though, the 2-heap has more branches, but less misses per key.
+The branch prediction behaves differently to the expected results, as the
+prediction ratio gets worse as the fanout gets larger. The reason we predicted
+differently was due to selection sort's $O(log N)$ mispredictions; however, this
+is over the entire length of the array, and it is not accurate to extrapolate
+these results over a sequence only seven keys long.
+
+The difference between the 4-heap and 8-heap is minor , and the difference for
+larger fanout would be less still. The difference between the 2-heap and 4-heap
+result is interesting though, the 2-heap has more branches, but less misses per
+key.
 
 The difference between different types of predictors is also visible in the
 results, shown in Figure \ref{heap branch misses}. The largest table size is
@@ -264,6 +271,7 @@ two-level adaptive predictor. The warm-up time of the table-driven predictors is
 visible in the base heapsort results, though it's amortised for larger data
 sets.
 
+%TODO move this to testing section
 Figure \ref{heap cycles} shows the actual time taken for heap sort on a Pentium
 4 1.8GHz machine, which has an 8-way associative 256KB level 2 cache with a 64 byte
 cache line, a 4-way associative 8KB level 1 data cache, and a maximum branch
