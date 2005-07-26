@@ -2,8 +2,8 @@
 Elementary sorts are also referred to as $O(N^2)$ sorts. This is due to the
 manner in which they check every key in the array in order to sort a single key;
 for every key to be sorted, every other key is checked.  Four of these sorts are
-discussed here. They are insertion sort, selection sort, bubblesort and
-shakersort.
+discussed here: insertion sort, selection sort, bubblesort and shakersort,
+along with improved versions of bubblesort and shakersort.
 
 \section{Selection sort}
 
@@ -159,10 +159,10 @@ code is shown in Figure \vref{Bubblesort2 code}.
 \subsubsection{Expected Performance}
 It is expected that the bubblesort2 should perform faster than the original in
 all metrics. Instruction count, were there no conditions that allowed keys to be
-skipped, would be the same, as no extra instructions are added. The flow of the
-algorithm is the same, though there should be fewer iterations, especially at
-the start, when iterations are longer, so cache accesses, and branch misses
-should be reduced along with instruction count.
+skipped, would be the similar, since few extra instructions are added. The flow
+of the algorithm is the same, though there should be fewer iterations,
+especially at the start, when iterations are longer, so cache accesses, and
+branch misses should be reduced along with instruction count.
 
 \section{Shakersort}
 Shakersort is sometimes called back-bubblesort. It behaves like a bubblesort
@@ -191,10 +191,10 @@ sort, with one difference.  Keys which must travel the entire way across the
 array are taken care of earlier in the sort. If the largest key is in the
 leftmost position, it must be moved the entire way right, which causes misses
 for every move in bubblesort, since each move is disjoint from the next. In
-shakersort, however, each in the correct direction will follow a move in the
-same direction, each of which should be predicted. This works for a lot of
-keys, which are more likely to move in continuous movements than they are in
-bubblesort, where only small keys on the right move continuously. The
+shakersort, however, each move in the correct direction will follow a move in the
+same direction, each of which should be correctly predicted. This works for a
+lot of keys, which are more likely to move in continuous movements than they are
+in bubblesort, where only small keys on the right move continuously. The
 performance should improve noticeably as a result.
 
 \section{Shakersort2}
@@ -282,7 +282,9 @@ has the most instructions, and insertion sort has approximately half that
 number, as predicted. Bubblesort has almost the same number of instructions as
 selection sort, but shakersort has a significant number less. The improvement to
 bubblesort in bubblesort2 have increased the instruction count, contrary to
-predictions, and similarly in the shakersort2.
+predictions, and similarly in the shakersort2. It appears the cost of
+skipping over a segment of the array is not worth the additional book-keeping
+cost of determining when this can be done.
 
 The level 2 cache performance of these sorts is not considered, as the set sizes
 are never larger than the level 2 cache. Instead, the level 1 caches are used,
@@ -294,11 +296,10 @@ array each time, leading to very poor performance.
 As expected, selection sort is the worst. This is due to the fact that it
 considers the entire unsorted segment of the array for each key to be put in
 place. Bubblesort, with similar behaviour, is only slightly better. Shakersort
-has a small amount of temporal reuse (see Section \ref{temporal locality}),
-reducing its number of misses. Shakersort2 is placed roughly between insertion
-sort and shakersort, showing that ending early is helpful in its case. This does
-not appear to be the case with bubblesort2 though, which performs identically to
-bubblesort.
+has a small amount of temporal reuse, reducing its number of misses. Shakersort2
+is placed roughly between insertion sort and shakersort, showing that ending
+early is helpful in its case. This does not appear to be the case with
+bubblesort2 though, which performs identically to bubblesort.
 
 Insertion sort performs best of these sorts in relation to cache misses. This
 is due to the fact that the keys it considered most recently are used again for
