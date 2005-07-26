@@ -3,9 +3,10 @@ on2 overall results:
 - shakersort faster than bubblesorts and shakersort2
 - insertion sort best, followed by selection
 
-on2 cache results:
+*on2 cache results:
 - shakersort has temporal reuse
 - insertion sort has very good temporal resuse
+- generally bad reuse
 
 on2 branch results:
 *- insertion sort has 1 misprediction
