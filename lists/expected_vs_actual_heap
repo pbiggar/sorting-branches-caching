@@ -1,0 +1,33 @@
+
+i:
+
+- increasing d reduces instructions
+- 8 performs better than 4
+= not true, 8 performs worst
++= means line is drawn between things from expected
+
+- 4 performs better than base
+= true
+
+c:
+
+- 8 heap should ahve best cache
+- then 4
+- then base
+=yup, all true
+
+= base keeps going for a step longer, as its in place
+does lamarca have this?
+
+b:
+
+- 8 heap slightly more predictable
++= nope, less predictable. doesnt have the warmup that you get in selection sort
+
+overall:
+
+lamarca is right
+
+predictor results:
+
+* predictions go in a curve
