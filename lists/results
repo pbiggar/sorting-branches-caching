@@ -5,8 +5,37 @@ Results list (* signifies contributions)
 * lamarcas results:
 agree:
 
+heap:
+
+TODO
+
+merge:
+
+- copy back and forth works
+- bitonic works (sedgewick)
+- inline faster
+- offset by cachesize/2 works
+- tiled mergesort works
+- multi-mergesort redues cache misses
+- cache miss shapes exactly right
+- wobble in base mergesort
 
 disagree:
+
+heap:
+
+TODO
+
+merge:
+
+- efficient inline search not as good as insertion sort
+- algorithm N dont make sense
+- base algorithm instruction count is roughly the same as heapsort, not half
+- unable to use a tagged system in multi-mergesort, so have much higher instruction count
+- multi-mergesort doesnt work, as the instruction count increase blanks out the reduction in cache misses
+- tiled mergesort increase level1 misses, a lot. much better performance
+- single tiled peforms much worse than base
+- as does multi-mergesort
 
 
 
@@ -15,9 +44,8 @@ disagree:
 
 
 overall:
-*-  it takes a 4096 entry predictor to beat the bimodal (even the smallest)
-*- due to replacement policy, direct mapped can beat fully associative
-*- for 
+*-  it takes a 4096 entry predictor to beat the bimodal (even the smallest) ie heapsort
+*- due to replacement policy, direct mapped can beat fully associative, ie multi-mergesort
 
 on2 overall results:
 - bubblesort faster than bubblesort2
@@ -41,8 +69,18 @@ heap results:
 *- you might be better off using a semi-static predictor when dealing with random data
 
 
+merge results:
+*- leevel 1 needs to be taken into account
+*- algorithm S is 15% faster than N
+*- double tiled is the best
+*- multi is too expensive
+*- algorithm n and s are bad cache performers
+- multi-mergesort has regualr access patterns in the k-way merge
 
 * new techniques
 *: heapsort sentinel
 - reorders the moves during the destruction of the heap in base heapsort so that a sentinel isnt required
+*: merging with a different intial size to avoid the final copy back (did LaMarca suggest this. not in the phd)?
+
+
 

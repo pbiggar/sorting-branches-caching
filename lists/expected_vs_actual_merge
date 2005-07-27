@@ -1,0 +1,85 @@
+algorithm n:
+
+c: bad
++= same as base
+
+
+algorithm s:
+
+i:
+- 15% lower than N
+= true
+
+c: bad
++= same as base
+
+base:
+
+i:
+
+- 30% less than heapsort
+= about the same as heapsort
+
+- n logN
+= truish
+
+c:
+
+b:
+
+- ONlogN for all sorts
++=
+
+tiled:
+
+i:
+= better than base
+
+c:
+
+b:
+
+double-tiled:
+
+i:
+- same as tiled
+= must be
+
+c:
+- level 1 greatly decreased
+= true
+- slight increase in level2
+= not really
+- overall slightly faster.
++= significantly
+
+b:
+
+
+multi:
+
+i:
+- large increase once the treshhodl hit,
+= true, 50%
+
+c:
+- half a miss per keya
+= true
+- flatten out after the leap
+= true
+- lower fully assoc due to lack fo conflict misses
+= false, direct mapped much better
+
+b:
+
+
+double-multi:
+
+i:
+
+c:
+
+b:
+
+= two level adaptive useful here
+= due to access patterns

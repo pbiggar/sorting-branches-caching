@@ -38,27 +38,30 @@ point, lists are merged according to the initial ordering. If it happens that
 there exists an ascending list on one side, this is exploited by the algorithm.
 While this results in good performance, the merge is not perfectly regular, and
 it is difficult or impossible to perform several of the optimizations LaMarca
-describes on it.
+describes on it. We attempted to contact him in order to discuss this, but
+recieved no response. It is likely that the improvements were actually applied
+to Knuth's algorithm S.
 
 \subsection{Algorithm S}
 
-Knuth's algorithm S is a \n{straight} merge, and works as described above. It has
-15\% lower instruction count than Algorithm N\footnote{This is observed on
-random data, which algorithm N is not designed for. On more regular data, or
-semi-sorted data, this will probably not occur.}. Algorithm S, like algorithm N,
-is a very difficult algorithm to modify. Knuth describes it in assembly, and
-making the optimizations that LaMarca describes on it is more difficult than
-rewriting the algorithm more simply. The rewritten algorithm, referred to from
-here on as `base mergesort', is a simple higher level version of algorithm S,
-and should perform only slightly more slowly.
-
-A disadvantage of this method is that if an array has slightly more than $2^x$
+Algorithm S is a \n{straight} merge, and works as described above.  A
+disadvantage of this method is that if an array has slightly more than $2^x$
 keys, an entire extra merge step would be required, which would considerably
 slow the algorithm. This problem is shared by all other versions of mergesort
-considered here, except algorithm N. However, since our tests use exact
-powers of two as set sizes, this problem does not affect them. LaMarca,
-however, used set sizes such as 4096000, which at times would suffer from this
-type of problem.
+considered here, except algorithm N. However, since our tests use exact powers
+of two as set sizes, this problem does not affect them. LaMarca, however, used
+set sizes such as 4096000, which at times would suffer from this type of
+problem.
+
+Algorithm S has 15\% lower instruction count than Algorithm N\footnote{This is
+observed on random data, which algorithm N is not designed for. On more regular
+data, or semi-sorted data, this will probably not occur.}. Algorithm S, like
+algorithm N, is a very difficult algorithm to modify. Knuth describes it in
+assembly, and making the optimizations that LaMarca describes on it is more
+difficult than rewriting the algorithm more simply. The rewritten algorithm,
+referred to from here on as `base mergesort', is a simple higher level version
+of algorithm S, and should perform only slightly more slowly.
+
 
 \subsection{Base Mergesort}
 \label{base mergesort}
@@ -96,7 +99,7 @@ unrolled 8 times. The compiler is also set to unroll loops. However, the
 observed difference between unrolling manually and compiler unrolling is up to
 10\% of instruction count, so manual unrolling is used.
 
-Overall, these three optimizations reduced the instruction count by 30\%.
+Overall, these three optimizations reduce the instruction count by 30\%.
 
 \section{Tiled Mergesort}
 LaMarca's first problem with mergesort is the placement of the arrays with
@@ -105,7 +108,7 @@ block, the writing from one to the other will cause a conflict miss. The next
 read will cause another conflict miss, and will continue in this manner. To
 solve this problem, the two arrays are positioned so that they map to different
 parts of the cache. To do this, an additional amount of memory the same size as
-the cache is allocated, which can be expensive for small arrays. The address of
+the cache is allocated. The address of
 the auxiliary array is then offset such that the block index in the source array
 is $CacheSize/2$ from the block index in the target array. The is achieved by
 inverting the most significant bit of the block index in the target array.
@@ -121,13 +124,13 @@ and physical or bus addresses, then this problem is very unlikely. The
 simulations presented in this project address the cache by virtual address, and
 so this optimization is effective in this case.
 
-The next problem considered is that of temporal locality. Once a key is loaded
-into the array, it's only used once per merge step. If the data does not fit in
-half the cache, then conflict misses will occur, and no temporal reuse will
-occur at all. The solution is to apply a technique used in compilers called
-\n{tiling}. Using this technique, an entire cache sized portion of the array will
-be fully sorted before moving on to the next set. When all the sets have been
-sorted in the manner, they are all merged together as usual.
+The next problem LaMarca considers is that of temporal locality. Once a key is
+loaded into the array, it's only used once per merge step. If the data does not
+fit in half the cache, then conflict misses will occur, and no temporal reuse
+will occur at all. The solution is to apply a technique used in compilers called
+\n{tiling}. Using this technique, an entire cache sized portion of the array
+will be fully sorted before moving on to the next set. When all the sets have
+been sorted in the manner, they are all merged together as usual.
 
 It is also possible to avoiding the copy back to memory. In the event of an odd
 number of merge steps, the auxiliary array will contain the sorted array, which
@@ -158,7 +161,7 @@ overhead involved in this is substantial. It is necessary to check each of the
 lists, and each key searched would cause a cache miss, since each array segment
 is aligned, and map to the same cache block.
 
-To avoid this, a priority queue is used. The smallest key from each list is
+To avoid this, LaMarca uses a priority queue. The smallest key from each list is
 added to the queue, and then put into the final target array. This reduces the
 problem of the search overhead, but does not reduce the problem of
 \n{thrashing}\footnote{Thrashing occurs when two arrays are mapped to the same
@@ -168,9 +171,10 @@ to the priority queue. There will still be conflict misses, but there will be no
 thrashing since the keys overwritten in the cache will not be needed again.
 
 LaMarca used a 4-heap for his priority queue, and an 8-heap is used here, for
-the same reasons as before. The heap is aligned, and a cache line
-is put into the array each time. The smallest key is at the top of the heap,
-and this is put into its final position in the array. The heap is then fixed.
+the same reasons as before (see Section \ref{cache heapsort}.). The heap is
+aligned, and a cache line is put into the array each time. The smallest key is
+at the top of the heap, and this is put into its final position in the array.
+The heap is then fixed.
 
 LaMarca uses a special tag to mark the last key from each list inserted into
 the array. No more details are provided on this, and a sorted list of length $k$
@@ -227,7 +231,8 @@ multi-mergesorts.
 
 Algorithm N is not optimized for random data, and should not perform as well as
 algorithm S. Algorithm S is expected to have a lower instruction count than base
-mergesort. Neither algorithm is expected to have good cache performance, 
+mergesort. Neither algorithm is expected to have good cache performance.
+
 
 The instruction count of mergesort is $O(NlogN)$, and does not vary
 according to input. Multi-mergesort should have a significantly higher
@@ -240,9 +245,10 @@ the data set exceeds the cache, the number of cache misses should leap. For
 multi-mergesort, they should flatten out after this, perhaps with a slight
 slope to take into account the conflict misses of the aligned array segments. The
 fully associative caches should not have these misses, and the results should be
-correspondingly lower. Due to their design, the double mergesorts should have
-better performance than their counterparts, both in level 1 misses, and overall,
-though the difference is not expected to be great.
+correspondingly lower. The double mergesorts should have
+better performance than their counterparts in level 1 misses, though there
+should be a slight increase in level 2 misses. It is expected that they should
+perform slightly faster as a result.
 
 The flow control of mergesort is very regular, but there is no way to predict
 the comparisons. As a result the misprediction rate should be $O(NlogN)$ for
@@ -255,28 +261,45 @@ passed.
 \plot{merge}{}{}{Results shown are for a Direct Mapped cache.}{
 Results shown are for a Direct Mapped cache.}{}{}
 
-As expected, algorithm N has lower instruction count than algorithm S, which
+As expected, algorithm S has lower instruction count than algorithm N, and 
 also slightly outperforms base mergesort.  The number of instructions, shown in
 Figure \ref{merge instructions} is exactly as predicted, with a 50\% spike at
-multi-mergesort. Level 2 misses, shown in Figure \ref{merge level 2 misses} are
+multi-mergesort. 
+
+Level 2 misses, shown in Figure \ref{merge level 2 misses} are
 also as expected, although the multi-mergesort does not show the same
-improvement over tiled mergesort as in LaMarca's results.
+improvement over tiled mergesort as in LaMarca's results, as our tiled mergesort
+performs better. The cache performance of algorithms N and S are poor, as
+expected. They perform roughly the same as base mergesort.
+
+It is notable that our prediction of half a miss per key for multi-mergesort,
+which was taken from LaMarca, is exactly right. However, our assertion that the
+fully associative cache will perform slightly better is false. In actual fact,
+the direct mapped cache performs significantly better (see Figure
+\vref{multi-mergesort level 2 misses}). This is due to the replacement policy:
+our fully associative cache removes the least recently used keys from the cache
+to make room, while the direct mapped caches are designed to make best use of
+the keys while they are in the cache. They have, effectively, an optimised
+replacement policy.
 
 The prediction results in Figure \ref{Branch Simulation results for mergesort}
 are as expected. Very little variation exists between the types of mergesort. It
 is noticeable, though, that the spike in branch misses due to the
 multi-mergesorts is considerably lessened by the two level adaptive predictor.
-The reason for this is not clear.
+This shows there must be regular access patterns in the k-way merge at the end
+of multi-mergesort, which are predictable using a branch history.
 
 As predicted, the rate of level 1 misses is greatly reduced by the double
 tiling, as shown in Figure \ref{merge level 1 misses}. Double multi-mergesort
 has consistently four times fewer level 1 misses than multi-mergesort, and both
-double tiled sorts perform significantly better than the unoptimized sorts.
+double tiled sorts perform significantly better than the unoptimized sorts. The
+expected increase in level 2 misses did not materialise, and is in fact
+negligible.
 
 The level 2 cache results are startlingly similar to LaMarca's. The shape of the
 Figure \ref{merge level 2 misses} is exactly that provided by LaMarca. The
-ratio's between the each of the sorts is also the same, though the numbers are
-not identical, due to different \c{int} sizes in our tests.
+ratio's between the each of the sorts is also the same, as each of our results
+is exactly half that of LaMarca, due to different \cc{int} sizes in our tests.
 
 Despite the improvement in cache misses due to multi-mergesort, it still cannot
 compensate for the increase in instruction count as a result, and it has a higher
