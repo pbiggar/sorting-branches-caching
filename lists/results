@@ -6,8 +6,10 @@ Results list (* signifies contributions)
 agree:
 
 heap:
-
-TODO
++- 4 heap has fewer instructions than base
++- shape of instr graph
++- general idea of level 1 graph
++- same shape of cycles graph
 
 merge:
 
@@ -24,7 +26,7 @@ disagree:
 
 heap:
 
-TODO
++- what about in-place vs out-of-place
 
 merge:
 
@@ -67,6 +69,7 @@ heap results:
 *- base flat-lines for longer due to being in-place (not observed by lamarca)
 *- predictions go in a curve
 *- you might be better off using a semi-static predictor when dealing with random data
+*- 8 heap worse than 4 heap
 
 
 merge results:

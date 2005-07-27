@@ -20,18 +20,18 @@ the data stored by the parent must always be greater than the data stored by its
 children. Secondly, in a binary tree there is no requirement that the tree be full.
 In a heap, it is important that every node's left child exists before its right
 child. With this property, a heap can be stored in an array without any wasted
-space, and without any links to other nodes. A heap done in the fashion is
-called an \n{implicit heap}.
+space, and the links are implied by a nodes position, rather than by a pointer
+or reference. A heap done in the fashion is called an \n{implicit heap}.
 
 To take advantage of the heap structure, it must be possible to easily traverse
 the heap, going between parent and child, without the presence of links. This
 can be done due to the nature of the indices of parents and their children. In
-the case of an array indexed between $0$ and $N-1$, then a 
-parent whose index is $i$ has two children with indices of
-$2i+1$ and $2i+2$. Conversely, the index of a parent whose child has an index
-of $j$ is $\lfloor{}(j+1)/2-1\rfloor{}$. It is also possible to index the array between $1$
-and $N$, in which case the children have indices of $2i$ and $2i+1$, while the parent
-has an index of $\lfloor{}j/2\rfloor{}$. Using this scheme can reduces instruction cost, but
+the case of an array indexed between $0$ and $N-1$, a parent whose index is
+$i$ has two children with indices of $2i+1$ and $2i+2$. Conversely, the index of
+a parent whose child has an index of $j$ is $\lfloor{}(j+1)/2-1\rfloor{}$. It is
+also possible to index the array between $1$ and $N$, in which case the children
+have indices of $2i$ and $2i+1$, while the parent has an index of
+$\lfloor{}j/2\rfloor{}$. Using this scheme can reduces instruction cost, but
 results is slightly more difficult pointer arithmetic, which cannot be performed
 in some languages\footnote{In C this can be done by \cc{Item a[] =
 \&array[-1];}}.
@@ -166,10 +166,11 @@ child $j$ is indexed by $\lfloor{}(i-1)/d\rfloor{}$.
 The height of a 2-heap is $\lceil{}log_2(N)\rceil{}$, where \textit{N} is the
 number of keys in the heap. By changing to a 4-heap, the height is reduced to
 $\lceil{}log_4(N)\rceil{} = \lceil{}\tfrac{1}{2}log_2(N)\rceil{}$. The height of
-an 8-heap is half again the height of a 4-heap. However, the number of
-comparisons needed in each level is doubled, since all the children will be
-unsorted. LaMarca claims that as long as the size of the fanout is less than
-12, a reduced instruction count will be observed.
+an 8-heap is reduced again to $\lceil{}log_8(N)\rceil{} =
+\lceil{}\tfrac{1}{3}log_2(N)\rceil{}$. However, the number of comparisons needed
+in each level is doubled, since all the children will be unsorted. LaMarca
+claims that as long as the size of the fanout is less than 12, a reduced
+instruction count will be observed.
 
 In the base heapsort, an improvement was added that removed the need for a
 sentinel. Since the 4- and 8-heaps were unsorted, this optimization had to be
@@ -180,10 +181,6 @@ than the bounds check, however, as the bounds check will need to be performed
 $NlogN$ times, compared to $N$ times for the sentinel. The cost of the sentinel
 write is more expensive but the extra $logN$ instructions saved will mean that
 this increase will be an order of magnitude lower than the bounds check.
-
-%TODO this isnt true is it? placing the nsentinel is cheaper than a bounds check
-%(a write to a variable thats going to be written to in a second vs a comparison?)
-%and there arent an extra logN instructions, theres logN times as many
 
 \section{Results}
 All simulations presented here were performed on 32 byte cache lines. As a
@@ -207,6 +204,9 @@ instruction count, as well as better cache performance than the base heapsort.
 The 8-heap should have the best cache performance of them all, due to fully
 using each cache line, taking advantage of the spatial locality of the cache
 line.
+
+LaMarca reports base heapsort has very poor temporal locality, and that the
+cache heapsort will have half the cache misses of base heapsort.
 
 It is expected that the number of comparison branches stays the same with
 an increased fanout. When the height of the heap halves, the number of
@@ -233,16 +233,17 @@ have far more branches than the creation phase.
 
 As expected, the 4-heap performs better than the base heapsort. However, the
 increased number of comparisons of the 8-heap increases the instruction count to
-even higher than base heapsort, despite the reduction in the height of the heap.
-This is shown in Figure \ref{heap instructions}.
+even higher than base heapsort, due to the disparity between the increase in
+comparisons in set of children, and the lesser reduction in the height of the
+heap. This is shown in Figure \ref{heap instructions}.
 
 The level 1 cache results, shown in Figure \ref{heap level 1 misses}, show the
 difference between the two types of heap. The slope of the base heapsort result
-is much greater than all the others, with the 8-heap having the fewest misses.
-This continues into the level 2 cache, where the flattest slope belongs to the
-8-heap. The difference between fully associative and direct mapped is only
-minor, with the fully associative performing slightly better than the direct
-mapped cache.
+is much greater than all the others, showing base heapsort's poor temporal
+locality, with the 8-heap having the fewest misses. This continues into the
+level 2 cache, where the flattest slope belongs to the 8-heap. The difference
+between fully associative and direct mapped is only minor, with the fully
+associative performing slightly better than the direct mapped cache.
 
 In the graph, the base heapsort's results flat-line for a step longer than the
 other heapsorts' results. This is due to being in-place, since twice as many
@@ -257,7 +258,7 @@ differently was due to selection sort's $O(log N)$ mispredictions; however, this
 is over the entire length of the array, and it is not accurate to extrapolate
 these results over a sequence only seven keys long.
 
-The difference between the 4-heap and 8-heap is minor , and the difference for
+The difference between the 4-heap and 8-heap is minor, and the difference for
 larger fanout would be less still. The difference between the 2-heap and 4-heap
 result is interesting though, the 2-heap has more branches, but less misses per
 key.
