@@ -31,6 +31,9 @@ quick:
 +- .25 fewer misses in tuned
 + flat curve: cant disporve. looks like it
 
+radix:
++- its faster than quicksort
+
 
 disagree:
 
@@ -52,7 +55,13 @@ merge:
 quick:
 
 +- we reckon its more efficient to use insertion sort as in tuned quicksort
++- found that base is faster than memory tuned
++- switching to binary search is less efficient
 
+
+radix:
+
++- he didnt optimise radixsort, though the techniques from mergesort were applicable
 
 
 * results
@@ -95,7 +104,15 @@ merge results:
 - multi-mergesort has regualr access patterns in the k-way merge
 
 quick rsults:
+*- base is fastest
+*- tuned reduces instruction count
+*- binary slows things down due to mispredicitons
+*- the whole entropy thing
 
+radix results:
+*- a new way of reducing cache misses based on mergesort
+*- alignment doesnt work
+*- no branch misses at all, and it makes a difference
 
 
 new techniques:

@@ -4,46 +4,50 @@
 All other sorts considered in this project are \n{comparison based} sorts.
 They compare two keys at a time, and determine the larger and smaller key,
 sorting on that basis. Radixsort is a \n{counting based} sort. It works by
-separating all the keys into small parts, and processing these parts without
+separating the keys into small parts, and processing these parts without
 regard for other keys. For radix of two, these small parts are bits, and for a
 radix of 10, these parts would be digits. 
 
 The steps to sort by radix are simple. First a radix is chosen, based on the
-size of the part to be sorted. For 32 bits integers, a byte is used. This means
+size of the part to be sorted. For 32 bit integers, a byte is used. This means
 the radix is 256, as there are 256 possible byte values. An array of 256
 counters is created to count the number of keys with a particular least
 significant byte. The counters are then summed in turn to store the cumulative
 count of keys with a smaller least significant byte. Now each key can be put in
-place by accessing the counter indexed by its least significant byte.
+place by accessing the counter indexed by its least significant byte, after
+which that counter is incremented.
 
-These are written into an auxiliary array, which is written back to the initial
+The keys are written into an auxiliary array, which is written back to the initial
 array before the next iteration. The process is then repeated using the second
 least significant byte.  Since every key is processed in order, when the next
 most significant byte is sorted, the order of the less significant bytes are
 maintained, so that once the most significant byte is sorted, the entire array
 is.
 
+\section{Base Radixsort}
+
 This type of radixsort is called \n{Least Significant Digit} radixsort.
-Other implementations are possible, inclduing a \n{Most significant bit}
-version, which behaves as a divide and conquer algortithm. These are discussed
+Other implementations are possible, including a \n{most significant bit}
+version, which behaves as a divide and conquer algorithm. These are discussed
 in Section \ref{radix future work}.
 
-Note that this method is only suitable for unsigned ints. Because a signed int's
-sign is contained in the most significant bit, this sort would place negative
-numbers after the positive numbers.
+Note that this method is only suitable for \cc{unsigned int}s. Because a
+\cc{signed int}'s sign is contained in the most significant bit, this sort would
+place negative numbers after the positive numbers.
 
-\subsection{Cache Radixsort}
+\section{Cache Radixsort}
 Many improvements exist to radixsort, and some are suggested by Sedgewick and
 LaMarca. Some of these improvements help to lower cache misses and instruction
-count, both of which slow down radixsort significantly. LaMarca suggested
-that while the current byte is being put in place, the counting of the next byte
-can be done. This increases the memory requirements, but this is not
-significant.
+count, both of which slow down radixsort significantly. LaMarca suggests an
+improvement by Friend\footnote{See \ref{TODO friend[8]}.} that while the current
+byte is being put in place, the counting of the next byte can be done. This
+increases the memory requirements, but this is not significant.
 
 The first improvement is to reduce the number of runs across the array per
 step.  In the \n{base radixsort}, presented above, there is one step to count,
-one to copy, and one to write back (which accesses both arrays). LaMarca
-suggests counting for the next step in the previous count, which we implement. 
+one to copy, and one to write back (which accesses both arrays). We take
+LaMarca's suggestion and begin the counting of the next least significant byte
+in the previous iteration.
 
 In fact, all the counting could be done in a single pass at the start, instead
 of four passes at various stages, decreasing instruction count and cache misses.
@@ -53,16 +57,17 @@ counts, with no benefits.
 The step to copy the array back can also be removed. In mergesort, copying back
 to the source array was changed to copying back and forth between the source and
 auxiliary arrays. The same could be done with radixsort, without any increase in
-complexity. The number of steps is likely to be even, and is known at compile
-time, so the number of times the copy step is done could be reduced to zero. If
-the number of steps is odd, which is unlikely when sorting integers, then one
-copy at the end would be required. This is not needed in the implementation
-presented here.
+complexity. The number of steps is likely to be even, and depends on the radix.
+It is known at compile time, so the number of times the copy step is done could
+be reduced to zero since we choose an even radix. If the number of steps is odd,
+which is unlikely when sorting integers, then one copy at the end would be
+required. This is not needed in the implementation presented here.
 
 Cache radixsort should traverse the array only nine times: Once at the start to
-count the least significant bits; six times as it copies using the three least
-significant bytes (counting the next least significant byte at the same time),
-and a final two as it copies using the most significant byte.
+count the least significant bytes; six times (once per array per pass) as it
+copies using the three least significant bytes (counting the next least
+significant byte at the same time), and a final two as it copies using the most
+significant byte.
 
 
 \subsection{Aligned Cache Radixsort}
@@ -70,9 +75,9 @@ In Section \ref{tiled mergesort}, mergesort is improved by aligning its array
 with reference to it auxilliary array. Specifically, extra memory is allocated
 for the auxilliary array, which is then offset so that the start of the two
 arrays are exactly half the length of the cache apart. We further added an
-alignment for the level 1 cache to significantly reduce level 1 misses at the
-expense of a small number of level 2  misses. We adapt this strategy here, and
-call it Aligned Cache Radixsort.
+alignment for the level 1 cache (see Section \ref{double tiled mergesort}) to
+significantly reduce level 1 misses at the expense of a small number of level 2
+misses. We adapt this strategy here, and call it Aligned Cache Radixsort.
 
 
 \section{Results}
@@ -86,13 +91,13 @@ based sorts. This is due to that fact that radixsort is $O(N)$; for an array as
 small as 4096 records, it involves 12 times fewer steps than the $O(NlogN)$
 sorts. For an array as large as 4194304, an $(O(NlogN)$ sort will take 22 times
 as many steps to complete. However, it is not expected that radixsort will
-perform many times better than quicksort, the reigning champion. A `step' for
-quicksort is as simple as a comparison and a possible exchange every few steps.
-For radixsort, a step comprises being counted four times and copied four times,
-with the counting involving several layers of indirection, and causing a
-complete iteration across the array at the start. LaMarca's results
-show the instruction count of quicksort and radixsort being in the same order of
-magnitude, and we expect the same.
+perform many times better than quicksort, the reigning champion of $O(NlogN)$
+sorts. A `step' for quicksort is as simple as a comparison each step and a
+possible exchange every few steps.  For radixsort, a step comprises being
+counted four times and copied four times, with the counting involving several
+layers of indirection, and causing a complete iteration across the array at the
+start. LaMarca's results show the instruction count of quicksort and radixsort
+being in the same order of magnitude, and we expect the same.
 
 The cache performance of base radixsort is not expected to be good, however.
 Quicksort and mergesort have very good temporal locality. Keys are
@@ -106,14 +111,14 @@ can result in thrashing.
 The thrashing can also occur in aligned radixsort. Unlike mergesort, we cannot
 guarantee that the keys being considered are at the same positions in both
 arrays. In fact, we have no idea where is being accessed in the source array, so
-it is unlikely that the alignment will have any effect what-so-ever.
+it is unlikely that the alignment will have a great effect.
 
 The number of iterations across the array is constant, however, proportional to
-$(bitsPerInt/log_2(Radix))$. For a 32 bit integer, this is four steps and each step
-has four passes over the array, for a total of 16 passes over the array.  With
-eight keys per cache line, there should be about two misses per key, when the
-array doesn't fit into the array, though this depends on the placing of the
-auxiliary array.
+$(bitsPerInt/log_2(Radix))$. For a 32 bit integer and a radix of 256, this is
+four steps and each step has four passes over the array, for a total of 16
+passes over the array.  With eight keys per cache line, there should be about
+two misses per key, when the array doesn't fit into the array, though this
+depends on the placing of the auxiliary array.
 
 The number of branch prediction misses should be exceptionally low. In
 comparison based sorts, a branch due to a comparison can not be predicted except
@@ -125,66 +130,75 @@ Due to the reduced copying, cache radixsort should have a lower instruction
 count and fewer cache misses that base radixsort. There should be nine passes
 over the array, leading to just over one miss per key, as opposed to two misses
 per key with base radixsort. The complexity and branch prediction results
-should remain the same.
+should remain the same. The instruction count should, however, reduce by nearly
+a half to $fract{9}{16}$ths of base radixsort.
+
+Based on LaMarca's results, showing quicksort to be faster than radixsort by a
+small amount, we expect cache radixsort to run faster than quicksort.
 
 \subsection{Simulation results}
 \plot{radix}{}{}{}{}{}{}
 
 The instruction count of base radixsort, shown in Figure \ref{radix instructions} is
 very low. It is lower than even quicksort for the smallest set, and it
-flat-lines immediately (after amortisation of the loop overhead). The number of
-cache misses in Figure \ref{radix level 2 misses} is exactly the same, until
-the array no longer fits into the cache. The number of misses then leaps up to
-2.5 per key, which is slightly more than was predicted. The extra is likely due
-to the unpredictable way that the source array is accessed as the keys are
-copied to the auxilliary array.
+flat-lines immediately (after slight amortisation of the loop overhead). The
+number of cache misses in Figure \ref{radix level 2 misses} is only slightly
+more than quicksort - due to being out-of-place - until the array no longer fits
+into the cache. The number of misses then leaps up to 2.5 per key, which is
+slightly more than was predicted. The extra is likely due to the unpredictable
+way that the source array is accessed as the keys are copied to the auxilliary
+array.
 
 Cache radixsort performs as predicted aswell. By sorting keys between two
 arrays instead of copying a partially sorted array back, the instruction count
 has been reduced by more than 10\%, and the number of level 2 cache misses
-have been more than halved, to one and a quarter miss per key. This is exactly
-what is expected, due to there being nine passes over the array, and a one miss
-per pass per cache line.
+have been halved, to one and a quarter miss per key. This is exactly
+as expected, due to there being nine passes over the array, and a one miss
+per pass per cache line (coming to slightly under one and a quarter. The extra
+is again probably due to the unpredictable order of the copying).
 
-The number of misses while the array fits in the cache is also obvious: there
+The number of misses while the array fits in the cache is obvious: there
 are two compulsory misses per key - one for each array - which divided by the
-keys per cache line results in exactly one miss in four.
+keys per cache line results in exactly one miss in four (although our graph
+obscures this, due to the initial subtraction of compulsary misses).
 
-Aligned cache radixsort performs exactly the same as cache radixsort, indicating
-that the alignment, and the potentially large memory overhead, are not
-necessary.
+Aligned cache radixsort performs exactly the same as cache radixsort in both
+level 1 and level 2 misses, indicating that the alignment, and the associated
+memory overhead, are not necessary.
 
 The number of branch misses, shown in Figure \ref{radix branch misses} was also
-extremely low. Despite 2 branches per key, there was less than .08 of a branch
+extremely low. Despite three branches per key, there was less than .02 of a branch
 miss per key. The number of branches itself is quite low, as several of the
 sorts considered had nearly that number of misses. However, it is not
 unexpected. The number of branches reduces when copying back is removed, and
 while this reduces the number of mispredictions, there are so few to begin with
 that this result is not significant.
 
-With the low number of branch misses, a much better overall performance is
-expected than is achieved. When in the cache, it performs only slightly worse
-than quicksort, but once the data set grows larger, the gap widens.  However,
-the results, shown in Figure \ref{radix cycles}, indicate that radixsort will
-not increase much beyond 350 cycles per key, meaning that for larger sets it will
-perform significantly better than quicksort. Cache radixsort does not reach 
-250 cycles per key, though it has relatively more cycles when the arrays are
-smaller. 
+Again we see that the bimodal branch predictor performs better than the two
+level adaptive. In this case it is contrary to expectations, however, as
+there are no comparative branches. However, there are so few misses that these
+results do not show anything; in the worst case there are slightly over 200
+misses in total.
+
+With the low number of cache misses, low instruction count and negligible branch
+mispredictions, it is no surprise that cache radixsort performs as well as it
+does. As shown in Figure \ref{radix cycles}, cache radixsorts performance is
+almost linear, with only a slight increase when the arrays no longer fit in the
+cache.  Even then, the increase in cache misses are more than made up for by the
+lack of branch mispredictions, and quicksort ends up taking almost 50\% percent
+longer to sort more than 4 million keys.
 
 LaMarca's radixsort results are quite different to those presented here. His
 instruction count graph has a logarithmic shape: it begins very high and sharply
 falls before flattening out. By contrast, the graph here is almost completely
-flat. A similar thing happens in both cache miss graphs: a sharp dip in
-LaMarca's results, and a flat-line with a slight slope in these results. Also,
-in both cases, once the array no longer fits in the cache, the number of misses
-jumps to around 2.5, where they stay. 
-%TODO rewrite this bit a little
-%TODO cache radixsort is faster than quicksort in all cases
-The cycles per key in both cases are unsurprising based on instruction count and
-cache miss results: LaMarca's have a sharp fall before rising slightly once the
-data set no longer fits in the cache; the result presented here flat-line before rising
-slightly for the same reason. While both results agree for large data sets, they do not
-for smaller sets.
+flat. He shows a similar result in both cache miss graphs: a sharp dip, followed
+by a nearly flat-line. Also, in both cases, once the array no longer fits in the
+cache, the number of misses jumps to around 2.5, where they stay.
+
+However, LaMarca's conclusion - that radixsort is not as fast as quicksort - can
+be easily seen from the base radixsort results. Once an radixsort optimised for
+the cache is presented, these no longer hold, and the lack of branch
+misprediction results in a new fastest sort.
 
 \section{Future Work}
 \label{radix future work}
@@ -201,8 +215,8 @@ This will only work for random, evenly distributed keys. If all the keys only
 vary in their least significant bits, then this will have no effect.
 
 The radixsort presented above is a Least Significant Digit radixsort. A Most
-Significant Digit radixsort behaves differently. Once the initial sort is done, each
-bin in recursed into, and continually sorted in this manner. This results in a
-higher instruction count, and increased stack usage due to the recursion.
+Significant Digit radixsort behaves differently. Once the initial sort is done,
+each bin is recursed into, and continually sorted in this manner. This results
+in a higher instruction count, and increased stack usage due to the recursion.
 However, there should be a large increase in temporal reuse due to this, which
 may make up for it.

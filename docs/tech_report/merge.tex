@@ -102,6 +102,7 @@ observed difference between unrolling manually and compiler unrolling is up to
 Overall, these three optimizations reduce the instruction count by 30\%.
 
 \section{Tiled Mergesort}
+\label{tiled mergesort}
 LaMarca's first problem with mergesort is the placement of the arrays with
 respect to each other. If the source and target arrays map to the same cache
 block, the writing from one to the other will cause a conflict miss. The next
@@ -140,6 +141,7 @@ lists of length two, so a length of eight was used. When an even number was
 required, four was used.
 
 \section{Double Tiled Mergesort}
+\label{double tiled mergesort}
 Offsetting the target array to avoid conflicts reduces significantly the number
 of level 2 cache misses. However, it does this at the expense of increasing the
 number of level 1 cache misses. To avoid this, we further offset the target
