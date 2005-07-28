@@ -114,6 +114,10 @@ radix results:
 *- alignment doesnt work
 *- no branch misses at all, and it makes a difference
 
+shell results:
+*- performs like an ONlogN sort
+*- better than heapsort
+*- improved is faster
 
 new techniques:
 *: heapsort sentinel

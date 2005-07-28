@@ -8,27 +8,28 @@ sorts as ``Merging Pairs'' and ``floating decimal sort'', respectively, and the
 latter sorts as ``finding the smallest'', ``interchanging pairs'' and ``sifting'',
 respectively.}.
 
-Shell begins by considering the array to be made up of $N/2$ subarrays of
-length two, where the elements of the subarray are spaced $N/2$ keys apart.
-These subarrays are then sorted using insertion sort. The first iteration will
-be a simple exchange, but the keys which are exchanged move across the array by
-$N/2$ spaces. The sort then considers $N/4$ arrays, who's elements are spaced
-$N/4$ keys apart, which are individually sorted by insertion sort, then $N/8$
-and so on. The final iteration will be a standard insertion sort, after which
-the array will be sorted. A problem with this implementation is that since the
-increments are powers of two, keys with odd indices are not compared with keys
-with even indices until the final insertion sort. This can lengthen the final
-insertion sort's running time to $O(N^2)$.
+Shell begins by considering the array to be made up of $\frac{N}{2}$ subarrays
+of length two, where the elements of the subarray are spaced $\frac{N}{2}$ keys
+apart.  These subarrays are then sorted using insertion sort. The first
+iteration will be a simple exchange, but the keys which are exchanged move
+across the array by $\frac{N}{2}$ spaces. The sort then considers $\frac{N}{4}$
+arrays, whose elements are spaced $\frac{N}{4}$ keys apart, which are
+individually sorted by insertion sort, then $\frac{N}{8}$ and so on. The final
+iteration will be a standard insertion sort, after which the array will be
+sorted. A problem with this implementation is that since the increments are
+powers of two, keys with odd indices are not compared with keys with even
+indices until the final insertion sort. This can lengthen the final insertion
+sort's running time to $O(N^2)$.
 
 Since first published, there has been much discussion about the best
 \textit{increments} to use in shellsort. Shell's original sort, described above,
-has the increments $N/2$, $N/4$, $N/8$, $N/16$ ........ $1$. \cite{Sedgewick96}
-discusses many increments used, and provides code for comparing these. Based on
-running the \cc{driver} program\footnote{See
+has the increments $\frac{N}{2}$, $\frac{N}{4}$, $\frac{N}{8}$, $\frac{N}{16}$
+........ $1$. \cite{Sedgewick96} discusses many increments used, and provides
+code for comparing these. Based on running the \cc{driver} program\footnote{See
 http://www.cs.princeton.edu/\textasciitilde{}rs/shell/}, Gonnet's shellsort was
 seen to be the fastest on the authors local machine. As a result, this was used
 to test the performance of shellsort. This uses increments which are
-five-elevenths of the previous increment.
+$\frac{5}{11}$ths of the previous increment.
 
 Two versions of Gonnet's sort were used. The first was taken directly from the
 code presented by Sedgewick, and only slightly modified to fit into the
@@ -51,7 +52,6 @@ difficult to prove\footnote{See TODOA, TODOB, TODOC and TODOD.}. The instruction
 count and cycle counts are expected to be similar to $O(NlogN)$, as this has
 been indicated by previous experient. 
 
-
 The cache performance of shellsort should be regular. Each subarray is sorted in
 turn without reference to the next. Since each element of a subarray is quite
 far from its next element, an entire cache line must be loaded for each key,
@@ -73,11 +73,21 @@ $log_{(\frac{11}{5})}N$ iterations, each with $N$ branch misses\footnote{See Sec
 sort.}. It is expected, therefore, that there will be $log_{(\frac{11}{5})}N$ misses per
 key.
 
+Improved shellsort should have a slighlty lower instruction count, and hence a
+lower cycle count, than shellsort. It's cache performance should be the same,
+and it should have the same number of comparitive branches, and hence a similar
+number of mispredictions, though its branch count should be higher than
+shellsort.
+
+
 \subsection{Simulation results}
 \plot{shell}{}{}{}{}{}{}
 
 Shellsort's simulation results have the characterist shape and range of an
-$O(NlogN)$ sort, albeit, not a very good one. It performs better than a
+$O(NlogN)$ sort, albeit, not a very good one. The slopes of its graphs are
+slighlty steeper, as can be seen in Figures \ref{shell cycles}, \ref{shell
+instruction count}, \ref{shell level 1 misses} and \ref{shell branch
+mispredictions}. It performs better than a
 heapsort, but considerably worse than quicksort. However, it easier to program
 than either of these two sort.
 
@@ -85,12 +95,19 @@ Shellsort performs roughly double the number of branches and instructions of
 quicksort, and has more than twice as many branch mispredictions and nearly
 four times as many cache misses. It's cycle count is over three times that of
 quicksort, though it is more than 50 percent faster than the best of the
-heapsorts.a
+heapsorts.
+
+Shellsort's cache misses are certainly in the range of an $O(NlogN)$ sort, and
+are not considerably worse than cache heapsort, and are in fact better than base
+heapsort. This occurs without any cache improvements being performed upon them.
+Shellsort's branch mispredictions, are, as predicted $O(Nlog_{\frac{5}{11}}N)$. 
+
+Improved shellsort does improve on shellsort, having approximately 10\% fewer
+instructions. It also has slightly fewer cache misses and branch mispredictions.
+Overall, this leads to a reduction in cycle count of between 35 and 70\%, as
+seen in Figure \ref{shell cycle count}.
 
 %TODO
-TODO are there log5_11 N misses
-Regenerate data before looking at this
-
 \section{Predictor results}
 
 \sixplot{shellsort_0.eps}{improved_shellsort_0.eps}{}{}{}{}{Shellsorts}
