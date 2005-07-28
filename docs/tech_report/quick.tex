@@ -76,8 +76,8 @@ which takes into account equal keys puts the equal keys at the front of the
 array, then copies them into place later. These copies would represent a lot of
 cache misses, and the results would overwhelm the improvements LaMarca makes in
 the next phase of the algorithm. Secondly, when sorting random keys over a
-large range, the number of equal keys will be vewry low. Using a median of
-greater than three is discussed in section \ref{quick-predictors2}.
+large range, the number of equal keys will be very low. Using a median of
+greater than three is discussed in Section \ref{quick-predictors2}.
 
 \section{Memory-Tuned Quicksort}
 
@@ -103,8 +103,8 @@ start, middle and end of the array. This would introduce a constant number of
 cache misses, but would significantly reduce the chances of having to sort
 across the entire array at the end. This, however, is not implemented; instead a
 check is done to fetch a sentinel from the appropriate subfile if required. This
-check is expensive, but less so than either a bounds check or putting a sentinel
-into every subfile.
+check isn't very expensive, and is significantly cheaper than either a bounds
+check or putting a sentinel into every subfile.
 
 \section{Multi-Quicksort}
 
@@ -130,7 +130,7 @@ well, so that they are very evenly distributed. The second is to choose the
 number of pivots so that the average size of the containers is not larger than
 the cache. LaMarca presents calculations showing that by choosing the average
 subset size to be $C/3$, where $C$ is the number of keys which fit in the
-cache.
+cache, on average only 5\% of subsets will be larger than the cache.
 
 Since the maximum number of keys which must fit in a container is not known, it
 is necessary to implement containers using linked lists. Each list contains a
@@ -191,12 +191,23 @@ of keys was larger than 174,762.
 The instruction count for each quicksort is expected to be $O(NlogN)$, though
 not as high as the other algorithms due to the efficient inner loop.  The number
 of instructions for multi-quicksort should increase by about 50\% in the case of
-the sequential sort, and 25\% in the case of the binary sort.
+the sequential sort, and 25\% in the case of the binary sort. Cache quicksort
+should also have a slightly higher instruction count than base quicksort, due to
+the change in use of insertion sort.
 
-LaMarca notes that quicksort is very cache efficient already. Once it no longer
-fits in the cache, however, the number of misses should increase significantly.
-This is especially true in the case of the base quicksort, which does an
-insertion sort across then entire array at the end.
+LaMarca notes that quicksort is very cache efficient already. It has excellent
+spatial and temporal locality. Once it no longer fits in the cache, however, the
+number of misses should increase significantly. This is especially true in the
+case of the base quicksort, which does an insertion sort across then entire
+array at the end.
+
+Cache quicksort should have fewer misses than base quicksort as soon as the
+array is larger than the cache. It is expected that these misses will make up
+for the increase in instruction count.
+
+LaMarca estimates a large reduction in level 2 misses in multi-quicksort, and
+puts a figure on it of four misses per cache block, meaning, in our case, half a
+miss per key.
 
 The number of branches should increase in multi-quicksort along with the
 instruction count. When a binary search is used, the increase in mispredictions
@@ -207,51 +218,68 @@ misses should not increase at all, and should flat-line from that point on.
 
 \plot{quick}{}{}{Results shown are for a Direct Mapped cache.}{}{}{}{}
 
-The instruction count, shown in Figure \ref{quick instructions} is as
-predicted. The expected increases in instruction count for multi-quicksort was
-due to a test with a smaller data set and smaller constants. The actual results
-were higher than expected: being 63\% and 40\% greater, for
-sequential and binary search versions, respectively.
-%TODO check
+The instruction count, shown in Figure \ref{quick instructions} is moslty as
+predicted. The increase in instructions in both multi-mergesorts is as
+predicted, with the binary search version increasing only 25\% against the
+sequential search version's 50\% increase. However, the increase we predicted in
+the instrcution count of cache quicksort based on the results of both Sedgewick
+and LaMarca -  that is, once the efficient insertion sort was replaced with many
+small insertion sorts - we observe that the instruction count remains exactly
+the same.
+
 
 The cache results in Figure \ref{quick level 2 misses} were similar to
 predictions, except that the multi-quicksorts did not behave as expected, and
-performed worse than the memory-tuned version. Not only do they have more
-misses per key, but the rate at which the misses increase with size is also
-worse for the multi quicksorts. The tuned version performed better than the
-base version, as predicted.
+performed as badly as the memory-tuned version. However, the rate at which the
+cahce misses are increasing is very low, being almost a flat line on our graph.
+LaMarca's calculation of four misses per cache block is very accurate, as we
+show 0.55 misses per key, or 4.4 misses per block.
 
-A surprising result is that direct mapped caches often perform better than fully
-associative ones. The reason for this is not clear, but it is obvious from the
-graph that this is true in the case of all the quicksorts.
-%TODO why is this? the only reason I've come up with is that in the direct
-%ampped cache, the same area is thrashed, while keeping keys that we;re going to
-%reuse is a separte bit. in the fully assoc cache, those keys get washed out by
-%the keys that arent going to be reused.
+The tuned quicksort performed better than the base version, as predicted. Both the
+tuned version and the base quicksort both have a significant increase once the
+arrays no longer fit in the cache, also as predicted.
 
-The branch prediction results in Figure \ref{quick branch misses} were exactly
-as expected. The binary search produced a dramatic increase in the branch
-misses, when using a bimodal predictor. When using a 2-level adaptive predictor,
-however, the number of misses is, in general, slightly higher, though it does
-not spike due to the binary search. While this performs worse than the bimodal
-predictor, it appears to show that 2-level adaptive predictors can adapt to the
+The results show again that direct mapped caches can perform better than fully
+associative ones. This is true in the case of all the quicksorts, as can be seen
+in Figures \ref{base quicksort (no median) level 2 misses} to
+\ref{multi-quicksort (sequential search) level 2 misses} graph that this is true
+in the case of all the quicksorts.
+
+The branch prediction results are shown in Figure \ref{quick branch misses}. As
+expected, there was a a dramatic increase in the binary search multi-quicksort
+branch misses, but only when using a bimodal predictor. When using a 2-level
+adaptive predictor, the number of misses is, in general, slightly higher, but it
+does not spike due to the binary search. While it performs worse than the
+bimodal predictor, it appears that 2-level adaptive predictors can adapt to the
 erratic branches of a binary search.
 
 The sequential search stops the increase of branch misses, since every key will
 only take one miss to find its proper place. The results of this on cycle
 count, shown in Figure \ref{quick cycles} are enough to make up for the increase
 in instruction count, which was significantly reduced by using the binary
-search.  The tuned quicksort, however, had the lower running time and even base
-quicksort out-ran the multi-quicksorts.
+search.
+
+Tuned quicksort had fewer branch misses than base quicksort, due to the fact
+that fewer comparitive branches are executed. In base quicksort, we sort the
+entire array using insertion sort. In tuned quicksort, we don't sort the pivots,
+but only the keys between them.
+
+Despite the sequentially search multi-quicksort performing better than its
+binary searched cousin, and its good cache performance, it still failed to
+approach the performance of either base or tuned quicksort. In fact, base
+quicksort was the fastest of all the quicksorts in our performance counter test,
+even though our simulator results show that it has more level 1 misses, level 2
+misses, and branch misses than tuned quicksort, and the same number of
+instructions.
 
 LaMarca's results are again similar to the results presented here, but not
 identical. The shape of the instruction count graph is the same in both cases,
 but that of the cache misses is not. The ratio of the cache misses between base
-and cache quicksort are the same in both sets of results, but the number of
-cache misses in multi-quicksort is much higher here than it is in LaMarca's
-findings. In addition, the shape is different. LaMarca's multi-quicksort's
-cache misses plateau, while the results here show an increasing slope.
-%TODO is a pseudo-median explained
+and cache quicksort are the same in both sets of results, but these are lower
+than the same misses in LaMarca's results. However, the multi-quicksort results
+appear to be the same, though our results are not conclusive either way.
+
+
 \section{Predictor results}
 
 %TODO a bit to rewrite

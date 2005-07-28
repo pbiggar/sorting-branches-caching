@@ -13,14 +13,24 @@ heap:
 
 merge:
 
-- copy back and forth works
-- bitonic works (sedgewick)
-- inline faster
-- offset by cachesize/2 works
-- tiled mergesort works
-- multi-mergesort redues cache misses
-- cache miss shapes exactly right
-- wobble in base mergesort
++- copy back and forth works
++- bitonic works (sedgewick)
++- inline faster
++- offset by cachesize/2 works
++- tiled mergesort works
++- multi-mergesort redues cache misses
++- cache miss shapes exactly right
++- wobble in base mergesort
+
+quick:
++- 20\% increase in instructions is what we got
++= shape of instructions exactly right
++- new use of insertion sort is lower cache misses
++- all quicksorts incur few misses
++- base fewer than two misses (we say 1)
++- .25 fewer misses in tuned
++ flat curve: cant disporve. looks like it
+
 
 disagree:
 
@@ -39,6 +49,9 @@ merge:
 - single tiled peforms much worse than base
 - as does multi-mergesort
 
+quick:
+
++- we reckon its more efficient to use insertion sort as in tuned quicksort
 
 
 
@@ -47,7 +60,8 @@ merge:
 
 overall:
 *-  it takes a 4096 entry predictor to beat the bimodal (even the smallest) ie heapsort
-*- due to replacement policy, direct mapped can beat fully associative, ie multi-mergesort
+*- 2 level adaptive can overcome the erratic behaviour of binary search
+*- due to replacement policy, direct mapped can beat fully associative, ie multi-mergesort, all through quicksort
 
 on2 overall results:
 - bubblesort faster than bubblesort2
@@ -80,10 +94,15 @@ merge results:
 *- algorithm n and s are bad cache performers
 - multi-mergesort has regualr access patterns in the k-way merge
 
-* new techniques
+quick rsults:
+
+
+
+new techniques:
 *: heapsort sentinel
 - reorders the moves during the destruction of the heap in base heapsort so that a sentinel isnt required
 *: merging with a different intial size to avoid the final copy back (did LaMarca suggest this. not in the phd)?
+
 
 
 
