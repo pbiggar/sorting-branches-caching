@@ -20,7 +20,7 @@ merge:
 +- tiled mergesort works
 +- multi-mergesort redues cache misses
 +- cache miss shapes exactly right
-+- wobble in base mergesort
++- wobble in base mergesort, due to copy back
 
 quick:
 +- 20\% increase in instructions is what we got
@@ -39,7 +39,9 @@ disagree:
 
 heap:
 
-+- what about in-place vs out-of-place
+- what about in-place vs out-of-place
++- twice misses
+- earlier leap
 
 merge:
 

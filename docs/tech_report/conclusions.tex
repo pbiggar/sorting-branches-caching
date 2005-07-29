@@ -5,14 +5,93 @@ suggests contributions made to computer science by this research.
 
 \section{Results summary}
 
-\subsection{Order N squared sorts}
+\subsection{Elementary Sorts}
+
+We found that insertion sort has the best performance of any of the elementary
+sorts, with fewer instructions, cache misses and exactly one branch
+misprediction per key. Selection sort also has very few branch mispredictions,
+and our results match Knuth's calculations. We find that reducing the number of
+runs in bubblesort and shakersort at the cost of additional instructions is
+counter productive, and that their branch prediction performance is incredibly
+poor.
+
 \subsection{Heapsorts}
+
+The cache optimized heaps perform better than the non-optimized versions. At the
+cost of a slightly increased instruction count, the number of branch misses can
+be greatly reduced, and the overall performance of our 8-heap is significantly
+better than the unoptimized version. This is despite our finding of that
+increasing the fanout increases branch mispredictions.
+
+Additionally, we created an improvement to heapsort which removed the need for a
+sentinel, without introducing any more instructions.
+
 \subsection{Mergesorts}
+
+We found that algorithm S has a lower instruction count than algorithm N, but
+that this does not necessarily translate to better performance. Our results show
+also that the level 1 cache needs to be taken into account, that the extra
+instruction in multi-mergesort make it slower than double tiled mergesort, and
+that multi-mergesort has regular branch predictive access patterns during the
+k-way merge, which can be taken advantage of by a 2-level adaptive predictor.
+
+
 \subsection{Quicksorts}
+
+Our results show base quicksort being the fastest of the quicksorts. We note our
+lowest instruction count occurs with the median-of-7 partitioning. We also see
+that using a binary search slows multi-quicksort down compared to a sequential
+search, but that its extra instructions make it slower than tuned quicksort.
+Despite being slower in our tests, pur simulations show tuned quicksort to have
+fewer cache misses, instructions and branch mispredictions than base quicksort.
+
 \subsection{Radixsorts}
+
+We were able to reduce the number of cache misses considerably using a technique
+adapted from LaMarca's tiled mergesort, and managed to make cache radixsort the
+fastest sort in our tests. This is due to its low instruction count, few cache
+misses and lack of branch mispredictions. Although we attempted to align it
+using another technique from mergesort, we found this decreased its performance.
+
 \subsection{Shellsorts}
 
-\section{Comparison with LaMarca's results}
+Based on our tests, shellsort performs very similarly to an $O(NlogN)$ sort,
+outperforming heapsort. We note that our improved version is considerably
+faster, mostly due to its reduced instruction count.
+
+We were also able to measure it's branch mispredictions, and determine a formula
+to calculate them.
+
+\section {Branch Results}
+
+No results for the branch prediction performance of sorting algorithm yet
+exists. We were able to find some interesting results.
+
+Insertion sort has exaclty one miss per key. Using this result we were able to
+make several other sorts faster by replacing their simple inline sorts with
+insertion sorts.
+
+Selection sort also has a very low number of branch mispredictions, the results
+of which match up well to Knuth's calculation. We found aswell that bubblesort
+and shakersort have incredibly bad branch prediction performance, bring
+$O(N^2)$.
+
+We found a pattern in branch misprediction when using a fanout in our 8-heap,
+and that this pattern matched closely that of selection sort, discussed above.
+
+TODO merge
+
+
+TODO quick
+
+TODO radix
+
+TODO shell
+
+
+%TODO results from software predictors
+
+\section{Comparison with LaMarca's Results}
 
 Over the course of this research. The vast majority of our results have
 correlated exactly with LaMarca's. Many of our graphs are exactly the same
@@ -92,7 +171,7 @@ mispredictions make it the fastest sort in our survey.
 
 %TODO lamarca does an overall comparison. we should do the same
 
-\section{Instrucyion count results}
+\section{Instruction count results}
 
 \section{Cache Results}
 
