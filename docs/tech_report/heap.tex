@@ -302,9 +302,11 @@ Slight differences exist though. The level 2 cache miss results here indicate
 that while still sorting in the cache, the number of misses in the in-place
 heapsort is less than that of the out-of-place sorts. LaMarca, however, has the
 same amount of misses in both cases. Similarly, the results here indicate that
-base heapsort experiences a sharp increase in cache misses. This increase comes
-when the set size is twice that of cache mergesort when its sharp increase
-occurs. LaMarca's results do not show this.
+base heapsort experiences a sharp increase in cache misses. Cache heaport also
+has a similar increase, though LaMarca's results show that these occur at the
+same position in the graph, in other words, when th set size is the same. Our
+results, however, show that this occurs earlier in cache heapsort, due to the
+fact that it is an out of place sort.
 
 Finally, though this is likely to be related the previous differences, base
 heapsort performs slightly better for small sets than the cache heapsorts do in

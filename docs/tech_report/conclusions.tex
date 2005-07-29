@@ -1,9 +1,98 @@
 \label{conclusions}
-This section presents a summary of the results from previous chapters, lists
-important results and discoveries, and suggests contributions made to computer
-science by this project.
+This section presents a summary of the results from previous chapters, compares
+our results with LaMarca's, lists important results and discoveries, and
+suggests contributions made to computer science by this research.
+
+\section{Results summary}
+
+\subsection{Order N squared sorts}
+\subsection{Heapsorts}
+\subsection{Mergesorts}
+\subsection{Quicksorts}
+\subsection{Radixsorts}
+\subsection{Shellsorts}
+
+\section{Comparison with LaMarca's results}
+
+Over the course of this research. The vast majority of our results have
+correlated exactly with LaMarca's. Many of our graphs are exactly the same
+shape to LaMarca's, can be calculated exactly or alomst exactly using his
+methods, or can be seen to be equivalent when scaled by an appropriate ratio
+(due to different test parameters).
+
+LaMarca's heapsort graphs were equivalent to ours in the areas of level 1
+misses, instruction count and cycle count. Like LaMarca, we found that a four
+heap lowered our instruction count. Our level 2 misses also concurred with
+LaMarca, with only one difference: cache heapsort, being an out-of-place sort,
+fills the cache fully with a smaller number of keys than base heapsort, which is
+in place. LaMarca's results do not show this. Nor do they show a difference in
+cache misses between these two sorts when the array does fit in the cache.
+LaMarca's base heapsort have the characteristics of an out-of-place heapsort.
+However, our results show that his implicit heap improvements have led to a
+significantly faster heapsort.
+
+LaMarca's initial improvements to base mergesort were due to reduce the
+instruction count. We noted a reduction with each of the steps he prescribed. We
+note too that each of his improvement reduce level 2 cache misses, and the shape
+of our level 2 cache miss graphs exactly match his. We also note similar
+characterists: LaMarca mentions a wobble in the instruction count graphs, due to
+having to copy the final merge back; we note this same wobble.
+
+However, we disagree with his results in several key places. Firstly, we note
+that an inlined sorting method does not perform as fast as insertion sort. We
+find it difficult to perform his improvements on either algorithm N or algorithm
+S, and write our own mergesort instead. We expected that mergesort would have
+half the instruction count of heapsortl we found instead they were very similar.
+
+LaMarca did not include details of his tagging system in multi-mergesort. As a
+result, we used a search, which greatly increased the instruction count. As a
+result, mutli-mergesort did not perform as well as the mergesorts which had only
+been tiled. 
+
+We note also that aligning the level 2 cache alone leads to worse
+performance than not making any improvements at all, due to the thrashing of the
+level 1 cache. When we aligned the arrays for the level 1 cache, the results
+were much closer to LaMarca's results, and showed what an improvement his
+techniques brought to those algorithms.
+
+
+Our quicksort results, again, we very similar to LaMarca's. We showed an
+increase is instruction count of 25\% due to multi-quicksort - very close to
+LaMarca's 20\%.  The shape of our instruction count graphs were the same, and
+switching to a binary search in multi-quicksort reduces the instruction count.
+Like him, we found that the base quicksort had very few cache misses, and that
+not using Sedgewick's insertion sort improvement reduces cache misses. We found
+that multi-quicksort's k-way sort changes the slope of the graph, but our
+result were not conclusive as to whether this would eventually make
+multi-quicksort faster than the other versions. Our results do show it being
+slower for all our test cases, due to the increase in instruction count.
+
+LaMarca predicts two cache misses per key, which translated to one miss per key
+with our 32 bit integers. We found this calculation to be true, as is his
+calculation of a decrease of one cache miss in four: we note a reduction of one
+cache miss in eight.
+
+Where LaMarca found that using Sedgewicks insertion sort optimisation decreased
+instruction count, we found the opposite. We also found that despite
+improvements due to cache performance and instruction count, our base quicksort
+performed faster than our tuned version. Finally, we found that although
+changing multi-mergesort's sequential search to a binary search decreased the
+instruction count, it greatly increased the number of branch mispredictions
+incurred, and slowed the sort down accordingly.
+
+LaMarca determines that radixsort could not be improved in the same was as the
+comparison based sorts, and that due to poor cache performance, it ran more
+slowly than quicksort. We showed, however, that one of the improvements applied
+to mergesort could be applied to it, and that its resulting cache performance is
+sufficiently good that its low instruction count and lack of branch
+mispredictions make it the fastest sort in our survey.
+
+
+\section{Important results and contributions}
 
 %TODO lamarca does an overall comparison. we should do the same
+
+\section{Instrucyion count results}
 
 \section{Cache Results}
 
@@ -66,8 +155,6 @@ results of insertion sort, bubblesort, shakersort, heapsort and quicksort. In
 the cases where the two-level adaptive predictor does perform as well, the table
 required is much larger than that required by the bimodal predictors to get the
 same results.
-
-\section{LaMarc's results}
 
 \section{Best Sort}
 The results also helped answer the question of which is the best sort. However,
