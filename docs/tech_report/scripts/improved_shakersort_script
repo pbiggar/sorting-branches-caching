@@ -10,4 +10,4 @@ set output '../data/plots/on2_improved_shakersort-_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
-'../processed_cycles_data' using 1:7 title 'improved shakersort'
+'../processed_cycles_data' using 1:28 title 'improved shakersort'

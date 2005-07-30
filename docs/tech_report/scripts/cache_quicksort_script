@@ -10,4 +10,4 @@ set output '../data/plots/cache_quicksort-_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
-'../processed_cycles_data' using 1:7 title 'cache quicksort'
+'../processed_cycles_data' using 1:15 title 'cache quicksort'

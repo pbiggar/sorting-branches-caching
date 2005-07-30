@@ -10,4 +10,4 @@ set output '../data/plots/base_heapsort-_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
-'../processed_cycles_data' using 1:7 title 'base heapsort'
+'../processed_cycles_data' using 1:5 title 'base heapsort'

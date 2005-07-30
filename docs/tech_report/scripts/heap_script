@@ -11,5 +11,5 @@ set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
 '../data/processed_cycles_data' using 1:5 title 'base heapsort',\
-'../data/processed_cycles_data' using 1:14 title 'cache heapsort',\
-'../data/processed_cycles_data' using 1:13 title 'cache4 heapsort'
+'../data/processed_cycles_data' using 1:13 title 'cache heapsort (4-heap)',\
+'../data/processed_cycles_data' using 1:14 title 'cache heapsort (8-heap)'
