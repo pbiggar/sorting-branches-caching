@@ -6,10 +6,8 @@ set format x "%8.0f"
 set logscale x
 set data style linespoints
 set term postscript eps
-set output '../data/plots/radix_-_cycles.eps'
+set output '../data/plots/shellsort-_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
-'../data/processed_cycles_data' using 1:12 title 'base radixsort',\
-'../data/processed_cycles_data' using 1:16 title 'cache radixsort',\
-'../data/processed_cycles_data' using 1:4 title 'aligned cache radixsort'
+'../processed_cycles_data' using 1:7 title 'shellsort'
