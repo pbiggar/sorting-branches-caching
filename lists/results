@@ -13,23 +13,23 @@ heap:
 
 merge:
 
-+- copy back and forth works
-+- bitonic works (sedgewick)
-+- inline faster
-+- offset by cachesize/2 works
-+- tiled mergesort works
-+- multi-mergesort redues cache misses
-+- cache miss shapes exactly right
-+- wobble in base mergesort, due to copy back
+- copy back and forth works
+- bitonic works (sedgewick)
+- inline faster
+- offset by cachesize/2 works
+- tiled mergesort works
+- multi-mergesort redues cache misses
+- cache miss shapes exactly right
+- wobble in base mergesort, due to copy back
 
 quick:
-+- 20\% increase in instructions is what we got
-+= shape of instructions exactly right
-+- new use of insertion sort is lower cache misses
-+- all quicksorts incur few misses
-+- base fewer than two misses (we say 1)
-+- .25 fewer misses in tuned
-+ flat curve: cant disporve. looks like it
+- 20\% increase in instructions is what we got
+= shape of instructions exactly right
+- new use of insertion sort is lower cache misses
+- all quicksorts incur few misses
+- base fewer than two misses (we say 1)
+- .25 fewer misses in tuned
+- flat curve: cant disporve. looks like it
 
 radix:
 +- its faster than quicksort
@@ -40,7 +40,7 @@ disagree:
 heap:
 
 - what about in-place vs out-of-place
-+- twice misses
+- twice misses
 - earlier leap
 
 merge:
