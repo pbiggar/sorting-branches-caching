@@ -6,7 +6,7 @@ set format x "%8.0f"
 set logscale x
 set data style linespoints
 set term postscript eps
-set output '../plots/improved shakersort-_cycles.eps'
+set output '../plots/on2_improved_shakersort-_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
