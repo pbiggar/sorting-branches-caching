@@ -7,7 +7,7 @@ in which a parent is always larger its child, and the largest key is at the top
 of the heap. It then repeatedly removes the largest key from the top and places
 it in its final position in the array, fixing the heap as it goes.
 
-\subsection{Implicit heaps}
+\subsection{Implicit Heaps}
 
 A \n{binary tree} is a linked data structure where a node contains data and links
 to two other nodes, which have the same structure. The first node is called the
@@ -36,7 +36,7 @@ results is slightly more difficult pointer arithmetic, which cannot be performed
 in some languages\footnote{In C this can be done by \cc{Item a[] =
 \&array[-1];}}.
 
-\subsection{Sorting with heaps}
+\subsection{Sorting with Heaps}
 To sort an array with a heap, it is necessary to first create the heap. This is
 known as \n{heapifying}, and can be performed in two ways.
 
@@ -59,7 +59,7 @@ specified by Floyd and LaMarca refers to this as Floyd's method.
 
 The second step, described next, is to destroy the heap, leaving a sorted array.
 
-\subsubsection{In-place sorting}
+\subsubsection{In-place Sorting}
 For an in-place sort, a heap is created as specified above. Then the root of the
 heap (the largest key) is swapped with the last key in the heap, and the new
 root is sifted down the heap which has been shrunk so as not to include the old

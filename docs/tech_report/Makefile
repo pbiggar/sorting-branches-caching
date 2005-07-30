@@ -10,7 +10,7 @@ PS2PDFFLAGS =
 BIBTEX = bibtex
 
 TITLE = report
-DOCUMENT = $(TITLE).dvi
+DOCUMENT = $(TITLE).ps
 
 FILES = background.tex conclusions.tex heap.tex merge.tex ordernsquared.tex radix.tex result_list.tex software_predictor.tex bugs.tex intro.tex method.tex quick.tex report.tex shell.tex
 

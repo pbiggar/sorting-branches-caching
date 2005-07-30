@@ -81,7 +81,7 @@ misses. We adapt this strategy here, and call it Aligned Cache Radixsort.
 
 
 \section{Results}
-\subsection{Test parameters}
+\subsection{Test Parameters}
 Keys are to be divided into segments 8 bits long, resulting in four sorting
 steps to completely sort the array. The radix used is therefore $2^8 = 256$.
 
@@ -136,7 +136,7 @@ a half to $fract{9}{16}$ths of base radixsort.
 Based on LaMarca's results, showing quicksort to be faster than radixsort by a
 small amount, we expect cache radixsort to run faster than quicksort.
 
-\subsection{Simulation results}
+\subsection{Simulation Results}
 \plot{radix}{}{}{}{}{}{}
 
 The instruction count of base radixsort, shown in Figure \ref{radix instructions} is
