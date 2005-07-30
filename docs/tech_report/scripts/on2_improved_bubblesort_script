@@ -10,4 +10,4 @@ set output '../data/plots/on2_improved_bubblesort-_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
-'../processed_cycles_data' using 1:24 title 'improved bubblesort'
+'../data/processed_cycles_data' using 1:24 title 'improved bubblesort'

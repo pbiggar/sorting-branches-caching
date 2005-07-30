@@ -10,4 +10,4 @@ set output '../data/plots/on2_insertsort-_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
-'../processed_cycles_data' using 1:25 title 'insertion sort'
+'../data/processed_cycles_data' using 1:25 title 'insertion sort'
