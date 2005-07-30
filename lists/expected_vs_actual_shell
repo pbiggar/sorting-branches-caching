@@ -1,0 +1,38 @@
+i:
+
+c:
+- regular
+- no spatial reuse
+- no temporal reuse
+- not terrible though
+
+
+- onlogn
+= yup
+
+
+b:
+
+- log{5/11}{N} misprediction
+= exactly
+
+total:
+- onlogn
+= yup
+
+= slightly steeper slope than a NlogN
+
+improved:
+- lower instruction count
+= 10% lower
+- same cache misses
+= slightly fewer
+- same mispredictions
+= slightly fewer
+
+= much faster as a result (between 70 and 35% faster)
+
+
+comparisons:
+= twice as fast as heapsort
+= twice as slow as quicksort
