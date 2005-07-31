@@ -24,13 +24,13 @@ plot \
 '../data/converted_simple_logs/double_aligned_multi_mergsort/double_aligned_multi_mergsort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:10 title 'double multi mergesort  - Bimodal - 1024 byte table',\
 '../data/converted_simple_logs/double_aligned_multi_mergsort/double_aligned_multi_mergsort_sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:10 title 'double multi mergesort  - Bimodal - 2048 byte table',\
 '../data/converted_simple_logs/double_aligned_multi_mergsort/double_aligned_multi_mergsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:10 title 'double multi mergesort  - Bimodal - 512 byte table',\
-'../data/converted_simple_logs/double_aligned_mergesort/double_aligned_mergesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:10 title 'double tiled mergesort  - 2 Level Adaptive - 1024 2nd level entries',\
-'../data/converted_simple_logs/double_aligned_mergesort/double_aligned_mergesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_2048_10_1' using 1:10 title 'double tiled mergesort  - 2 Level Adaptive - 2048 2nd level entries',\
-'../data/converted_simple_logs/double_aligned_mergesort/double_aligned_mergesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:10 title 'double tiled mergesort  - 2 Level Adaptive - 4096 2nd level entries',\
-'../data/converted_simple_logs/double_aligned_mergesort/double_aligned_mergesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:10 title 'double tiled mergesort  - 2 Level Adaptive - 512 2nd level entries',\
-'../data/converted_simple_logs/double_aligned_mergesort/double_aligned_mergesort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:10 title 'double tiled mergesort  - Bimodal - 1024 byte table',\
-'../data/converted_simple_logs/double_aligned_mergesort/double_aligned_mergesort_sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:10 title 'double tiled mergesort  - Bimodal - 2048 byte table',\
-'../data/converted_simple_logs/double_aligned_mergesort/double_aligned_mergesort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:10 title 'double tiled mergesort  - Bimodal - 512 byte table',\
+'../data/converted_simple_logs/double_aligned_mergesort/double_aligned_mergesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:10 title 'double-aligned tiled mergesort  - 2 Level Adaptive - 1024 2nd level entries',\
+'../data/converted_simple_logs/double_aligned_mergesort/double_aligned_mergesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_2048_10_1' using 1:10 title 'double-aligned tiled mergesort  - 2 Level Adaptive - 2048 2nd level entries',\
+'../data/converted_simple_logs/double_aligned_mergesort/double_aligned_mergesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:10 title 'double-aligned tiled mergesort  - 2 Level Adaptive - 4096 2nd level entries',\
+'../data/converted_simple_logs/double_aligned_mergesort/double_aligned_mergesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:10 title 'double-aligned tiled mergesort  - 2 Level Adaptive - 512 2nd level entries',\
+'../data/converted_simple_logs/double_aligned_mergesort/double_aligned_mergesort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:10 title 'double-aligned tiled mergesort  - Bimodal - 1024 byte table',\
+'../data/converted_simple_logs/double_aligned_mergesort/double_aligned_mergesort_sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:10 title 'double-aligned tiled mergesort  - Bimodal - 2048 byte table',\
+'../data/converted_simple_logs/double_aligned_mergesort/double_aligned_mergesort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:10 title 'double-aligned tiled mergesort  - Bimodal - 512 byte table',\
 '../data/converted_simple_logs/multi_mergesort/multi_mergesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:10 title 'multi mergesort  - 2 Level Adaptive - 1024 2nd level entries',\
 '../data/converted_simple_logs/multi_mergesort/multi_mergesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_2048_10_1' using 1:10 title 'multi mergesort  - 2 Level Adaptive - 2048 2nd level entries',\
 '../data/converted_simple_logs/multi_mergesort/multi_mergesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:10 title 'multi mergesort  - 2 Level Adaptive - 4096 2nd level entries',\

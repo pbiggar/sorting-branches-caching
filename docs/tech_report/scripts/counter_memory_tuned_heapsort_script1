@@ -6,7 +6,7 @@ set yrange [0:156000000]
 set ticscale 0 0
 set offsets .1, .1, 0, 0
 set bmargin 3
-set title "cache heapsort branch predictor results 1"
+set title "memory-tuned heapsort (8-heap) branch predictor results 1"
 set output '../data/plots/counter_memory_tuned_heapsort_1.eps'
 set xtics ("comparison 7" 0, "\nchild promotion" 1, "fix up" 2, "" 3, "" 4, "" 5, "" 6)
 plot \

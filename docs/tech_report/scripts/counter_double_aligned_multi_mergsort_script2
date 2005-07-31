@@ -6,7 +6,7 @@ set yrange [0:156000000]
 set ticscale 0 0
 set offsets .1, .1, 0, 0
 set bmargin 3
-set title "double multi-mergesort branch predictor results 2"
+set title "double-aligned multi-mergesort branch predictor results 2"
 set output '../data/plots/counter_double_aligned_multi_mergsort_2.eps'
 set xtics ("child promotion" 0, "\ntag" 1, "reverse? tag" 2, "" 3, "" 4, "" 5, "" 6)
 plot \

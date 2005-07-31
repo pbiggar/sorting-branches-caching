@@ -13,6 +13,6 @@ plot \
 '../data/converted_simple_logs/insertsort/insertsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'insertion sort',\
 '../data/converted_simple_logs/selectsort/selectsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'selection sort',\
 '../data/converted_simple_logs/bubblesort/bubblesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'bubblesort',\
-'../data/converted_simple_logs/bubblesort2/bubblesort2_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'bubblesort2',\
+'../data/converted_simple_logs/improved_bubblesort/improved_bubblesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'improved bubblesort',\
 '../data/converted_simple_logs/shakersort/shakersort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'shakersort',\
-'../data/converted_simple_logs/shakersort2/shakersort2_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'shakersort2'
+'../data/converted_simple_logs/improved_shakersort/improved_shakersort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'improved shakersort'

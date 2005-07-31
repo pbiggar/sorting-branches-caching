@@ -15,5 +15,5 @@ plot \
 '../data/processed_cycles_data' using 1:6 title 'base mergesort',\
 '../data/processed_cycles_data' using 1:30 title 'tiled mergesort',\
 '../data/processed_cycles_data' using 1:20 title 'multi-mergesort',\
-'../data/processed_cycles_data' using 1:18 title 'double tiled mergesort',\
-'../data/processed_cycles_data' using 1:17 title 'double multi-mergesort'
+'../data/processed_cycles_data' using 1:18 title 'double-aligned tiled mergesort',\
+'../data/processed_cycles_data' using 1:17 title 'double-aligned multi-mergesort'

@@ -13,6 +13,6 @@ plot \
 '../data/converted_simple_logs/insertsort/insertsort_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'insertion sort',\
 '../data/converted_simple_logs/selectsort/selectsort_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'selection sort',\
 '../data/converted_simple_logs/bubblesort/bubblesort_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'bubblesort',\
-'../data/converted_simple_logs/bubblesort2/bubblesort2_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'bubblesort2',\
+'../data/converted_simple_logs/improved_bubblesort/improved_bubblesort_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'improved bubblesort',\
 '../data/converted_simple_logs/shakersort/shakersort_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'shakersort',\
-'../data/converted_simple_logs/shakersort2/shakersort2_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'shakersort2'
+'../data/converted_simple_logs/improved_shakersort/improved_shakersort_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:2 title 'improved shakersort'

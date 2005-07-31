@@ -10,4 +10,4 @@ set output '../data/plots/memory_tuned_radixsort-_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
-'../data/processed_cycles_data' using 1:16 title 'cache radixsort'
+'../data/processed_cycles_data' using 1:16 title 'memory-tuned radixsort'

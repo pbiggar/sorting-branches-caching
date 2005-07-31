@@ -11,4 +11,4 @@ set xlabel 'set size in keys'
 set ylabel 'Branches per key'
 plot \
 '../data/converted_simple_logs/base_radixsort/base_radixsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'base radixsort',\
-'../data/converted_simple_logs/memory_tuned_radixsort/memory_tuned_radixsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'cache radixsort'
+'../data/converted_simple_logs/memory_tuned_radixsort/memory_tuned_radixsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'memory-tuned radixsort'

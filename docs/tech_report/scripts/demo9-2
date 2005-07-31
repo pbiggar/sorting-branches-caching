@@ -11,5 +11,5 @@ set xlabel 'set size in keys'
 set ylabel 'Branches per key'
 plot \
 '../data/converted_simple_logs/base_heapsort/base_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6 title 'base heapsort (2-heap)',\
-'../data/converted_simple_logs/memory_tuned4_heapsort/memory_tuned4_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6 title 'cache4 heapsort (4-heap)',\
-'../data/converted_simple_logs/memory_tuned_heapsort/memory_tuned_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6 title 'cache heapsort (8-heap)'
+'../data/converted_simple_logs/memory_tuned4_heapsort/memory_tuned4_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6 title 'memory-tuned heapsort (4-heap) (4-heap)',\
+'../data/converted_simple_logs/memory_tuned_heapsort/memory_tuned_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6 title 'memory-tuned heapsort (8-heap) (8-heap)'
