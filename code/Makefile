@@ -6,7 +6,7 @@ CFLAGS = -Wall -O3 -funroll-loops -finline-functions -D_USE_SOFTWARE_PREDICTOR -
 
 ON2_SORTS = insertsort selectsort bubblesort shakersort improved_shakersort improved_bubblesort
 BASE_SORTS = base_heapsort base_quicksort base_radixsort base_mergesort algorithm_n algorithm_s base_quicksort1 base_quicksort5 base_quicksort7 base_quicksort9 shellsort improved_shellsort
-CACHE_SORTS = memory_tuned_heapsort memory_tuned4_heapsort tiled_mergesort multi_mergesort memory_tuned_quicksort multi_quicksort double_aligned_mergesort double_aligned_multi_mergsort memory_tuned_radixsort aligned_memory_tuned_radixsort
+CACHE_SORTS = memory_tuned_heapsort memory_tuned4_heapsort tiled_mergesort multi_mergesort memory_tuned_quicksort multi_quicksort double_aligned_mergesort double_aligned_multi_mergesort memory_tuned_radixsort aligned_memory_tuned_radixsort
 BRANCH_SORTS = multi_quicksort_seq predicated_quicksort
 
 

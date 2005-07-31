@@ -7,10 +7,10 @@ set ticscale 0 0
 set offsets .1, .1, 0, 0
 set bmargin 3
 set title "double-aligned multi-mergesort branch predictor results 1"
-set output '../data/plots/counter_double_aligned_multi_mergsort_1.eps'
+set output '../data/plots/counter_double_aligned_multi_mergesort_1.eps'
 set xtics ("comparison 1" 0, "\ncomparison 2" 1, "comparison 3" 2, "\ncomparison 4" 3, "comparison 5" 4, "\ncomparison 6" 5, "comparison 7" 6)
 plot \
-'../data/counter_gnuplot_data/double_aligned_multi_mergsort_data1' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
-'../data/counter_gnuplot_data/double_aligned_multi_mergsort_data1' using ($0-.15):2 title 'correct' with boxes lt -1,\
-'../data/counter_gnuplot_data/double_aligned_multi_mergsort_data1' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
-'../data/counter_gnuplot_data/double_aligned_multi_mergsort_data1' using ($0+.15):4 title 'taken' with boxes lt -1
+'../data/counter_gnuplot_data/double_aligned_multi_mergesort_data1' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
+'../data/counter_gnuplot_data/double_aligned_multi_mergesort_data1' using ($0-.15):2 title 'correct' with boxes lt -1,\
+'../data/counter_gnuplot_data/double_aligned_multi_mergesort_data1' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
+'../data/counter_gnuplot_data/double_aligned_multi_mergesort_data1' using ($0+.15):4 title 'taken' with boxes lt -1

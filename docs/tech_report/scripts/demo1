@@ -14,4 +14,4 @@ plot \
 '../data/converted_simple_logs/tiled_mergesort/tiled_mergesort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'tiled mergesort',\
 '../data/converted_simple_logs/double_aligned_mergesort/double_aligned_mergesort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'double-aligned tiled mergesort',\
 '../data/converted_simple_logs/multi_mergesort/multi_mergesort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'multi mergesort',\
-'../data/converted_simple_logs/double_aligned_multi_mergsort/double_aligned_multi_mergsort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'double multi mergesort'
+'../data/converted_simple_logs/double_aligned_multi_mergesort/double_aligned_multi_mergesort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'double multi mergesort'

@@ -237,7 +237,7 @@ main(int argc, char** args)
 	test_sort(tiled_mergesort, "tiled mergesort");
 	test_sort(multi_mergesort, "multi-mergesort");
 	test_sort(double_aligned_mergesort, "double-aligned tiled mergesort");
-	test_sort(double_aligned_multi_mergsort, "double-aligned multi-mergesort");
+	test_sort(double_aligned_multi_mergesort, "double-aligned multi-mergesort");
 
 
 	test_sort(base_quicksort1, "base quicksort (no median)");
@@ -291,7 +291,7 @@ main(int argc, char** args)
 	time_sort(tiled_mergesort, "tiled mergesort");
 	time_sort(multi_mergesort, "multi-mergesort");
 	time_sort(double_aligned_mergesort, "double-aligned tiled mergesort");
-	time_sort(double_aligned_multi_mergsort, "double-aligned multi-mergesort");
+	time_sort(double_aligned_multi_mergesort, "double-aligned multi-mergesort");
 
 
 	time_sort(base_quicksort1, "base quicksort1 (no median");
@@ -357,7 +357,7 @@ main(int argc, char** args)
 	predictor_run(tiled_mergesort, 46, "tiled mergesort");
 	predictor_run(multi_mergesort, 59, "multi-mergesort");
 	predictor_run(double_aligned_mergesort, 46, "double tiled mergesort");
-	predictor_run(double_aligned_multi_mergsort, 59, "double multi-mergesort");
+	predictor_run(double_aligned_multi_mergesort, 59, "double multi-mergesort");
 
 
 	predictor_run(base_quicksort1, 5, "base quicksort (pseudo-median-of-5");
@@ -428,7 +428,7 @@ algorithm_s.c
 base_mergesort.c
 tiled_mergesort.c
 multi_mergesort.c
-double_aligned_multi_mergsort.c
+double_aligned_multi_mergesort.c
 double_aligned_mergesort.c
 
 base_quicksort1.c
