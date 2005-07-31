@@ -145,22 +145,22 @@ the potential to be a miss, and not just in the pathological case. However, as
 the sort continues and the array becomes more sorted, the number of misses
 should decrease. The number of flow control misses should be very low.
 
-\section{Bubblesort2}
-Bubblesort2 incorporates an improvement to end bubblesort early. The bubblesort
-implementation described in the previous section ends early if it detects that
-the array is fully sorted.  It keeps a binary flag to indicate if there were any
-exchanges along the way.  Instead, bubblesort2 keeps track of the last exchange
-made, and starts the next iteration from there. This means that any pockets of
-sorted keys are skipped over, not just if they occur at the end. Bubblesort2
-code is shown in Figure \vref{Bubblesort2 code}.
+\section{Improved Bubblesort}
+Improved bubblesort incorporates an improvement to end bubblesort early. The
+bubblesort implementation described in the previous section ends early if it
+detects that the array is fully sorted.  It keeps a binary flag to indicate if
+there were any exchanges along the way.  Instead, improved bubblesort keeps
+track of the last exchange made, and starts the next iteration from there. This
+means that any pockets of sorted keys are skipped over, not just if they occur
+at the end. Improved bubblesort code is shown in Figure \vref{Improved bubblesort code}.
 
-\code{Bubblesort2 code}{bubblesort2.c}
+\code{Improved bubblesort code}{improved_bubblesort.c}
 \subsection{Testing}
 \subsubsection{Expected Performance}
-It is expected that the bubblesort2 should perform faster than the original in
-all metrics. Instruction count, were there no conditions that allowed keys to be
-skipped, would be the similar, since few extra instructions are added. The flow
-of the algorithm is the same, though there should be fewer iterations,
+It is expected that improved bubblesort should perform faster than the original
+in all metrics. Instruction count, were there no conditions that allowed keys to
+be skipped, would be the similar, since few extra instructions are added. The
+flow of the algorithm is the same, though there should be fewer iterations,
 especially at the start, when iterations are longer, so cache accesses, and
 branch misses should be reduced along with instruction count.
 
@@ -197,13 +197,13 @@ lot of keys, which are more likely to move in continuous movements than they are
 in bubblesort, where only small keys on the right move continuously. The
 performance should improve noticeably as a result.
 
-\section{Shakersort2}
-Shakersorts incorporates the same improvements over shakersort as bubblesort2
+\section{Improved Shakersort}
+Shakersorts incorporates the same improvements over shakersort as improved bubblesort
 does over bubblesort, that is, it skips over pockets of sorted keys in both
-directions, as well as ending early. The code for shakersort2 is in Figure
-\vref{Shakersort2 code}.
+directions, as well as ending early. The code for improved shakersort is in Figure
+\vref{Improved shakersort code}.
 
-\code{Shakersort2 code}{shakersort2.c}
+\code{Improved shakersort code}{improved_shakersort.c}
 \subsection{Testing}
 \subsubsection{Expected Performance}
 It is expected that the improvements will make shakersort faster in all cases
@@ -281,8 +281,8 @@ elementary sort. Each sort's instruction count is as predicted. Selection sort
 has the most instructions, and insertion sort has approximately half that
 number, as predicted. Bubblesort has almost the same number of instructions as
 selection sort, but shakersort has a significant number less. The improvement to
-bubblesort in bubblesort2 have increased the instruction count, contrary to
-predictions, and similarly in the shakersort2. It appears the cost of
+bubblesort in improved bubblesort have increased the instruction count, contrary to
+predictions, and similarly in the improved shakersort. It appears the cost of
 skipping over a segment of the array is not worth the additional book-keeping
 cost of determining when this can be done.
 
@@ -296,10 +296,10 @@ array each time, leading to very poor performance.
 As expected, selection sort is the worst. This is due to the fact that it
 considers the entire unsorted segment of the array for each key to be put in
 place. Bubblesort, with similar behaviour, is only slightly better. Shakersort
-has a small amount of temporal reuse, reducing its number of misses. Shakersort2
-is placed roughly between insertion sort and shakersort, showing that ending
-early is helpful in its case. This does not appear to be the case with
-bubblesort2 though, which performs identically to bubblesort.
+has a small amount of temporal reuse, reducing its number of misses. Improved
+shakersort is placed roughly between insertion sort and shakersort, showing that
+ending early is helpful in its case. This does not appear to be the case with
+improved bubblesort though, which performs identically to bubblesort.
 
 Insertion sort performs best of these sorts in relation to cache misses. This
 is due to the fact that the keys it considered most recently are used again for

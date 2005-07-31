@@ -31,9 +31,10 @@ sentinel, without introducing any more instructions.
 We found that algorithm S has a lower instruction count than algorithm N, but
 that this does not necessarily translate to better performance. Our results show
 also that the level 1 cache needs to be taken into account, that the extra
-instruction in multi-mergesort make it slower than double tiled mergesort, and
-that multi-mergesort has regular branch predictive access patterns during the
-k-way merge, which can be taken advantage of by a 2-level adaptive predictor.
+instruction in multi-mergesort make it slower than double-aligned tiled
+mergesort, and that multi-mergesort has regular branch predictive access
+patterns during the k-way merge, which can be taken advantage of by a 2-level
+adaptive predictor.
 
 
 \subsection{Quicksorts}
@@ -48,7 +49,7 @@ fewer cache misses, instructions and branch mispredictions than base quicksort.
 \subsection{Radixsorts}
 
 We were able to reduce the number of cache misses considerably using a technique
-adapted from LaMarca's tiled mergesort, and managed to make cache radixsort the
+adapted from LaMarca's tiled mergesort, and managed to make memory-tuned radixsort the
 fastest sort in our tests. This is due to its low instruction count, few cache
 misses and lack of branch mispredictions. Although we attempted to align it
 using another technique from mergesort, we found this decreased its performance.
@@ -102,7 +103,7 @@ methods, or can be seen to be equivalent when scaled by an appropriate ratio
 LaMarca's heapsort graphs were equivalent to ours in the areas of level 1
 misses, instruction count and cycle count. Like LaMarca, we found that a four
 heap lowered our instruction count. Our level 2 misses also concurred with
-LaMarca, with only one difference: cache heapsort, being an out-of-place sort,
+LaMarca, with only one difference: memory-tuned heapsort, being an out-of-place sort,
 fills the cache fully with a smaller number of keys than base heapsort, which is
 in place. LaMarca's results do not show this. Nor do they show a difference in
 cache misses between these two sorts when the array does fit in the cache.
@@ -154,7 +155,7 @@ cache miss in eight.
 Where LaMarca found that using Sedgewicks insertion sort optimisation decreased
 instruction count, we found the opposite. We also found that despite
 improvements due to cache performance and instruction count, our base quicksort
-performed faster than our tuned version. Finally, we found that although
+performed faster than our memory-tuned version. Finally, we found that although
 changing multi-mergesort's sequential search to a binary search decreased the
 instruction count, it greatly increased the number of branch mispredictions
 incurred, and slowed the sort down accordingly.
@@ -263,7 +264,7 @@ measured on a Pentium 4 using hardware performance counters.}
 }
 
 The best stable sort is radixsort. The best comparison-based stable sort is
-double tiled mergesort. The best in-place sort is quicksort. The best in-place
+double-aligned tiled mergesort. The best in-place sort is quicksort. The best in-place
 stable sort is, sadly, insertion sort. The best elementary sort is also
 insertion sort; as such it should be only used for very small data sets.  The
 best sort for very large data sets is radixsort. The best overall sort was

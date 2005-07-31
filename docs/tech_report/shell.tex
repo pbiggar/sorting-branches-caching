@@ -86,10 +86,9 @@ shellsort.
 Shellsort's simulation results have the characterist shape and range of an
 $O(NlogN)$ sort, albeit, not a very good one. The slopes of its graphs are
 slighlty steeper, as can be seen in Figures \ref{shell cycles}, \ref{shell
-instructions}, \ref{shell level 1 misses} and \ref{shell branch
-misses}. It performs better than a
-heapsort, but considerably worse than quicksort. However, it easier to program
-than either of these two sort.
+instructions}, \ref{shell level 1 misses} and \ref{shell branch misses}. It
+performs better than a heapsort, but considerably worse than quicksort. However,
+it easier to program than either of these two sort.
 
 Shellsort performs roughly double the number of branches and instructions of
 quicksort, and has more than twice as many branch mispredictions and nearly
@@ -98,9 +97,10 @@ quicksort, though it is more than 50 percent faster than the best of the
 heapsorts.
 
 Shellsort's cache misses are certainly in the range of an $O(NlogN)$ sort, and
-are not considerably worse than cache heapsort, and are in fact better than base
-heapsort. This occurs without any cache improvements being performed upon them.
-Shellsort's branch mispredictions, are, as predicted $O(Nlog_{\frac{5}{11}}N)$. 
+are not considerably worse than memory-tuned heapsort, and are in fact better
+than base heapsort. This occurs without any cache improvements being performed
+upon them.  Shellsort's branch mispredictions, are, as predicted
+$O(Nlog_{\frac{5}{11}}N)$. 
 
 Improved shellsort does improve on shellsort, having approximately 10\% fewer
 instructions. It also has slightly fewer cache misses and branch mispredictions.

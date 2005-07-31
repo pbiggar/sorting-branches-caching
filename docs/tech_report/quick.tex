@@ -201,9 +201,9 @@ number of misses should increase significantly. This is especially true in the
 case of the base quicksort, which does an insertion sort across then entire
 array at the end.
 
-Cache quicksort should have fewer misses than base quicksort as soon as the
-array is larger than the cache. It is expected that these misses will make up
-for the increase in instruction count.
+Memory-tuned quicksort should have fewer misses than base quicksort as soon as
+the array is larger than the cache. It is expected that these misses will make
+up for the increase in instruction count.
 
 LaMarca estimates a large reduction in level 2 misses in multi-quicksort, and
 puts a figure on it of four misses per cache block, meaning, in our case, half a
@@ -218,11 +218,11 @@ misses should not increase at all, and should flat-line from that point on.
 
 \plot{quick}{}{}{Results shown are for a Direct Mapped cache.}{}{}{}{}
 
-The instruction count, shown in Figure \ref{quick instructions} is moslty as
-predicted. The increase in instructions in both multi-mergesorts is as
+The instruction count, shown in Figure \ref{quick instructions} is mostly as
+predicted. The increase in instructions in both multi-quicksorts is as
 predicted, with the binary search version increasing only 25\% against the
 sequential search version's 50\% increase. However, the increase we predicted in
-the instrcution count of cache quicksort based on the results of both Sedgewick
+the instruction count of memory-tuned quicksort based on the results of both Sedgewick
 and LaMarca -  that is, once the efficient insertion sort was replaced with many
 small insertion sorts - we observe that the instruction count remains exactly
 the same.
@@ -235,13 +235,13 @@ cahce misses are increasing is very low, being almost a flat line on our graph.
 LaMarca's calculation of four misses per cache block is very accurate, as we
 show 0.55 misses per key, or 4.4 misses per block.
 
-The tuned quicksort performed better than the base version, as predicted. Both the
-tuned version and the base quicksort both have a significant increase once the
-arrays no longer fit in the cache, also as predicted.
+The memory-tuned quicksort performed better than the base version, as predicted.
+Both the memory-tuned version and the base quicksort both have a significant
+increase once the arrays no longer fit in the cache, also as predicted.
 
 The results show again that direct mapped caches can perform better than fully
 associative ones. This is true in the case of all the quicksorts, as can be seen
-in Figures \ref{base quicksort (no median) level 2 misses} to
+in Figures \ref{base quicksort (median-of-3) (no median) level 2 misses} to
 \ref{multi-quicksort (sequential search) level 2 misses} graph that this is true
 in the case of all the quicksorts.
 
@@ -259,7 +259,7 @@ count, shown in Figure \ref{quick cycles} are enough to make up for the increase
 in instruction count, which was significantly reduced by using the binary
 search.
 
-Tuned quicksort had fewer branch misses than base quicksort, due to the fact
+Memory-tuned quicksort had fewer branch misses than base quicksort, due to the fact
 that fewer comparitive branches are executed. In base quicksort, we sort the
 entire array using insertion sort. In tuned quicksort, we don't sort the pivots,
 but only the keys between them.
@@ -275,7 +275,7 @@ instructions.
 LaMarca's results are again similar to the results presented here, but not
 identical. The shape of the instruction count graph is the same in both cases,
 but that of the cache misses is not. The ratio of the cache misses between base
-and cache quicksort are the same in both sets of results, but these are lower
+and memory-tuned quicksort are the same in both sets of results, but these are lower
 than the same misses in LaMarca's results. However, the multi-quicksort results
 appear to be the same, though our results are not conclusive either way.
 
@@ -285,12 +285,14 @@ appear to be the same, though our results are not conclusive either way.
 %TODO a bit to rewrite
 \subsection{Different Sorts}
 
-\sixplot{base_quicksort_0.eps}{base_quicksort9_0.eps}{memory_tuned_quicksort_0.eps}{multi_quicksort_0.eps}{sequential_multi_quicksort_0.eps}{}{base, cache and multi quicksorts and base quicksort9}
+\sixplot{base_quicksort_0.eps}{base_quicksort9_0.eps}{memory_tuned_quicksort_0.eps}{multi_quicksort_0.eps}{sequential_multi_quicksort_0.eps}{}{base,
+cache and multi quicksorts and base quicksort (pseudo-median-of-9)}
 
-Firstly, cache quicksort and base quicksort only differ in how they deal with
-the insertion. Base quicksort and base quicksort9 have similar numbers of
-insertion branches, and a very similar ratio (2/1 correct/incorrect) of
-mispredictions. Comparing base quicksort to cahce quicksort (they both use
+Firstly, memory-tuned quicksort and base quicksort (median-of-3) only differ in how they deal with
+the insertion. Base quicksort (median-of-3) and base quicksort
+(pseudo-median-of-9) have similar numbers of insertion branches, and a very
+similar ratio (2/1 correct/incorrect) of mispredictions. Comparing base
+quicksort to memory-quicksort (they both use
 median of 3), there is actually a decrease in the number of branches handled by
 insertion sort, instead of an increase. An increase is expected (thats why
 sedgewick moves the insertion to the end), though when you take into account
@@ -316,14 +318,14 @@ checking the left). binary search predicts correctly 57 percent of the time,
 meaning that it mostly changes direction haphazardly during the search. No
 wonder it performs so badly.
 
-Note that sequential multi-quicksort has less mispredictions than cache quicksort.
+Note that sequential multi-quicksort has less mispredictions than memory-tuned quicksort.
 
 %TODO to  here
 
 \subsection{Different Medians}
 
 \label{quick-predictors2}
-\sixplot{base_quicksort1_0.eps}{base_quicksort_0.eps}{base_quicksort5_0.eps}{base_quicksort7_0.eps}{base_quicksort9_0.eps}{}{base quicksort without a median, with median of 3, and with pseudo medians of 5, 7 and 9}
+\sixplot{base_quicksort1_0.eps}{base_quicksort_0.eps}{base_quicksort5_0.eps}{base_quicksort7_0.eps}{base_quicksort9_0.eps}{}{base quicksort without a median, with median of 3, and with pseudo-medians of 5, 7 and 9}
 
 \label{quicksort entropy}
 
@@ -334,7 +336,7 @@ predicted correctly. In quicksort, we expect to obtain similar results.
 %HOW
 
 We use several variations of quicksort to test this theory. \ref{bently, i
-ithkn} suggests partitioning using a median-of-9 instead of a median-of-three. We
+ithkn} suggests partitioning using a median-of-9 instead of a median-of-3. We
 created sorts using no median, a median-of-3, and pseudo-medians-of-five, -seven and
 -nine. The pseudo-medians used repeated medians-of-three instead of a real
 median, as suggestion by \ref{bently, again, i think}. 
@@ -363,14 +365,14 @@ corresponding increase in mispredictions while calculating the median equates to
 50\% of the extra mispredictions due to partitioning.
 
 This indicates the same pattern as we saw during heapsort.%
-% and mergesort?
+% and mergesort? TODO
 The less entropy due to the partitioning key, the less wasted exchanging of keys,
 which leads to a general decrease in branches. This decrease means that the
 fewer keys are exchanged due to partitioning, leading to less predictable
 partitioning. In effect, there are fewer branches pretending to be useful.
 
-The pseudo-median-of-five partitioning performs slightly better than the
-median-of-three, and pseudo-median-of-seven performs slightly better again, in
+The pseudo-median-of-5 partitioning performs slightly better than the
+median-of-3, and pseudo-median-of-7 performs slightly better again, in
 terms of branch prediction. Figure \ref{TODO} shows the cycle count of each of
 the quicksorts, showing that a pseduo-median-of-seven offers the greatest
 tradeoff between the reduced number of branches and instructions, and the
@@ -408,5 +410,5 @@ Finally, in multi-quicksort, it may be possible to choose better pivots.
 Choosing better (ie, more evenly distributed pivots) would reduce the number of
 containers. The advantage of this is that it reduces linearly the number of
 pivots to be searched by the sequential search. The most this can be reduced by
-is a factor of 3, indicating perfectly distributed pivots. This would reduce the
-instruction overhead of the multi-quicksort considerably.
+is a factor of three, indicating perfectly distributed pivots. This would reduce
+the instruction overhead of the multi-quicksort considerably.

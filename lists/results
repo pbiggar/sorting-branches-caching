@@ -75,8 +75,8 @@ overall:
 *- due to replacement policy, direct mapped can beat fully associative, ie multi-mergesort, all through quicksort
 
 on2 overall results:
-- bubblesort faster than bubblesort2
-- shakersort faster than bubblesorts and shakersort2
+- bubblesort faster than improved_bubblesort
+- shakersort faster than bubblesorts and improved_shakersort
 - insertion sort best, followed by selection
 
 *on2 cache results:

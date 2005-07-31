@@ -1,5 +1,5 @@
 Thu Jul 28 19:37:53 2005
-Run as: "./do_simple -c random.org7 -o 7 -M 65536 bubblesort2"
+Run as: "./do_simple -c random.org7 -o 7 -M 65536 improved_bubblesort"
 -------------------------------------------------------------------------------------------------
 sim-cache                                     4096 |         4096 |         4096 |         4096 |         8192 |         8192 |         8192 |         8192 |        16384 |        16384 |        16384 |        16384 |        32768 |        32768 |        32768 |        32768 |        65536 |        65536 |        65536 |        65536 |
 -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2
@@ -129,63 +129,63 @@ bpred_2lev.ras_hits.PP               xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx
 bpred_2lev.ras_rate.PP               xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9828 |       0.9828 |       0.9828 |       0.9828 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9828 |       0.9828 |       0.9828 |       0.9828 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9828 |       0.9828 |       0.9828 |       0.9828 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9828 |       0.9828 |       0.9828 |       0.9828 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9828 |       0.9828 |       0.9828 |       0.9828 |
 
 Command list: 
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=4096 -DOFFSET=7 -DSORT=bubblesort2 sorts/bubblesort2800217970.c simpleMain.c -o bubblesort2603506036
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 bubblesort2603506036
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 bubblesort2603506036
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 bubblesort2603506036
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 bubblesort2603506036
-	sim-bpred -bpred bimod -bpred:bimod 512 bubblesort2603506036
-	sim-bpred -bpred bimod -bpred:bimod 1024 bubblesort2603506036
-	sim-bpred -bpred bimod -bpred:bimod 2048 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 bubblesort2603506036
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=8192 -DOFFSET=7 -DSORT=bubblesort2 sorts/bubblesort2800217970.c simpleMain.c -o bubblesort2603506036
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 bubblesort2603506036
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 bubblesort2603506036
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 bubblesort2603506036
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 bubblesort2603506036
-	sim-bpred -bpred bimod -bpred:bimod 512 bubblesort2603506036
-	sim-bpred -bpred bimod -bpred:bimod 1024 bubblesort2603506036
-	sim-bpred -bpred bimod -bpred:bimod 2048 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 bubblesort2603506036
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=16384 -DOFFSET=7 -DSORT=bubblesort2 sorts/bubblesort2800217970.c simpleMain.c -o bubblesort2603506036
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 bubblesort2603506036
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 bubblesort2603506036
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 bubblesort2603506036
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 bubblesort2603506036
-	sim-bpred -bpred bimod -bpred:bimod 512 bubblesort2603506036
-	sim-bpred -bpred bimod -bpred:bimod 1024 bubblesort2603506036
-	sim-bpred -bpred bimod -bpred:bimod 2048 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 bubblesort2603506036
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=32768 -DOFFSET=7 -DSORT=bubblesort2 sorts/bubblesort2800217970.c simpleMain.c -o bubblesort2603506036
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 bubblesort2603506036
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 bubblesort2603506036
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 bubblesort2603506036
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 bubblesort2603506036
-	sim-bpred -bpred bimod -bpred:bimod 512 bubblesort2603506036
-	sim-bpred -bpred bimod -bpred:bimod 1024 bubblesort2603506036
-	sim-bpred -bpred bimod -bpred:bimod 2048 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 bubblesort2603506036
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=65536 -DOFFSET=7 -DSORT=bubblesort2 sorts/bubblesort2800217970.c simpleMain.c -o bubblesort2603506036
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 bubblesort2603506036
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 bubblesort2603506036
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 bubblesort2603506036
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 bubblesort2603506036
-	sim-bpred -bpred bimod -bpred:bimod 512 bubblesort2603506036
-	sim-bpred -bpred bimod -bpred:bimod 1024 bubblesort2603506036
-	sim-bpred -bpred bimod -bpred:bimod 2048 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 bubblesort2603506036
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 bubblesort2603506036
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=4096 -DOFFSET=7 -DSORT=improved_bubblesort sorts/improved_bubblesort800217970.c simpleMain.c -o improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-bpred -bpred bimod -bpred:bimod 512 improved_bubblesort603506036
+	sim-bpred -bpred bimod -bpred:bimod 1024 improved_bubblesort603506036
+	sim-bpred -bpred bimod -bpred:bimod 2048 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 improved_bubblesort603506036
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=8192 -DOFFSET=7 -DSORT=improved_bubblesort sorts/improved_bubblesort800217970.c simpleMain.c -o improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-bpred -bpred bimod -bpred:bimod 512 improved_bubblesort603506036
+	sim-bpred -bpred bimod -bpred:bimod 1024 improved_bubblesort603506036
+	sim-bpred -bpred bimod -bpred:bimod 2048 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 improved_bubblesort603506036
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=16384 -DOFFSET=7 -DSORT=improved_bubblesort sorts/improved_bubblesort800217970.c simpleMain.c -o improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-bpred -bpred bimod -bpred:bimod 512 improved_bubblesort603506036
+	sim-bpred -bpred bimod -bpred:bimod 1024 improved_bubblesort603506036
+	sim-bpred -bpred bimod -bpred:bimod 2048 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 improved_bubblesort603506036
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=32768 -DOFFSET=7 -DSORT=improved_bubblesort sorts/improved_bubblesort800217970.c simpleMain.c -o improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-bpred -bpred bimod -bpred:bimod 512 improved_bubblesort603506036
+	sim-bpred -bpred bimod -bpred:bimod 1024 improved_bubblesort603506036
+	sim-bpred -bpred bimod -bpred:bimod 2048 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 improved_bubblesort603506036
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=65536 -DOFFSET=7 -DSORT=improved_bubblesort sorts/improved_bubblesort800217970.c simpleMain.c -o improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 improved_bubblesort603506036
+	sim-bpred -bpred bimod -bpred:bimod 512 improved_bubblesort603506036
+	sim-bpred -bpred bimod -bpred:bimod 1024 improved_bubblesort603506036
+	sim-bpred -bpred bimod -bpred:bimod 2048 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 improved_bubblesort603506036
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 improved_bubblesort603506036

@@ -1,4 +1,4 @@
-void shakersort2(Item a[], int N)
+void improved_shakersort(Item a[], int N)
 {
 	int i = 0, j, k = N-1, l = N-1;
 	for ( ; i < k; )

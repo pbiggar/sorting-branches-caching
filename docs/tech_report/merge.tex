@@ -140,8 +140,8 @@ two or eight. A large increase of instruction count was realized by sorting to
 lists of length two, so a length of eight was used. When an even number was
 required, four was used.
 
-\section{Double Tiled Mergesort}
-\label{double tiled mergesort}
+\section{Double-aligned Tiled Mergesort}
+\label{double-aligned tiled mergesort}
 Offsetting the target array to avoid conflicts reduces significantly the number
 of level 2 cache misses. However, it does this at the expense of increasing the
 number of level 1 cache misses. To avoid this, we further offset the target
@@ -173,9 +173,9 @@ to the priority queue. There will still be conflict misses, but there will be no
 thrashing since the keys overwritten in the cache will not be needed again.
 
 LaMarca used a 4-heap for his priority queue, and an 8-heap is used here, for
-the same reasons as before (see Section \ref{cache heapsort}.). The heap is
-aligned, and a cache line is put into the array each time. The smallest key is
-at the top of the heap, and this is put into its final position in the array.
+the same reasons as before (see Section \ref{memory-tuned heapsort}.). The heap
+is aligned, and a cache line is put into the array each time. The smallest key
+is at the top of the heap, and this is put into its final position in the array.
 The heap is then fixed.
 
 LaMarca uses a special tag to mark the last key from each list inserted into
@@ -224,10 +224,10 @@ Multi-mergesort.
 The level 1 cache is 8k, so 1024 keys from each array can be sorted in the level
 1 cache. 262144 keys can be sorted in the level 2 cache. When arrays were
 pre-sorted, they were pre-sorted to a size four, or eight if the number of
-passes was going to be odd. These were reversed for the double multi-mergesort;
-since it does a k-way merge into the source array, the sorted cache sized
-segments need to be in the auxiliary array. An 8-heap was used for the
-multi-mergesorts.
+passes was going to be odd. These were reversed for the double-aligned
+multi-mergesort; since it does a k-way merge into the source array, the sorted
+cache sized segments need to be in the auxiliary array. An 8-heap was used for
+the multi-mergesorts.
 
 \subsection{Expected Performance}
 
@@ -306,7 +306,7 @@ is exactly half that of LaMarca, due to different \cc{int} sizes in our tests.
 Despite the improvement in cache misses due to multi-mergesort, it still cannot
 compensate for the increase in instruction count as a result, and it has a higher
 cycle count on the Pentium 4 (see Figure \ref{merge cycles}) as a result. The
-other sorts generally perform in $O(NlogN)$ time, with double tiled mergesort
+other sorts generally perform in $O(NlogN)$ time, with double-aligned tiled mergesort
 being the fastest. Note that the alignment of the mergesort may not work as
 desired due to the size of the cache. This was optimized for a 2MB cache, while
 the Pentium 4 cache is only 256KB. This means that the two arrays are aligned to
@@ -314,12 +314,12 @@ the same cache block. However, since the cache is 8-way associative, this is not
 serious, and should not result in a lot of thrashing.
 
 The cache misses end up being the deciding factor between the performance of
-double tiled mergesort and base mergesort, the next best contender. Despite the
-reduction in level 2 cache misses, the sharp increase in level 1 misses result
-is poor performance for tiled and multi-mergesort. Multi-mergesort is further
-encumbered with a much higher instruction count. Double tiled mergesort, with
-its low instruction count, and low cache miss rate in both levels 1 and 2,
-emerges the winner.
+double-aligned tiled mergesort and base mergesort, the next best contender.
+Despite the reduction in level 2 cache misses, the sharp increase in level 1
+misses result is poor performance for tiled and multi-mergesort. Multi-mergesort
+is further encumbered with a much higher instruction count. Double tiled
+mergesort, with its low instruction count, and low cache miss rate in both
+levels 1 and 2, emerges the winner.
 
 \section{Predictor Results}
 
@@ -339,7 +339,7 @@ final merge goes forwards. The left merge step is also favoured, but this is
 merely due to the fact that it occurs first in the code. While there are more
 left branches, the actual number of branches taken are the same.
 
-In both double tiled mergesort and base mergesort, approximately two thirds are
+In both double-aligned tiled mergesort and base mergesort, approximately two thirds are
 of the loops are taken, unlike Knuth's sorts. However, this appears to indicate
 an increase in branches, as opposed to a decrease in mispredictions. Overall
 this stay is line with the idea that there is a minimum number of branch misses,
@@ -357,7 +357,7 @@ Overall, when the k-ary heap is used, there are the same number of branch
 misses. This means that using the technique to reduce cache misses does not
 adversely affect branch prediction rates (it does, however, still affect the
 instruction count).  The rate of branch misses is much the same as that in
-heapsort, and progresses in the same manner (see Figure \ref{cache heapsort
+heapsort, and progresses in the same manner (see Figure \ref{memory-tuned heapsort (8-heap)
 curve}). Note that \n{comparison 0} occurs every time, and would be optimized
 out by the compiler.
 

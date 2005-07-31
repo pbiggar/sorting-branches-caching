@@ -10,10 +10,10 @@ set output '../docs/plots/all_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
-'processed_cycles_data' using 1:5 title 'base quicksort',\
-'processed_cycles_data' using 1:6 title 'cache quicksort',\
+'processed_cycles_data' using 1:5 title 'base quicksort (median-of-3)',\
+'processed_cycles_data' using 1:6 title 'memory-tuned quicksort',\
 'processed_cycles_data' using 1:7 title 'multi quicksort',\
 'processed_cycles_data' using 1:10 title 'base mergesort',\
-'processed_cycles_data' using 1:14 title 'double tiled mergesort',\
-'processed_cycles_data' using 1:16 title 'double multi-mergesort',\
+'processed_cycles_data' using 1:14 title 'double-aligned tiled mergesort',\
+'processed_cycles_data' using 1:16 title 'double-aligned multi-mergesort',\
 'processed_cycles_data' using 1:9 title 'base radixsort'

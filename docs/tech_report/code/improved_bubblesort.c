@@ -1,4 +1,4 @@
-void bubblesort2(Item a[], int N)
+void improved_bubblesort(Item a[], int N)
 {
 	int i = 0, j, k = 0;
 	while(i < N-1)

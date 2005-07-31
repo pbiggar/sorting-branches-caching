@@ -7,7 +7,7 @@ do
 		./do_simple -c random.org$i -o $i $j
 	done
 
-	for j in insertsort selectsort bubblesort bubblesort2 shakersort shakersort2 
+	for j in insertsort selectsort bubblesort improved_bubblesort shakersort improved_shakersort 
 	do
 		./do_simple -c random.org$i -o $i -M 65536 $j 
 	done

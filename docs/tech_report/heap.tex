@@ -114,8 +114,8 @@ approximately 10\%.
 The only other optimization used is to unroll the loop while destroying the
 heap. This has minimal affect, however.
 
-\section{Cache Heapsort}
-\label{cache heapsort}
+\section{Memory-tuned Heapsort}
+\label{memory-tuned heapsort}
 LaMarca notes that the Repeated-Adds algorithm has a much lower number of cache
 misses than Floyd's. The reason for this is simple. Consider the number of keys 
 touched when a new key is added to the heap. In the case of Floyd's method, the
@@ -128,7 +128,7 @@ The Repeated-Adds algorithm, however, displays excellent temporal locality. A
 key has a 50\% chance of having the same parent, a 75\% of the same grandparent
 and so on. The number of instructions, however, increases significantly, and the
 sort becomes out-of-place. For this reason, the Repeated-Adds algorithm is used
-for cache heapsort.
+for memory-tuned heapsort.
 
 The cost of building the heap is completely dominated by the cost of
 destroying it. Less than 10\% of heapsort's time is spent building the heap.
@@ -206,7 +206,7 @@ using each cache line, taking advantage of the spatial locality of the cache
 line.
 
 LaMarca reports base heapsort has very poor temporal locality, and that the
-cache heapsort will have half the cache misses of base heapsort.
+memory-tuned heapsort will have half the cache misses of base heapsort.
 
 It is expected that the number of comparison branches stays the same with
 an increased fanout. When the height of the heap halves, the number of
@@ -305,12 +305,12 @@ same amount of misses in both cases. Similarly, the results here indicate that
 base heapsort experiences a sharp increase in cache misses. Cache heaport also
 has a similar increase, though LaMarca's results show that these occur at the
 same position in the graph, in other words, when th set size is the same. Our
-results, however, show that this occurs earlier in cache heapsort, due to the
+results, however, show that this occurs earlier in memory-tuned heapsort, due to the
 fact that it is an out of place sort.
 
 Finally, though this is likely to be related the previous differences, base
-heapsort performs slightly better for small sets than the cache heapsorts do in
-the results presented here. LaMarca's results indicate that the cache heapsort
+heapsort performs slightly better for small sets than the memory-tuned heapsort's do in
+the results presented here. LaMarca's results indicate that the memory-tuned heapsort
 has better results the entire way through the cache. This may relate to the
 associativity: LaMarca's tests were performed on a DEC AlphaStation 250 with a
 direct mapped cache. The Pentium 4's cache is 8-way associative, and so the
@@ -318,39 +318,41 @@ unoptimized algorithm would not suffer as much.
 
 \section{Predictor Results}
 
-\sixplot{base_heapsort_0.eps}{memory_tuned4_heapsort_0.eps}{memory_tuned_heapsort_0.eps}{memory_tuned_heapsort_1.eps}{}{}{base and cache heapsorts}
+\sixplot{base_heapsort_0.eps}{memory_tuned4_heapsort_0.eps}{memory_tuned_heapsort_0.eps}{memory_tuned_heapsort_1.eps}{}{}{base and memory-tuned heapsorts}
 
 The results of the software predictor show the relation of the branches
 in the creation and destruction of the heap. The base heapsort results in
-Figure \ref{base and cache heapsorts-1} show that the time taken to create the
-heap is not significant relative to the time taken to sort from the heap.
+Figure \ref{base and memory-tuned heapsorts-1} show that the time taken to
+create the heap is not significant relative to the time taken to sort from the
+heap.
 
 The most interesting thing is the relation between the predictablility of the
 comparisons during the destruction of the 2-, 4- and 8-heaps. Compare the
 columns marked `\cc{Destruction, child comparison}' and `\cc{Destruction, child
-promotion}' in Figure \ref{base and cache heapsorts-1} (the 2-heap), with the
-columns marked `\cc{comparison 1}' to `\cc{child promotion}' in Figure \ref{base and
-cache heapsorts-2} (the 4-heap) and Figures \ref{base and cache heapsorts-3} and
-\ref{base and cache heapsorts-4} (the 8-heap).
+promotion}' in Figure \ref{base and memory-tuned heapsort-1} (the 2-heap), with
+the columns marked `\cc{comparison 1}' to `\cc{child promotion}' in Figure
+\ref{base and memory-tuned heapsorts-2} (the 4-heap) and Figures \ref{base and
+memory-tuned heapsort-3} and \ref{base and memory-tuned heapsort-4} (the
+8-heap).
 
-Though the number of times each comparison is used shrinks
-as the size of the fanout increased, overall the number of branches increases.
-In total, there are 50\% more comparisons in the 4-heap than the 2-heap, and
-150\% more in the 8-heap.
+Though the number of times each comparison is used shrinks as the size of the
+fanout increased, overall the number of branches increases.  In total, there are
+50\% more comparisons in the 4-heap than the 2-heap, and 150\% more in the
+8-heap.
 
-More importantly, the accuracy of the each
-successive comparison increases in the same way as selection sort (see Section
-\ref{selection branches logn}), becoming more predictable as the fanout
-increases. For example, in the 8-heap, shown in Figures \ref{base and cache heapsorts-3}
-and \ref{base and cache heapsorts-4},
-the first comparison is predicted correctly 50\% of the
-time, while the next is predicted correctly 61\% of the time, then 71\%, 77\%, and
-so on in a curve, which is shown in Figure \ref{cache heapsort curve}.
+More importantly, the accuracy of the each successive comparison increases in
+the same way as selection sort (see Section \ref{selection branches logn}),
+becoming more predictable as the fanout increases. For example, in the 8-heap,
+shown in Figures \ref{base and memory-tuned heapsort-3} and \ref{base and
+memory-tuned heapsort-4}, the first comparison is predicted correctly 50\% of
+the time, while the next is predicted correctly 61\% of the time, then 71\%,
+77\%, and so on in a curve, which is shown in Figure \ref{memory-tuned heapsort
+curve}.
 
 \begin{figure}
 \includegraphics{plots/curve.eps}
-\caption{Predictability of branches in cache heapsort, with a fanout of eight}
-\label{cache heapsort curve}
+\caption{Predictability of branches in memory-tuned heapsort, with a fanout of eight}
+\label{memory-tuned heapsort curve}
 \end{figure}
 
 \label{heapsort entropy}

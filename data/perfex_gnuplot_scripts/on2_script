@@ -13,6 +13,6 @@ plot \
 '../processed_cycles_data' using 1:25 title 'insertsort',\
 '../processed_cycles_data' using 1:26 title 'selectsort',\
 '../processed_cycles_data' using 1:23 title 'bubblesort',\
-'../processed_cycles_data' using 1:24 title 'bubblesort2',\
+'../processed_cycles_data' using 1:24 title 'improved_bubblesort',\
 '../processed_cycles_data' using 1:27 title 'shakersort',\
-'../processed_cycles_data' using 1:28 title 'shakersort2'
+'../processed_cycles_data' using 1:28 title 'improved_shakersort'

@@ -12,7 +12,7 @@ do
 	done 
 
 # now do the on^2 sorts
-	for j in insertsort selectsort bubblesort bubblesort2 shakersort shakersort2 
+	for j in insertsort selectsort bubblesort improved_bubblesort shakersort improved_shakersort 
 	do
 		for k in 4096 8192 16384 32768 65536 131072
 		do

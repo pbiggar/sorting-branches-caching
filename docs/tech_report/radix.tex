@@ -70,14 +70,15 @@ significant byte at the same time), and a final two as it copies using the most
 significant byte.
 
 
-\subsection{Aligned Cache Radixsort}
+\subsection{Aligned Memory-tuned Radixsort}
 In Section \ref{tiled mergesort}, mergesort is improved by aligning its array
 with reference to it auxilliary array. Specifically, extra memory is allocated
 for the auxilliary array, which is then offset so that the start of the two
 arrays are exactly half the length of the cache apart. We further added an
-alignment for the level 1 cache (see Section \ref{double tiled mergesort}) to
-significantly reduce level 1 misses at the expense of a small number of level 2
-misses. We adapt this strategy here, and call it Aligned Cache Radixsort.
+alignment for the level 1 cache (see Section \ref{double-aligned tiled
+mergesort}) to significantly reduce level 1 misses at the expense of a small
+number of level 2 misses. We adapt this strategy here, and call it Aligned Cache
+Radixsort.
 
 
 \section{Results}
@@ -126,7 +127,7 @@ in exceptional circumstances\footnote{See Section \ref{insertion is
 predictable}.}. Radixsort has no comparative branches at all. As a result, only
 flow control branches occur in radixsort, and they are all predictable.
 
-Due to the reduced copying, cache radixsort should have a lower instruction
+Due to the reduced copying, memory-tuned radixsort should have a lower instruction
 count and fewer cache misses that base radixsort. There should be nine passes
 over the array, leading to just over one miss per key, as opposed to two misses
 per key with base radixsort. The complexity and branch prediction results
@@ -134,7 +135,7 @@ should remain the same. The instruction count should, however, reduce by nearly
 a half to $fract{9}{16}$ths of base radixsort.
 
 Based on LaMarca's results, showing quicksort to be faster than radixsort by a
-small amount, we expect cache radixsort to run faster than quicksort.
+small amount, we expect memory-tuned radixsort to run faster than quicksort.
 
 \subsection{Simulation Results}
 \plot{radix}{}{}{}{}{}{}
@@ -162,7 +163,7 @@ are two compulsory misses per key - one for each array - which divided by the
 keys per cache line results in exactly one miss in four (although our graph
 obscures this, due to the initial subtraction of compulsary misses).
 
-Aligned cache radixsort performs exactly the same as cache radixsort in both
+Aligned memory-tuned radixsort performs exactly the same as memory-tuned radixsort in both
 level 1 and level 2 misses, indicating that the alignment, and the associated
 memory overhead, are not necessary.
 
@@ -181,8 +182,8 @@ results do not show anything; in the worst case there are slightly over 200
 misses in total.
 
 With the low number of cache misses, low instruction count and negligible branch
-mispredictions, it is no surprise that cache radixsort performs as well as it
-does. As shown in Figure \ref{radix cycles}, cache radixsorts performance is
+mispredictions, it is no surprise that memory-tuned radixsort performs as well as it
+does. As shown in Figure \ref{radix cycles}, memory-tuned radixsorts performance is
 almost linear, with only a slight increase when the arrays no longer fit in the
 cache.  Even then, the increase in cache misses are more than made up for by the
 lack of branch mispredictions, and quicksort ends up taking almost 50\% percent

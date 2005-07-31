@@ -199,5 +199,5 @@ multi_quicksort(unsigned int a[], int N)
 		l = 0;
 	}
 
-	/* as cache quicksort from here */
+	/* as memory-tuned quicksort from here */
 }
