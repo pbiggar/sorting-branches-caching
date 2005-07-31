@@ -1,7 +1,7 @@
 #include "on2_sorts.h"
 
 void
-on2_selectsort(unsigned int a[], int N)
+selectsort(unsigned int a[], int N)
 { 
 	int i, j;
 	for (i = 0; i < N-1; i++)

@@ -1,5 +1,5 @@
 Fri Jul  8 23:42:06 2005
-Run as: "./do_simple -c random.org4 -o 4 -M 65536 on2_insertsort"
+Run as: "./do_simple -c random.org4 -o 4 -M 65536 insertsort"
 -------------------------------------------------------------------------------------------------
 sim-cache                                     4096 |         4096 |         4096 |         4096 |         8192 |         8192 |         8192 |         8192 |        16384 |        16384 |        16384 |        16384 |        32768 |        32768 |        32768 |        32768 |        65536 |        65536 |        65536 |        65536 |
 -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2
@@ -129,63 +129,63 @@ bpred_2lev.ras_hits.PP               xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx
 bpred_2lev.ras_rate.PP               xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9828 |       0.9828 |       0.9828 |       0.9828 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9828 |       0.9828 |       0.9828 |       0.9828 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9828 |       0.9828 |       0.9828 |       0.9828 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9828 |       0.9828 |       0.9828 |       0.9828 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9828 |       0.9828 |       0.9828 |       0.9828 |
 
 Command list: 
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=4096 -DOFFSET=4 -DSORT=on2_insertsort sorts/on2_insertsort450902734.c simpleMain.c -o on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 on2_insertsort494140119
-	sim-bpred -bpred bimod -bpred:bimod 512 on2_insertsort494140119
-	sim-bpred -bpred bimod -bpred:bimod 1024 on2_insertsort494140119
-	sim-bpred -bpred bimod -bpred:bimod 2048 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 on2_insertsort494140119
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=8192 -DOFFSET=4 -DSORT=on2_insertsort sorts/on2_insertsort450902734.c simpleMain.c -o on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 on2_insertsort494140119
-	sim-bpred -bpred bimod -bpred:bimod 512 on2_insertsort494140119
-	sim-bpred -bpred bimod -bpred:bimod 1024 on2_insertsort494140119
-	sim-bpred -bpred bimod -bpred:bimod 2048 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 on2_insertsort494140119
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=16384 -DOFFSET=4 -DSORT=on2_insertsort sorts/on2_insertsort450902734.c simpleMain.c -o on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 on2_insertsort494140119
-	sim-bpred -bpred bimod -bpred:bimod 512 on2_insertsort494140119
-	sim-bpred -bpred bimod -bpred:bimod 1024 on2_insertsort494140119
-	sim-bpred -bpred bimod -bpred:bimod 2048 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 on2_insertsort494140119
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=32768 -DOFFSET=4 -DSORT=on2_insertsort sorts/on2_insertsort450902734.c simpleMain.c -o on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 on2_insertsort494140119
-	sim-bpred -bpred bimod -bpred:bimod 512 on2_insertsort494140119
-	sim-bpred -bpred bimod -bpred:bimod 1024 on2_insertsort494140119
-	sim-bpred -bpred bimod -bpred:bimod 2048 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 on2_insertsort494140119
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=65536 -DOFFSET=4 -DSORT=on2_insertsort sorts/on2_insertsort450902734.c simpleMain.c -o on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 on2_insertsort494140119
-	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 on2_insertsort494140119
-	sim-bpred -bpred bimod -bpred:bimod 512 on2_insertsort494140119
-	sim-bpred -bpred bimod -bpred:bimod 1024 on2_insertsort494140119
-	sim-bpred -bpred bimod -bpred:bimod 2048 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 on2_insertsort494140119
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 on2_insertsort494140119
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=4096 -DOFFSET=4 -DSORT=insertsort sorts/insertsort450902734.c simpleMain.c -o insertsort494140119
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 insertsort494140119
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 insertsort494140119
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 insertsort494140119
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 insertsort494140119
+	sim-bpred -bpred bimod -bpred:bimod 512 insertsort494140119
+	sim-bpred -bpred bimod -bpred:bimod 1024 insertsort494140119
+	sim-bpred -bpred bimod -bpred:bimod 2048 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 insertsort494140119
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=8192 -DOFFSET=4 -DSORT=insertsort sorts/insertsort450902734.c simpleMain.c -o insertsort494140119
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 insertsort494140119
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 insertsort494140119
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 insertsort494140119
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 insertsort494140119
+	sim-bpred -bpred bimod -bpred:bimod 512 insertsort494140119
+	sim-bpred -bpred bimod -bpred:bimod 1024 insertsort494140119
+	sim-bpred -bpred bimod -bpred:bimod 2048 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 insertsort494140119
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=16384 -DOFFSET=4 -DSORT=insertsort sorts/insertsort450902734.c simpleMain.c -o insertsort494140119
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 insertsort494140119
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 insertsort494140119
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 insertsort494140119
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 insertsort494140119
+	sim-bpred -bpred bimod -bpred:bimod 512 insertsort494140119
+	sim-bpred -bpred bimod -bpred:bimod 1024 insertsort494140119
+	sim-bpred -bpred bimod -bpred:bimod 2048 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 insertsort494140119
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=32768 -DOFFSET=4 -DSORT=insertsort sorts/insertsort450902734.c simpleMain.c -o insertsort494140119
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 insertsort494140119
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 insertsort494140119
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 insertsort494140119
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 insertsort494140119
+	sim-bpred -bpred bimod -bpred:bimod 512 insertsort494140119
+	sim-bpred -bpred bimod -bpred:bimod 1024 insertsort494140119
+	sim-bpred -bpred bimod -bpred:bimod 2048 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 insertsort494140119
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=65536 -DOFFSET=4 -DSORT=insertsort sorts/insertsort450902734.c simpleMain.c -o insertsort494140119
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:131072:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 insertsort494140119
+	sim-cache -cache:dl1 dl1:256:32:1:l -cache:dl2 dl2:65536:32:1:l -cache:il1 il1:256:32:1:l -cache:il2 dl2 insertsort494140119
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:131072:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 insertsort494140119
+	sim-cache -cache:dl1 dl1:1:32:256:l -cache:dl2 dl2:1:32:65536:l -cache:il1 il1:1:32:256:l -cache:il2 dl2 insertsort494140119
+	sim-bpred -bpred bimod -bpred:bimod 512 insertsort494140119
+	sim-bpred -bpred bimod -bpred:bimod 1024 insertsort494140119
+	sim-bpred -bpred bimod -bpred:bimod 2048 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 insertsort494140119
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 insertsort494140119

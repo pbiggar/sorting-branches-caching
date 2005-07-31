@@ -17,17 +17,17 @@ plot \
 '../data/converted_simple_logs/base_heapsort/base_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:11 title 'base heapsort  - Bimodal - 1024 byte table',\
 '../data/converted_simple_logs/base_heapsort/base_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:11 title 'base heapsort  - Bimodal - 2048 byte table',\
 '../data/converted_simple_logs/base_heapsort/base_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:11 title 'base heapsort  - Bimodal - 512 byte table',\
-'../data/converted_simple_logs/cache4_heapsort/cache4_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:11 title 'cache4 heapsort  - 2 Level Adaptive - 1024 2nd level entries',\
-'../data/converted_simple_logs/cache4_heapsort/cache4_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_2048_10_1' using 1:11 title 'cache4 heapsort  - 2 Level Adaptive - 2048 2nd level entries',\
-'../data/converted_simple_logs/cache4_heapsort/cache4_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:11 title 'cache4 heapsort  - 2 Level Adaptive - 4096 2nd level entries',\
-'../data/converted_simple_logs/cache4_heapsort/cache4_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:11 title 'cache4 heapsort  - 2 Level Adaptive - 512 2nd level entries',\
-'../data/converted_simple_logs/cache4_heapsort/cache4_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:11 title 'cache4 heapsort  - Bimodal - 1024 byte table',\
-'../data/converted_simple_logs/cache4_heapsort/cache4_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:11 title 'cache4 heapsort  - Bimodal - 2048 byte table',\
-'../data/converted_simple_logs/cache4_heapsort/cache4_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:11 title 'cache4 heapsort  - Bimodal - 512 byte table',\
-'../data/converted_simple_logs/cache_heapsort/cache_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:11 title 'cache heapsort  - 2 Level Adaptive - 1024 2nd level entries',\
-'../data/converted_simple_logs/cache_heapsort/cache_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_2048_10_1' using 1:11 title 'cache heapsort  - 2 Level Adaptive - 2048 2nd level entries',\
-'../data/converted_simple_logs/cache_heapsort/cache_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:11 title 'cache heapsort  - 2 Level Adaptive - 4096 2nd level entries',\
-'../data/converted_simple_logs/cache_heapsort/cache_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:11 title 'cache heapsort  - 2 Level Adaptive - 512 2nd level entries',\
-'../data/converted_simple_logs/cache_heapsort/cache_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:11 title 'cache heapsort  - Bimodal - 1024 byte table',\
-'../data/converted_simple_logs/cache_heapsort/cache_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:11 title 'cache heapsort  - Bimodal - 2048 byte table',\
-'../data/converted_simple_logs/cache_heapsort/cache_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:11 title 'cache heapsort  - Bimodal - 512 byte table'
+'../data/converted_simple_logs/memory_tuned4_heapsort/memory_tuned4_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:11 title 'cache4 heapsort  - 2 Level Adaptive - 1024 2nd level entries',\
+'../data/converted_simple_logs/memory_tuned4_heapsort/memory_tuned4_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_2048_10_1' using 1:11 title 'cache4 heapsort  - 2 Level Adaptive - 2048 2nd level entries',\
+'../data/converted_simple_logs/memory_tuned4_heapsort/memory_tuned4_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:11 title 'cache4 heapsort  - 2 Level Adaptive - 4096 2nd level entries',\
+'../data/converted_simple_logs/memory_tuned4_heapsort/memory_tuned4_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:11 title 'cache4 heapsort  - 2 Level Adaptive - 512 2nd level entries',\
+'../data/converted_simple_logs/memory_tuned4_heapsort/memory_tuned4_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:11 title 'cache4 heapsort  - Bimodal - 1024 byte table',\
+'../data/converted_simple_logs/memory_tuned4_heapsort/memory_tuned4_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:11 title 'cache4 heapsort  - Bimodal - 2048 byte table',\
+'../data/converted_simple_logs/memory_tuned4_heapsort/memory_tuned4_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:11 title 'cache4 heapsort  - Bimodal - 512 byte table',\
+'../data/converted_simple_logs/memory_tuned_heapsort/memory_tuned_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:11 title 'cache heapsort  - 2 Level Adaptive - 1024 2nd level entries',\
+'../data/converted_simple_logs/memory_tuned_heapsort/memory_tuned_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_2048_10_1' using 1:11 title 'cache heapsort  - 2 Level Adaptive - 2048 2nd level entries',\
+'../data/converted_simple_logs/memory_tuned_heapsort/memory_tuned_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:11 title 'cache heapsort  - 2 Level Adaptive - 4096 2nd level entries',\
+'../data/converted_simple_logs/memory_tuned_heapsort/memory_tuned_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:11 title 'cache heapsort  - 2 Level Adaptive - 512 2nd level entries',\
+'../data/converted_simple_logs/memory_tuned_heapsort/memory_tuned_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:11 title 'cache heapsort  - Bimodal - 1024 byte table',\
+'../data/converted_simple_logs/memory_tuned_heapsort/memory_tuned_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:11 title 'cache heapsort  - Bimodal - 2048 byte table',\
+'../data/converted_simple_logs/memory_tuned_heapsort/memory_tuned_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:11 title 'cache heapsort  - Bimodal - 512 byte table'

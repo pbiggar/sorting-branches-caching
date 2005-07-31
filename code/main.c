@@ -228,16 +228,16 @@ main(int argc, char** args)
 /*
 	printf("Beginning sort tests (%d - %d)\n", TEST_MIN, TEST_MAX);
 	test_sort(base_heapsort, "Base Heapsort");
-	test_sort(cache_heapsort, "Cache Heapsort");
-	test_sort(cache4_heapsort, "Cache4 Heapsort");
+	test_sort(memory_tuned_heapsort, "Cache Heapsort");
+	test_sort(memory_tuned4_heapsort, "Cache4 Heapsort");
 
 	test_sort(algorithm_n, "Algorithm N");
 	test_sort(algorithm_s, "Algorithm S");
 	test_sort(base_mergesort, "Base Mergesort");
 	test_sort(tiled_mergesort, "Tiled Mergesort");
 	test_sort(multi_mergesort, "Multi Mergesort");
-	test_sort(double_tiled_mergesort, "Double Tiled Mergesort");
-	test_sort(double_multi_mergesort, "Double Multi Mergesort");
+	test_sort(double_aligned_mergesort, "Double Tiled Mergesort");
+	test_sort(double_aligned_multi_mergsort, "Double Multi Mergesort");
 
 
 	test_sort(base_quicksort1, "Base Quicksort1");
@@ -245,40 +245,40 @@ main(int argc, char** args)
 	test_sort(base_quicksort5, "Base Quicksort5");
 	test_sort(base_quicksort7, "Base Quicksort7");
 	test_sort(base_quicksort9, "Base Quicksort9");
-	test_sort(cache_quicksort, "Cache Quicksort");
+	test_sort(memory_tuned_quicksort, "Cache Quicksort");
 	test_sort(multi_quicksort, "Multi Quicksort");
 	test_sort(multi_quicksort_seq, "Sequential Multi Quicksort");
 
 	test_sort(base_radixsort, "Base Radixsort");
-	test_sort(cache_radixsort, "Cache Radixsort");
-	test_sort(aligned_cache_radixsort, "Aligned Cache Radixsort");
+	test_sort(memory_tuned_radixsort, "Cache Radixsort");
+	test_sort(aligned_memory_tuned_radixsort, "Aligned Cache Radixsort");
 	
 	test_sort(shellsort, "Shellsort");
 	test_sort(improved_shellsort, "Improved Shellsort");
 
 	if (TEST_MAX <= 4096)
 	{
-		test_sort(on2_insertsort, "O(N squared) Insertion");
-		test_sort(on2_selectsort, "O(N squared) Selection");
+		test_sort(insertsort, "O(N squared) Insertion");
+		test_sort(selectsort, "O(N squared) Selection");
 	}
 	else
 	{
-		printf("No timings on on2_insertsort - TEST_MAX (%d) is too big\n", TEST_MAX);
-		printf("No timings on on2_insertsort - TEST_MAX (%d) is too big\n", TEST_MAX);
+		printf("No timings on insertsort - TEST_MAX (%d) is too big\n", TEST_MAX);
+		printf("No timings on insertsort - TEST_MAX (%d) is too big\n", TEST_MAX);
 	}
 	if (TEST_MAX <= 4096)
 	{
-		test_sort(on2_bubblesort, "O(N squared) Bubble");
-		test_sort(on2_bubblesort2, "O(N squared) Bubble2");
-		test_sort(on2_shakersort, "O(N squared) Shaker");
-		test_sort(on2_shakersort2, "O(N squared) Shaker2");
+		test_sort(bubblesort, "O(N squared) Bubble");
+		test_sort(bubblesort2, "O(N squared) Bubble2");
+		test_sort(shakersort, "O(N squared) Shaker");
+		test_sort(shakersort2, "O(N squared) Shaker2");
 	}
 	else
 	{
-		printf("No timings on on2_bubblesort - TEST_MAX (%d) is too big\n", TEST_MAX);
-		printf("No timings on on2_bubblesort2 - TEST_MAX (%d) is too big\n", TEST_MAX);
-		printf("No timings on on2_bubblesort - TEST_MAX (%d) is too big\n", TEST_MAX);
-		printf("No timings on on2_bubblesort2 - TEST_MAX (%d) is too big\n", TEST_MAX);
+		printf("No timings on bubblesort - TEST_MAX (%d) is too big\n", TEST_MAX);
+		printf("No timings on bubblesort2 - TEST_MAX (%d) is too big\n", TEST_MAX);
+		printf("No timings on bubblesort - TEST_MAX (%d) is too big\n", TEST_MAX);
+		printf("No timings on bubblesort2 - TEST_MAX (%d) is too big\n", TEST_MAX);
 	}
 
 
@@ -288,16 +288,16 @@ main(int argc, char** args)
 // ****************************************************************************************************************
 	printf("Beginning sort timings (for N = %d)\n", RANDOM_SIZE);
 	time_sort(base_heapsort, "Base Heapsort");
-	time_sort(cache_heapsort, "Cache Heapsort");
-	time_sort(cache4_heapsort, "Cache4 Heapsort");
+	time_sort(memory_tuned_heapsort, "Cache Heapsort");
+	time_sort(memory_tuned4_heapsort, "Cache4 Heapsort");
 
 	time_sort(algorithm_n, "Algorithm N");
 	time_sort(algorithm_s, "Algorithm S");
 	time_sort(base_mergesort, "Base Mergesort");
 	time_sort(tiled_mergesort, "Tiled Mergesort");
 	time_sort(multi_mergesort, "Multi Mergesort");
-	time_sort(double_tiled_mergesort, "Double Tiled Mergesort");
-	time_sort(double_multi_mergesort, "Double Multi Mergesort");
+	time_sort(double_aligned_mergesort, "Double Tiled Mergesort");
+	time_sort(double_aligned_multi_mergsort, "Double Multi Mergesort");
 
 
 	time_sort(base_quicksort1, "Base Quicksort1");
@@ -305,42 +305,42 @@ main(int argc, char** args)
 	time_sort(base_quicksort5, "Base Quicksort5");
 	time_sort(base_quicksort7, "Base Quicksort7");
 	time_sort(base_quicksort9, "Base Quicksort9");
-	time_sort(cache_quicksort, "Cache Quicksort");
+	time_sort(memory_tuned_quicksort, "Cache Quicksort");
 	time_sort(multi_quicksort, "Multi Quicksort");
 	time_sort(multi_quicksort_seq, "Sequential Multi Quicksort");
 
 
 	time_sort(base_radixsort, "Base Radixsort");
-	time_sort(cache_radixsort, "Cache Radixsort");
-	time_sort(aligned_cache_radixsort, "Aligned Cache Radixsort");
+	time_sort(memory_tuned_radixsort, "Cache Radixsort");
+	time_sort(aligned_memory_tuned_radixsort, "Aligned Cache Radixsort");
 	
 	time_sort(shellsort, "Shellsort");
 	time_sort(improved_shellsort, "Improved Shellsort");
 
 	if (RANDOM_SIZE <= 32768)
 	{
-		time_sort(on2_insertsort, "O(N squared) Insertion");
-		time_sort(on2_selectsort, "O(N squared) Selection");
+		time_sort(insertsort, "O(N squared) Insertion");
+		time_sort(selectsort, "O(N squared) Selection");
 	}
 	else
 	{
-		printf("No timings on on2_insertsort - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
-		printf("No timings on on2_insertsort - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
+		printf("No timings on insertsort - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
+		printf("No timings on insertsort - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
 	}
 
 	if (RANDOM_SIZE <= 8192)
 	{
-		time_sort(on2_bubblesort, "O(N squared) Bubble");
-		time_sort(on2_bubblesort2, "O(N squared) Bubble2");
-		time_sort(on2_shakersort, "O(N squared) Shaker");
-		time_sort(on2_shakersort2, "O(N squared) Shaker2");
+		time_sort(bubblesort, "O(N squared) Bubble");
+		time_sort(bubblesort2, "O(N squared) Bubble2");
+		time_sort(shakersort, "O(N squared) Shaker");
+		time_sort(shakersort2, "O(N squared) Shaker2");
 	}
 	else
 	{
-		printf("No timings on on2_bubblesort - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
-		printf("No timings on on2_bubblesort2 - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
-		printf("No timings on on2_bubblesort - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
-		printf("No timings on on2_bubblesort2 - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
+		printf("No timings on bubblesort - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
+		printf("No timings on bubblesort2 - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
+		printf("No timings on bubblesort - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
+		printf("No timings on bubblesort2 - RANDOM_SIZE (%d) is too big\n", RANDOM_SIZE);
 	}
 
 
@@ -354,16 +354,16 @@ main(int argc, char** args)
 	printf("Not running predictors for do_nothing\n");
 
 	predictor_run(base_heapsort, 6, "Base Heapsort");
-	predictor_run(cache_heapsort, 11, "Cache Heapsort");
-	predictor_run(cache4_heapsort, 7, "Cache4 Heapsort");
+	predictor_run(memory_tuned_heapsort, 11, "Cache Heapsort");
+	predictor_run(memory_tuned4_heapsort, 7, "Cache4 Heapsort");
 
 	predictor_run(algorithm_n, 8, "Algorithm N");
 	predictor_run(algorithm_s, 10, "Algorithm S");
 	predictor_run(base_mergesort, 33, "Base Mergesort");
 	predictor_run(tiled_mergesort, 46, "Tiled Mergesort");
 	predictor_run(multi_mergesort, 59, "Multi Mergesort");
-	predictor_run(double_tiled_mergesort, 46, "Double Tiled Mergesort");
-	predictor_run(double_multi_mergesort, 59, "Double Multi Mergesort");
+	predictor_run(double_aligned_mergesort, 46, "Double Tiled Mergesort");
+	predictor_run(double_aligned_multi_mergsort, 59, "Double Multi Mergesort");
 
 
 	predictor_run(base_quicksort1, 5, "Base Quicksort1");
@@ -371,28 +371,28 @@ main(int argc, char** args)
 	predictor_run(base_quicksort5, 12, "Base Quicksort5");
 	predictor_run(base_quicksort7, 17, "Base Quicksort7");
 	predictor_run(base_quicksort9, 22, "Base Quicksort9");
-	predictor_run(cache_quicksort, 4, "Cache Quicksort");
+	predictor_run(memory_tuned_quicksort, 4, "Cache Quicksort");
 	predictor_run(multi_quicksort, 6, "Multi Quicksort");
 	predictor_run(multi_quicksort_seq, 5, "Sequential Multi Quicksort");
 
 	printf("Not running predictors for base_radixsort\n");
-	printf("Not running predictors for cache_radixsort\n");
-	printf("Not running predictors for aligned_cache_radixsort\n");
+	printf("Not running predictors for memory_tuned_radixsort\n");
+	printf("Not running predictors for aligned_memory_tuned_radixsort\n");
 
 	predictor_run(shellsort, 1, "Shellsort");
 	predictor_run(improved_shellsort, 2, "Improved Shellsort");
 */
 	if (RANDOM_SIZE <= 8192)
 	{
-		predictor_run(on2_bubblesort, RANDOM_SIZE, "Bubblesort");
-		predictor_run(on2_bubblesort2, RANDOM_SIZE, "Bubblesort2");
-		predictor_run(on2_insertsort, 2, "Insertion");
+		predictor_run(bubblesort, RANDOM_SIZE, "Bubblesort");
+		predictor_run(bubblesort2, RANDOM_SIZE, "Bubblesort2");
+		predictor_run(insertsort, 2, "Insertion");
 	}
-	else printf ("not running predictors for on2_bubblesort, on2_bubblesort2, or on2_insertsort as N is %d\n", RANDOM_SIZE);
+	else printf ("not running predictors for bubblesort, bubblesort2, or insertsort as N is %d\n", RANDOM_SIZE);
 
-	printf("Not running predictors for on2_selectsort\n");
-	printf("Not running predictors for on2_shakersort\n");
-	printf("Not running predictors for on2_shakersort2\n");
+	printf("Not running predictors for selectsort\n");
+	printf("Not running predictors for shakersort\n");
+	printf("Not running predictors for shakersort2\n");
 
 
 // ****************************************************************************************************************
@@ -426,37 +426,37 @@ main(int argc, char** args)
 do_nothing.c
 
 base_heapsort.c
-cache4_heapsort.c
-cache_heapsort.c
+memory_tuned4_heapsort.c
+memory_tuned_heapsort.c
 
 algorithm_n.c
 algorithm_s.c
 base_mergesort.c
 tiled_mergesort.c
 multi_mergesort.c
-double_multi_mergesort.c
-double_tiled_mergesort.c
+double_aligned_multi_mergsort.c
+double_aligned_mergesort.c
 
 base_quicksort1.c
 base_quicksort.c
 base_quicksort5.c
 base_quicksort7.c
 base_quicksort9.c
-cache_quicksort.c
+memory_tuned_quicksort.c
 multi_quicksort.c
 multi_quicksort_seq.c
 
 base_radixsort.c
-cache_radixsort.c
-aligned_cache_radixsort.c
+memory_tuned_radixsort.c
+aligned_memory_tuned_radixsort.c
 
 shellsort.c
 improved_shellsort.c
 
-on2_insertsort.c
-on2_selectsort.c
-on2_bubblesort2.c
-on2_bubblesort.c
-on2_shakersort2.c
-on2_shakersort.c
+insertsort.c
+selectsort.c
+bubblesort2.c
+bubblesort.c
+shakersort2.c
+shakersort.c
 */

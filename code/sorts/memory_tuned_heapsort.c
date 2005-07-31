@@ -149,7 +149,7 @@ fix_down(unsigned int heap[], int parent, int N)
 }
 
 void
-cache_heapsort(unsigned int a[], int N)
+memory_tuned_heapsort(unsigned int a[], int N)
 {
 	int start_padding, sentinel_count, size_to_allocate, i, length;
 	unsigned int *heap ,*heap_data;

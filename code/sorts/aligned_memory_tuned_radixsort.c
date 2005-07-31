@@ -17,7 +17,7 @@
 #define digit(A, B) (((A) >> (BITSWORD-((B)+1)*BITSBYTE)) & (R-1))
 
 void
-aligned_cache_radixsort(unsigned int a[], int N)
+aligned_memory_tuned_radixsort(unsigned int a[], int N)
 {
 	unsigned int* aux_data;
 	unsigned int* aux;

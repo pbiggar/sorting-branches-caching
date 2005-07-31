@@ -1,7 +1,7 @@
 #include "on2_sorts.h"
 
 void
-on2_bubblesort(unsigned int a[], int N)
+bubblesort(unsigned int a[], int N)
 {
 	int i, j;
 	int sorted;

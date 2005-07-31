@@ -1,4 +1,4 @@
-void double_multi_mergesort(Item a[], int N)
+void double_aligned_multi_mergsort(Item a[], int N)
 {
 	/* assume that code is merged into cache sized segments at this point.
 	 * This is now merged in one step, by the following code

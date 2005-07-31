@@ -10,31 +10,31 @@ set output '../data/plots/on2_-_Direction_hits.eps'
 set xlabel 'set size in keys'
 set ylabel 'Direction hits per key'
 plot \
-'../data/converted_simple_logs/on2_bubblesort/on2_bubblesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:11 title 'on2 bubblesort  - 2 Level Adaptive - 1024 2nd level entries',\
-'../data/converted_simple_logs/on2_bubblesort/on2_bubblesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_2048_10_1' using 1:11 title 'on2 bubblesort  - 2 Level Adaptive - 2048 2nd level entries',\
-'../data/converted_simple_logs/on2_bubblesort/on2_bubblesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:11 title 'on2 bubblesort  - 2 Level Adaptive - 4096 2nd level entries',\
-'../data/converted_simple_logs/on2_bubblesort/on2_bubblesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:11 title 'on2 bubblesort  - 2 Level Adaptive - 512 2nd level entries',\
-'../data/converted_simple_logs/on2_bubblesort/on2_bubblesort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:11 title 'on2 bubblesort  - Bimodal - 1024 byte table',\
-'../data/converted_simple_logs/on2_bubblesort/on2_bubblesort_sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:11 title 'on2 bubblesort  - Bimodal - 2048 byte table',\
-'../data/converted_simple_logs/on2_bubblesort/on2_bubblesort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:11 title 'on2 bubblesort  - Bimodal - 512 byte table',\
-'../data/converted_simple_logs/on2_insertsort/on2_insertsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:11 title 'on2 insertsort  - 2 Level Adaptive - 1024 2nd level entries',\
-'../data/converted_simple_logs/on2_insertsort/on2_insertsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_2048_10_1' using 1:11 title 'on2 insertsort  - 2 Level Adaptive - 2048 2nd level entries',\
-'../data/converted_simple_logs/on2_insertsort/on2_insertsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:11 title 'on2 insertsort  - 2 Level Adaptive - 4096 2nd level entries',\
-'../data/converted_simple_logs/on2_insertsort/on2_insertsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:11 title 'on2 insertsort  - 2 Level Adaptive - 512 2nd level entries',\
-'../data/converted_simple_logs/on2_insertsort/on2_insertsort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:11 title 'on2 insertsort  - Bimodal - 1024 byte table',\
-'../data/converted_simple_logs/on2_insertsort/on2_insertsort_sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:11 title 'on2 insertsort  - Bimodal - 2048 byte table',\
-'../data/converted_simple_logs/on2_insertsort/on2_insertsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:11 title 'on2 insertsort  - Bimodal - 512 byte table',\
-'../data/converted_simple_logs/on2_selectsort/on2_selectsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:11 title 'on2 selectsort  - 2 Level Adaptive - 1024 2nd level entries',\
-'../data/converted_simple_logs/on2_selectsort/on2_selectsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_2048_10_1' using 1:11 title 'on2 selectsort  - 2 Level Adaptive - 2048 2nd level entries',\
-'../data/converted_simple_logs/on2_selectsort/on2_selectsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:11 title 'on2 selectsort  - 2 Level Adaptive - 4096 2nd level entries',\
-'../data/converted_simple_logs/on2_selectsort/on2_selectsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:11 title 'on2 selectsort  - 2 Level Adaptive - 512 2nd level entries',\
-'../data/converted_simple_logs/on2_selectsort/on2_selectsort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:11 title 'on2 selectsort  - Bimodal - 1024 byte table',\
-'../data/converted_simple_logs/on2_selectsort/on2_selectsort_sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:11 title 'on2 selectsort  - Bimodal - 2048 byte table',\
-'../data/converted_simple_logs/on2_selectsort/on2_selectsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:11 title 'on2 selectsort  - Bimodal - 512 byte table',\
-'../data/converted_simple_logs/on2_shakersort/on2_shakersort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:11 title 'on2 shakersort  - 2 Level Adaptive - 1024 2nd level entries',\
-'../data/converted_simple_logs/on2_shakersort/on2_shakersort_sim-bpred_-bpred_2lev_-bpred:2lev_1_2048_10_1' using 1:11 title 'on2 shakersort  - 2 Level Adaptive - 2048 2nd level entries',\
-'../data/converted_simple_logs/on2_shakersort/on2_shakersort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:11 title 'on2 shakersort  - 2 Level Adaptive - 4096 2nd level entries',\
-'../data/converted_simple_logs/on2_shakersort/on2_shakersort_sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:11 title 'on2 shakersort  - 2 Level Adaptive - 512 2nd level entries',\
-'../data/converted_simple_logs/on2_shakersort/on2_shakersort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:11 title 'on2 shakersort  - Bimodal - 1024 byte table',\
-'../data/converted_simple_logs/on2_shakersort/on2_shakersort_sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:11 title 'on2 shakersort  - Bimodal - 2048 byte table',\
-'../data/converted_simple_logs/on2_shakersort/on2_shakersort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:11 title 'on2 shakersort  - Bimodal - 512 byte table'
+'../data/converted_simple_logs/bubblesort/bubblesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:11 title 'on2 bubblesort  - 2 Level Adaptive - 1024 2nd level entries',\
+'../data/converted_simple_logs/bubblesort/bubblesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_2048_10_1' using 1:11 title 'on2 bubblesort  - 2 Level Adaptive - 2048 2nd level entries',\
+'../data/converted_simple_logs/bubblesort/bubblesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:11 title 'on2 bubblesort  - 2 Level Adaptive - 4096 2nd level entries',\
+'../data/converted_simple_logs/bubblesort/bubblesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:11 title 'on2 bubblesort  - 2 Level Adaptive - 512 2nd level entries',\
+'../data/converted_simple_logs/bubblesort/bubblesort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:11 title 'on2 bubblesort  - Bimodal - 1024 byte table',\
+'../data/converted_simple_logs/bubblesort/bubblesort_sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:11 title 'on2 bubblesort  - Bimodal - 2048 byte table',\
+'../data/converted_simple_logs/bubblesort/bubblesort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:11 title 'on2 bubblesort  - Bimodal - 512 byte table',\
+'../data/converted_simple_logs/insertsort/insertsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:11 title 'on2 insertsort  - 2 Level Adaptive - 1024 2nd level entries',\
+'../data/converted_simple_logs/insertsort/insertsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_2048_10_1' using 1:11 title 'on2 insertsort  - 2 Level Adaptive - 2048 2nd level entries',\
+'../data/converted_simple_logs/insertsort/insertsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:11 title 'on2 insertsort  - 2 Level Adaptive - 4096 2nd level entries',\
+'../data/converted_simple_logs/insertsort/insertsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:11 title 'on2 insertsort  - 2 Level Adaptive - 512 2nd level entries',\
+'../data/converted_simple_logs/insertsort/insertsort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:11 title 'on2 insertsort  - Bimodal - 1024 byte table',\
+'../data/converted_simple_logs/insertsort/insertsort_sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:11 title 'on2 insertsort  - Bimodal - 2048 byte table',\
+'../data/converted_simple_logs/insertsort/insertsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:11 title 'on2 insertsort  - Bimodal - 512 byte table',\
+'../data/converted_simple_logs/selectsort/selectsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:11 title 'on2 selectsort  - 2 Level Adaptive - 1024 2nd level entries',\
+'../data/converted_simple_logs/selectsort/selectsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_2048_10_1' using 1:11 title 'on2 selectsort  - 2 Level Adaptive - 2048 2nd level entries',\
+'../data/converted_simple_logs/selectsort/selectsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:11 title 'on2 selectsort  - 2 Level Adaptive - 4096 2nd level entries',\
+'../data/converted_simple_logs/selectsort/selectsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:11 title 'on2 selectsort  - 2 Level Adaptive - 512 2nd level entries',\
+'../data/converted_simple_logs/selectsort/selectsort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:11 title 'on2 selectsort  - Bimodal - 1024 byte table',\
+'../data/converted_simple_logs/selectsort/selectsort_sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:11 title 'on2 selectsort  - Bimodal - 2048 byte table',\
+'../data/converted_simple_logs/selectsort/selectsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:11 title 'on2 selectsort  - Bimodal - 512 byte table',\
+'../data/converted_simple_logs/shakersort/shakersort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:11 title 'on2 shakersort  - 2 Level Adaptive - 1024 2nd level entries',\
+'../data/converted_simple_logs/shakersort/shakersort_sim-bpred_-bpred_2lev_-bpred:2lev_1_2048_10_1' using 1:11 title 'on2 shakersort  - 2 Level Adaptive - 2048 2nd level entries',\
+'../data/converted_simple_logs/shakersort/shakersort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:11 title 'on2 shakersort  - 2 Level Adaptive - 4096 2nd level entries',\
+'../data/converted_simple_logs/shakersort/shakersort_sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:11 title 'on2 shakersort  - 2 Level Adaptive - 512 2nd level entries',\
+'../data/converted_simple_logs/shakersort/shakersort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:11 title 'on2 shakersort  - Bimodal - 1024 byte table',\
+'../data/converted_simple_logs/shakersort/shakersort_sim-bpred_-bpred_bimod_-bpred:bimod_2048' using 1:11 title 'on2 shakersort  - Bimodal - 2048 byte table',\
+'../data/converted_simple_logs/shakersort/shakersort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:11 title 'on2 shakersort  - Bimodal - 512 byte table'

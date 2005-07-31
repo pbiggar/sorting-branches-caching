@@ -6,11 +6,11 @@ set format x "%8.0f"
 set logscale x
 set data style linespoints
 set term postscript eps
-set output '../data/plots/double_tiled_mergesort_-_Level_2_misses.eps'
+set output '../data/plots/double_aligned_mergesort_-_Level_2_misses.eps'
 set xlabel 'set size in keys'
 set ylabel 'Level 2 misses per key'
 plot \
-'../data/converted_simple_logs/double_tiled_mergesort/double_tiled_mergesort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'Direct Mapped - 4MB - 32 byte line',\
-'../data/converted_simple_logs/double_tiled_mergesort/double_tiled_mergesort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'Direct Mapped - 2MB - 32 byte line',\
-'../data/converted_simple_logs/double_tiled_mergesort/double_tiled_mergesort_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:28 title 'Fully Associative - 4MB - 32 byte line',\
-'../data/converted_simple_logs/double_tiled_mergesort/double_tiled_mergesort_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:28 title 'Fully Associative - 2MB - 32 byte line'
+'../data/converted_simple_logs/double_aligned_mergesort/double_aligned_mergesort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:131072:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'Direct Mapped - 4MB - 32 byte line',\
+'../data/converted_simple_logs/double_aligned_mergesort/double_aligned_mergesort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'Direct Mapped - 2MB - 32 byte line',\
+'../data/converted_simple_logs/double_aligned_mergesort/double_aligned_mergesort_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:131072:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:28 title 'Fully Associative - 4MB - 32 byte line',\
+'../data/converted_simple_logs/double_aligned_mergesort/double_aligned_mergesort_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:28 title 'Fully Associative - 2MB - 32 byte line'

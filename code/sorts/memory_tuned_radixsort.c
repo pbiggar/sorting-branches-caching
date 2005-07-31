@@ -13,7 +13,7 @@
 #define digit(A, B) (((A) >> (BITSWORD-((B)+1)*BITSBYTE)) & (R-1))
 
 void
-cache_radixsort(unsigned int a[], int N)
+memory_tuned_radixsort(unsigned int a[], int N)
 {
 	unsigned int* aux = malloc(N * sizeof(unsigned int));
 	int i, j, w; /* R is the size of a digit, hence the number of bins */

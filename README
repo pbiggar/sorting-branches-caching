@@ -45,7 +45,7 @@ Hardware counters:
 	There's a little bit of hard coding in this script, so change $key_num to
 	the number of times perfex actually ran. Also modify the input so that only
 	completed work cycles are there. This means if the last sort you ran was
-	on2_selectsort, and it ran 256 times, but other sorts ran 257 times, remove
+	selectsort, and it ran 256 times, but other sorts ran 257 times, remove
 	the sort results for the 257th iteration from the results file.
 
 	This produces a file in the data/ directory called processes_cycles_data

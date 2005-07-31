@@ -42,5 +42,5 @@ test_sort(void sort(Item*, int), char* description) {
 	}
 	printf("Testing of %s complete\n", description);
 }
-test_sort(on2_insertsort, "O(N squared) Insertion");
-time_sort(on2_insertsort, "O(N squared) Insertion");
+test_sort(insertsort, "O(N squared) Insertion");
+time_sort(insertsort, "O(N squared) Insertion");

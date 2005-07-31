@@ -3,12 +3,12 @@
 
 #include "../aux/utils.h"
 
-void on2_insertsort(unsigned int a[], int N);
-void on2_selectsort(unsigned int a[], int N);
-void on2_bubblesort(unsigned int a[], int N);
-void on2_shakersort(unsigned int a[], int N);
+void insertsort(unsigned int a[], int N);
+void selectsort(unsigned int a[], int N);
+void bubblesort(unsigned int a[], int N);
+void shakersort(unsigned int a[], int N);
 
-void on2_bubblesort2(unsigned int a[], int N);
-void on2_shakersort2(unsigned int a[], int N);
+void bubblesort2(unsigned int a[], int N);
+void shakersort2(unsigned int a[], int N);
 
 #endif

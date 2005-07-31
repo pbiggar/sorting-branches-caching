@@ -2,12 +2,12 @@
 
 for ((  i = 0 ;  i < 10;  i++  ))
 do
-	for j in algorithm_n algorithm_s aligned_cache_radixsort base_heapsort base_mergesort base_quicksort base_quicksort1 base_quicksort5 base_quicksort7 base_quicksort9 base_radixsort cache4_heapsort cache_heapsort cache_quicksort cache_radixsort do_nothing double_multi_mergesort double_tiled_mergesort improved_shellsort multi_mergesort multi_quicksort multi_quicksort_seq shellsort tiled_mergesort
+	for j in algorithm_n algorithm_s aligned_memory_tuned_radixsort base_heapsort base_mergesort base_quicksort base_quicksort1 base_quicksort5 base_quicksort7 base_quicksort9 base_radixsort memory_tuned4_heapsort memory_tuned_heapsort memory_tuned_quicksort memory_tuned_radixsort do_nothing double_aligned_multi_mergsort double_aligned_mergesort improved_shellsort multi_mergesort multi_quicksort multi_quicksort_seq shellsort tiled_mergesort
 	do
 		./do_simple -c random.org$i -o $i $j
 	done
 
-	for j in on2_insertsort on2_selectsort on2_bubblesort on2_bubblesort2 on2_shakersort on2_shakersort2 
+	for j in insertsort selectsort bubblesort bubblesort2 shakersort shakersort2 
 	do
 		./do_simple -c random.org$i -o $i -M 65536 $j 
 	done

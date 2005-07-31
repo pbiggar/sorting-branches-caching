@@ -11,6 +11,6 @@ set xlabel 'set size in keys'
 set ylabel 'Branches per key'
 plot \
 '../data/converted_simple_logs/base_quicksort/base_quicksort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'base quicksort',\
-'../data/converted_simple_logs/cache_quicksort/cache_quicksort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'tuned quicksort',\
+'../data/converted_simple_logs/memory_tuned_quicksort/memory_tuned_quicksort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'tuned quicksort',\
 '../data/converted_simple_logs/multi_quicksort/multi_quicksort_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'multi-quicksort (binary search)',\
 '../data/converted_simple_logs/multi_quicksort_seq/multi_quicksort_seq_sim-bpred_-bpred_2lev_-bpred:2lev_1_1024_10_1' using 1:6 title 'multi-quicksort (sequential search)'

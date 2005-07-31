@@ -1,7 +1,7 @@
 #include "on2_sorts.h"
 
 void
-on2_shakersort(unsigned int a[], int N)
+shakersort(unsigned int a[], int N)
 {
 	int i, j;
 	int k = N-1;

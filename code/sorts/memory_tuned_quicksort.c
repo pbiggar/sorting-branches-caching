@@ -66,7 +66,7 @@ insertion(unsigned int a[], int N)
 }
 
 void
-cache_quicksort(unsigned int a[], int N)
+memory_tuned_quicksort(unsigned int a[], int N)
 {
 	int l, r;
 	int i;

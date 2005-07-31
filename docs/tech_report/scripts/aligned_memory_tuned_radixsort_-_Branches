@@ -6,8 +6,8 @@ set format x "%8.0f"
 set logscale x
 set data style linespoints
 set term postscript eps
-set output '../data/plots/aligned_cache_radixsort_-_Branches.eps'
+set output '../data/plots/aligned_memory_tuned_radixsort_-_Branches.eps'
 set xlabel ''
 set ylabel 'Branches per key'
 plot \
-'../data/converted_simple_logs/aligned_cache_radixsort/aligned_cache_radixsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6
+'../data/converted_simple_logs/aligned_memory_tuned_radixsort/aligned_memory_tuned_radixsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6

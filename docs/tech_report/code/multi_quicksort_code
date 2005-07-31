@@ -202,5 +202,5 @@
 \L{\LB{}\Tab{16}{\V{l}_=_\N{0};}}
 \L{\LB{}\Tab{8}{\}}}
 \L{\LB{}}
-\L{\LB{}\Tab{8}{\C{}/*_as_cache_quicksort_from_here_*/\CE{}}}
+\L{\LB{}\Tab{8}{\C{}/*_as_memory_tuned_quicksort_from_here_*/\CE{}}}
 \L{\LB{\}}}

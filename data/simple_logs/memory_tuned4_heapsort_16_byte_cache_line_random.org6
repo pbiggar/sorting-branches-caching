@@ -1,5 +1,5 @@
 Thu Jul 21 16:49:39 2005
-Run as: "./do_simple -c 16_byte_cache_line_random.org6 -o 6 -L 16 cache4_heapsort"
+Run as: "./do_simple -c 16_byte_cache_line_random.org6 -o 6 -L 16 memory_tuned4_heapsort"
 -------------------------------------------------------------------------------------------------
 sim-cache                                     4096 |         4096 |         4096 |         4096 |         8192 |         8192 |         8192 |         8192 |        16384 |        16384 |        16384 |        16384 |        32768 |        32768 |        32768 |        32768 |        65536 |        65536 |        65536 |        65536 |       131072 |       131072 |       131072 |       131072 |       262144 |       262144 |       262144 |       262144 |       524288 |       524288 |       524288 |       524288 |      1048576 |      1048576 |      1048576 |      1048576 |      2097152 |      2097152 |      2097152 |      2097152 |      4194304 |      4194304 |      4194304 |      4194304 |
 -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2
@@ -129,135 +129,135 @@ bpred_2lev.ras_hits.PP               xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx
 bpred_2lev.ras_rate.PP               xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       1.0000 |       1.0000 |       1.0000 |       1.0000 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9999 |       0.9999 |       0.9999 |       0.9999 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       0.9999 |       0.9999 |       0.9999 |       0.9999 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       1.0000 |       1.0000 |       1.0000 |       1.0000 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       1.0000 |       1.0000 |       1.0000 |       1.0000 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       1.0000 |       1.0000 |       1.0000 |       1.0000 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       1.0000 |       1.0000 |       1.0000 |       1.0000 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       1.0000 |       1.0000 |       1.0000 |       1.0000 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       1.0000 |       1.0000 |       1.0000 |       1.0000 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       1.0000 |       1.0000 |       1.0000 |       1.0000 |xxxxxxxxxxxxx |xxxxxxxxxxxxx |xxxxxxxxxxxxx |       1.0000 |       1.0000 |       1.0000 |       1.0000 |
 
 Command list: 
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=4096 -DOFFSET=6 -DSORT=cache4_heapsort sorts/cache4_heapsort454530916.c simpleMain.c -o cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 512 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 1024 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 2048 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 cache4_heapsort1896265598
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=8192 -DOFFSET=6 -DSORT=cache4_heapsort sorts/cache4_heapsort454530916.c simpleMain.c -o cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 512 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 1024 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 2048 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 cache4_heapsort1896265598
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=16384 -DOFFSET=6 -DSORT=cache4_heapsort sorts/cache4_heapsort454530916.c simpleMain.c -o cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 512 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 1024 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 2048 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 cache4_heapsort1896265598
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=32768 -DOFFSET=6 -DSORT=cache4_heapsort sorts/cache4_heapsort454530916.c simpleMain.c -o cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 512 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 1024 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 2048 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 cache4_heapsort1896265598
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=65536 -DOFFSET=6 -DSORT=cache4_heapsort sorts/cache4_heapsort454530916.c simpleMain.c -o cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 512 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 1024 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 2048 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 cache4_heapsort1896265598
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=131072 -DOFFSET=6 -DSORT=cache4_heapsort sorts/cache4_heapsort454530916.c simpleMain.c -o cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 512 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 1024 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 2048 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 cache4_heapsort1896265598
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=262144 -DOFFSET=6 -DSORT=cache4_heapsort sorts/cache4_heapsort454530916.c simpleMain.c -o cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 512 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 1024 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 2048 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 cache4_heapsort1896265598
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=524288 -DOFFSET=6 -DSORT=cache4_heapsort sorts/cache4_heapsort454530916.c simpleMain.c -o cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 512 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 1024 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 2048 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 cache4_heapsort1896265598
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=1048576 -DOFFSET=6 -DSORT=cache4_heapsort sorts/cache4_heapsort454530916.c simpleMain.c -o cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 512 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 1024 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 2048 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 cache4_heapsort1896265598
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=2097152 -DOFFSET=6 -DSORT=cache4_heapsort sorts/cache4_heapsort454530916.c simpleMain.c -o cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 512 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 1024 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 2048 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 cache4_heapsort1896265598
-	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=4194304 -DOFFSET=6 -DSORT=cache4_heapsort sorts/cache4_heapsort454530916.c simpleMain.c -o cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 512 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 1024 cache4_heapsort1896265598
-	sim-bpred -bpred bimod -bpred:bimod 2048 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 cache4_heapsort1896265598
-	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 cache4_heapsort1896265598
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=4096 -DOFFSET=6 -DSORT=memory_tuned4_heapsort sorts/memory_tuned4_heapsort454530916.c simpleMain.c -o memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 512 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 1024 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 2048 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 memory_tuned4_heapsort1896265598
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=8192 -DOFFSET=6 -DSORT=memory_tuned4_heapsort sorts/memory_tuned4_heapsort454530916.c simpleMain.c -o memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 512 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 1024 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 2048 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 memory_tuned4_heapsort1896265598
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=16384 -DOFFSET=6 -DSORT=memory_tuned4_heapsort sorts/memory_tuned4_heapsort454530916.c simpleMain.c -o memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 512 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 1024 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 2048 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 memory_tuned4_heapsort1896265598
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=32768 -DOFFSET=6 -DSORT=memory_tuned4_heapsort sorts/memory_tuned4_heapsort454530916.c simpleMain.c -o memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 512 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 1024 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 2048 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 memory_tuned4_heapsort1896265598
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=65536 -DOFFSET=6 -DSORT=memory_tuned4_heapsort sorts/memory_tuned4_heapsort454530916.c simpleMain.c -o memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 512 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 1024 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 2048 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 memory_tuned4_heapsort1896265598
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=131072 -DOFFSET=6 -DSORT=memory_tuned4_heapsort sorts/memory_tuned4_heapsort454530916.c simpleMain.c -o memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 512 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 1024 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 2048 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 memory_tuned4_heapsort1896265598
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=262144 -DOFFSET=6 -DSORT=memory_tuned4_heapsort sorts/memory_tuned4_heapsort454530916.c simpleMain.c -o memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 512 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 1024 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 2048 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 memory_tuned4_heapsort1896265598
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=524288 -DOFFSET=6 -DSORT=memory_tuned4_heapsort sorts/memory_tuned4_heapsort454530916.c simpleMain.c -o memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 512 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 1024 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 2048 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 memory_tuned4_heapsort1896265598
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=1048576 -DOFFSET=6 -DSORT=memory_tuned4_heapsort sorts/memory_tuned4_heapsort454530916.c simpleMain.c -o memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 512 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 1024 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 2048 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 memory_tuned4_heapsort1896265598
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=2097152 -DOFFSET=6 -DSORT=memory_tuned4_heapsort sorts/memory_tuned4_heapsort454530916.c simpleMain.c -o memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 512 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 1024 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 2048 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 memory_tuned4_heapsort1896265598
+	sslittle-na-sstrix-gcc -Wall -O3 -funroll-loops -finline-functions  -DRANDOM_SIZE=4194304 -DOFFSET=6 -DSORT=memory_tuned4_heapsort sorts/memory_tuned4_heapsort454530916.c simpleMain.c -o memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:262144:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:512:16:1:l -cache:dl2 dl2:131072:16:1:l -cache:il1 il1:512:16:1:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:262144:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-cache -cache:dl1 dl1:1:16:512:l -cache:dl2 dl2:1:16:131072:l -cache:il1 il1:1:16:512:l -cache:il2 dl2 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 512 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 1024 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred bimod -bpred:bimod 2048 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 512 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 1024 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 2048 10 1 memory_tuned4_heapsort1896265598
+	sim-bpred -bpred 2lev -bpred:2lev 1 4096 10 1 memory_tuned4_heapsort1896265598

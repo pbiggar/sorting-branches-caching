@@ -6,8 +6,8 @@ set format x "%8.0f"
 set logscale x
 set data style linespoints
 set term postscript eps
-set output '../data/plots/on2_insertsort_-_Branches.eps'
+set output '../data/plots/insertsort_-_Branches.eps'
 set xlabel 'set size in keys'
 set ylabel 'Branches per key'
 plot \
-'../data/converted_simple_logs/on2_insertsort/on2_insertsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6
+'../data/converted_simple_logs/insertsort/insertsort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6

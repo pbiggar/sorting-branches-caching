@@ -4,9 +4,9 @@ CC = gcc
 CFLAGS = -Wall -O3 -funroll-loops -finline-functions -D_USE_SOFTWARE_PREDICTOR -D_USE_ROLLED_LOOPS
 
 
-ON2_SORTS = on2_insertsort on2_selectsort on2_bubblesort on2_shakersort on2_shakersort2 on2_bubblesort2
+ON2_SORTS = insertsort selectsort bubblesort shakersort shakersort2 bubblesort2
 BASE_SORTS = base_heapsort base_quicksort base_radixsort base_mergesort algorithm_n algorithm_s base_quicksort1 base_quicksort5 base_quicksort7 base_quicksort9 shellsort improved_shellsort
-CACHE_SORTS = cache_heapsort cache4_heapsort tiled_mergesort multi_mergesort cache_quicksort multi_quicksort double_tiled_mergesort double_multi_mergesort cache_radixsort aligned_cache_radixsort
+CACHE_SORTS = memory_tuned_heapsort memory_tuned4_heapsort tiled_mergesort multi_mergesort memory_tuned_quicksort multi_quicksort double_aligned_mergesort double_aligned_multi_mergsort memory_tuned_radixsort aligned_memory_tuned_radixsort
 BRANCH_SORTS = multi_quicksort_seq predicated_quicksort
 
 

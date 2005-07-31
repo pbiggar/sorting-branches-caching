@@ -6,8 +6,8 @@ set format x "%8.0f"
 set logscale x
 set data style linespoints
 set term postscript eps
-set output '../data/plots/cache_quicksort_-_Branches.eps'
+set output '../data/plots/memory_tuned_quicksort_-_Branches.eps'
 set xlabel 'set size in keys'
 set ylabel 'Branches per key'
 plot \
-'../data/converted_simple_logs/cache_quicksort/cache_quicksort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6
+'../data/converted_simple_logs/memory_tuned_quicksort/memory_tuned_quicksort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:6

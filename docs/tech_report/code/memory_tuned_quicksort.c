@@ -1,4 +1,4 @@
-cache_quicksort(unsigned int a[], int N)
+memory_tuned_quicksort(unsigned int a[], int N)
 {
 	stackinit(N);
 	int r = N-1;

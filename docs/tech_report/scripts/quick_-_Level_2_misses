@@ -11,6 +11,6 @@ set xlabel 'set size in keys'
 set ylabel 'Level 2 misses per key'
 plot \
 '../data/converted_simple_logs/base_quicksort/base_quicksort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'base quicksort',\
-'../data/converted_simple_logs/cache_quicksort/cache_quicksort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'tuned quicksort',\
+'../data/converted_simple_logs/memory_tuned_quicksort/memory_tuned_quicksort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'tuned quicksort',\
 '../data/converted_simple_logs/multi_quicksort/multi_quicksort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'multi-quicksort (binary search)',\
 '../data/converted_simple_logs/multi_quicksort_seq/multi_quicksort_seq_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'multi-quicksort (sequential search)'

@@ -39,7 +39,7 @@ fix_down(Item heap[], int parent, int N)
 	heap[parent] = v;
 }
 
-void cache_heapsort(Item a[], int N)
+void memory_tuned_heapsort(Item a[], int N)
 {
 	int start_padding = HEAP_SIZE - 1;
 	int length = 0;

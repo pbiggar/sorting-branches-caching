@@ -15,7 +15,7 @@ still unsorted, and it is now searched for its smallest key, which is swapped
 into place. This continues until the entire array is sorted. Sample code is in
 Figure \vref{Selection sort code}.
 
-\code{Selection sort code}{on2_selectsort.c}
+\code{Selection sort code}{selectsort.c}
 \subsection{Testing}
 All elementary sorts are only sorted up to 65536 keys in the simulations, and
 262144 keys with the performance counters. Due to the quadratic nature of
@@ -89,7 +89,7 @@ place at the end. This would use a different insertion sort, with a bounds
 check, going in the opposite direction. The first of these is shown in the
 sample code in Figure \vref{Insertion sort code}.
 
-\code{Insertion sort code}{on2_insertsort.c}
+\code{Insertion sort code}{insertsort.c}
 \subsection{Testing}
 \subsubsection{Expected Performance}
 These instruction count observations are again due to Sedgewick.  Insertion sort
@@ -125,7 +125,7 @@ sorted as bubble sort continues.
 An improvement made to bubblesort is that it stops as soon as the array is
 sorted. Sample bubblesort code is in Figure \vref{Bubblesort code}.
 
-\code{Bubblesort code}{on2_bubblesort.c}
+\code{Bubblesort code}{bubblesort.c}
 \subsection{Testing}
 \subsubsection{Expected Performance}
 These instruction count observations are again due to Sedgewick.  Bubblesort has
@@ -154,7 +154,7 @@ made, and starts the next iteration from there. This means that any pockets of
 sorted keys are skipped over, not just if they occur at the end. Bubblesort2
 code is shown in Figure \vref{Bubblesort2 code}.
 
-\code{Bubblesort2 code}{on2_bubblesort2.c}
+\code{Bubblesort2 code}{bubblesort2.c}
 \subsection{Testing}
 \subsubsection{Expected Performance}
 It is expected that the bubblesort2 should perform faster than the original in
@@ -171,7 +171,7 @@ become sorted in this manner, with the larger keys slowly moving right and the
 smaller keys moving left. Sample code for shakersort is shown in Figure
 \vref{Shakersort code}.
 
-\code{Shakersort code}{on2_shakersort.c}
+\code{Shakersort code}{shakersort.c}
 \subsection{Testing}
 \subsubsection{Expected Performance}
 The instruction count of shakersort is expected to be exactly the same as
@@ -203,7 +203,7 @@ does over bubblesort, that is, it skips over pockets of sorted keys in both
 directions, as well as ending early. The code for shakersort2 is in Figure
 \vref{Shakersort2 code}.
 
-\code{Shakersort2 code}{on2_shakersort2.c}
+\code{Shakersort2 code}{shakersort2.c}
 \subsection{Testing}
 \subsubsection{Expected Performance}
 It is expected that the improvements will make shakersort faster in all cases
