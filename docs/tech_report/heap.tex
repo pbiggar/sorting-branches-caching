@@ -106,7 +106,7 @@ last element of the heap. This is an effective technique for building the heap,
 as the number of keys is static. When destroying the heap, however, the
 maximal key must be added to every second operation. This can be avoided
 relatively simply with no extra instructions. If the last key in the heap is
-left in place aswell as being sifted down the heap, it will provide a
+left in place as well as being sifted down the heap, it will provide a
 sentinel for the sift-down operation. The key from the top of the heap is then
 put into place at the end. This technique reduces instruction count by
 approximately 10\%.
@@ -248,9 +248,9 @@ associative performing slightly better than the direct mapped cache.
 In the graph, the base heapsort's results flat-line for a step longer than the
 other heapsorts' results. This is due to being in-place, since twice as many
 keys fit in the cache without a corresponding increase in misses. For the same
-reason, the base heapsorts have no compulsary misses\footnote{See Section
+reason, the base heapsorts have no compulsory misses\footnote{See Section
 \ref{TODO}.}, while the out-of-place sorts have one compulsory miss in eight,
-when the auxilliary heap is being populated.
+when the auxiliary heap is being populated.
 
 The branch prediction behaves differently to the expected results, as the
 prediction ratio gets worse as the fanout gets larger. The reason we predicted
@@ -302,9 +302,9 @@ Slight differences exist though. The level 2 cache miss results here indicate
 that while still sorting in the cache, the number of misses in the in-place
 heapsort is less than that of the out-of-place sorts. LaMarca, however, has the
 same amount of misses in both cases. Similarly, the results here indicate that
-base heapsort experiences a sharp increase in cache misses. Cache heaport also
+base heapsort experiences a sharp increase in cache misses. Cache heapsort also
 has a similar increase, though LaMarca's results show that these occur at the
-same position in the graph, in other words, when th set size is the same. Our
+same position in the graph, in other words, when the set size is the same. Our
 results, however, show that this occurs earlier in memory-tuned heapsort, due to the
 fact that it is an out of place sort.
 
@@ -326,7 +326,7 @@ Figure \ref{base and memory-tuned heapsorts-1} show that the time taken to
 create the heap is not significant relative to the time taken to sort from the
 heap.
 
-The most interesting thing is the relation between the predictablility of the
+The most interesting thing is the relation between the predictability of the
 comparisons during the destruction of the 2-, 4- and 8-heaps. Compare the
 columns marked `\cc{Destruction, child comparison}' and `\cc{Destruction, child
 promotion}' in Figure \ref{base and memory-tuned heapsort-1} (the 2-heap), with
@@ -369,5 +369,5 @@ on hints from the compiler could do a better job at making correct predictions.
 LaMarca later published heapsort code in \cite{LaMarcaHeap96}. The ACM
 Journal of Experimental Algorithms requires that source code be published, and
 comparing simulated results from there to the sorts created here might have
-interesting results and would explain the discreptancies highlighted in this
+interesting results and would explain the discrepancies highlighted in this
 chapter.
