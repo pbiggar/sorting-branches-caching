@@ -1,7 +1,7 @@
 #include "on2_sorts.h"
 
 void
-bubblesort2(unsigned int a[], int N)
+improved_bubblesort(unsigned int a[], int N)
 {
 	int i = 0, j, k = 0;
 
