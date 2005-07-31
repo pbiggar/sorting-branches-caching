@@ -1,5 +1,5 @@
 NB: Most of the scripts and programs used here are hard coded, and will only
-work from the working directories specfied below.
+work from the working directories specified below.
 
 There are 4 sets of tests: testing the sorts to see if they work, hardware
 performance counters, software branch predictors and simplescalar tests.
@@ -85,7 +85,7 @@ Software branch predictors:
 
 Simplescalar:
 
-	If your simplescalar binaries are big endian (if gcc is
+	If your simplescalar binaries are big-endian (if gcc is
 	ssbig-na-sstrix-gcc), then edit the $CC variable in scripts/do_simple to
 	reflect this.
 
@@ -101,7 +101,7 @@ Simplescalar:
 	To create the gnuplot scripts for these files, run:
 *		$ ../scripts/do_all_plot
 
-	Though this doesnt actually run gnuplot, dispite its name.  do_all_convert
+	Though this doesn't actually run gnuplot, despite its name.  do_all_convert
 	creates gnuplot data files in data/converted_simple_logs/, and do_all_plot
 	creates gnuplot scripts for each sort type and each sort, stored in
 	data/simplescalar_generated_gnuplot_scripts.
@@ -118,7 +118,7 @@ Documents:
 *		$ make
 
 	in the respective directories. All the papers use plots from the
-	data/plots/ directory, and have symlinks to it. Some of the plots might be
+	data/plots/ directory, and have sym-links to it. Some of the plots might be
 	slightly and subtly different, so it's best to enter the /docs/*/scripts
 	directory first, and run:
 *		$ ./gnuplot_dir
