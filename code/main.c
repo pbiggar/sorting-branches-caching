@@ -15,12 +15,12 @@
 #include "aux/utils.h"
 
 
-//#define RANDOM_SIZE (4194304)
+#define RANDOM_SIZE (4194304)
 //#define RANDOM_SIZE (534523)
 //#define RANDOM_SIZE (262144)
 //#define RANDOM_SIZE (32768)
 //#define RANDOM_SIZE (16384)
-#define RANDOM_SIZE (8192)
+//#define RANDOM_SIZE (8192)
 //#define RANDOM_SIZE (4096)
 //#define RANDOM_SIZE (128)
 
@@ -225,7 +225,7 @@ main(int argc, char** args)
 // ****************************************************************************************************************
 //                    tests
 // ****************************************************************************************************************
-/*
+
 	printf("Beginning sort tests (%d - %d)\n", TEST_MIN, TEST_MAX);
 	test_sort(base_heapsort, "base heapsort");
 	test_sort(memory_tuned_heapsort, "memory-tuned heapsort");
@@ -242,9 +242,9 @@ main(int argc, char** args)
 
 	test_sort(base_quicksort1, "base quicksort (no median)");
 	test_sort(base_quicksort, "base quicksort (median-of-3)");
-	test_sort(base_quicksort5, "base quicksort (pseudo-median-of-5");
-	test_sort(base_quicksort7, "base quicksort (pseudo-median-of-7");
-	test_sort(base_quicksort9, "base quicksort (pseudo-median-of-9");
+	test_sort(base_quicksort5, "base quicksort (pseudo-median-of-5)");
+	test_sort(base_quicksort7, "base quicksort (pseudo-median-of-7)");
+	test_sort(base_quicksort9, "base quicksort (pseudo-median-of-9)");
 	test_sort(memory_tuned_quicksort, "memory-tuned quicksort");
 	test_sort(multi_quicksort, "multi-quicksort (binary search)");
 	test_sort(multi_quicksort_seq, "multi-quicksort (sequential search)");
@@ -295,10 +295,10 @@ main(int argc, char** args)
 
 
 	time_sort(base_quicksort1, "base quicksort1 (no median");
-	time_sort(base_quicksort, "base quicksort (median-of-3");
-	time_sort(base_quicksort5, "base quicksort5 (pseudo-median-of-5");
-	time_sort(base_quicksort7, "base quicksort7 (pseudo-median-of-7");
-	time_sort(base_quicksort9, "base quicksort9 (pseudo-median-of-9");
+	time_sort(base_quicksort, "base quicksort (median-of-3)");
+	time_sort(base_quicksort5, "base quicksort5 (pseudo-median-of-5)");
+	time_sort(base_quicksort7, "base quicksort7 (pseudo-median-of-7)");
+	time_sort(base_quicksort9, "base quicksort9 (pseudo-median-of-9)");
 	time_sort(memory_tuned_quicksort, "memory-tuned quicksort");
 	time_sort(multi_quicksort, "multi-quicksort (binary search)");
 	time_sort(multi_quicksort_seq, "multi-quicksort (sequential search)");
@@ -356,15 +356,15 @@ main(int argc, char** args)
 	predictor_run(base_mergesort, 33, "base mergesort");
 	predictor_run(tiled_mergesort, 46, "tiled mergesort");
 	predictor_run(multi_mergesort, 59, "multi-mergesort");
-	predictor_run(double_aligned_mergesort, 46, "double tiled mergesort");
-	predictor_run(double_aligned_multi_mergesort, 59, "double multi-mergesort");
+	predictor_run(double_aligned_mergesort, 46, "double-aligned tiled mergesort");
+	predictor_run(double_aligned_multi_mergesort, 59, "double-aligned multi-mergesort");
 
 
-	predictor_run(base_quicksort1, 5, "base quicksort (pseudo-median-of-5");
-	predictor_run(base_quicksort, 7, "base quicksort (pseudo-median-of-5");
-	predictor_run(base_quicksort5, 12, "base quicksort (pseudo-median-of-5");
-	predictor_run(base_quicksort7, 17, "base quicksort (pseudo-median-of-5");
-	predictor_run(base_quicksort9, 22, "base quicksort (pseudo-median-of-5");
+	predictor_run(base_quicksort1, 5, "base quicksort (no median)");
+	predictor_run(base_quicksort, 7, "base quicksort (median-of-3)");
+	predictor_run(base_quicksort5, 12, "base quicksort (pseudo-median-of-5)");
+	predictor_run(base_quicksort7, 17, "base quicksort (pseudo-median-of-7)");
+	predictor_run(base_quicksort9, 22, "base quicksort (pseudo-median-of-9)");
 	predictor_run(memory_tuned_quicksort, 4, "memory-tuned quicksort");
 	predictor_run(multi_quicksort, 6, "multi-quicksort (binary search)");
 	predictor_run(multi_quicksort_seq, 5, "multi-quicksort (sequential search)");
@@ -375,7 +375,7 @@ main(int argc, char** args)
 
 	predictor_run(shellsort, 1, "shellsort");
 	predictor_run(improved_shellsort, 2, "improved shellsort");
-*/
+
 	if (RANDOM_SIZE <= 8192)
 	{
 		predictor_run(bubblesort, RANDOM_SIZE, "bubblesort");
