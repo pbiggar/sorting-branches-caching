@@ -214,10 +214,10 @@ in the first phase, and the same in the second phase, although each miss will
 occur in both the source and target arrays. This sums to four misses per cache
 block, for a total of one miss for every two keys in the array.
 
-\section{Double Multi-mergesort}
+\section{Double-aligned Multi-mergesort}
 
-Double Multi-mergesort combines the double tiling of Double Tiled mergesort with
-Multi-mergesort.
+Double-aligned Multi-mergesort combines the double alignment of Double-aligned
+tiled mergesort with multi-mergesort.
 
 \section{Results}
 \subsection{Test Parameters}
@@ -292,7 +292,7 @@ This shows there must be regular access patterns in the k-way merge at the end
 of multi-mergesort, which are predictable using a branch history.
 
 As predicted, the rate of level 1 misses is greatly reduced by the double
-tiling, as shown in Figure \ref{merge level 1 misses}. Double multi-mergesort
+tiling, as shown in Figure \ref{merge level 1 misses}. Double-aligned multi-mergesort
 has consistently four times fewer level 1 misses than multi-mergesort, and both
 double tiled sorts perform significantly better than the unoptimized sorts. The
 expected increase in level 2 misses did not materialise, and is in fact
@@ -317,7 +317,7 @@ The cache misses end up being the deciding factor between the performance of
 double-aligned tiled mergesort and base mergesort, the next best contender.
 Despite the reduction in level 2 cache misses, the sharp increase in level 1
 misses result is poor performance for tiled and multi-mergesort. Multi-mergesort
-is further encumbered with a much higher instruction count. Double tiled
+is further encumbered with a much higher instruction count. Double-aligned tiled
 mergesort, with its low instruction count, and low cache miss rate in both
 levels 1 and 2, emerges the winner.
 
@@ -333,7 +333,7 @@ probably due to performing a presort first. The presort has approximately 6.8
 misses per key (not shown in the graphs). In later mergesorts, an insertion sort
 is used instead.
 
-Double-tiled mergesort (which has the same results are tiled mergesort) has a
+Double-aligned tiled mergesort (which has the same results are tiled mergesort) has a
 predilection for merging forwards. This is likely to be due to the fact that the
 final merge goes forwards. The left merge step is also favoured, but this is
 merely due to the fact that it occurs first in the code. While there are more

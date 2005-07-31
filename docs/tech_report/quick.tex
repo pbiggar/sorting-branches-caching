@@ -191,9 +191,9 @@ of keys was larger than 174,762.
 The instruction count for each quicksort is expected to be $O(NlogN)$, though
 not as high as the other algorithms due to the efficient inner loop.  The number
 of instructions for multi-quicksort should increase by about 50\% in the case of
-the sequential sort, and 25\% in the case of the binary sort. Cache quicksort
-should also have a slightly higher instruction count than base quicksort, due to
-the change in use of insertion sort.
+the sequential sort, and 25\% in the case of the binary sort. Memory-tuned
+quicksort should also have a slightly higher instruction count than base
+quicksort, due to the change in use of insertion sort.
 
 LaMarca notes that quicksort is very cache efficient already. It has excellent
 spatial and temporal locality. Once it no longer fits in the cache, however, the

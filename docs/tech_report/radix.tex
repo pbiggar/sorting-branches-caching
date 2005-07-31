@@ -63,9 +63,9 @@ be reduced to zero since we choose an even radix. If the number of steps is odd,
 which is unlikely when sorting integers, then one copy at the end would be
 required. This is not needed in the implementation presented here.
 
-Cache radixsort should traverse the array only nine times: Once at the start to
-count the least significant bytes; six times (once per array per pass) as it
-copies using the three least significant bytes (counting the next least
+Memory-tuned radixsort should traverse the array only nine times: Once at the
+start to count the least significant bytes; six times (once per array per pass)
+as it copies using the three least significant bytes (counting the next least
 significant byte at the same time), and a final two as it copies using the most
 significant byte.
 
@@ -77,8 +77,8 @@ for the auxiliary array, which is then offset so that the start of the two
 arrays are exactly half the length of the cache apart. We further added an
 alignment for the level 1 cache (see Section \ref{double-aligned tiled
 mergesort}) to significantly reduce level 1 misses at the expense of a small
-number of level 2 misses. We adapt this strategy here, and call it Aligned Cache
-Radixsort.
+number of level 2 misses. We adapt this strategy here, and call it Aligned
+Memory-tuned Radixsort.
 
 
 \section{Results}
@@ -150,7 +150,7 @@ slightly more than was predicted. The extra is likely due to the unpredictable
 way that the source array is accessed as the keys are copied to the auxiliary
 array.
 
-Cache radixsort performs as predicted as well. By sorting keys between two
+Memory-tuned radixsort performs as predicted as well. By sorting keys between two
 arrays instead of copying a partially sorted array back, the instruction count
 has been reduced by more than 10\%, and the number of level 2 cache misses
 have been halved, to one and a quarter miss per key. This is exactly

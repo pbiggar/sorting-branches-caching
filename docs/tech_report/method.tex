@@ -285,13 +285,13 @@ merging all the sorted arrays in one step. This required the use of an 8-heap,
 which had been developed as part of heapsort.
 %TODO this isnt what happened exactly
 Once these sorts were written it was attempted to improve them slightly.
-Instead of a tiled mergesort, a double-aligned tiled mergesort was written.  This
-attempted to completely sort in the level 1 cache, then to completely sort in
-the level 2 cache. Double multi-mergesort was a combination of this and of
-multi-mergesort. The rewrite was based on the base mergesort, and was written
-far more cleanly, being more readable and efficient. These were also found to
-reduce the instruction count, as well as the level 2 cache miss count. These
-results are discussed in more detail in Section \ref{Mergesort results}.
+Instead of a tiled mergesort, a double-aligned tiled mergesort was written.
+This attempted to completely sort in the level 1 cache, then to completely sort
+in the level 2 cache. Double-aligned multi-mergesort was a combination of this
+and of multi-mergesort. The rewrite was based on the base mergesort, and was
+written far more cleanly, being more readable and efficient. These were also
+found to reduce the instruction count, as well as the level 2 cache miss count.
+These results are discussed in more detail in Section \ref{Mergesort results}.
 
 Each of these sort variations had to be fully written from the descriptions in
 LaMarca's thesis. Only the base algorithm was available from textbooks, and this
