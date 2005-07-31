@@ -116,7 +116,7 @@ iterations.
 Finally, a software predictor was added in order to pin-point the cause of the
 branch mispredictions. This meant altering the code of the algorithms to call
 functions which updated simulated branch predictors. Each important branch was
-allocated a predictor, which was updated independantly of the other predictors.
+allocated a predictor, which was updated independently of the other predictors.
 This allowed the performance to be analysed down to the individual branch, and
 blame apportioned appropriately.
 
@@ -250,7 +250,7 @@ times, and once or twice was more usual.
 
 Pre-sorting the array was also not exceptionally useful. The instruction count
 actually increased slightly as a result of this, indicating that algorithm N
-does a better job of pre-sorting the array than the inlined pre-sort did.
+does a better job of pre-sorting the array than the in-lined pre-sort did.
 
 Algorithm N does not have a bounds check. It treats the entire array
 bitonically; that is, rather than have pairs of array beings merged together,

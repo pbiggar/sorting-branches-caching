@@ -8,9 +8,9 @@ sorts as ``Merging Pairs'' and ``floating decimal sort'', respectively, and the
 latter sorts as ``finding the smallest'', ``interchanging pairs'' and ``sifting'',
 respectively.}.
 
-Shell begins by considering the array to be made up of $\frac{N}{2}$ subarrays
-of length two, where the elements of the subarray are spaced $\frac{N}{2}$ keys
-apart.  These subarrays are then sorted using insertion sort. The first
+Shell begins by considering the array to be made up of $\frac{N}{2}$ sub-arrays
+of length two, where the elements of the sub-array are spaced $\frac{N}{2}$ keys
+apart.  These sub-arrays are then sorted using insertion sort. The first
 iteration will be a simple exchange, but the keys which are exchanged move
 across the array by $\frac{N}{2}$ spaces. The sort then considers $\frac{N}{4}$
 arrays, whose elements are spaced $\frac{N}{4}$ keys apart, which are
@@ -50,19 +50,19 @@ $(\frac{5}{11})^3N$ ... $1$;
 Shellsort has been much analysed, and it has been shown that it's complexity is
 difficult to prove\footnote{See TODOA, TODOB, TODOC and TODOD.}. The instruction
 count and cycle counts are expected to be similar to $O(NlogN)$, as this has
-been indicated by previous experient. 
+been indicated by previous experiment. 
 
-The cache performance of shellsort should be regular. Each subarray is sorted in
-turn without reference to the next. Since each element of a subarray is quite
+The cache performance of shellsort should be regular. Each sub-array is sorted in
+turn without reference to the next. Since each element of a sub-array is quite
 far from its next element, an entire cache line must be loaded for each key,
-which will be used once per iteration of the sort across the subarray. If there
-are a large number of subarrays, as during the iterations with large increments,
+which will be used once per iteration of the sort across the sub-array. If there
+are a large number of sub-arrays, as during the iterations with large increments,
 there will be no spatial reuse, and little temporal reuse, so long as the
-subarray is large than the cache. Once the increment is small enough that each
-subarray fits within the cache (i.e. quickly for L2 cache, and much more slowly
-for the L1 cache), then temporal reuse will occur. Once an entire subarray fits
+sub-array is large than the cache. Once the increment is small enough that each
+sub-array fits within the cache (i.e. quickly for L2 cache, and much more slowly
+for the L1 cache), then temporal reuse will occur. Once an entire sub-array fits
 within an eighth of the size of the cache (eight being the number of keys
-that fit in a cache line), then spatial reuse will occur aswell.  This reuse
+that fit in a cache line), then spatial reuse will occur as well.  This reuse
 will only occur within a single iteration; once the increment with the next
 increment begins, most of the contents of the cache will be invalidated, unless
 the entire array fits within the cache.
@@ -73,9 +73,9 @@ $log_{(\frac{11}{5})}N$ iterations, each with $N$ branch misses\footnote{See Sec
 sort.}. It is expected, therefore, that there will be $log_{(\frac{11}{5})}N$ misses per
 key.
 
-Improved shellsort should have a slighlty lower instruction count, and hence a
+Improved shellsort should have a slightly lower instruction count, and hence a
 lower cycle count, than shellsort. It's cache performance should be the same,
-and it should have the same number of comparitive branches, and hence a similar
+and it should have the same number of comparative branches, and hence a similar
 number of mispredictions, though its branch count should be higher than
 shellsort.
 
@@ -83,9 +83,9 @@ shellsort.
 \subsection{Simulation Results}
 \plot{shell}{}{}{}{}{}{}
 
-Shellsort's simulation results have the characterist shape and range of an
+Shellsort's simulation results have the characteristic shape and range of an
 $O(NlogN)$ sort, albeit, not a very good one. The slopes of its graphs are
-slighlty steeper, as can be seen in Figures \ref{shell cycles}, \ref{shell
+slightly steeper, as can be seen in Figures \ref{shell cycles}, \ref{shell
 instructions}, \ref{shell level 1 misses} and \ref{shell branch misses}. It
 performs better than a heapsort, but considerably worse than quicksort. However,
 it easier to program than either of these two sort.

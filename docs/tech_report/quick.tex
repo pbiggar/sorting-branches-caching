@@ -39,7 +39,7 @@ reduces the maximum size of the stack to $O(logN)$. In practice, two \cc{int}s,
 the left and the right index, are required for each partition.
 
 Sedgewick's second improvement is the use of an elementary sort for small
-subfiles.  Once a partition is smaller than an arbitrary threshold, insertion
+sub-files.  Once a partition is smaller than an arbitrary threshold, insertion
 sort is used to sort the partition. Sedgewick states that roughly the same
 results are obtained for thresholds between 5 and 25. An additional reduction in
 instruction count can be had by doing the insertion sort over the entire array
@@ -102,9 +102,9 @@ choosing the key to remove from a small list, such as the eight keys at the
 start, middle and end of the array. This would introduce a constant number of
 cache misses, but would significantly reduce the chances of having to sort
 across the entire array at the end. This, however, is not implemented; instead a
-check is done to fetch a sentinel from the appropriate subfile if required. This
+check is done to fetch a sentinel from the appropriate sub-file if required. This
 check isn't very expensive, and is significantly cheaper than either a bounds
-check or putting a sentinel into every subfile.
+check or putting a sentinel into every sub-file.
 
 \section{Multi-Quicksort}
 
@@ -160,7 +160,7 @@ Once the entire array has been put into containers, each container is emptied
 in turn and the keys put back into the array. When a container is empty, the
 pivot greater than that container is put into position, which is guaranteed to
 be its final position.  The indices of these positions is pushed onto the
-stack, and the subarray is then sorted.
+stack, and the sub-array is then sorted.
 
 While emptying the containers back into the array, an opportunity is taken to
 find the smallest key in the leftmost partition. This is placed as a sentinel,
@@ -231,7 +231,7 @@ the same.
 The cache results in Figure \ref{quick level 2 misses} were similar to
 predictions, except that the multi-quicksorts did not behave as expected, and
 performed as badly as the memory-tuned version. However, the rate at which the
-cahce misses are increasing is very low, being almost a flat line on our graph.
+cache misses are increasing is very low, being almost a flat line on our graph.
 LaMarca's calculation of four misses per cache block is very accurate, as we
 show 0.55 misses per key, or 4.4 misses per block.
 
@@ -260,7 +260,7 @@ in instruction count, which was significantly reduced by using the binary
 search.
 
 Memory-tuned quicksort had fewer branch misses than base quicksort, due to the fact
-that fewer comparitive branches are executed. In base quicksort, we sort the
+that fewer comparative branches are executed. In base quicksort, we sort the
 entire array using insertion sort. In tuned quicksort, we don't sort the pivots,
 but only the keys between them.
 
@@ -346,7 +346,7 @@ We measured the number of branches and mispredictions due to the partitioning,
 the final insertion sort, and the partitioning. It is expected to have little or
 no variance in either the number of branches and misses due to insertion sort,
 but that less time will be spent partitioning to arrays as a better median is
-found, and a corresponsing increase in time spent finding the better median.
+found, and a corresponding increase in time spent finding the better median.
 
 The results of these tests are shown in Figure \ref{Branch prediction
 performance for base quicksort without a median, with median of 3, and with
@@ -358,7 +358,7 @@ between the sorts using pseudo-medians, but the median-of-three quicksort has
 
 Between a median-of-three and a pseudo-median-of-nine partitioning, there is a
 10\% reduction in branches. At the same time, there is a 20\% reduction in
-correct predictions, accounting for the entire reduction in branhces, and a 4\%
+correct predictions, accounting for the entire reduction in branches, and a 4\%
 increase in mispredictions. This is due to better partitioning. Less time is
 spent copying keys unnecessarily, resulting in a less predictable branch. The
 corresponding increase in mispredictions while calculating the median equates to
@@ -374,9 +374,9 @@ partitioning. In effect, there are fewer branches pretending to be useful.
 The pseudo-median-of-5 partitioning performs slightly better than the
 median-of-3, and pseudo-median-of-7 performs slightly better again, in
 terms of branch prediction. Figure \ref{TODO} shows the cycle count of each of
-the quicksorts, showing that a pseduo-median-of-seven offers the greatest
-tradeoff between the reduced number of branches and instructions, and the
-increase in branch midpredictions. 
+the quicksorts, showing that a pseudo-median-of-seven offers the greatest
+trade-off between the reduced number of branches and instructions, and the
+increase in branch mispredictions. 
 
 
 
