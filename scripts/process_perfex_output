@@ -49,7 +49,7 @@ my $count = 1;
 foreach $sort (@sorts)
 {
 	$count++;
-	printf OUTPUT "%35s", $sort;
+	printf OUTPUT "%36s", $sort;
 	print STDOUT "$sort is in column $count\n";
 }
 
@@ -66,11 +66,11 @@ foreach $size (@keys)
 			$value /= $iteration_count{$sort}{$size};
 			$value -= ($data{"do_nothing"}{$size}/693);
 			$value /= $size;
-			printf OUTPUT "%35f", $value;
+			printf OUTPUT "%36f", $value;
 		}
 		else
 		{
-			printf OUTPUT "%35d", 0;
+			printf OUTPUT "%36d", 0;
 		}
 	}
 }
