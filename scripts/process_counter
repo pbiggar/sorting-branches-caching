@@ -34,13 +34,14 @@ foreach $file (@ARGV)
 
 	# get the branch names and values
 	open(BASE, $file);
+	print $file."\n";
 	@lines = <BASE>;
 	@lines = grep {!/^\#/} @lines;
 	while(1)
 	{
 		$line = shift(@lines); # sort name, branch name
 		if (!defined($line)) { last; } # check for EOF
-		$line =~ /$filename - (.*):/;
+		$line =~ /\Q$filename\E - (.*):/;
 		$branch_name = $1;
 		push(@branch_names, $branch_name);
 
