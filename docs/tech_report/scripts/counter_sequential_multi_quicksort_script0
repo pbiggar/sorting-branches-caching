@@ -7,10 +7,10 @@ set ticscale 0 0
 set offsets .1, .1, 0, 0
 set bmargin 3
 set title "multi-quicksort (sequential search) branch predictor results"
-set output '../data/plots/counter_sequential_multi_quicksort_0.eps'
+set output '../data/plots/counter_multi_quicksort__sequential_search__0.eps'
 set xtics ("i" 0, "\nj" 1, "partition end" 2, "\ninsertion" 3, "sequential taken" 4, "" 5, "" 6)
 plot \
-'../data/counter_gnuplot_data/sequential_multi_quicksort_data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
-'../data/counter_gnuplot_data/sequential_multi_quicksort_data0' using ($0-.15):2 title 'correct' with boxes lt -1,\
-'../data/counter_gnuplot_data/sequential_multi_quicksort_data0' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
-'../data/counter_gnuplot_data/sequential_multi_quicksort_data0' using ($0+.15):4 title 'taken' with boxes lt -1
+'../data/counter_gnuplot_data/multi_quicksort__sequential_search__data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
+'../data/counter_gnuplot_data/multi_quicksort__sequential_search__data0' using ($0-.15):2 title 'correct' with boxes lt -1,\
+'../data/counter_gnuplot_data/multi_quicksort__sequential_search__data0' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
+'../data/counter_gnuplot_data/multi_quicksort__sequential_search__data0' using ($0+.15):4 title 'taken' with boxes lt -1
