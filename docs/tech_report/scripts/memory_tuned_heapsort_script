@@ -10,4 +10,4 @@ set output '../data/plots/memory_tuned_heapsort-_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
-'../data/processed_cycles_data' using 1:14 title 'memory-tuned heapsort (8-heap)'
+'../data/processed_cycles_data' using 1:21 title 'memory-tuned heapsort (8-heap)'

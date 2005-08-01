@@ -31,16 +31,16 @@ Hardware counters:
 
 	Capture the output. Ctrl-C when bored, or needing results, as this will
 	take a long time (3 days or so on Pentium 4 1.8Ghz):
-		$ ./do_all_papiex > my_results
+		$ ./do_all_papiex > papiex_results
 	or
-		$ ./do_all_perfex > my_results
+		$ ./do_all_perfex > perfex_results
 
 	If you use papiex (more accurate), then it needs to be converted to the
 	other format:
-		$ ../scripts/papi_convert my_results > new_results
+		$ ../scripts/papi_convert papiex_results > perfex_results
 
 	Then process the results to give you graphs:
-		$ ../scripts/process_perfex_output new_results
+		$ ../scripts/process_perfex_output perfex_results
 
 	There's a little bit of hard coding in this script, so change $key_num to
 	the number of times perfex actually ran. Also modify the input so that only
@@ -50,7 +50,7 @@ Hardware counters:
 
 	This produces a file in the data/ directory called processed_cycles_data
 	which is in gnuplot format. If you add more sorts to the framework, you'll
-	need to edit the gnuplot scripts in data/perfex_gnuplot_scripts/ with the
+	need to edit the gnuplot scripts in docs/*/scripts/ with the
 	column numbers that are printed out by process_perfex_output.
 
 	To create the gnuplot images, enter the data/perfex_gnuplot_scripts/

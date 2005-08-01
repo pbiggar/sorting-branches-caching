@@ -10,4 +10,4 @@ set output '../data/plots/multi_mergesort-_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
-'../data/processed_cycles_data' using 1:20 title 'multi-mergesort'
+'../data/processed_cycles_data' using 1:24 title 'multi-mergesort'

@@ -10,4 +10,4 @@ set output '../data/plots/memory_tuned_quicksort-_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
-'../data/processed_cycles_data' using 1:15 title 'memory-tuned quicksort'
+'../data/processed_cycles_data' using 1:22 title 'memory-tuned quicksort'

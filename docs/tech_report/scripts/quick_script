@@ -10,13 +10,13 @@ set output '../data/plots/quick_-_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
-'../data/processed_cycles_data' using 1:7 title 'base quicksort (median-of-3)',\
-'../data/processed_cycles_data' using 1:15 title 'memory-tuned quicksort',\
-'../data/processed_cycles_data' using 1:21 title 'multi quicksort (binary search)',\
-'../data/processed_cycles_data' using 1:22 title 'multi quicksort (sequential search)'
+'../data/processed_cycles_data' using 1:7 title 'base quicksort',\
+'../data/processed_cycles_data' using 1:22 title 'memory-tuned quicksort',\
+'../data/processed_cycles_data' using 1:25 title 'multi quicksort (binary search)',\
+'../data/processed_cycles_data' using 1:26 title 'multi quicksort (sequential search)'
 
 
-#'../data/processed_cycles_data' using 1:11 title 'base quicksort (median-of-3)9',\
-#'../data/processed_cycles_data' using 1:8 title 'base quicksort (median-of-3)1',\
-#'../data/processed_cycles_data' using 1:9 title 'base quicksort (median-of-3)5',\
-#'../data/processed_cycles_data' using 1:10 title 'base quicksort (median-of-3)7',\
+#'../data/processed_cycles_data' using 1:8 title 'base quicksort (no median)',\
+#'../data/processed_cycles_data' using 1:9 title 'base quicksort (pseudo-median-of-5)',\
+#'../data/processed_cycles_data' using 1:10 title 'base quicksort (pseudo-median-of-7)',\
+#'../data/processed_cycles_data' using 1:11 title 'base quicksort (pseudo-median-of-9)',\

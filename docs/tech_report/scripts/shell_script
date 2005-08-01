@@ -11,4 +11,4 @@ set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
 '../data/processed_cycles_data' using 1:29 title 'shellsort',\
-'../data/processed_cycles_data' using 1:19 title 'improved shellsort'
+'../data/processed_cycles_data' using 1:18 title 'improved shellsort'

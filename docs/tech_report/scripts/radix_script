@@ -11,5 +11,5 @@ set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
 '../data/processed_cycles_data' using 1:12 title 'base radixsort',\
-'../data/processed_cycles_data' using 1:16 title 'memory-tuned radixsort',\
+'../data/processed_cycles_data' using 1:23 title 'memory-tuned radixsort',\
 '../data/processed_cycles_data' using 1:4 title 'aligned memory-tuned radixsort'

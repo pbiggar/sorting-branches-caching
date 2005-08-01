@@ -10,4 +10,4 @@ set output '../data/plots/selectsort-_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
-'../data/processed_cycles_data' using 1:26 title 'selection sort'
+'../data/processed_cycles_data' using 1:27 title 'selection sort'
