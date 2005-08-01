@@ -329,10 +329,10 @@ heap.
 The most interesting thing is the relation between the predictability of the
 comparisons during the destruction of the 2-, 4- and 8-heaps. Compare the
 columns marked `\cc{Destruction, child comparison}' and `\cc{Destruction, child
-promotion}' in Figure \ref{base and memory-tuned heapsort-1} (the 2-heap), with
+promotion}' in Figure \ref{base and memory-tuned heapsorts-1} (the 2-heap), with
 the columns marked `\cc{comparison 1}' to `\cc{child promotion}' in Figure
 \ref{base and memory-tuned heapsorts-2} (the 4-heap) and Figures \ref{base and
-memory-tuned heapsort-3} and \ref{base and memory-tuned heapsort-4} (the
+memory-tuned heapsorts-3} and \ref{base and memory-tuned heapsorts-4} (the
 8-heap).
 
 Though the number of times each comparison is used shrinks as the size of the
@@ -343,8 +343,8 @@ fanout increased, overall the number of branches increases.  In total, there are
 More importantly, the accuracy of the each successive comparison increases in
 the same way as selection sort (see Section \ref{selection branches logn}),
 becoming more predictable as the fanout increases. For example, in the 8-heap,
-shown in Figures \ref{base and memory-tuned heapsort-3} and \ref{base and
-memory-tuned heapsort-4}, the first comparison is predicted correctly 50\% of
+shown in Figures \ref{base and memory-tuned heapsorts-3} and \ref{base and
+memory-tuned heapsorts-4}, the first comparison is predicted correctly 50\% of
 the time, while the next is predicted correctly 61\% of the time, then 71\%,
 77\%, and so on in a curve, which is shown in Figure \ref{memory-tuned heapsort
 curve}.

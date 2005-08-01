@@ -24,18 +24,18 @@ again:
 	$(LATEX) $(LATEXFLAGS) $(TITLE)
 	$(LATEX) $(LATEXFLAGS) $(TITLE)
 
+%.pdf: %.dvi
+	$(DVIPS) $(DVIPSFLAGS) -Ppdf -o $*.ps $<
+	$(PS2PDF) $*.ps
+
+%.ps: %.dvi 
+	$(DVIPS) $(DVIPSFLAGS) -o $@ $<
+
 %.dvi: %.tex $(FILES)
 	$(LATEX) $(LATEXFLAGS) $<
 	$(BIBTEX) $(TITLE)
 	$(LATEX) $(LATEXFLAGS) $<
 	$(LATEX) $(LATEXFLAGS) $<
-
-%.ps: %.dvi 
-	$(DVIPS) $(DVIPSFLAGS) -o $@ $<
-
-%.pdf: %.dvi
-	$(DVIPS) $(DVIPSFLAGS) -Ppdf -o $*.ps $<
-	$(PS2PDF) $*.ps
 
 clean:
 	rm -f $(INTERMEDIATE_FILES)
