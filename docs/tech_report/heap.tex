@@ -183,7 +183,6 @@ write is more expensive but the extra $logN$ instructions saved will mean that
 this increase will be an order of magnitude lower than the bounds check.
 
 \section{Results}
-%TESTING
 All simulations presented here were performed on 32 byte cache lines. As a
 result, 8-heaps were used for heapsort, since 8 4-byte \n{int}s fit the cache line.
 LaMarca used 64 bit ints, and while this doesn't affect results, it means that
@@ -273,27 +272,15 @@ two-level adaptive predictor. The warm-up time of the table-driven predictors is
 visible in the base heapsort results, though it's amortised for larger data
 sets.
 
-%TODO move this to testing section
-%TESTING
 Figure \ref{heap cycles} shows the actual time taken for heap sort on a Pentium
-4 1.8GHz machine, which has an 8-way associative 256KB level 2 cache with a 64 byte
-cache line, a 4-way associative 8KB level 1 data cache, and a maximum branch
-misprediction delay of 20 cycles\footnote{This is determined from the Pentium
-4's 20 stage pipeline. This number is not exact, and is probably slightly lower,
-with the possibility of occasionally rising higher (in the case of an
-instruction cache miss, which is exceptionally unlikely for small routines like
-sorts).}. Its static branch prediction strategy is backward taken and forward
-not taken; its dynamic strategy is unspecified: though \cite{Intel248966-010}
-mentions a branch history so it is likely a two-level adaptive predictor.
-
-The figure shows that the base heapsort performs best when the data set fits in
-the cache. After that point, the 8-heap performs best, and its cycle count increases
-with a smaller slope. This shows the importance of LaMarca's cache-conscious
-design even nine years after his thesis. It also shows the importance of reduced
-branch mispredictions: the base heapsort has more instructions and level 1 cache
-misses, but still outperforms the 4-heap, until level 2 cache misses take over.
-However, this is hardly conclusive: the lower level 2 cache misses may account
-for this.
+4 machine.  The figure shows that the base heapsort performs best when the data
+set fits in the cache. After that point, the 8-heap performs best, and its cycle
+count increases with a smaller slope. This shows the importance of LaMarca's
+cache-conscious design even nine years after his thesis. It also shows the
+importance of reduced branch mispredictions: the base heapsort has more
+instructions and level 1 cache misses, but still outperforms the 4-heap, until
+level 2 cache misses take over.  However, this is hardly conclusive: the lower
+level 2 cache misses may account for this.
 
 The similarities to LaMarca's results are startling. The shape of the
 instruction and cache miss curves are identical, as are the ratios between the

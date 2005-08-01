@@ -130,44 +130,34 @@ SimpleScalar are \cite{Burger97}, \cite{Austin02}, \cite{Tutorialv4},
 \cite{Tutorialv2} and \cite{SimpleScalarUserGuide}.
 
 SimpleScalar works by compiling code into its own instruction set. It provides a
-compiler - a port of gcc 2.63 - with related tools such as a linker and
-assembler.  Several simulators are then provided: \cc{sim-fast} only counts
-instruction, quickly; \cc{sim-cache} simulates a cache and counts level 1 and
-level 2 cache misses; \cc{sim-bpred} simulates a branch predictor and counts
-branch hits and misses. Other simulators are provided, but they were not used in
-our tests.
-
+compiler - a port of gcc - with related tools such as a linker and assembler.
+Several simulators are then provided: \cc{sim-fast} only counts instruction,
+quickly; \cc{sim-cache} simulates a cache and counts level 1 and level 2 cache
+misses; \cc{sim-bpred} simulates a branch predictor and counts branch hits and
+misses. Other simulators are provided, but they were not used in our tests.
 
 The output of SimpleScalar is human readable, but is not conducive to collecting
 large amounts of data. To that end, a script was written to run each required
 set of simulations. It recorded data from the simulations into a single file for
 later retrieval. This file was suitable to reading with a \cc{diff} program.
 
-%TESTING - also what version
-The SimpleScalar settings were chosen to be similar to LaMarca's simulations.
-LaMarca used the \n{Atom} simulator, which was used to test software for the DEC
-AlphaStation. It simulated a 2MB cache with a 32 byte cache line. The remainder
-of the settings were taken from the DEC Alpha: 8KB level 1 data cache, 8KB level
-1 instruction cache and shared instruction and data level 2 cache. 
-
-%TESTING - what versino
 \subsection{Gnuplot}
 \label{Gnuplot}
-\cc{Gnuplot} is a tool for plotting data files. It provides visualisations of data in
-two and three dimensions, and is used to create all of the graphs in this
-document. Its homepage is \n{http://www.gnuplot.info/}.
+\cc{Gnuplot} is a tool for plotting data files. It provides visualisations of
+data in two and three dimensions, and is used to create all of the graphs in
+this document. Its homepage is \n{http://www.gnuplot.info/}.
 
 There were several steps involved in using gnuplot for the data. Firstly, the
 data was not in the correct format for gnuplot, and had to be converted. It also
 needed to be offset by the cost of filling the array with random variables, and
 scaled to so that the y-axis could be in the form of \n{plotted data per key},
-both to be more readable, and to be consistent with LaMarca's graphs. Once the data
-was converted, it was necessary to generate a gnuplot script for each graph.
-The number of graphs required made this an
-impossible manual task, and so another script had to be written.  Some graphs
-still needed to be tweaked by hand, due to difficulties in the script, but the
-task was much shortened by this, and the tweaking was mostly accomplished using
-macros in the development platform.
+both to be more readable, and to be consistent with LaMarca's graphs. Once the
+data was converted, it was necessary to generate a gnuplot script for each
+graph.  The number of graphs required made this an impossible manual task, and
+so another script had to be written.  Some graphs still needed to be tweaked by
+hand, due to difficulties in the script, but the task was much shortened by
+this, and the tweaking was mostly accomplished using macros in the development
+platform.
 
 Finally, a script to compare the data together was required.  This compared each
 sort against each other sort in key metrics, such a branch or cache misses. It
@@ -184,7 +174,6 @@ sample of this code.
 
 \code{Key sections of Main.c}{main.c}
 
-%TESTING - what version
 \subsection{Valgrind}
 \label{Valgrind}
 \cc{Valgrind} is a set of tools which are used for debugging and profiling.  By
@@ -194,7 +183,6 @@ makes it particularly useful for bounds checking. No configuration was required
 for this, and simply running \cc{valgrind a.out} ran the program through
 valgrind. The homepage for valgrind is at \n{http://valgrind.kde.org/}.
 
-%TESTING - what version
 \subsection{PapiEx}
 \cc{PapiEx} is a tool used to access performance counters on a Pentium 4. It
 uses the PAPI framework to count certain characteristics across a program's
@@ -318,6 +306,45 @@ fashion.
 %What factors are used for testing: /proc/cpuinfo output, cahce and branch
 %predictor data from P4, simplescalar inputs, software predictor, verfication of
 %sorts.
+
+\subsection{}
+simplescalar version and settings used
+The SimpleScalar settings were chosen to be similar to LaMarca's simulations.
+LaMarca used the \n{Atom} simulator, which was used to test software for the DEC
+AlphaStation. It simulated a 2MB cache with a 32 byte cache line. The remainder
+of the settings were taken from the DEC Alpha: 8KB level 1 data cache, 8KB level
+1 instruction cache and shared instruction and data level 2 cache. 
+
+\gnuplot version
+valgrinf version
+papiex version
+
+cache line length. - vs pentium 4
+
+penitum 4:
+1.8, 8-way 256K level 2 64 byte line (note i wrote 128 byte xsomewhere. is this
+right)
+4-way 8kb level 1 cache
+
+branch delay 20 cycles
+
+
+1.8GHz machine, which has an 8-way associative 256KB level 2 cache with a 64 byte
+cache line, a 4-way associative 8KB level 1 data cache, and a maximum branch
+misprediction delay of 20 cycles\footnote{This is determined from the Pentium
+4's 20 stage pipeline. This number is not exact, and is probably slightly lower,
+with the possibility of occasionally rising higher (in the case of an
+instruction cache miss, which is exceptionally unlikely for small routines like
+sorts).}. Its static branch prediction strategy is backward taken and forward
+not taken; its dynamic strategy is unspecified: though \cite{Intel248966-010}
+mentions a branch history so it is likely a two-level adaptive predictor.
+
+
+
+
+64 bit vs 32 bit
+
+
 
 \section{Future Work}
 An improvement that would have yielded interesting results would be to do simulations
