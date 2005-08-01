@@ -1,4 +1,4 @@
-double tiled mergesort - forwards left:
+double-aligned tiled mergesort - forwards left:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  327998704     129473594       4883197        197339     462552834
 correct_count:                 203218127     124780577        190179          7160     328196043
@@ -7,7 +7,7 @@ taken_count:                   124780577       4693017        190179          71
 not_taken_count:               203218127     124780577       4693018        190179     332881901
 current state:                        NT
 
-double tiled mergesort - forwards right:
+double-aligned tiled mergesort - forwards right:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  243719720     129420474       5317381        250458     378708033
 correct_count:                 119374104     124345616        242523          7936     243970179
@@ -16,7 +16,7 @@ taken_count:                   124345616       5074858        242523          79
 not_taken_count:               119374104     124345616       5074858        242522     249037100
 current state:               T saturated
 
-double tiled mergesort - reverse left:
+double-aligned tiled mergesort - reverse left:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  202220607      87515483       4850750        197141     294783981
 correct_count:                 119365867      82854740        190006          7135     202417748
@@ -25,7 +25,7 @@ taken_count:                    82854740       4660743        190006          71
 not_taken_count:               119365867      82854740       4660744        190006     207071357
 current state:                        NT
 
-double tiled mergesort - reverse right:
+double-aligned tiled mergesort - reverse right:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  159848891      87461222       5303094        251401     252864608
 correct_count:                  77447375      82401516        243388          8014     160100293
