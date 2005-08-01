@@ -27,14 +27,15 @@ foreach $file (@ARGV)
 	$filename = $file;
 	$filename =~ s/counters\///;
 	$base_filename = lc($filename);
-	$base_filename =~ s/ /_/g;
+	$base_filename =~ s/[ \-\(\)]/_/g;
+#	print $base_filename."\n";
 
 	$data_filename = "../data/counter_gnuplot_data/$base_filename\_data";
 	$script_filename = "../data/counter_gnuplot_generated_scripts/$base_filename\_script";
 
 	# get the branch names and values
 	open(BASE, $file);
-	print $file."\n";
+#	print $file."\n";
 	@lines = <BASE>;
 	@lines = grep {!/^\#/} @lines;
 	while(1)
