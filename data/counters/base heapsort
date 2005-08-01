@@ -1,4 +1,4 @@
-Base Heapsort - Creation, has children:
+base heapsort - Creation, has children:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                          0             0      12723482      39457045      52180527
 correct_count:                         0             0      12723482      26733563      39457045
@@ -7,7 +7,7 @@ taken_count:                           0             0      12723482      267335
 not_taken_count:                       0             0             0      12723482      12723482
 current state:                         T
 
-Base Heapsort - Creation, child comparison:
+base heapsort - Creation, child comparison:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                    9877485       9870624       9858647       9850289      39457045
 correct_count:                   4940078       4937407       4925429       4924860      19727774
@@ -16,7 +16,7 @@ taken_count:                     4937407       4933217       4925429       49248
 not_taken_count:                 4940078       4937407       4933218       4925429      19736132
 current state:                        NT
 
-Base Heapsort - Creation, child promotion:
+base heapsort - Creation, child promotion:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   29238555       7448379       1970451        799660      39457045
 correct_count:                  23207314       6031242        553313        246347      30038216
@@ -25,7 +25,7 @@ taken_count:                     6031241       1417137        553313        2463
 not_taken_count:                23207314       6031242       1417138        553313      31209007
 current state:              NT saturated
 
-Base Heapsort - Destruction, has children:
+base heapsort - Destruction, has children:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                          0             0      35567069     818541795     854108864
 correct_count:                         0             0      35567061     782974731     818541792
@@ -34,7 +34,7 @@ taken_count:                           0             0      35567061     7829747
 not_taken_count:                       0             0             8      35567064      35567072
 current state:                         T
 
-Base Heapsort - Destruction, child comparison:
+base heapsort - Destruction, child comparison:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  211530910     206861617     202303962     197845303     818541792
 correct_count:                 106953024     104577890     100020232      97825069     409376215
@@ -43,7 +43,7 @@ taken_count:                   104577886     102283727     100020232      978250
 not_taken_count:               106953024     104577890     102283730     100020234     413834878
 current state:                        NT
 
-Base Heapsort - Destruction, child promotion:
+base heapsort - Destruction, child promotion:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  812165843       6375949             0             0     818541792
 correct_count:                 805789895       6375949             0             0     812165844

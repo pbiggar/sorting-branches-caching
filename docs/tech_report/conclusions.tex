@@ -64,7 +64,8 @@ faster, mostly due to its reduced instruction count.
 We were also able to measure it's branch mispredictions, and determine a formula
 to calculate them.
 
-\section {Branch Results}
+\section{Branch Results}
+%TODO this section has to be reread by David
 
 No results for the branch prediction performance of sorting algorithm yet
 exists. We were able to find some interesting results.
@@ -75,13 +76,22 @@ insertion sorts.
 
 Selection sort also has a very low number of branch mispredictions, the results
 of which match up well to Knuth's calculation. We found as well that bubblesort
-and shakersort have incredibly bad branch prediction performance, bring
-$O(N^2)$.
+and shakersort have incredibly bad branch prediction performance. Both are
+$O(N^2)$ sorts, and the number of branches and branch misses have the same
+complexity.
+%TODO i dont like how this reads
 
-We found a pattern in branch misprediction when using a fanout in our 8-heap,
-and that this pattern matched closely that of selection sort, discussed above.
+TODO bubblesort
 
-TODO merge
+In heapsort, we found a pattern of branch mispredictions when using a fanout in
+our 8-heap, and that this pattern matched closely that of selection sort,
+discussed above. Despite this property, the number of mispredictions using an
+8-heap was greater than when using a 4-heap.
+
+Using a k-way merge, multi-mergesort had a great number of extra branch
+predictions. While many of these were mispredicted using the bimodal predictor,
+the 2 level adaptive predictor was able to predict a higher
+proportion correctly.
 
 
 TODO quick

@@ -1,4 +1,4 @@
-Cache Heapsort - has children:
+memory-tuned heapsort - has children:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                          0             4      39745995     288183053     327929052
 correct_count:                         0             0      39745991     248437062     288183053
@@ -7,7 +7,7 @@ taken_count:                           0             4      39745991     2484370
 not_taken_count:                       0             0             4      39745991      39745995
 current state:                         T
 
-Cache Heapsort - comparison 0:
+memory-tuned heapsort - comparison 0:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  288183055             1             1             0     288183057
 correct_count:                 288183055             1             0             0     288183056
@@ -16,7 +16,7 @@ taken_count:                           0             0             0            
 not_taken_count:               288183055             1             1             0     288183057
 current state:              NT saturated
 
-Cache Heapsort - comparison 1:
+memory-tuned heapsort - comparison 1:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   79137022      74137351      69525509      65383175     288183057
 correct_count:                  40789948      38347074      33735231      31647944     144520197
@@ -25,7 +25,7 @@ taken_count:                    38347074      35790277      33735231      316479
 not_taken_count:                40789948      38347074      35790278      33735231     148662531
 current state:                        NT
 
-Cache Heapsort - comparison 2:
+memory-tuned heapsort - comparison 2:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  159136133      75814048      35983796      17249080     288183057
 correct_count:                 107680117      51456017      11625764       5623316     176385214
@@ -34,7 +34,7 @@ taken_count:                    51456016      24358031      11625764       56233
 not_taken_count:               107680117      51456017      24358032      11625764     195119930
 current state:              NT saturated
 
-Cache Heapsort - comparison 3:
+memory-tuned heapsort - comparison 3:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  199008662      62996045      19868021       6310329     288183057
 correct_count:                 151105005      47903658       4775633       1534696     205318992
@@ -43,7 +43,7 @@ taken_count:                    47903657      15092387       4775633       15346
 not_taken_count:               151105005      47903658      15092388       4775633     218876684
 current state:              NT saturated
 
-Cache Heapsort - comparison 4:
+memory-tuned heapsort - comparison 4:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  221082300      52010575      12211929       2878253     288183057
 correct_count:                 178959453      42122848       2324201        554052     223960554
@@ -52,7 +52,7 @@ taken_count:                    42122847       9887727       2324201        5540
 not_taken_count:               178959453      42122848       9887728       2324201     233294230
 current state:              NT saturated
 
-Cache Heapsort - comparison 5:
+memory-tuned heapsort - comparison 5:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  234808437      43713141       8145743       1515736     288183057
 correct_count:                 197963532      36844906       1277507        238229     236324174
@@ -61,7 +61,7 @@ taken_count:                    36844905       6868235       1277507        2382
 not_taken_count:               197963532      36844906       6868236       1277507     242954181
 current state:              NT saturated
 
-Cache Heapsort - comparison 6:
+memory-tuned heapsort - comparison 6:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  244206168      37359547       5738770        878572     288183057
 correct_count:                 211823999      32382170        761392        117180     245084741
@@ -70,7 +70,7 @@ taken_count:                    32382169       4977377        761392        1171
 not_taken_count:               211823999      32382170       4977378        761392     249944939
 current state:              NT saturated
 
-Cache Heapsort - comparison 7:
+memory-tuned heapsort - comparison 7:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  251119179      32299702       4217664        546512     288183057
 correct_count:                 222553143      28566037        483998         62514     251665692
@@ -79,7 +79,7 @@ taken_count:                    28566036       3733665        483998         625
 not_taken_count:               222553143      28566037       3733666        483998     255336844
 current state:              NT saturated
 
-Cache Heapsort - child promotion:
+memory-tuned heapsort - child promotion:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  285986017       2197033             6             1     288183057
 correct_count:                 283788988       2197029             2             0     285986019
@@ -88,7 +88,7 @@ taken_count:                     2197029             4             2            
 not_taken_count:               283788988       2197029             4             1     285986022
 current state:               T saturated
 
-Cache Heapsort - fix up:
+memory-tuned heapsort - fix up:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   39925229      12101112       2017810        346602      54390753
 correct_count:                  29540760      10384470        301167         45435      40271832

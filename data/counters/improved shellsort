@@ -1,4 +1,4 @@
-Improved Shellsort - inner loop:
+improved shellsort - inner loop:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  304848254     335383978     373231065     393811791    1407275088
 correct_count:                 142631447     162216808     200063894     193747897     698660046
@@ -7,7 +7,7 @@ taken_count:                   162216807     173167170     200063894     1937478
 not_taken_count:               142631447     162216808     173167171     200063894     678079320
 current state:              NT saturated
 
-Improved Shellsort - insertion:
+improved shellsort - insertion:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                    4919745      17593422      37023285      70624092     130160544
 correct_count:                   1002095       3917650      23347513      47276579      75543837

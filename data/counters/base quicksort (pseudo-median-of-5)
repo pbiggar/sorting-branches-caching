@@ -1,4 +1,4 @@
-Base Quicksort5 - i:
+base quicksort (pseudo-median-of-5) - i:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   95663512      76090260      90564033     171198619     433516424
 correct_count:                  57145423      38518090      52991862     118206757     266862132
@@ -7,7 +7,7 @@ taken_count:                    38518089      37572170      52991862     1182067
 not_taken_count:                57145423      38518090      37572171      52991862     186227546
 current state:              NT saturated
 
-Base Quicksort5 - j:
+base quicksort (pseudo-median-of-5) - j:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   91133125      76100563      95094421     185019871     447347980
 correct_count:                  53466812      37666313      56660171     128359700     276152996
@@ -16,7 +16,7 @@ taken_count:                    37666313      38434250      56660171     1283597
 not_taken_count:                53466812      37666313      38434250      56660171     186227546
 current state:                         T
 
-Base Quicksort5 - partition end:
+base quicksort (pseudo-median-of-5) - partition end:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  181934665       4207806         82696          2379     186227546
 correct_count:                 177807221       4127444          2333            46     181937044
@@ -25,7 +25,7 @@ taken_count:                     4127444         80362          2333            
 not_taken_count:               177807221       4127444         80363          2333     182017361
 current state:                        NT
 
-Base Quicksort5 - insertion:
+base quicksort (pseudo-median-of-5) - insertion:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   15181659      17316159      26761361      72823206     132082385
 correct_count:                   6165216       9016443      18461645      54361561      88004865
@@ -34,7 +34,7 @@ taken_count:                     9016443       8299716      18461645      543615
 not_taken_count:                 6165216       9016443       8299716      18461645      41943020
 current state:                         T
 
-Base Quicksort5 - median:
+base quicksort (pseudo-median-of-5) - median:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                    4744289       3765614       3707106       4693228      16910237
 correct_count:                   2737090       2007223       1948673       2744571       9437557

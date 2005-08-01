@@ -1,4 +1,4 @@
-Insertion - Comparator:
+insertion sort - Comparator:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                         17           105         81893     167485511     167567526
 correct_count:                         6            11         81799     167403712     167485528
@@ -7,7 +7,7 @@ taken_count:                          11            94         81799     1674037
 not_taken_count:                       6            11            94         81799         81910
 current state:                         T
 
-Insertion - Sentinel comparator:
+insertion sort - Sentinel comparator:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                      81823            78             6             3         81910
 correct_count:                     81748            76             3             0         81827

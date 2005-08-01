@@ -1,4 +1,4 @@
-Algorithm N - N2:
+algorithm N - N2:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                          0             0           101           109           210
 correct_count:                         0             0           101             9           110
@@ -7,7 +7,7 @@ taken_count:                           0             0           101            
 not_taken_count:                       0             0             0           100           100
 current state:               T saturated
 
-Algorithm N - N3:
+algorithm N - N3:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  212310679     215513186     214069791     207211324     849104980
 correct_count:                 104893240     107417440     105974044     101237280     419522004
@@ -16,7 +16,7 @@ taken_count:                   107417439     108095746     105974044     1012372
 not_taken_count:               104893240     107417440     108095747     105974044     426380471
 current state:              NT saturated
 
-Algorithm N - N3 i == j:
+algorithm N - N3 i == j:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  426380260           210             1             0     426380471
 correct_count:                 426380050           210             0             0     426380260
@@ -25,7 +25,7 @@ taken_count:                         210             0             0            
 not_taken_count:               426380050           210             1             0     426380261
 current state:                        NT
 
-Algorithm N - N5:
+algorithm N - N5:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                     683847       2007006       9731554     413957854     426380261
 correct_count:                    133395        550452       8275000     405682855     414641702
@@ -34,7 +34,7 @@ taken_count:                      550452       1456554       8275000     4056828
 not_taken_count:                  133395        550452       1456554       8274999      10415400
 current state:               T saturated
 
-Algorithm N - N7:
+algorithm N - N7:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                    8227464       4169633       2187936       1262021      15847054
 correct_count:                   5447643       2779821        798124        463897       9489485
@@ -43,7 +43,7 @@ taken_count:                     2779821       1389812        798124        4638
 not_taken_count:                 5447643       2779821       1389812        798124      10415400
 current state:                         T
 
-Algorithm N - N9:
+algorithm N - N9:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                     680142       2005454       9738146     410300767     422724509
 correct_count:                    132579        547563       8280255     402020513     410980910
@@ -52,7 +52,7 @@ taken_count:                      547563       1457891       8280255     4020205
 not_taken_count:                  132579        547563       1457891       8280254      10418287
 current state:               T saturated
 
-Algorithm N - N11:
+algorithm N - N11:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                    8229599       4172383       2188687       1261137      15851806
 correct_count:                   5448808       2780792        797095        464042       9490737
@@ -61,7 +61,7 @@ taken_count:                     2780791       1391591        797095        4640
 not_taken_count:                 5448808       2780792       1391592        797095      10418287
 current state:              NT saturated
 
-Algorithm N - N13:
+algorithm N - N13:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                          0             0            10           200           210
 correct_count:                         0             0            10           190           200

@@ -1,4 +1,4 @@
-Sequential Multi Quicksort - i:
+multi-quicksort (sequential search) - i:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   72576162      57428287      72525936     157461228     359991613
 correct_count:                  43848092      28728071      43825719     113635509     230037391
@@ -7,7 +7,7 @@ taken_count:                    28728070      28700216      43825719     1136355
 not_taken_count:                43848092      28728071      28700217      43825719     145102099
 current state:              NT saturated
 
-Sequential Multi Quicksort - j:
+multi-quicksort (sequential search) - j:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   72960856      57410691      72141243     155286170     357798960
 correct_count:                  44193653      28767203      43497755     111788415     228247026
@@ -16,7 +16,7 @@ taken_count:                    28767203      28643488      43497755     1117884
 not_taken_count:                44193653      28767203      28643488      43497755     145102099
 current state:                         T
 
-Sequential Multi Quicksort - partition end:
+multi-quicksort (sequential search) - partition end:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  140501156       4490636        106951          3356     145102099
 correct_count:                 136114210       4386946          3260            96     140504512
@@ -25,7 +25,7 @@ taken_count:                     4386946        103690          3260            
 not_taken_count:               136114210       4386946        103691          3260     140608107
 current state:                        NT
 
-Sequential Multi Quicksort - insertion:
+multi-quicksort (sequential search) - insertion:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                    3553963       9984911      29400833      72536025     115475732
 correct_count:                    863589       2690374      22106296      50429729      76089988
@@ -34,7 +34,7 @@ taken_count:                     2690374       7294537      22106296      504297
 not_taken_count:                  863589       2690374       7294537      22106296      32954796
 current state:                         T
 
-Sequential Multi Quicksort - sequential taken:
+multi-quicksort (sequential search) - sequential taken:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  525697216      41820648       1628319        122152     569268335
 correct_count:                 485393536      40303680        111350         10802     525819368

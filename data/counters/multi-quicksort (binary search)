@@ -1,4 +1,4 @@
-Multi Quicksort - i:
+multi-quicksort (binary search) - i:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   72576162      57428287      72525936     157461228     359991613
 correct_count:                  43848092      28728071      43825719     113635509     230037391
@@ -7,7 +7,7 @@ taken_count:                    28728070      28700216      43825719     1136355
 not_taken_count:                43848092      28728071      28700217      43825719     145102099
 current state:              NT saturated
 
-Multi Quicksort - j:
+multi-quicksort (binary search) - j:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   72960856      57410691      72141243     155286170     357798960
 correct_count:                  44193653      28767203      43497755     111788415     228247026
@@ -16,7 +16,7 @@ taken_count:                    28767203      28643488      43497755     1117884
 not_taken_count:                44193653      28767203      28643488      43497755     145102099
 current state:                         T
 
-Multi Quicksort - partition end:
+multi-quicksort (binary search) - partition end:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  140501156       4490636        106951          3356     145102099
 correct_count:                 136114210       4386946          3260            96     140504512
@@ -25,7 +25,7 @@ taken_count:                     4386946        103690          3260            
 not_taken_count:               136114210       4386946        103691          3260     140608107
 current state:                        NT
 
-Multi Quicksort - binary left:
+multi-quicksort (binary search) - binary left:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   89318774      48335015      21631482       8448861     167734132
 correct_count:                  55952435      33366340       6662806       1786055      97767636
@@ -34,7 +34,7 @@ taken_count:                    33366339      14968675       6662806       17860
 not_taken_count:                55952435      33366340      14968676       6662806     110950257
 current state:              NT saturated
 
-Multi Quicksort - binary right:
+multi-quicksort (binary search) - binary right:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                    3098266      10514386      38844534      58493071     110950257
 correct_count:                    673979       2424287      30754435      27738636      61591337
@@ -43,7 +43,7 @@ taken_count:                     2424287       8090099      30754435      277386
 not_taken_count:                  673979       2424287       8090099      30754435      41942800
 current state:                         T
 
-Multi Quicksort - insertion:
+multi-quicksort (binary search) - insertion:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                    3553963       9984911      29400833      72536025     115475732
 correct_count:                    863589       2690374      22106296      50429729      76089988

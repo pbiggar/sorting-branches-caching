@@ -1,4 +1,4 @@
-Multi Mergesort - forwards left:
+double-aligned multi-mergesort - forwards left:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  195469566      80597839       2427932           835     278496172
 correct_count:                 117298862      78170704           796            39     195470401
@@ -7,7 +7,7 @@ taken_count:                    78170704       2427135           796            
 not_taken_count:               117298862      78170704       2427136           796     197897498
 current state:                        NT
 
-Multi Mergesort - forwards right:
+double-aligned multi-mergesort - forwards right:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  153411310      80578249       2564333         20425     236574317
 correct_count:                  75376973      78034337         20421             4     153431735
@@ -16,7 +16,7 @@ taken_count:                    78034337       2543912         20421            
 not_taken_count:                75376973      78034337       2543912         20421     155975643
 current state:                         T
 
-Multi Mergesort - reverse left:
+double-aligned multi-mergesort - reverse left:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  195468121      80595942       2428915           771     278493749
 correct_count:                 117300335      78167786           758            13     195468892
@@ -25,7 +25,7 @@ taken_count:                    78167786       2428156           758            
 not_taken_count:               117300335      78167786       2428157           758     197897036
 current state:                        NT
 
-Multi Mergesort - reverse right:
+double-aligned multi-mergesort - reverse right:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  153412085      80576386       2564141         20326     236572938
 correct_count:                  75379519      78032566         20321             6     153432412
@@ -34,7 +34,7 @@ taken_count:                    78032566       2543820         20321            
 not_taken_count:                75379519      78032566       2543820         20320     155976225
 current state:               T saturated
 
-Multi Mergesort - fix up:
+double-aligned multi-mergesort - fix up:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   40931061       4734837       1011978        140242      46818118
 correct_count:                  37073754       3857308        134448          5794      41071304
@@ -43,7 +43,7 @@ taken_count:                     3857307        877529        134448          57
 not_taken_count:                37073754       3857308        877530        134448      41943040
 current state:              NT saturated
 
-Multi Mergesort - has children:
+double-aligned multi-mergesort - has children:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                          5            16      40197250      85735834     125933105
 correct_count:                         0             6      40197239      45538595      85735840
@@ -52,7 +52,7 @@ taken_count:                           5            10      40197239      455385
 not_taken_count:                       0             6            11      40197239      40197256
 current state:              NT saturated
 
-Multi Mergesort - comparison 0:
+double-aligned multi-mergesort - comparison 0:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   85735847             1             1             0      85735849
 correct_count:                  85735847             1             0             0      85735848
@@ -61,7 +61,7 @@ taken_count:                           0             0             0            
 not_taken_count:                85735847             1             1             0      85735849
 current state:              NT saturated
 
-Multi Mergesort - comparison 1:
+double-aligned multi-mergesort - comparison 1:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   35174101      17166632      13113999      20281117      85735849
 correct_count:                  22923822      12250279       8197646      12083471      55455218
@@ -70,7 +70,7 @@ taken_count:                    12250279       4916353       8197646      120834
 not_taken_count:                22923822      12250279       4916353       8197646      48288100
 current state:                         T
 
-Multi Mergesort - comparison 2:
+double-aligned multi-mergesort - comparison 2:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   52217773      17179165       8510873       7828038      85735849
 correct_count:                  39277896      12939878       4271585       3556453      60045812
@@ -79,7 +79,7 @@ taken_count:                    12939877       4239287       4271585       35564
 not_taken_count:                39277896      12939878       4239288       4271585      60728647
 current state:              NT saturated
 
-Multi Mergesort - comparison 3:
+double-aligned multi-mergesort - comparison 3:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   61280332      15585113       5457729       3412675      85735849
 correct_count:                  48992268      12288065       2160680       1251995      64693008
@@ -88,7 +88,7 @@ taken_count:                    12288064       3297048       2160680       12519
 not_taken_count:                48992268      12288065       3297049       2160680      66738062
 current state:              NT saturated
 
-Multi Mergesort - comparison 4:
+double-aligned multi-mergesort - comparison 4:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   66773858      13761007       3616736       1584248      85735849
 correct_count:                  55519667      11254192       1109920        474328      68358107
@@ -97,7 +97,7 @@ taken_count:                    11254191       2506815       1109920        4743
 not_taken_count:                55519667      11254192       2506816       1109920      70390595
 current state:              NT saturated
 
-Multi Mergesort - comparison 5:
+double-aligned multi-mergesort - comparison 5:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   70349787      12138646       2491732        755684      85735849
 correct_count:                  60125434      10224354        577439        178245      71105472
@@ -106,7 +106,7 @@ taken_count:                    10224353       1914292        577439        1782
 not_taken_count:                60125434      10224354       1914293        577439      72841520
 current state:              NT saturated
 
-Multi Mergesort - comparison 6:
+double-aligned multi-mergesort - comparison 6:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   72956952      10716759       1713498        348640      85735849
 correct_count:                  63665487       9291466        288204         60436      73305593
@@ -115,7 +115,7 @@ taken_count:                     9291465       1425293        288204         604
 not_taken_count:                63665487       9291466       1425294        288204      74670451
 current state:              NT saturated
 
-Multi Mergesort - comparison 7:
+double-aligned multi-mergesort - comparison 7:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   75995509       8748422        894035         97883      85735849
 correct_count:                  68050697       7944813         90425          7458      76093393
@@ -124,7 +124,7 @@ taken_count:                     7944812        803609         90425          74
 not_taken_count:                68050697       7944813        803610         90425      76889545
 current state:              NT saturated
 
-Multi Mergesort - child promotion:
+double-aligned multi-mergesort - child promotion:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   83990054       1745785            10             0      85735849
 correct_count:                  82244279       1745776             0             0      83990055
@@ -133,7 +133,7 @@ taken_count:                     1745775             9             0            
 not_taken_count:                82244279       1745776            10             0      83990065
 current state:              NT saturated
 
-Multi Mergesort - tag:
+double-aligned multi-mergesort - tag:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                   36020600       5160360        679561         82519      41943040
 correct_count:                  31465656       4554944         74145          8375      36103120
@@ -142,7 +142,7 @@ taken_count:                     4554944        605416         74145          83
 not_taken_count:                31465656       4554944        605416         74144      36700160
 current state:               T saturated
 
-Multi Mergesort - reverse? tag:
+double-aligned multi-mergesort - reverse? tag:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                    1112929       1508099       1508511       1113341       5242880
 correct_count:                    420057        692872        693284        420057       2226270

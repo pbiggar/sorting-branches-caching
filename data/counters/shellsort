@@ -1,4 +1,4 @@
-Shellsort - inner loop:
+shellsort - inner loop:
 states                      NT saturated            NT             T   T saturated         Total
 branch_count:                  361290060     374565819     400675309     413974204    1550505392
 correct_count:                 175509496     185780565     211890054     202084150     775264265
