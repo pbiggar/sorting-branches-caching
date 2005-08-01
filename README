@@ -5,8 +5,8 @@ There are 4 sets of tests: testing the sorts to see if they work, hardware
 performance counters, software branch predictors and simplescalar tests.
 
 Most of the results are included in this package in their rawest form. It is
-necessary to generate some graphs. Commands which must be run to do this are
-marked with a * below.
+necessary to generate some graphs and process some results. Commands which must
+be run to be able to create the docs are marked with a * below.
 
 main.c:
 
@@ -40,7 +40,7 @@ Hardware counters:
 		$ ../scripts/papi_convert my_results > new_results
 
 	Then process the results to give you graphs:
-*		$ ../scripts/process_perfex_output new_results
+		$ ../scripts/process_perfex_output new_results
 
 	There's a little bit of hard coding in this script, so change $key_num to
 	the number of times perfex actually ran. Also modify the input so that only
@@ -48,7 +48,7 @@ Hardware counters:
 	selectsort, and it ran 256 times, but other sorts ran 257 times, remove
 	the sort results for the 257th iteration from the results file.
 
-	This produces a file in the data/ directory called processes_cycles_data
+	This produces a file in the data/ directory called processed_cycles_data
 	which is in gnuplot format. If you add more sorts to the framework, you'll
 	need to edit the gnuplot scripts in data/perfex_gnuplot_scripts/ with the
 	column numbers that are printed out by process_perfex_output.
