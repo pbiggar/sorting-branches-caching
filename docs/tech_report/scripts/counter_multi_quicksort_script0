@@ -10,7 +10,7 @@ set title "multi-quicksort (binary search) branch predictor results"
 set output '../data/plots/counter_multi_quicksort_0.eps'
 set xtics ("i" 0, "\nj" 1, "partition end" 2, "\nbinary left" 3, "binary right" 4, "\ninsertion" 5, "" 6)
 plot \
-'../data/counter_gnuplot_data/multi_quicksort_data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
-'../data/counter_gnuplot_data/multi_quicksort_data0' using ($0-.15):2 title 'correct' with boxes lt -1,\
-'../data/counter_gnuplot_data/multi_quicksort_data0' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
-'../data/counter_gnuplot_data/multi_quicksort_data0' using ($0+.15):4 title 'taken' with boxes lt -1
+'../data/counter_gnuplot_data/multi_quicksort__binary_search__data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
+'../data/counter_gnuplot_data/multi_quicksort__binary_search__data0' using ($0-.15):2 title 'correct' with boxes lt -1,\
+'../data/counter_gnuplot_data/multi_quicksort__binary_search__data0' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
+'../data/counter_gnuplot_data/multi_quicksort__binary_search__data0' using ($0+.15):4 title 'taken' with boxes lt -1
