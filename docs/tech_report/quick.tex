@@ -58,7 +58,7 @@ being the first, middle and last in the list. This reduces the chance of a worst
 case occurring significantly, notably in the case of sorted and almost sorted
 lists.
 
-An additional benefit of Sedgewick's median of three implementation is that it
+An additional benefit of Sedgewick's median-of-3 implementation is that it
 provides a sentinel for the partition. It is now possible to remove the bounds
 check from the innermost loops of \cc{partition}, saving a lot of instructions.
 
@@ -68,7 +68,7 @@ reduced significantly, and the possibility of stack overflow, in the worst case
 of the recursive version, is removed.
 
 Quicksort has been well studied, and several important improvements have been
-noted. In \cite{BentleyMcIlroy93}, using a median of nine partition is discussed,
+noted. In \cite{BentleyMcIlroy93}, using a median-of-9 partition is discussed,
 and modern discussions on quicksort refer to the problem of equal keys, which is
 discussed there, as well as by Sedgewick in \cite{SedgewickBentley02}. These
 improvements are not included here for several reasons. Firstly, a quicksort
@@ -241,7 +241,7 @@ increase once the arrays no longer fit in the cache, also as predicted.
 
 The results show again that direct mapped caches can perform better than fully
 associative ones. This is true in the case of all the quicksorts, as can be seen
-in Figures \ref{base quicksort (median-of-3) (no median) level 2 misses} to
+in Figures \ref{base quicksort (no median) level 2 misses} to
 \ref{multi-quicksort (sequential search) level 2 misses} graph that this is true
 in the case of all the quicksorts.
 
@@ -285,7 +285,7 @@ appear to be the same, though our results are not conclusive either way.
 %TODO a bit to rewrite
 \subsection{Different Sorts}
 
-\sixplot{base_quicksort_0.eps}{base_quicksort9_0.eps}{memory_tuned_quicksort_0.eps}{multi_quicksort_0.eps}{sequential_multi_quicksort_0.eps}{}{base,
+\sixplot{base_quicksort__median_of_3__0.eps}{base_quicksort__pseudo_median_of_9__0.eps}{memory_tuned_quicksort_0.eps}{multi_quicksort__binary_search__0.eps}{multi_quicksort__sequential_search__0.eps}{}{base,
 cache and multi quicksorts and base quicksort (pseudo-median-of-9)}
 
 Firstly, memory-tuned quicksort and base quicksort (median-of-3) only differ in how they deal with
@@ -325,7 +325,7 @@ Note that sequential multi-quicksort has less mispredictions than memory-tuned q
 \subsection{Different Medians}
 
 \label{quick-predictors2}
-\sixplot{base_quicksort1_0.eps}{base_quicksort_0.eps}{base_quicksort5_0.eps}{base_quicksort7_0.eps}{base_quicksort9_0.eps}{}{base quicksort without a median, with median of 3, and with pseudo-medians of 5, 7 and 9}
+\sixplot{base_quicksort__no_median__0.eps}{base_quicksort__median_of_3__0.eps}{base_quicksort__pseudo_median_of_5__0.eps}{base_quicksort__pseudo_median_of_7__0.eps}{base_quicksort__pseudo_median_of_9__0.eps}{}{base quicksort without a median, with median of 3, and with pseudo-medians of 5, 7 and 9}
 
 \label{quicksort entropy}
 
@@ -337,8 +337,8 @@ predicted correctly. In quicksort, we expect to obtain similar results.
 
 We use several variations of quicksort to test this theory. \ref{bently, i
 ithkn} suggests partitioning using a median-of-9 instead of a median-of-3. We
-created sorts using no median, a median-of-3, and pseudo-medians-of-five, -seven and
--nine. The pseudo-medians used repeated medians-of-three instead of a real
+created sorts using no median, a median-of-3, and pseudo-medians-of-5, -7 and
+-9. The pseudo-medians used repeated medians-of-3 instead of a real
 median, as suggestion by \ref{bently, again, i think}. 
 %use a cut off
 
@@ -351,12 +351,12 @@ found, and a corresponding increase in time spent finding the better median.
 The results of these tests are shown in Figure \ref{Branch prediction
 performance for base quicksort without a median, with median of 3, and with
 pseudo medians of 5, 7 and 9}. There is little variance in insertion sort misses
-between the sorts using pseudo-medians, but the median-of-three quicksort has
+between the sorts using pseudo-medians, but the median-of-3 quicksort has
 6\% fewer branches, and a corresponsing decrease in mispredictions.
 %TODO to whom do we owe the idea of a pseudo median? Bently/McIlroy?
 %TODO when does it cut out, and why did we choose tere (benlty?)
 
-Between a median-of-three and a pseudo-median-of-nine partitioning, there is a
+Between a median-of-3 and a pseudo-median-of-9 partitioning, there is a
 10\% reduction in branches. At the same time, there is a 20\% reduction in
 correct predictions, accounting for the entire reduction in branches, and a 4\%
 increase in mispredictions. This is due to better partitioning. Less time is
@@ -374,7 +374,7 @@ partitioning. In effect, there are fewer branches pretending to be useful.
 The pseudo-median-of-5 partitioning performs slightly better than the
 median-of-3, and pseudo-median-of-7 performs slightly better again, in
 terms of branch prediction. Figure \ref{TODO} shows the cycle count of each of
-the quicksorts, showing that a pseudo-median-of-seven offers the greatest
+the quicksorts, showing that a pseudo-median-of-7 offers the greatest
 trade-off between the reduced number of branches and instructions, and the
 increase in branch mispredictions. 
 

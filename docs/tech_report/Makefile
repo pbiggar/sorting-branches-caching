@@ -17,7 +17,6 @@ FILES = background.tex conclusions.tex heap.tex merge.tex ordernsquared.tex radi
 
 INTERMEDIATE_FILES = $(TITLE).ps $(TITLE).pdf $(TITLE).dvi $(TITLE).aux $(TITLE).log $(TITLE).lof $(TITLE).bbl $(TITLE).blg $(TITLE).toc
 
-all: $(DOCUMENT)
 
 again:
 	$(LATEX) $(LATEXFLAGS) $(TITLE)
@@ -40,3 +39,6 @@ again:
 
 clean:
 	rm -f $(INTERMEDIATE_FILES)
+
+
+all: $(DOCUMENT)
