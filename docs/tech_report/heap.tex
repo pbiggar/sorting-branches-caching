@@ -183,6 +183,7 @@ write is more expensive but the extra $logN$ instructions saved will mean that
 this increase will be an order of magnitude lower than the bounds check.
 
 \section{Results}
+%TESTING
 All simulations presented here were performed on 32 byte cache lines. As a
 result, 8-heaps were used for heapsort, since 8 4-byte \n{int}s fit the cache line.
 LaMarca used 64 bit ints, and while this doesn't affect results, it means that
@@ -273,6 +274,7 @@ visible in the base heapsort results, though it's amortised for larger data
 sets.
 
 %TODO move this to testing section
+%TESTING
 Figure \ref{heap cycles} shows the actual time taken for heap sort on a Pentium
 4 1.8GHz machine, which has an 8-way associative 256KB level 2 cache with a 64 byte
 cache line, a 4-way associative 8KB level 1 data cache, and a maximum branch

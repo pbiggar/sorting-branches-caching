@@ -8,6 +8,7 @@ foreach my $input_file (@ARGV)
 	# make the name of the output file
 	my $output_file = $input_file;
 	$output_file =~ s/.*\///g;
+	$output_file =~ s/[ \-\(\)]/_/g;
 	$output_file = "two_point_counter_".lc($output_file);
 
 	my $max_y_range = 0;

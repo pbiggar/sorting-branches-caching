@@ -143,12 +143,14 @@ large amounts of data. To that end, a script was written to run each required
 set of simulations. It recorded data from the simulations into a single file for
 later retrieval. This file was suitable to reading with a \cc{diff} program.
 
+%TESTING - also what version
 The SimpleScalar settings were chosen to be similar to LaMarca's simulations.
 LaMarca used the \n{Atom} simulator, which was used to test software for the DEC
 AlphaStation. It simulated a 2MB cache with a 32 byte cache line. The remainder
 of the settings were taken from the DEC Alpha: 8KB level 1 data cache, 8KB level
 1 instruction cache and shared instruction and data level 2 cache. 
 
+%TESTING - what versino
 \subsection{Gnuplot}
 \label{Gnuplot}
 \cc{Gnuplot} is a tool for plotting data files. It provides visualisations of data in
@@ -177,11 +179,12 @@ and branch predictors against other branch predictors for each sort.
 
 The main program provided the framework for the development of the sorts.
 Imaginatively called \cc{main.c}, this program provided the means for testing
-and (roughly) timing each sort. Figure \vref{Key sections of Main.c} contains
-this code.
+and (roughly) timing each sort. Figure \vref{Key sections of Main.c} contains a
+sample of this code.
 
 \code{Key sections of Main.c}{main.c}
 
+%TESTING - what version
 \subsection{Valgrind}
 \label{Valgrind}
 \cc{Valgrind} is a set of tools which are used for debugging and profiling.  By
@@ -191,6 +194,7 @@ makes it particularly useful for bounds checking. No configuration was required
 for this, and simply running \cc{valgrind a.out} ran the program through
 valgrind. The homepage for valgrind is at \n{http://valgrind.kde.org/}.
 
+%TESTING - what version
 \subsection{PapiEx}
 \cc{PapiEx} is a tool used to access performance counters on a Pentium 4. It
 uses the PAPI framework to count certain characteristics across a program's
@@ -284,6 +288,7 @@ the number of cache misses in the final merge steps of tiled mergesort by
 merging all the sorted arrays in one step. This required the use of an 8-heap,
 which had been developed as part of heapsort.
 %TODO this isnt what happened exactly
+
 Once these sorts were written it was attempted to improve them slightly.
 Instead of a tiled mergesort, a double-aligned tiled mergesort was written.
 This attempted to completely sort in the level 1 cache, then to completely sort
@@ -300,11 +305,12 @@ to be debugged and simulated. The results were compared with the expected
 results and frequently the sorts needed to be edited to reduce the cost of a
 feature.
 
-%TODO another sentence here
-Each of the four $O(NlogN)$ sorts, radixsort and shellsort, was treated in this fashion.
+Radixsort, shellsort and each of the four $O(NlogN)$ sorts were treated in this
+fashion.
 
 \section{Testing details}
 
+%TESTING
 %TODO a lot of this may be in the first sorts chapter, maybe heapsort.
 %discuss: BIG + random.org, 64 bit in lamarca vs 32 bit, do_nothing and how it
 %affects cache hits, scaling in the software branch predictors. How to compare
@@ -337,3 +343,4 @@ most of the same information as SimpleScalar, with different parameters. For
 example, the cache line of a Pentium 4 machine is 128 bytes whereas 32 byte
 cache lines were used in SimpleScalar. The addition of real world data would
 strengthen our results.
+%TODO not true. we have it

@@ -78,7 +78,7 @@ Software branch predictors:
 	This creates the gnuplot data files in data/counter_gnuplot_data and
 	gnuplot scripts in the data/counter_gnuplot_generated_scripts/ directory.
 	To create the images, enter the scripts directory and run:
-*		$ gnuplot *
+		$ gnuplot *
 
 	The images are put into the /data/plots directory.
 		
@@ -99,7 +99,7 @@ Simplescalar:
 *		$ ../scripts/do_all_convert
 
 	To create the gnuplot scripts for these files, run:
-*		$ ../scripts/do_all_plot
+		$ ../scripts/do_all_plot
 
 	Though this doesn't actually run gnuplot, despite its name.  do_all_convert
 	creates gnuplot data files in data/converted_simple_logs/, and do_all_plot
@@ -134,6 +134,11 @@ Documents:
 	All the macros used to present the graphics are in report.tex. The code is
 	in docs/*/code/ and has been edited for readability from that which is
 	in code/.
+
+	Some extra images will need to be created as well. From the data directory:
+*		$ ../scripts/process_two_point_counter counters/bubblesort
+*		$ ../scripts/process_two_point_counter counters/improved\ bubblesort
+
 
 Data:
 
