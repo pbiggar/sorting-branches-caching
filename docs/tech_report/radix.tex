@@ -35,7 +35,7 @@ Note that this method is only suitable for \cc{unsigned int}s. Because a
 \cc{signed int}'s sign is contained in the most significant bit, this sort would
 place negative numbers after the positive numbers.
 
-\section{Cache Radixsort}
+\section{Memory-tuned Radixsort}
 Many improvements exist to radixsort, and some are suggested by Sedgewick and
 LaMarca. Some of these improvements help to lower cache misses and instruction
 count, both of which slow down radixsort significantly. LaMarca suggests an
@@ -127,12 +127,12 @@ in exceptional circumstances\footnote{See Section \ref{insertion is
 predictable}.}. Radixsort has no comparative branches at all. As a result, only
 flow control branches occur in radixsort, and they are all predictable.
 
-Due to the reduced copying, memory-tuned radixsort should have a lower instruction
-count and fewer cache misses that base radixsort. There should be nine passes
-over the array, leading to just over one miss per key, as opposed to two misses
-per key with base radixsort. The complexity and branch prediction results
-should remain the same. The instruction count should, however, reduce by nearly
-a half to $\frac{9}{16}^ths$ of base radixsort.
+Due to the reduced copying, memory-tuned radixsort should have a lower
+instruction count and fewer cache misses that base radixsort. There should be
+nine passes over the array, leading to just over one miss per key, as opposed to
+two misses per key with base radixsort. The complexity and branch prediction
+results should remain the same. The instruction count should, however, reduce by
+nearly a half to $\frac{9}{16}^{th}s$ of base radixsort.
 
 Based on LaMarca's results, showing quicksort to be faster than radixsort by a
 small amount, we expect memory-tuned radixsort to run faster than quicksort.
@@ -140,10 +140,10 @@ small amount, we expect memory-tuned radixsort to run faster than quicksort.
 \subsection{Simulation Results}
 \plot{radix}{}{}{}{}{}{}
 
-The instruction count of base radixsort, shown in Figure \ref{radix instructions} is
-very low. It is lower than even quicksort for the smallest set, and it
-flat-lines immediately (after slight amortisation of the loop overhead). The
-number of cache misses in Figure \ref{radix level 2 misses} is only slightly
+The instruction count of base radixsort, shown in Figure \ref{radix
+instructions} is very low. It is lower than even quicksort for the smallest set,
+and it flat-lines immediately (after slight amortisation of the loop overhead).
+The number of cache misses in Figure \ref{radix level 2 misses} is only slightly
 more than quicksort - due to being out-of-place - until the array no longer fits
 into the cache. The number of misses then leaps up to 2.5 per key, which is
 slightly more than was predicted. The extra is likely due to the unpredictable

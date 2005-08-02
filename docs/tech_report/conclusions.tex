@@ -68,7 +68,7 @@ to calculate them.
 %TODO this section has to be reread by David
 
 No results for the branch prediction performance of sorting algorithm yet
-exists. We were able to find some interesting results.
+exists. We discovered some interesting new results.
 
 Insertion sort has exactly one miss per key. Using this result we were able to
 make several other sorts faster by replacing their simple inline sorts with
@@ -278,10 +278,8 @@ The best stable sort is radixsort. The best comparison-based stable sort is
 double-aligned tiled mergesort. The best in-place sort is quicksort. The best in-place
 stable sort is, sadly, insertion sort. The best elementary sort is also
 insertion sort; as such it should be only used for very small data sets.  The
-best sort for very large data sets is radixsort. The best overall sort was
-quicksort, though radixsort is very close, and the radixsort considered here was
-not optimized. It is expected that an optimized radixsort would beat quicksort
-for smaller sets.
+best sort for very large data sets is radixsort. The fastest overall sort was
+memory-tuned radixsort, though quicksort is very close.
 % TODO redo above paragraph
 
 \section{Contributions}

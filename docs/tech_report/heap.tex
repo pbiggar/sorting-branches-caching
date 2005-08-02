@@ -32,7 +32,7 @@ a parent whose child has an index of $j$ is $\lfloor{}(j+1)/2-1\rfloor{}$. It is
 also possible to index the array between $1$ and $N$, in which case the children
 have indices of $2i$ and $2i+1$, while the parent has an index of
 $\lfloor{}j/2\rfloor{}$. Using this scheme can reduces instruction cost, but
-results is slightly more difficult pointer arithmetic, which cannot be performed
+results in slightly more difficult pointer arithmetic, which cannot be performed
 in some languages\footnote{In C this can be done by \cc{Item a[] =
 \&array[-1];}}.
 
@@ -217,6 +217,8 @@ and the parent is predictable. However, the comparisons to decide which child is
 smallest are not predictable. In a 2-heap, there is one comparison between
 children, meaning that half the branches will probably be correctly predicted.
 An 8-heap has seven comparisons between children, and will probably have about
+3 %TODO does this mean that knuths harmonics applies to this sort of prediction
+% thing TODO
 mispredictions, as it behaves similarly to selection sort (See \ref{selection
 branches logn}). It is possible, therefore, that the 8-heap will have slightly
 fewer mispredictions due to the combination of the shallower heap and the larger
@@ -254,7 +256,7 @@ when the auxiliary heap is being populated.
 
 The branch prediction behaves differently to the expected results, as the
 prediction ratio gets worse as the fanout gets larger. The reason we predicted
-differently was due to selection sort's $O(log N)$ mispredictions; however, this
+differently was due to selection sort's $O(H_N)$ mispredictions; however, this
 is over the entire length of the array, and it is not accurate to extrapolate
 these results over a sequence only seven keys long.
 
@@ -307,8 +309,10 @@ unoptimized algorithm would not suffer as much.
 
 \section{A more detailed look at branch prediction}
 
-\sixplot{base_heapsort_0.eps}{memory_tuned4_heapsort_0.eps}{memory_tuned_heapsort_0.eps}{memory_tuned_heapsort_1.eps}{}{}{base and memory-tuned heapsorts}
-
+\sixplot{base_heapsort_0.eps}{memory_tuned4_heapsort_0.eps}{memory_tuned_heapsort_0.eps}{memory_tuned_heapsort_1.eps}{}{}{base
+and memory-tuned heapsorts}
+%TESTING TODO
+TODO move to testing
 In order to explore the behaviour of the individual branches in
 heapsort, we performed a second set of branch prediction
 experiments. Rather than using SimpleScalar, we instead added
@@ -322,15 +326,11 @@ runs (\textbf{TODO find out exact number}), rather than the small
 number of runs possible with SimpleScalar. For these experiments,
 randomly generated array of size \textbf{xxxxx} were used.
 
-\textbf{[David] I am confused by this chart, because the labelling is
-a bit unclear. There appears to be a base heapsort, a 4-way cache
-heapsort and an 8-way cache heapsort. But the labelling doesn't tell
-us this.}
-
 Figure \ref{base and cache heapsorts-1}(a) shows the behaviour of each
 branch in the base heapsort algorithm. The ``creation, has children'' branch
 is from line \textbf{xxxxx} of Figure \ref{Simple Base Heapsort}.
 
+%TODO
 \textbf{[David] We need to find some way to describe what each of these
 branches is. I don't know myself, so the general reader really, really
 won't know.}

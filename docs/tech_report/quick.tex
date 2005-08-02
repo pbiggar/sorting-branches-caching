@@ -109,11 +109,13 @@ check or putting a sentinel into every sub-file.
 \section{Multi-Quicksort}
 
 In the case that the array to be sorted fits in the cache, then quicksort has
-excellent cache properties. Once it no longer fits in the cache, however, the
+excellent cache properties. This applies equally whether discussing a level 1
+cache or a level 2 cache. Once the array is larger than the cache, however, the
 number of misses increases dramatically. To fix this problem, LaMarca uses a
 technique similar to that used in multi-mergesort. Instead of multi-merging a
-series of sorted lists at the end, a \n{multi-way partition} is done at the start,
-moving all keys into cache sized containers which can be sorted individually.
+series of sorted lists at the end, a \n{multi-way partition} is done at the
+start, moving all keys into cache sized containers which can be sorted
+individually.
 
 At the start of the algorithm, a set of pivots is chosen and sorted, and keys
 are put into containers based on which two pivots their value lies between. A
@@ -264,7 +266,7 @@ that fewer comparative branches are executed. In base quicksort, we sort the
 entire array using insertion sort. In tuned quicksort, we don't sort the pivots,
 but only the keys between them.
 
-Despite the sequentially search multi-quicksort performing better than its
+Despite the sequential search multi-quicksort performing better than its
 binary searched cousin, and its good cache performance, it still failed to
 approach the performance of either base or tuned quicksort. In fact, base
 quicksort was the fastest of all the quicksorts in our performance counter test,
@@ -285,7 +287,7 @@ appear to be the same, though our results are not conclusive either way.
 %TODO a bit to rewrite
 \subsection{Different Sorts}
 
-\sixplot{base_quicksort__median_of_3__0.eps}{base_quicksort__pseudo_median_of_9__0.eps}{memory_tuned_quicksort_0.eps}{multi_quicksort__binary_search__0.eps}{multi_quicksort__sequential_search__0.eps}{}{base,
+\sixplot{base_quicksort__median_of_3__0.eps}{memory_tuned_quicksort_0.eps}{multi_quicksort__binary_search__0.eps}{multi_quicksort__sequential_search__0.eps}{}{}{base,
 cache and multi quicksorts and base quicksort (pseudo-median-of-9)}
 
 Firstly, memory-tuned quicksort and base quicksort (median-of-3) only differ in how they deal with
@@ -402,8 +404,8 @@ measured, giving greater insight to this debate.
 The memory-tuned quicksort is the only algorithm here that requires a sentinel
 check. The branch predictor will only mispredict this once, so the instruction
 count increase is only that of removing a single check which occurs relatively
-few ($N / THRESHOLD$)\footnote{This is a minimum. The figure may be higher since
-partitions are likely to be smaller than the threshold.} times. Still, the
+few ($N / THRESHOLD$) times\footnote{This is a minimum. The figure may be higher since
+partitions are likely to be smaller than the threshold.}. Still, the
 problem is interesting and has applications in other algorithm designs.
 
 Finally, in multi-quicksort, it may be possible to choose better pivots.

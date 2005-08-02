@@ -29,7 +29,7 @@ code for comparing these. Based on running the \cc{driver} program\footnote{See
 http://www.cs.princeton.edu/\textasciitilde{}rs/shell/}, Gonnet's shellsort was
 seen to be the fastest on the authors local machine. As a result, this was used
 to test the performance of shellsort. This uses increments which are
-$\frac{5}{11}^ths$ of the previous increment.
+$\frac{5}{11}^{th}s$ of the previous increment.
 
 Two versions of Gonnet's sort were used. The first was taken directly from the
 code presented by Sedgewick, and only slightly modified to fit into the
@@ -88,7 +88,7 @@ $O(NlogN)$ sort, albeit, not a very good one. The slopes of its graphs are
 slightly steeper, as can be seen in Figures \ref{shell cycles}, \ref{shell
 instructions}, \ref{shell level 1 misses} and \ref{shell branch misses}. It
 performs better than a heapsort, but considerably worse than quicksort. However,
-it easier to program than either of these two sort.
+it easier to program than either of these two sorts.
 
 Shellsort performs roughly double the number of branches and instructions of
 quicksort, and has more than twice as many branch mispredictions and nearly
@@ -112,6 +112,7 @@ seen in Figure \ref{shell cycles}.
 
 \sixplot{shellsort_0.eps}{improved_shellsort_0.eps}{}{}{}{}{Shellsorts}
 
+%TODO see figure something
 In shellsort, almost exactly half of the important branches are mispredicted.
 Simply predicting that all branches are taken would result in a slightly higher
 prediction ratio of 50.8\%. Similarly, for improved shellsort, slightly more

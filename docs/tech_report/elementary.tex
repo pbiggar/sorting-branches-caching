@@ -64,7 +64,8 @@ left-to-right minimum when searching for the minimum element of an
 array. He shows that for $N$ elements, the number of changes is $H_N -
 1$, where $H_N$ is the harmonic series:
 
-\displaymath{H_N = 1 + \frac{1}{2} + \frac{1}{3} + ... + \frac{1}{N} =  \sum_{k=1}^{N} \frac{1}{k},  \hspace{0.4cm}  N \geq 1}
+$$H_N = 1 + \frac{1}{2} + \frac{1}{3} + ... + \frac{1}{N} =  \sum_{k=1}^{N}
+\frac{1}{k},  \hspace{0.4cm}  N \geq 1$$
 
 Within practical sorting ranges, $H_N$ grows at a rate similar to
 $log(N)$. Thus, in the average case, we can expect that the comparison
@@ -197,16 +198,11 @@ smaller keys moving left. Sample code for shakersort is shown in Figure
 \subsection{Testing}
 \subsubsection{Expected Performance}
 The instruction count of shakersort is expected to be exactly the same as
-bubblesort. The version of shakersort used here, however, does not incorporate
-the improvement to end the sort early if the array is already sorted. This will
-probably slightly reduce the instruction count as the sort is unlikely to end
-early for random keys. 
-
-The cache performance of shakersort is expected to be superior to that of
-bubblesort. A small amount of temporal reuse occurs at the ends of the array,
-as each key is used twice once its loaded into the cache. In addition, when the
-array is not more than twice the size of the cache, then the keys in the centre
-of the array are not ejected from the cache at all.
+bubblesort, while its cache performance is expected to be superior. A small
+amount of temporal reuse occurs at the ends of the array, as each key is used
+twice once its loaded into the cache. In addition, when the array is not more
+than twice the size of the cache, then the keys in the centre of the array are
+not ejected from the cache at all.
 
 Finally, the branch prediction results are expected to be the same as in bubble
 sort, with one difference.  Keys which must travel the entire way across the
