@@ -305,9 +305,37 @@ associativity: LaMarca's tests were performed on a DEC AlphaStation 250 with a
 direct mapped cache. The Pentium 4's cache is 8-way associative, and so the
 unoptimized algorithm would not suffer as much.
 
-\section{Predictor Results}
+\section{A more detailed look at branch prediction}
 
 \sixplot{base_heapsort_0.eps}{memory_tuned4_heapsort_0.eps}{memory_tuned_heapsort_0.eps}{memory_tuned_heapsort_1.eps}{}{}{base and memory-tuned heapsorts}
+
+In order to explore the behaviour of the individual branches in
+heapsort, we performed a second set of branch prediction
+experiments. Rather than using SimpleScalar, we instead added
+additional statements to the heapsort source code to simulate a
+separate bimodal predictor for each branch. This allowed us to measure
+each branch individually, whereas SimpleScalar gives only a total
+figure for all branches. An additional advantage is that the resulting
+compiled simulation is much faster than a full microarchitecture
+simulator, and we were thus able to take the average of thousands of
+runs (\textbf{TODO find out exact number}), rather than the small
+number of runs possible with SimpleScalar. For these experiments,
+randomly generated array of size \textbf{xxxxx} were used.
+
+\textbf{[David] I am confused by this chart, because the labelling is
+a bit unclear. There appears to be a base heapsort, a 4-way cache
+heapsort and an 8-way cache heapsort. But the labelling doesn't tell
+us this.}
+
+Figure \ref{base and cache heapsorts-1}(a) shows the behaviour of each
+branch in the base heapsort algorithm. The ``creation, has children'' branch
+is from line \textbf{xxxxx} of Figure \ref{Simple Base Heapsort}.
+
+\textbf{[David] We need to find some way to describe what each of these
+branches is. I don't know myself, so the general reader really, really
+won't know.}
+
+
 
 The results of the software predictor show the relation of the branches
 in the creation and destruction of the heap. The base heapsort results in

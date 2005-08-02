@@ -29,7 +29,7 @@ again:
 	$(LATEX) $(LATEXFLAGS) $<
 	$(LATEX) $(LATEXFLAGS) $<
 
-$(TITLE).ps: %.dvi 
+%.ps: %.dvi 
 	$(DVIPS) $(DVIPSFLAGS) -o $@ $<
 
 %.pdf: %.dvi
