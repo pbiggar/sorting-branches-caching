@@ -167,3 +167,47 @@ Data:
 	All these tests were done on a Pentium 4, which is little-endian, and using
 	a little-endian version of simple-scalar. If your machine is big-endian,
 	you'll need to take some steps to get the same results.
+
+
+Tool versions:
+
+	The following are the versions of the tools used in the creation of this
+	report.
+
+		- Valgrind: valgrind-2.4.0
+
+		- PapiEx: version and kernel patch version TODO
+		
+		- gcc: gcc (GCC) 3.3.5 (Debian 1:3.3.5-13)
+		
+		- perl: v5.8.7 built for i386-linux-thread-multi
+		
+		- gnuplot: gnuplot 4.0 patchlevel 0
+		
+		- SimpleScalar: SimpleScalar/PISA Tool Set version 3.0 of August, 2003.
+			- sslittle-na-sstrix-gcc: gcc version 2.6.3
+			- host: i386-redhat-linux
+
+		- Pentium 4: cat /proc/cpuinfo
+			processor       : 0
+			vendor_id       : GenuineIntel
+			cpu family      : 15
+			model           : 1
+			model name      : Intel(R) Pentium(R) 4 CPU 1.60GHz
+			stepping        : 2
+			cpu MHz         : 1595.321
+			cache size      : 256 KB
+			fdiv_bug        : no
+			hlt_bug         : no
+			f00f_bug        : no
+			coma_bug        : no
+			fpu             : yes
+			fpu_exception   : yes
+			cpuid level     : 2
+			wp              : yes
+			flags           : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr
+							  pge mca cmov pat pse36 clflush dts acpi mmx fxsr
+							  sse sse2 ss tm
+			bogomips        : 3185.04
+
+

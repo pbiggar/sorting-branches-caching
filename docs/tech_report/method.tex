@@ -34,7 +34,7 @@ sorts had more than one\footnote{Quicksort, for example, had four: base
 quicksort, tuned quicksort, multi-quicksort and sequential multi-quicksort.}. A
 flowchart of these steps appears in Figure \vref{Flowchart}.
 
-%TODO this is going to have to be updated
+%TODO this is going to have to be updated - or is it
 \begin{figure}
 \scalebox{0.57}{\includegraphics*[0pt,165pt][600pt,802pt]{flowchart}}
 \caption{Flowchart describing the development of an algorithm}
@@ -306,45 +306,85 @@ fashion.
 %predictor data from P4, simplescalar inputs, software predictor, verfication of
 %sorts.
 
-\subsection{}
-simplescalar version and settings used
+Our tests were designed so that we could compare our results to LaMarca's, and
+so our results true in the general case. Both our testing method and our data
+sets were chosen with these goals in mind.
+
+\subsection{SimpleScalar Simulations}
+
+We tested each of our sorts using SimpleScalar, using set sizes from 4096 to
+4194304, increasing by a factor of two each time. Each of these set sizes was
+simulated using \cc{sim-cache} and \cc{sim-bpred} in a variety of
+configurations.
+
 The SimpleScalar settings were chosen to be similar to LaMarca's simulations.
 LaMarca used the \n{Atom} simulator, which was used to test software for the DEC
-AlphaStation. It simulated a 2MB cache with a 32 byte cache line. The remainder
-of the settings were taken from the DEC Alpha: 8KB level 1 data cache, 8KB level
-1 instruction cache and shared instruction and data level 2 cache. 
+AlphaStation. It simulated a 2MB direct-mapped cache with a 32 byte cache line.
+Other settings were also chosen to correspond to the DEC Alpha: 8KB level 1 data
+cache, 8KB level 1 instruction cache and shared instruction and data level 2
+cache.
 
-%TODO
-TODO
-gnuplot version
-valgrinf version
-papiex version
+In order to be able to extrapolate more information, we increased the number of
+cache simulations. We simulated both 2MB and 4MB caches, configured as both
+direct-mapped and fully-associative.
 
-cache line length. - vs pentium 4
+We chose the a similar approach for our branch predictor caches. We aimed to
+simulate bimodal predictors as well as 2 level adaptive, in order to be able to
+compare them together. We simulated bimodal predictors with a 512, 1024 and
+2048 byte table, and 2 level adaptive predictors with 512, 1024, 2048 and 4096
+entries.
 
-penitum 4:
-1.8, 8-way 256K level 2 64 byte line (note i wrote 128 byte xsomewhere. is this
-right)
-4-way 8kb level 1 cache
+\subsection{Data}
 
-branch delay 20 cycles
+Both our SimpleScalar simulations and our software predictor tests used truly
+random data from \n{http://www.random.org}. The software predictor used ten
+sections containing 4194304 \cc{unsigned integer}s, and the SimpleScalar
+simulations used the same ten sections. When SimpleScalar simulations were run
+on sized smaller than 4194304 keys, only the left hand side of the sections were
+used.
+
+\subsection{PaPiex}
+
+Our papiex tests ran significantly faster than either of our other simulations,
+and so we were able to run them over a significantly greater quantity of data.
+Each sort, and each size from 4096 to 4194304 key, was run 1024 times, using the
+system's random number generator to generate data, using seeds of between 0 and
+1023.
+
+%TODO did i say 128 byte elsewhere?
+These simulations were run a on Pentium 4 1.8Ghz, which had an 8-way, 256K level
+2 cache, with a 64-byte cache line. The level 1 caches are seperate 8K 4-way
+associative caches.
+
+The instruction pipeline of the Pentium 4 is 20 stages long, and so the branch
+misprediction penalty of the Pentium 4 approaches 20 cycles. The Pentium 4's
+static branch prediction strategy is backward taken and forward not taken; its
+dynamic strategy is unspecified: though \cite{Intel248966-010} mentions a branch
+history so it is likely a two-level adaptive predictor.
+
+\subsection{32-bit Integers}
+LaMarca used 64-bit \cc{integer}s, as his test machine was a 64-bit system.
+Since our machine is 32-bit, and SimpleScalar uses 32-bit addressing on our
+architecture, LaMarca's results will not be identical to ours. Rather, the
+number of cache misses in his results should be halved to be compared to our;
+when this is not the case, it is indicated.
 
 
-1.8GHz machine, which has an 8-way associative 256KB level 2 cache with a 64 byte
-cache line, a 4-way associative 8KB level 1 data cache, and a maximum branch
-misprediction delay of 20 cycles\footnote{This is determined from the Pentium
-4's 20 stage pipeline. This number is not exact, and is probably slightly lower,
-with the possibility of occasionally rising higher (in the case of an
-instruction cache miss, which is exceptionally unlikely for small routines like
-sorts).}. Its static branch prediction strategy is backward taken and forward
-not taken; its dynamic strategy is unspecified: though \cite{Intel248966-010}
-mentions a branch history so it is likely a two-level adaptive predictor.
+\subsection{Filling Arrays}
 
+It takes time to fill arrays, and this can distort the relationship between the
+results for small sizes, and larger sizes, for which this time is amortized. As
+a result, we measured this time, and subtracted it from our results. None of the
+graphs show this time. 
 
-
-
-64 bit vs 32 bit
-
+However, this practice also distorts the results. It removes compulsory cache
+misses from the results, so long as the data fits in the cache. When the data
+does not fit in the cache, the keys from the start of the array are faulted,
+with the effect that capacity misses reoccur, which are not discounted. As a
+result, on the left hand side of cache graphs, a number of compulsory misses are
+removed, though they are not on the right hand side. Similarly, LaMarca does not
+do this, and so this needs to be taken into account when comparing his results
+to ours.
 
 
 \section{Future Work}
