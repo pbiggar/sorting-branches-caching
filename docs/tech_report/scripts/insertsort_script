@@ -1,5 +1,5 @@
-set key top left Left reverse
-set xrange [4096:4194304]
+set nokey
+set xrange [4096:131072]
 set yrange [0:]
 set xtics (8192,16384,32768,65536,131072)
 set format x "%8.0f"
@@ -10,4 +10,4 @@ set output '../data/plots/insertsort-_cycles.eps'
 set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
-'../data/processed_cycles_data' using 1:19 title 'insertion sort'
+'../data/processed_cycles_data' using 1:19
