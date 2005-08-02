@@ -30,7 +30,7 @@ Selection sort uses approximately $N^2/2$ comparisons and exactly $N$ exchanges.
 As a result, selection sort can be very useful for sorts involving very large
 records, and small keys. In this case, the cost of swapping keys dominates the
 cost of comparing them. Conversely, for large keys with small records, the cost
-of selection sort is far higher than for other simple sorts.
+of selection sort may be higher than for other simple sorts.
 
 The performance of selection sort is not affected by input, so the instruction
 count varies very little.  Its cache behaviour is also not affected by input,
@@ -43,30 +43,49 @@ than the array, the performance of the level 1 cache should simulate the
 performance of the level 2 cache.
 
 \label{selection branches logn}
-The branch prediction performance is not expected to be bad. Flow control
-predictions are very straightforward, and should result in very few misses.
-Comparison predictions, however, are very numerous. Each array traversal has an
-average of $N/2$ comparisons, and approximately $log_2(N/2)$ of them should be
-taken, while the rest are not-taken. The taken predictions will be misses,
-while the rest should be hits, so it is expected that there will be $logN$
-misses per key.
+The branch prediction performance is not expected to be bad. Flow
+control predictions are very straightforward, and should result in
+very few misses.  Comparison predictions, however, are very
+numerous. Each traversal of the array has an average of $N/2$
+comparisons, as we search for the smallest key in the unsorted part of
+the array. During the search, the algorithm compares each key with the
+smallest key seen so far. In a random array, we would expect that the
+candidate for the smallest key (the left-to-right minimum) would
+change frequently towards the start of the array, making the
+comparison branch rather unpredictable. However, as the traversal
+continues, the left-to-right minimum will become smaller, and thus
+more difficult to displace. It will become very unusual to find a
+smaller key, and thus the branch will almost always resolve in the
+same direction.  Therefore, the comparison branch will quickly become
+very predictable.
 
-This number is not immediately obvious. Consider a single step of the selection
-sort. The first key to be sorted is, on average, larger than half the keys and
-smaller than the other half, so it will have to travel across half the array to
-find a key smaller than it, on average. Once it finds a smaller key, this will
-be larger than a quarter of the keys in the array, and so it will need to travel
-half of the remaining array, on average, before it finds it. The search will
-continue like this until the entire array has been covered. Comparing two keys
-and discovering that the new key is not smaller than the current smallest is the
-norm; every time a smaller key is found a branch misprediction will occur (if
-two or more keys in a row are successively smaller, this may not be the case).
-The length of the array to be considered in $N/2$ on average, and an average
-total of $Nlog_2(N/2)$ branch misses will occur. This assumes randomly sorted
-keys.
+Knuth \cite{Knuth1} analyses the number of changes to the
+left-to-right minimum when searching for the minimum element of an
+array. He shows that for $N$ elements, the number of changes is $H_N -
+1$, where $H_N$ is the harmonic series:
 
-%TODO look at knuths number here
-TODO Knuth has a formula which I will look up.
+\displaymath{H_N = 1 + \frac{1}{2} + \frac{1}{3} + ... + \frac{1}{N} =  \sum_{k=1}^{N} \frac{1}{k},  \hspace{0.4cm}  N \geq 1}
+
+Within practical sorting ranges, $H_N$ grows at a rate similar to
+$log(N)$. Thus, in the average case, we can expect that the comparison
+branch will mostly go in the same direction, making the branch highly
+predictable.
+
+Knuth also presents the number of changes to the left-to-right minimum
+in the best case (0 changes) and worst cases ($N-1$ changes).  In the
+worst case, the array is sorted in reverse order, and so the
+left-to-right minimum changes on every element. Interestingly, the
+worst cases for the number of changes is not the worst case for branch
+mispredictions. If the minimum changes for every element, then the
+comparison branch will always resolve in the same direction, and thus
+be almost perfectly predictable.  From the point of view of branch
+prediction, frequent changes (preferably with no simple pattern) are
+the main indicator of poor performance, rather than the absolute
+number of times that the branch resolves in each direction. The worst
+case for selection sort would probably be an array which is partially
+sorted in reverse order --- the left-to-right minimum would change
+frequently, but not predictably so.
+
 
 \section{Insertion Sort}
 
@@ -141,19 +160,21 @@ sort. Each key loaded into the cache is used just once, and will be ejected from
 the cache if the data set is large enough.
 
 The branch predictive performance is also expected to be similar. While
-selection sort has $O(NlogN)$ misses, each of bubblesort's comparisons has
-the potential to be a miss, and not just in the pathological case. However, as
-the sort continues and the array becomes more sorted, the number of misses
-should decrease. The number of flow control misses should be very low.
+selection sort has $O(NH_N)$ mispredictions, each of bubblesort's comparisons
+has the potential to be a misprediction, and not just in the pathological case.
+However, as the sort continues and the array becomes more sorted, the number of
+mispredictions should decrease. The number of flow control mispredictions should
+be very low.
 
 \section{Improved Bubblesort}
 Improved bubblesort incorporates an improvement to end bubblesort early. The
 bubblesort implementation described in the previous section ends early if it
-detects that the array is fully sorted.  It keeps a binary flag to indicate if
-there were any exchanges along the way.  Instead, improved bubblesort keeps
-track of the last exchange made, and starts the next iteration from there. This
-means that any pockets of sorted keys are skipped over, not just if they occur
-at the end. Improved bubblesort code is shown in Figure \vref{Improved bubblesort code}.
+detects that the array is fully sorted. It keeps a binary flag to indicate if
+there were any exchanges along the way. Instead, improved bubblesort keeps track
+of the last exchange made, and starts the next iteration from there. This means
+that any pockets of sorted keys are skipped over, not just if they occur at the
+end. Improved bubblesort code is shown in Figure \vref{Improved bubblesort
+code}.
 
 \code{Improved bubblesort code}{improved_bubblesort.c}
 \subsection{Testing}
@@ -294,13 +315,13 @@ cases. These results are shown in Figure \ref{elementary level 1 misses}. Each
 set size is larger than the cache, and each sort iterates across the entire
 array each time, leading to very poor performance.
 
-As expected, selection sort is the worst. This is due to the fact that it
-considers the entire unsorted segment of the array for each key to be put in
-place. Bubblesort, with similar behaviour, is only slightly better. Shakersort
-has a small amount of temporal reuse, reducing its number of misses. Improved
-shakersort is placed roughly between insertion sort and shakersort, showing that
-ending early is helpful in its case. This does not appear to be the case with
-improved bubblesort though, which performs identically to bubblesort.
+As expected, selection sort has the worst cache performance. This is due to the
+fact that it considers the entire unsorted segment of the array for each key to
+be put in place. Bubblesort, with similar behaviour, is only slightly better.
+Shakersort has a small amount of temporal reuse, reducing its number of misses.
+Improved shakersort is placed roughly between insertion sort and shakersort,
+showing that ending early is helpful in its case. This does not appear to be the
+case with improved bubblesort though, which performs identically to bubblesort.
 
 Insertion sort performs best of these sorts in relation to cache misses. This
 is due to the fact that the keys it considered most recently are used again for
@@ -310,37 +331,54 @@ iteration.
 
 Figure \ref{elementary branches} shows the number of branches per key of these
 sorts, while Figure \ref{Branch Simulation results for elementary sorts} shows
-the branch misses per key.  Branch prediction performance is not surprising.
-Each sort has a similar number of branches, with insertion sort having half as
-many as selection and bubblesort, and shakersort being half-way between the
-two. The number of misses for bubblesort and shakersort are huge.  As the data
-sets gets large, there are nearly 10,000 branch misses involved in sorting a
-single key. The improved bubblesort had exactly the same number of misses and
-branches. The improved shakersort has a lot less branches, but the same number
-of misses. This is because skipping over sorted keys is predictable from the
-first branch miss.
+the branch misses per key. Due to huge variations in predictability, we split
+the numbers of branch mispredictions into two charts. Selection sort causes
+around $H_N$ mispredictions per key, which is remarkably small. The comparison
+branch in the inner loop is highly predictable on random data, because a good
+candidate minimum is usually found quickly.
 
 Selection sort, meanwhile, has the same number of branches as bubblesort, but
-only $O(logN)$ misses per key. The most interesting result, though, is insertion
+only $O(H_N)$ misses per key. The most interesting result, though, is insertion
 sort. This has exactly one miss per key. Although this result was not predicted
 in advance, on reflection this behaviour is obvious: every iteration involves
 moving the key left. The only time it will not move left is when its being put
 into place, and this only happens once for every key. This shows that it is
 possible to completely eliminate even comparative branch misses. It also
 establishes insertion sort as the best of the simple sorts, and it is used later
-in quicksort and mergesort as a result of this. \label{insertion is
-predictable}
+in quicksort and mergesort as a result of this. \label{insertion is predictable}
 
-Another interesting result comes from a comparison between shakersort and
-selection sort. The number of cycles to sort an array (shown in Figure
-\ref{elementary cycles}) is nearly twice as high on shakersort as it is for
-selection sort. Shakersort has a significantly lower instruction count and cache
-miss count than selection sort, but has several orders of magnitude worse branch
-misses. This shows how important it is to consider branch misses in an
-algorithm, especially comparative ones. It also establishes that exchange-based
-algorithms, such as bubblesort and shakersort, will perform considerably worse
-than algorithms which have a correlation between successive branches, as in
-insertion and selection sorts.
+The number of misses for bubblesort and shakersort are so huge that we had to
+plot them on a separate chart. Nearly one in four comparisons are misses. As the
+data sets gets large, there are nearly 10,000 branch misses involved in sorting
+a single key. The improved bubblesort had exactly the same number of misses and
+branches. The improved shakersort has a lot less branches, but the same number
+of misses. This is because skipping over sorted keys is predictable from the
+first branch miss.
+
+The branch behaviour of bubble sort is particularly interesting when
+compared to selection sort. Although we usually think of the two
+algorithms as being different, they are actually very similar. Like
+selection sort, bubble sort finds the smallest (or largest) key in the
+unsorted part of the array and moves it to start (end) of the array.
+Thus, we would expect that bubbble sort's branch prediction behaviour
+would be similar to that of selection sort.
+
+However, in the proces of moving the smallest element into position,
+bubble sort also rearranges other array elements. Selection sort
+sweeps across the array and always keeps track of the left-to-right
+minimum up to the current point. However, bubble sort actually moves
+this minimum, exchanging pairwise with each element it encounters
+which is larger. Thus, even the unsorted part of the array becomes
+partially sorted. We might expect that bubble sort's comparison branch
+for a partially sorted array might be more predictable than for a
+random one, but it is not. With a random array, the smaller elements
+are equally likely to appear anywhere in the array. With a partially
+sorted array, the smaller elements tend to appear towards the start of
+the array which is, in bubble sort, the last place that we look. Thus,
+we change the candidate minimum much more often than if we were
+searching a randomly ordered array.
+
+
 
 \section{Future Work}
 Simulations from elementary sorts take a lot of time. Running the simulation for
