@@ -19,7 +19,6 @@ and change in branch prediction accuracy as a result of these changes.
 \item Determine if any changes can be made to improved the sorts' performance.
 \end{itemize}
 
-% TODO maybe remoe this?
 Several steps were necessary to prepare for the research.  A framework was
 required by which sorts could be tested as they were being developed. This is
 discussed in Section \ref{Main}. It was also necessary to fully understand the
@@ -273,10 +272,10 @@ were merged together in the remaining merge steps.
 
 LaMarca's final step was to create a multi-mergesort. This attempted to reduce
 the number of cache misses in the final merge steps of tiled mergesort by
-merging all the sorted arrays in one step. This required the use of an 8-heap,
-which had been developed as part of heapsort.
-%TODO this isnt what happened exactly
+merging all the sorted arrays in one step. This required the use of an k-ary
+heap, which had been developed as part of heapsort.
 
+%TODO this bit also has to be checked once we fix mergesort. if w fix mergesort
 Once these sorts were written it was attempted to improve them slightly.
 Instead of a tiled mergesort, a double-aligned tiled mergesort was written.
 This attempted to completely sort in the level 1 cache, then to completely sort
