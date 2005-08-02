@@ -250,9 +250,9 @@ associative performing slightly better than the direct mapped cache.
 In the graph, the base heapsort's results flat-line for a step longer than the
 other heapsorts' results. This is due to being in-place, since twice as many
 keys fit in the cache without a corresponding increase in misses. For the same
-reason, the base heapsorts have no compulsory misses\footnote{See Section
-\ref{TODO}.}, while the out-of-place sorts have one compulsory miss in eight,
-when the auxiliary heap is being populated.
+reason, the base heapsorts have no compulsory misses, while the out-of-place
+sorts have one compulsory miss in eight, when the auxiliary heap is being
+populated.
 
 The branch prediction behaves differently to the expected results, as the
 prediction ratio gets worse as the fanout gets larger. The reason we predicted
@@ -326,16 +326,16 @@ runs (\textbf{TODO find out exact number}), rather than the small
 number of runs possible with SimpleScalar. For these experiments,
 randomly generated array of size \textbf{xxxxx} were used.
 
-Figure \ref{base and cache heapsorts-1}(a) shows the behaviour of each
+Figure \ref{base and memory-tuned heapsorts-1}(a) shows the behaviour of each
 branch in the base heapsort algorithm. The ``creation, has children'' branch
 is from line \textbf{xxxxx} of Figure \ref{Simple Base Heapsort}.
 
-%TODO
+%TODO 
 \textbf{[David] We need to find some way to describe what each of these
 branches is. I don't know myself, so the general reader really, really
 won't know.}
 
-
+%TODO read over the merged bits. might not be quite right
 
 The results of the software predictor show the relation of the branches
 in the creation and destruction of the heap. The base heapsort results in
