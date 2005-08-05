@@ -375,12 +375,16 @@ partitioning. In effect, there are fewer branches pretending to be useful.
 
 The pseudo-median-of-5 partitioning performs slightly better than the
 median-of-3, and pseudo-median-of-7 performs slightly better again, in
-terms of branch prediction. Figure \ref{TODO} shows the cycle count of each of
-the quicksorts, showing that a pseudo-median-of-7 offers the greatest
-trade-off between the reduced number of branches and instructions, and the
-increase in branch mispredictions. 
+terms of branch prediction. Figure \ref{quick_median_cycles} shows the cycle
+count of each of the quicksorts, showing that a median-of-3 offers the greatest
+trade-off between the number of instructions and the increase in branch
+mispredictions.
 
-%TODO do we add more graphs here?
+\begin{figure}
+\includegraphics{plots/quick_median_cycles.eps}
+\caption{Empiric cycles count for quicksort with varying medians}
+\label{quick_median_cycles}
+\end{figure}
 
 
 \section{Future Work}
@@ -405,8 +409,8 @@ measured, giving greater insight to this debate.
 The memory-tuned quicksort is the only algorithm here that requires a sentinel
 check. The branch predictor will only mispredict this once, so the instruction
 count increase is only that of removing a single check which occurs relatively
-few ($N / THRESHOLD$) times\footnote{This is a minimum. The figure may be higher since
-partitions are likely to be smaller than the threshold.}. Still, the
+few ($N / THRESHOLD$) times\footnote{This is a minimum. The figure may be higher
+since partitions are likely to be smaller than the threshold.}. Still, the
 problem is interesting and has applications in other algorithm designs.
 
 Finally, in multi-quicksort, it may be possible to choose better pivots.
