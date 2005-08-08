@@ -16,6 +16,7 @@
 
 
 #define RANDOM_SIZE (4194304)
+//#define RANDOM_SIZE (2097152)
 //#define RANDOM_SIZE (534523)
 //#define RANDOM_SIZE (262144)
 //#define RANDOM_SIZE (32768)
@@ -173,8 +174,8 @@ time_sort(void sort(unsigned int*, int), const char* description)
 }
 
 
-#define TEST_MIN 1024
-#define TEST_MAX 1025
+#define TEST_MIN 1000
+#define TEST_MAX 5000
 static void inline
 test_sort(void sort(unsigned int*, int), const char* description)
 {
@@ -226,7 +227,7 @@ main(int argc, char** args)
 //                    tests
 // ****************************************************************************************************************
 
-	printf("Beginning sort tests (%d - %d)\n", TEST_MIN, TEST_MAX);
+/*	printf("Beginning sort tests (%d - %d)\n", TEST_MIN, TEST_MAX);
 	test_sort(base_heapsort, "base heapsort");
 	test_sort(memory_tuned_heapsort, "memory-tuned heapsort");
 	test_sort(memory_tuned4_heapsort, "memory-tuned4 heapsort");
@@ -234,8 +235,8 @@ main(int argc, char** args)
 	test_sort(algorithm_n, "algorithm N");
 	test_sort(algorithm_s, "algorithm S");
 	test_sort(base_mergesort, "base mergesort");
-	test_sort(tiled_mergesort, "tiled mergesort");
-	test_sort(multi_mergesort, "multi-mergesort");
+*/	test_sort(tiled_mergesort, "tiled mergesort");
+/*	test_sort(multi_mergesort, "multi-mergesort");
 	test_sort(double_aligned_tiled_mergesort, "double-aligned tiled mergesort");
 	test_sort(double_aligned_multi_mergesort, "double-aligned multi-mergesort");
 
@@ -288,8 +289,8 @@ main(int argc, char** args)
 	time_sort(algorithm_n, "algorithm N");
 	time_sort(algorithm_s, "algorithm S");
 	time_sort(base_mergesort, "base mergesort");
-	time_sort(tiled_mergesort, "tiled mergesort");
-	time_sort(multi_mergesort, "multi-mergesort");
+*/	time_sort(tiled_mergesort, "tiled mergesort");
+/*	time_sort(multi_mergesort, "multi-mergesort");
 	time_sort(double_aligned_tiled_mergesort, "double-aligned tiled mergesort");
 	time_sort(double_aligned_multi_mergesort, "double-aligned multi-mergesort");
 
@@ -387,7 +388,7 @@ main(int argc, char** args)
 	printf("Not running predictors for selectsort\n");
 	printf("Not running predictors for shakersort\n");
 	printf("Not running predictors for improved_shakersort\n");
-
+*/
 
 // ****************************************************************************************************************
 //                  visual 

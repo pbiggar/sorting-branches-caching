@@ -208,6 +208,13 @@ tiled_mergesort(unsigned int a[], int N)
 	/*make sure it ends up in a, not aux */
 	/* odd means it should end up in aux. and the final merge will get it into a */
 	/* even means it should end up in a, and the final mergre will do an even number of steps */
+
+	/* obviously, we should take this out. but the final bit is quite complex,
+	 * it doesnt come up in the tests (due to using powers of 2) and the extra
+	 * code doesnt cause too much of a hit. More importantly, it doesnt need to
+	 * be optimal, as we're only interested in data cache and brnahc
+	 * predictors, so the fact that theres a few extra instructions to get
+	 * loaded doesnt make a difference. */
 	if (get_count(N) & 1)
 	{
 		level1_finish =  &level2_aux_start;
@@ -228,53 +235,19 @@ tiled_mergesort(unsigned int a[], int N)
 
 	for(i = 0; i < level2_count-1; i+=2) /* sort it level 2 */
 	{
-		unsigned int* level1_start = level2_start;
-		unsigned int* level1_aux_start = level2_aux_start;
-/*		printf("going into level2: i=%d\n", i); */
-		for(j = 0; j < level1_count; j+=2) /* merge the level 1 cache first */
-		{
-/*			printf("going into level1: j=%d\n", j); */
-			presort(level1_start, 1024);
-			merge(level1_start, 1024, presort_count, level1_aux_start);
-			level1_start += 1024;
-			level1_aux_start += 1024;
-
-			/* now reverse it */
-
-			presort(level1_start, 1024);
-			merge_reverse(level1_start, 1024, presort_count, level1_aux_start);
-			level1_start += 1024;
-			level1_aux_start += 1024;
-		}
+/*		printf("going into level2: i=%d\n", i);  */
 
 		/* merge them all into LIMIT sized bits */
-		merge(*level1_finish, LIMIT, 1024, *level1_other);
+		presort(level2_start, LIMIT);
+		merge(level2_start, LIMIT, presort_count, level2_aux_start);
 
 		level2_start += LIMIT;
 		level2_aux_start += LIMIT;
 
 
 		/* now do it in reverse */
-
-		for(j = 0; j < level1_count; j+=2) /* merge the level 1 cache first */
-		{
-/*			printf("going into level1: j=%d\n", j); */
-			presort(level1_start, 1024);
-			merge(level1_start, 1024, presort_count, level1_aux_start); /* after this they end up in aux */
-			level1_start += 1024;
-			level1_aux_start += 1024;
-
-			/* now reverse it */
-
-			presort(level1_start, 1024);
-			merge_reverse(level1_start, 1024, presort_count, level1_aux_start);
-			level1_start += 1024;
-			level1_aux_start += 1024;
-			/* these end up in aux */
-		}
-
-		/* merge them all into LIMIT sized bits */
-		merge_reverse(*level1_finish, LIMIT, 1024, *level1_other);
+		presort(level2_start, LIMIT);
+		merge_reverse(level2_start, LIMIT, presort_count, level2_aux_start);
 
 		level2_start += LIMIT;
 		level2_aux_start += LIMIT;
@@ -282,31 +255,17 @@ tiled_mergesort(unsigned int a[], int N)
 	}
 	if (i < level2_count)
 	{
-		unsigned int* level1_start = level2_start;
-		unsigned int* level1_aux_start = level2_aux_start;
-		for(j = 0; j < level1_count; j+=2) /* merge the level 1 cache first */
-		{
-/*			printf("going into level1: j=%d\n", j); */
-			presort(level1_start, 1024);
-			merge(level1_start, 1024, presort_count, level1_aux_start); /* after this they end up in aux */
-			level1_start += 1024;
-			level1_aux_start += 1024;
-
-			/* now reverse it */
-
-			presort(level1_start, 1024);
-			merge_reverse(level1_start, 1024, presort_count, level1_aux_start);
-			level1_start += 1024;
-			level1_aux_start += 1024;
-			/* these end up in aux */
-		}
-
 		/* merge them all into LIMIT sized bits */
-		merge(*level1_finish, LIMIT, 1024, *level1_other);
+		presort(level2_start, LIMIT);
+		merge(level2_start, LIMIT, presort_count, level2_aux_start);
 
 		level2_start += LIMIT;
 		level2_aux_start += LIMIT;
 	}
+
+
+	/* this bit is too complicated to remove the 2 level tiling from. It doesnt
+	 * alter the results either, since we use powers of two */
 
 	/* sort the remaining bits */
 	/* level2 start is in the right place */
