@@ -22,7 +22,7 @@ indices until the final insertion sort. This can lengthen the final insertion
 sort's running time to $O(N^2)$.
 
 Since first published, there has been much discussion about the best
-\textit{increments} to use in shellsort. Shell's original sort, described above,
+\n{increments} to use in shellsort. Shell's original sort, described above,
 has the increments $\frac{N}{2}$, $\frac{N}{4}$, $\frac{N}{8}$, $\frac{N}{16}$
 ........ $1$. \cite{Sedgewick96} discusses many increments used, and provides
 code for comparing these. Based on running the \cc{driver} program\footnote{See
@@ -47,10 +47,8 @@ The increments in Gonnet's shellsort are $\frac{5}{11}N$, $(\frac{5}{11})^2N$,
 $(\frac{5}{11})^3N$ ... $1$;
 
 \subsection{Expected Performance}
-Shellsort has been much analysed, and it has been shown that it's complexity is
-difficult to prove\footnote{See TODOA, TODOB, TODOC and TODOD.}. The instruction
-count and cycle counts are expected to be similar to $O(NlogN)$, as this has
-been indicated by previous experiment. 
+Shellsort is designed to perform similarly to an $O(NlogN)$ sort. The instruction
+count and cycle counts are therefore expected to be similar to $O(NlogN)$.
 
 The cache performance of shellsort should be regular. Each sub-array is sorted in
 turn without reference to the next. Since each element of a sub-array is quite

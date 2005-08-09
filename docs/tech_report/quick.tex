@@ -56,7 +56,7 @@ added cost of a random number generator would severely slow the algorithm.
 Sedgewick recommends that the median of three keys is chosen, the three keys
 being the first, middle and last in the list. This reduces the chance of a worst
 case occurring significantly, notably in the case of sorted and almost sorted
-lists.
+lists. 
 
 An additional benefit of Sedgewick's median-of-3 implementation is that it
 provides a sentinel for the partition. It is now possible to remove the bounds
@@ -68,16 +68,17 @@ reduced significantly, and the possibility of stack overflow, in the worst case
 of the recursive version, is removed.
 
 Quicksort has been well studied, and several important improvements have been
-noted. In \cite{BentleyMcIlroy93}, using a median-of-9 partition is discussed,
-and modern discussions on quicksort refer to the problem of equal keys, which is
-discussed there, as well as by Sedgewick in \cite{SedgewickBentley02}. These
-improvements are not included here for several reasons. Firstly, a quicksort
-which takes into account equal keys puts the equal keys at the front of the
-array, then copies them into place later. These copies would represent a lot of
-cache misses, and the results would overwhelm the improvements LaMarca makes in
-the next phase of the algorithm. Secondly, when sorting random keys over a
-large range, the number of equal keys will be very low. Using a median of
-greater than three is discussed in Section \ref{quick-predictors2}.
+noted. In \cite{BentleyMcIlroy93}, using a median-of-9 partition is discussed.
+This is discussed below. Modern discussions on quicksort refer to the problem of
+equal keys, which is discussed there, as well as by Sedgewick in
+\cite{SedgewickBentley02}. These improvements are not included here for several
+reasons. Firstly, a quicksort which takes into account equal keys puts the equal
+keys at the front of the array, then copies them into place later. These copies
+would represent a lot of cache misses, and the results may overwhelm the
+improvements LaMarca makes in the next phase of the algorithm. Secondly, when
+sorting random keys over a large range, the number of equal keys will be very
+low. Using a median of greater than three is discussed in Section
+\ref{quick-predictors2}.
 
 \section{Memory-tuned Quicksort}
 
@@ -288,6 +289,7 @@ appear to be the same, though our results are not conclusive either way.
 
 \subsection{More detailed analysis of branch prediction}
 
+%TODO
 % \textbf{[David] I'm not sure what to do with this section. Part of the
 % problem is that the pictures are very difficult to understand. Another
 % problem is that we are trying to show differences that are almost
