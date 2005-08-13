@@ -181,4 +181,11 @@ N13: /* switch areas */
 	}
 
 	free(aux);
+
+	/* clear uninteresting predictors */
+	init_predictor(&global_predictor[0]);
+	init_predictor(&global_predictor[4]);
+	init_predictor(&global_predictor[6]);
+	init_predictor(&global_predictor[7]);
+
 }

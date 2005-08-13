@@ -235,8 +235,8 @@ main(int argc, char** args)
 	test_sort(algorithm_n, "algorithm N");
 	test_sort(algorithm_s, "algorithm S");
 	test_sort(base_mergesort, "base mergesort");
-*/	test_sort(tiled_mergesort, "tiled mergesort");
-/*	test_sort(multi_mergesort, "multi-mergesort");
+	test_sort(tiled_mergesort, "tiled mergesort");
+	test_sort(multi_mergesort, "multi-mergesort");
 	test_sort(double_aligned_tiled_mergesort, "double-aligned tiled mergesort");
 	test_sort(double_aligned_multi_mergesort, "double-aligned multi-mergesort");
 
@@ -289,8 +289,8 @@ main(int argc, char** args)
 	time_sort(algorithm_n, "algorithm N");
 	time_sort(algorithm_s, "algorithm S");
 	time_sort(base_mergesort, "base mergesort");
-*/	time_sort(tiled_mergesort, "tiled mergesort");
-/*	time_sort(multi_mergesort, "multi-mergesort");
+	time_sort(tiled_mergesort, "tiled mergesort");
+	time_sort(multi_mergesort, "multi-mergesort");
 	time_sort(double_aligned_tiled_mergesort, "double-aligned tiled mergesort");
 	time_sort(double_aligned_multi_mergesort, "double-aligned multi-mergesort");
 
@@ -352,9 +352,9 @@ main(int argc, char** args)
 	predictor_run(memory_tuned_heapsort, 11, "memory-tuned heapsort");
 	predictor_run(memory_tuned4_heapsort, 7, "memory-tuned4 heapsort");
 
-	predictor_run(algorithm_n, 8, "algorithm N");
+*/	predictor_run(algorithm_n, 8, "algorithm N");
 	predictor_run(algorithm_s, 10, "algorithm S");
-	predictor_run(base_mergesort, 33, "base mergesort");
+/*	predictor_run(base_mergesort, 33, "base mergesort");
 	predictor_run(tiled_mergesort, 46, "tiled mergesort");
 	predictor_run(multi_mergesort, 59, "multi-mergesort");
 	predictor_run(double_aligned_tiled_mergesort, 46, "double-aligned tiled mergesort");

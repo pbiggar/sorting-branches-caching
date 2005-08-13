@@ -173,4 +173,14 @@ S13:
 	}
 
 	free(aux);
+
+	/* clear uninteresting predictors */
+	init_predictor(&global_predictor[0]);
+	init_predictor(&global_predictor[3]);
+	init_predictor(&global_predictor[4]);
+	init_predictor(&global_predictor[6]);
+	init_predictor(&global_predictor[7]);
+	init_predictor(&global_predictor[8]);
+	init_predictor(&global_predictor[9]);
+
 }

@@ -71,7 +71,7 @@ Software branch predictors:
 
 	
 	The software counters will appear in data/counters/. To process these,
-	from the data/ directory, run:
+	from the data/ directory, run (after unbzipping some files):
 *		$ ../scripts/process_counter counters/*
 
 	This will print out the maximum branches. If this isn't slightly lower than
@@ -191,7 +191,9 @@ Tool versions:
 			- sslittle-na-sstrix-gcc: gcc version 2.6.3
 			- host: i386-redhat-linux
 
-		- Pentium 4: cat /proc/cpuinfo
+		- Pentium 4: 
+
+			$ cat /proc/cpuinfo
 			processor       : 0
 			vendor_id       : GenuineIntel
 			cpu family      : 15
