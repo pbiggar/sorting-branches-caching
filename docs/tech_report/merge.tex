@@ -221,13 +221,12 @@ tiled mergesort with multi-mergesort.
 
 \section{Results}
 \subsection{Test Parameters}
-%TESTING
-The level 1 cache is 8k, so 1024 keys from each array can be sorted in the level
+The level 1 cache is 8K, so 1024 keys from each array can be sorted in the level
 1 cache. 262144 keys can be sorted in the level 2 cache. When arrays were
 pre-sorted, they were pre-sorted to a size four, or eight if the number of
 passes was going to be odd. These were reversed for the double-aligned
 multi-mergesort; since it does a k-way merge into the source array, the sorted
-cache sized segments need to be in the auxiliary array. An 8-heap was used for
+cache-sized segments need to be in the auxiliary array. An 8-heap was used for
 the multi-mergesorts.
 
 \subsection{Expected Performance}
@@ -310,7 +309,6 @@ compensate for the increase in instruction count as a result, and it has a highe
 cycle count on the Pentium 4 (see Figure \ref{merge cycles}) as a result. The
 other sorts generally perform in $O(NlogN)$ time, with double-aligned tiled mergesort
 being the fastest. Note that the alignment of the mergesort may not work as
-%TESTING
 desired due to the size of the cache. This was optimized for a 2MB cache, while
 the Pentium 4 cache is only 256KB. This means that the two arrays are aligned to
 the same cache block. However, since the cache is 8-way associative, this is not

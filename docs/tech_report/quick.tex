@@ -287,7 +287,7 @@ appear to be the same, though our results are not conclusive either way.
 
 \section{Branch predictor results}
 
-\subsection{More detailed analysis of branch prediction}
+\subsection{A more detailed look at branch prediction}
 
 %TODO
 % \textbf{[David] I'm not sure what to do with this section. Part of the
@@ -486,7 +486,7 @@ want to sort it in a smaller number of steps, then each step must
 remove more randomness. Thus, we would expect that the outcome of the
 branch that removes the randomness would itself be more random.
 
-Figure \ref{TODO} shows the cycle count of each of the quicksorts,
+Figure \ref{quick_median_cycles} shows the cycle count of each of the quicksorts,
 showing that a pseduo-median-of-seven offers the greatest tradeoff
 between the reduced number of branches and instructions, and the
 increase in branch mispredictions.
@@ -498,7 +498,6 @@ in running time is small, reducing the chance of worst-case
 performance, which might cause the program to pause for minutes or
 hours, is very valuable.
 
-%TODO add a reference to this
 \begin{figure}
 \includegraphics{plots/quick_median_cycles.eps}
 \caption{Empiric cycles count for quicksort with varying medians}

@@ -34,7 +34,6 @@ sorts had more than one\footnote{Quicksort, for example, had four: base
 quicksort, tuned quicksort, multi-quicksort and sequential multi-quicksort.}. A
 flowchart of these steps appears in Figure \vref{Flowchart}.
 
-%TODO this is going to have to be updated - or is it
 \begin{figure}
 \scalebox{0.57}{\includegraphics*[0pt,165pt][600pt,802pt]{flowchart}}
 \caption{Flowchart describing the development of an algorithm}
@@ -297,18 +296,9 @@ fashion.
 
 \section{Testing details}
 
-%TESTING
-%TODO a lot of this may be in the first sorts chapter, maybe heapsort.
-%discuss: BIG + random.org, 64 bit in lamarca vs 32 bit, do_nothing and how it
-%affects cache hits, scaling in the software branch predictors. How to compare
-%and contrast varying results (branch vs softwre branhc; P4 vs simplescalar).
-%What factors are used for testing: /proc/cpuinfo output, cahce and branch
-%predictor data from P4, simplescalar inputs, software predictor, verfication of
-%sorts.
-
 Our tests were designed so that we could compare our results to LaMarca's, and
-so our results true in the general case. Both our testing method and our data
-sets were chosen with these goals in mind.
+so that our results would hold in the general case. Both our testing method and
+our data sets were chosen with these goals in mind.
 
 \subsection{SimpleScalar Simulations}
 
@@ -328,11 +318,40 @@ In order to be able to extrapolate more information, we increased the number of
 cache simulations. We simulated both 2MB and 4MB caches, configured as both
 direct-mapped and fully-associative.
 
-We chose the a similar approach for our branch predictor caches. We aimed to
+We chose a similar approach for our branch predictor caches. We aimed to
 simulate bimodal predictors as well as 2 level adaptive, in order to be able to
 compare them together. We simulated bimodal predictors with a 512, 1024 and
 2048 byte table, and 2 level adaptive predictors with 512, 1024, 2048 and 4096
 entries.
+
+\subsection{Software Predictor}
+In order to explore the behaviour of the individual branches, we performed a
+second set of branch prediction experiments. Rather than using SimpleScalar, we
+instead added additional statements to the source code to simulate a separate
+bimodal predictor for each interesting branch. This allowed us to measure each
+branch individually, whereas SimpleScalar gives only a total figure for all
+branches.
+
+The software predictor results are averaged over ten runs, using arrays
+containing 4194304 keys. To compare these results to the SimpleScalar ones, it
+is necessary to divide the number of branch mispredictions by 4194304.
+
+\subsection{PaPiex}
+Our papiex tests ran significantly faster than either of our other simulations,
+and so we were able to run them over a significantly greater quantity of data.
+Each sort and each size from 4096 to 4194304 keys was run 1024 times, using the
+system's random number generator to generate data, using seeds of between 0 and
+1023. The results displayed are averaged over the 1024 runs.
+
+These simulations were run a on Pentium 4 1.6GHz, which had an 8-way, 256K level
+2 cache, with a 64-byte cache line. The level 1 caches are 8K 4-way associative
+caches, with seperate instruction and data level 1 caches.
+
+The instruction pipeline of the Pentium 4 is 20 stages long, and so the branch
+misprediction penalty of the Pentium 4 approaches 20 cycles. The Pentium 4's
+static branch prediction strategy is backward taken and forward not taken; its
+dynamic strategy is unspecified: though \cite{Intel248966-010} mentions a branch
+history so it is likely to be a two-level adaptive predictor.
 
 \subsection{Data}
 
@@ -343,60 +362,39 @@ simulations used the same ten sections. When SimpleScalar simulations were run
 on sized smaller than 4194304 keys, only the left hand side of the sections were
 used.
 
-\subsection{PaPiex}
-
-Our papiex tests ran significantly faster than either of our other simulations,
-and so we were able to run them over a significantly greater quantity of data.
-Each sort, and each size from 4096 to 4194304 key, was run 1024 times, using the
-system's random number generator to generate data, using seeds of between 0 and
-1023.
-
-%TODO did i say 128 byte elsewhere?
-These simulations were run a on Pentium 4 1.8Ghz, which had an 8-way, 256K level
-2 cache, with a 64-byte cache line. The level 1 caches are seperate 8K 4-way
-associative caches.
-
-The instruction pipeline of the Pentium 4 is 20 stages long, and so the branch
-misprediction penalty of the Pentium 4 approaches 20 cycles. The Pentium 4's
-static branch prediction strategy is backward taken and forward not taken; its
-dynamic strategy is unspecified: though \cite{Intel248966-010} mentions a branch
-history so it is likely a two-level adaptive predictor.
-
 \subsection{32-bit Integers}
 LaMarca used 64-bit \cc{integer}s, as his test machine was a 64-bit system.
 Since our machine is 32-bit, and SimpleScalar uses 32-bit addressing on our
 architecture, LaMarca's results will not be identical to ours. Rather, the
-number of cache misses in his results should be halved to be compared to our;
+number of cache misses in his results should be halved to be compared to ours;
 when this is not the case, it is indicated.
-
 
 \subsection{Filling Arrays}
 
 It takes time to fill arrays, and this can distort the relationship between the
-results for small sizes, and larger sizes, for which this time is amortized. As
-a result, we measured this time, and subtracted it from our results. None of the
-graphs show this time. 
+results for small set sizes, and larger set sizes, for which this time is
+amortized. As a result, we measured this time, and subtracted it from our
+results.
 
 However, this practice also distorts the results. It removes compulsory cache
 misses from the results, so long as the data fits in the cache. When the data
 does not fit in the cache, the keys from the start of the array are faulted,
 with the effect that capacity misses reoccur, which are not discounted. As a
 result, on the left hand side of cache graphs, a number of compulsory misses are
-removed, though they are not on the right hand side. Similarly, LaMarca does not
-do this, and so this needs to be taken into account when comparing his results
-to ours.
+removed, though they are not on the right hand side. LaMarca does not do this,
+and so this needs to be taken into account when comparing his results to ours.
 
 
 \section{Future Work}
-An improvement that would have yielded interesting results would be to do simulations
-which only consisted of flow control, with no comparisons. This would allow a
-division of flow control misses and comparative misses. However, this would not
-always be possible; sorts like quicksort and heapsort use their data to
-control the flow of the program. In addition, bubblesort, shakersort and
+An improvement that would have yielded interesting results would be to do
+simulations which only consisted of flow control, with no comparisons. This
+would allow a division of flow control misses and comparative misses. However,
+this would not always be possible; sorts like quicksort and heapsort use their
+data to control the flow of the program. In addition, bubblesort, shakersort and
 selection sort have (analytically) predictable flow control, while radixsort has
-no comparison misses at all. Mergesort may benefit from this, however, especially versions
-with difficult flow control diagrams, such as \n{algorithm N} and \n{algorithm
-S} (see Section \ref{Algorithm N}).
+no comparison misses at all. Mergesort may benefit from this, however,
+especially versions with difficult flow control diagrams, such as \n{algorithm
+N} and \n{algorithm S} (see Section \ref{Algorithm N}).
 
 A metric not considered so far is the number of instructions between branches.
 This should be an important metric, and investigating it could point to
@@ -405,10 +403,3 @@ important properties within an algorithm.
 Valgrind comes with a tool called \cc{cachegrind}, which is a cache
 profiler, detailing where cache misses occur in a program. Using this on a
 sort may indicate areas for potential improvement.
-
-As well as the number of cycles, Pentium 4 performance registers can also provide
-most of the same information as SimpleScalar, with different parameters. For
-example, the cache line of a Pentium 4 machine is 128 bytes whereas 32 byte
-cache lines were used in SimpleScalar. The addition of real world data would
-strengthen our results.
-%TODO not true. we have it
