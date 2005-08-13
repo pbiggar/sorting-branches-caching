@@ -11,7 +11,7 @@ be run to be able to create the docs are marked with a * below.
 main.c:
 
 	Enter the code directory. In main.c there are a list of sorts to be tested
-	(look for test_sort(). The #defines TEST_MIN and TEST_MAX control how many
+	(look for 'test_sort'). The #defines TEST_MIN and TEST_MAX control how many
 	keys are to be tested. The sorts are tested for an array of every size
 	between the min and max, also using that size as a seed for the random
 	number generator.
@@ -47,6 +47,9 @@ Hardware counters:
 	completed work cycles are there. This means if the last sort you ran was
 	selectsort, and it ran 256 times, but other sorts ran 257 times, remove
 	the sort results for the 257th iteration from the results file.
+
+	Additionally, this requires results from 'do_nothing', or else the output
+	will be empty.
 
 	This produces a file in the data/ directory called processed_cycles_data
 	which is in gnuplot format. If you add more sorts to the framework, you'll
