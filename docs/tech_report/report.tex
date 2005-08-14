@@ -13,6 +13,7 @@
 \usepackage[mathscr]{euscript}
 \usepackage{afterpage}
 
+% widens the margins for the graphs
 \newenvironment{changemargin}{%
  \begin{list}{}{%
 \setlength{\textwidth}{\paperwidth}
@@ -36,7 +37,7 @@
 \setlength{\parindent}{0ex}
 }
 
-%cc is used for
+%\cc{x} is used for
 % - unix commans or programs: gcc, sim-bpred, sim-cache, espresso, li, simple,
 %   sim-fast, diff, valgrind, cachegrind, driver
 % - code or keywords: less, Item, exch, if, while, unsigned int, int, qsort,
@@ -45,7 +46,7 @@
 % - #defines: UNIT_MAX
 \newcommand{\cc}[1]{\texttt{#1}}
 
-%n is used for
+%\n{x} is used for
 % - proper names: Atom, SimpleScalar, Papi, GnuPlot, ValGrind, glibc
 % - technical names: unsigned integer, less-than, greater-than, in-place, out-of
 %   place, Abstract Data Type, records, cache hierarchy, latency, hit, miss,
@@ -62,10 +63,13 @@
 % - branch predictor names: 'Creation, child promotion', etc
 \newcommand{\n}[1]{\textit{#1}}
 
-
+% to include a file as code
 \newcommand{\code}[2]{\begin{figure}\lstinputlisting{code/#2}\caption{#1}\label{#1}\end{figure}}
 
+% used for scaling graphs
 \newcommand{\myscale}{1.2}
+
+% plots graphs across 3 pages
 \newcommand{\plot}[7]{
 % 3 figures first, then 3 page for them
 \afterpage{
@@ -94,11 +98,13 @@
 \vspace*{-8em}
 \begin{figure}[H]
 \begin{changemargin}
-\subfigure[Level 1 cache misses per key - this was simulated using SimpleScalar \cc{sim-cache}, simulating an 8KB data
-cache with a 32-byte cache line and separate instruction cache. #4]
-{\label{#1 level 1 misses}\includegraphics[scale=\myscale]{plots/#1_-_Level_1_misses.eps}}\\
-\subfigure[Level 2 cache misses per key - this was simulated using SimpleScalar \cc{sim-cache}, simulating a 2MB data
-and instruction cache and a 32-byte cache line. #5]
+\subfigure[Level 1 cache misses per key - this was simulated using SimpleScalar
+\cc{sim-cache}, simulating an 8KB data cache with a 32-byte cache line and
+separate instruction cache. #4] {\label{#1 level 1
+misses}\includegraphics[scale=\myscale]{plots/#1_-_Level_1_misses.eps}}\\
+\subfigure[Level 2 cache misses per key - this was simulated using SimpleScalar
+\cc{sim-cache}, simulating a 2MB data and instruction cache and a 32-byte cache
+line. #5]
 {\label{#1 level 2 misses}\includegraphics[scale=\myscale]{plots/#1_-_Level_2_misses.eps}}\\
 \end{changemargin}
 \vspace*{7em}
@@ -118,7 +124,7 @@ and instruction cache and a 32-byte cache line. #5]
 {\label{#1 branches}\includegraphics[scale=\myscale]{plots/#1_-_Branches.eps}}
 \subfigure[Branches misses per key - this was simulated using \cc{sim-bpred},
 with bimodal and two-level adaptive predictors. The simulated two-level adaptive
-predictor used a 10 bit branch history register which was XOR-ed with the
+predictor used a 10-bit branch history register which was XOR-ed with the
 program counter. #7]
 {\label{#1 branch misses}\includegraphics[scale=\myscale]{plots/#1_-_Branch_misses.eps}}
 \end{changemargin}
@@ -129,8 +135,10 @@ program counter. #7]
 }}
 
 
-
+% the scaling for the smaller graphs
 \newcommand{\smallscale}{.74}
+
+% plots 6 images on 1 page
 \newcommand{\smallplot}[2]{
 \setcounter{subfigure}{0}
 \thispagestyle{empty}
@@ -153,6 +161,7 @@ program counter. #7]
 \newpage
 }
 
+% plots 6 or less images on a page, using the counters
 \newcommand{\sixplot}[7]{
 \afterpage{
 \setcounter{subfigure}{0}
@@ -176,8 +185,10 @@ program counter. #7]
 \newpage
 }}
 
+% settings for the code listings
 \lstset{language=c,tabsize=3,basicstyle=\small,showspaces=false,showtabs=false,showstringspaces=false,stepnumber=1,numberstyle=\small,frame=tblr}
 
+% i actually have no idea what this does, and no memory of writing it
 \long\def\symbolfootnote[#1]#2{\begingroup\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup}
 
 %\topmargin 0.2cm
@@ -188,6 +199,7 @@ program counter. #7]
 
 \bibliographystyle{these}
 
+% how to hyphenate words which arent standard
 \hyphenation{La-Marca}
 
 %TODO make the page wider
@@ -312,7 +324,6 @@ algorithm causes almost no branch mispredictions.
 %TODO \chapter{Software Predictor Result Listing}
 %\input software_predictor.tex
 
-% TODO the bugs are now fixed (actually, one of them was only mistakenly a bg :)
 % the only remaining thing is the compulsory cache subtraction.
 \chapter{Bug List}
 \input bugs.tex
