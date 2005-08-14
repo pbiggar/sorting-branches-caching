@@ -7,8 +7,8 @@ Quicksort is an in-place, unstable sort. It was first described in
 improvements to quicksort are due to this. They are discussed in
 \cite{Sedgewick78} and \cite{Sedgewick02}. \cite{BentleyMcIlroy93} discusses
 considerations for a fast C implementation. \cite{SedgewickBentley02} discusses
-equal keys and proves that quicksort has the lowest complexity of any comparison
-based sort.
+equal keys and proves that quicksort has the lowest complexity of any
+comparison-based sort.
 
 Quicksort is an algorithm of the type known as \n{divide and conquer}. It
 recursively partitions its array around a pivot, swapping large keys on
@@ -47,7 +47,7 @@ at the end, rather than across each small array as soon as the threshold is
 reached. At the end of the partition sorting, LaMarca places a sentinel at the
 end of the array and uses an insertion sort, eliminating the bounds check from
 the end. In this implementation, the sentinel is placed at the front, and the
-smallest of the first \cc{threshold} keys is used as a sentinel, in keeping
+smallest of the first \cc{THRESHOLD} keys is used as a sentinel, in keeping
 with our policy of not exceeding the bounds of the array.
 
 Choosing a pivot which is close to the median of the keys to be sorted ensures
@@ -185,7 +185,7 @@ words which fit in a 4KB page of memory. In earlier versions where each page was
 \cc{malloc}ed individually, the number of keys in the linked list was 1018,
 as 4 words were used by the particular version of \cc{malloc} used by
 SimpleScalar\footnote{This particular \cc{malloc} forms part of
-\cc{glibc}, the GNU C library, version 1.09.}.
+\n{glibc}, the GNU C library, version 1.09.}.
 
 A 2MB cache was assumed, so the number of 32 bit integer keys which fit in the
 cache for this in-place sort is 524,288. Multi-quicksort began once the number

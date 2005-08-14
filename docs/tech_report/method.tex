@@ -47,14 +47,15 @@ particular version which he used. When a step involved in an algorithm wasn't
 clear, the paper describing the algorithm was used to clarify the meaning.
 
 Once the algorithm was written, a testing framework was used. This tested for
-edge-cases in the algorithms by testing sorts sized from $8$ to $255$ keys, with
-different random data sets. Testing was also performed on a very large data set.
-This test was timed and the results were considered. The results of this test
-were not accurate: the program took up to a minute to run, during which time the
-computer was being used by multiple users and processes, leading to context
-switches, sharing of resources and scheduling. Despite these inaccuracies, it was
-possible to use the results relative to each other, and to determine whether,
-for example, memory-tuned quicksort was running faster than base quicksort.
+edge-cases in the algorithms by testing sorts sized from \cc{8} to \cc{255}
+keys, with different random data sets. Testing was also performed on a very
+large data set.  This test was timed and the results were considered. The
+results of this test were not accurate: the program took up to a minute to run,
+during which time the computer was being used by multiple users and processes,
+leading to context switches, sharing of resources and scheduling. Despite these
+inaccuracies, it was possible to use the results relative to each other, and to
+determine whether, for example, memory-tuned quicksort was running faster than
+base quicksort.
 
 Early on, it was decided that exceeding the bounds of an array
 during a sort was to be forbidden. No serious sorting library or application
@@ -80,15 +81,15 @@ the auxiliary array}
 \label{Visual Sort}
 \end{figure}
 
-This shows two stages of a bitonic mergesort which is described in Section \ref{base
-mergesort}. The top of the image shows the source array being merged into the
-target array below. The source array shows three large segments of the array and
-four smaller segments. The first two large segments have been merged into one
-segment in the target array. The third of these has been merged into the
-corresponding target array segment. The first of the smaller segments has begun
-being merged with the other small segments. The rest of the target array is
-uninitialised.  Below that is a small amount of debugging information. $i == j$
-is a key point in the program and is printed as debugging information. In the
+This shows two stages of a bitonic mergesort which is described in Section
+\ref{base mergesort}. The top of the image shows the source array being merged
+into the target array below. The source array shows three large segments of the
+array and four smaller segments. The first two large segments have been merged
+into one segment in the target array. The third of these has been merged into
+the corresponding target array segment. The first of the smaller segments has
+begun being merged with the other small segments. The rest of the target array
+is uninitialised.  Below that is a small amount of debugging information. $i ==
+j$ is a key point in the program and is printed as debugging information. In the
 two arrays below this, the merge continues.
 
 While it was not known in advance the desired instruction count of an algorithm,
@@ -120,7 +121,7 @@ blame apportioned appropriately.
 
 \section{Tools}
 
-\subsection{SimpleScalar} \cc{SimpleScalar} is an architecture simulator. It
+\subsection{SimpleScalar} \n{SimpleScalar} is an architecture simulator. It
 works by compiling code into its native instruction set, PISA, then emulating a
 processor as it runs the program.  SimpleScalar can be found at
 \n{http://www.simplescalar.com}. Documentation on how to use and modify
@@ -141,7 +142,7 @@ later retrieval. This file was suitable to reading with a \cc{diff} program.
 
 \subsection{Gnuplot}
 \label{Gnuplot}
-\cc{Gnuplot} is a tool for plotting data files. It provides visualisations of
+\n{Gnuplot} is a tool for plotting data files. It provides visualisations of
 data in two and three dimensions, and is used to create all of the graphs in
 this document. Its homepage is \n{http://www.gnuplot.info/}.
 
@@ -167,14 +168,14 @@ and branch predictors against other branch predictors for each sort.
 
 The main program provided the framework for the development of the sorts.
 Imaginatively called \cc{main.c}, this program provided the means for testing
-and (roughly) timing each sort. Figure \vref{Key sections of Main.c} contains a
+and (roughly) timing each sort. Figure \vref{Key sections of main.c} contains a
 sample of this code.
 
-\code{Key sections of Main.c}{main.c}
+\code{Key sections of main.c}{main.c}
 
 \subsection{Valgrind}
 \label{Valgrind}
-\cc{Valgrind} is a set of tools which are used for debugging and profiling.  By
+\n{Valgrind} is a set of tools which are used for debugging and profiling.  By
 default it works as a memory checker, and detects errors such as the use of
 uninitialised memory and accessing memory off the end of an array. This use
 makes it particularly useful for bounds checking. No configuration was required
@@ -357,13 +358,13 @@ history so it is likely to be a two-level adaptive predictor.
 
 Both our SimpleScalar simulations and our software predictor tests used truly
 random data from \n{http://www.random.org}. The software predictor used ten
-sections containing 4194304 \cc{unsigned integer}s, and the SimpleScalar
+sections containing 4194304 \n{unsigned integer}s, and the SimpleScalar
 simulations used the same ten sections. When SimpleScalar simulations were run
 on sized smaller than 4194304 keys, only the left hand side of the sections were
 used.
 
 \subsection{32-bit Integers}
-LaMarca used 64-bit \cc{integer}s, as his test machine was a 64-bit system.
+LaMarca used 64-bit integers, as his test machine was a 64-bit system.
 Since our machine is 32-bit, and SimpleScalar uses 32-bit addressing on our
 architecture, LaMarca's results will not be identical to ours. Rather, the
 number of cache misses in his results should be halved to be compared to ours;

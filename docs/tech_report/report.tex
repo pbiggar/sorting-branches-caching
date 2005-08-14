@@ -37,11 +37,29 @@
 }
 
 %cc is used for
-% - unix commans or programs: gcc, sim-bpred etc
+% - unix commans or programs: gcc, sim-bpred, sim-cache, espresso, li, simple,
+%   sim-fast, diff, valgrind, cachegrind
+% - code or keywords: less, Item, exch, if, while, unsigned int, int, qsort,
+%   goto, do-while, THRESHOLD, partition, malloc 
+% - file names: main.c
+% - #defines: UNIT_MAX
 \newcommand{\cc}[1]{\texttt{#1}}
 
 %n is used for
-% - proper names: Atom, SimpleScalar, Papi
+% - proper names: Atom, SimpleScalar, Papi, GnuPlot, ValGrind, glibc
+% - technical names: unsigned integer, less-than, greater-than, in-place, out-of
+%   place, Abstract Data Type, records, cache hierarchy, latency, hit, miss,
+%   compulsory, cold-start, capacity, conflict, cache line, cache block, offset,
+%   tag, virtaul addresses, bus address, temporal locality, locality, spatial
+%   locality, taken, not taken, flow control branch, comparaitve branch, static,
+%   semi-static, dynamic, 1-bit, bimodal, two-level adaptive, heap, children,
+%   implicit heap, heapifying, sifting, fix-up, fix-down, sift-up, sift-down,
+%   Repeated-adds, Remove-min, d-heap, fanout, natural, straight, unrolled,
+%   Memory management unit, tiling, k-way merge, trashing divide and conquer,
+%   multi-way partition, comparision based, counting based
+% - web addresses: http://www.gnuplot.com, http://valgrind.kde.org
+% - sort names, when highlighted: algorithm S, algorithm N
+% - branch predictor names: 'Creation, child promotion', etc
 \newcommand{\n}[1]{\textit{#1}}
 
 

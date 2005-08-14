@@ -1,9 +1,9 @@
 \label{radix}
 %\section{Description}
 
-All other sorts considered in this project are \n{comparison based} sorts.
+All other sorts considered in this project are \n{comparison-based} sorts.
 They compare two keys at a time, and determine the larger and smaller key,
-sorting on that basis. Radixsort is a \n{counting based} sort. It works by
+sorting on that basis. Radixsort is a \n{counting-based} sort. It works by
 separating the keys into small parts, and processing these parts without
 regard for other keys. For radix of two, these small parts are bits, and for a
 radix of 10, these parts would be digits. 
@@ -87,18 +87,18 @@ Keys are to be divided into segments 8 bits long, resulting in four sorting
 steps to completely sort the array. The radix used is therefore $2^8 = 256$.
 
 \subsection{Expected Performance}
-Radixsort is expected to have very good performance, compared to comparison
-based sorts. This is due to that fact that radixsort is $O(N)$; for an array as
-small as 4096 records, it involves 12 times fewer steps than the $O(NlogN)$
-sorts. For an array as large as 4194304, an $(O(NlogN)$ sort will take 22 times
-as many steps to complete. However, it is not expected that radixsort will
-perform many times better than quicksort, the reigning champion of $O(NlogN)$
-sorts. A `step' for quicksort is as simple as a comparison each step and a
-possible exchange every few steps.  For radixsort, a step comprises being
-counted four times and copied four times, with the counting involving several
-layers of indirection, and causing a complete iteration across the array at the
-start. LaMarca's results show the instruction count of quicksort and radixsort
-being in the same order of magnitude, and we expect the same.
+Radixsort is expected to have very good performance, compared to
+comparison-based sorts. This is due to that fact that radixsort is $O(N)$; for
+an array as small as 4096 records, it involves 12 times fewer steps than the
+$O(NlogN)$ sorts. For an array as large as 4194304, an $(O(NlogN)$ sort will
+take 22 times as many steps to complete. However, it is not expected that
+radixsort will perform many times better than quicksort, the reigning champion
+of $O(NlogN)$ sorts. A `step' for quicksort is as simple as a comparison each
+step and a possible exchange every few steps.  For radixsort, a step comprises
+being counted four times and copied four times, with the counting involving
+several layers of indirection, and causing a complete iteration across the array
+at the start. LaMarca's results show the instruction count of quicksort and
+radixsort being in the same order of magnitude, and we expect the same.
 
 The cache performance of base radixsort is not expected to be good, however.
 Quicksort and mergesort have very good temporal locality. Keys are
@@ -122,7 +122,7 @@ two misses per key, when the array doesn't fit into the array, though this
 depends on the placing of the auxiliary array.
 
 The number of branch prediction misses should be exceptionally low. In
-comparison based sorts, a branch due to a comparison can not be predicted except
+comparison-based sorts, a branch due to a comparison can not be predicted except
 in exceptional circumstances\footnote{See Section \ref{insertion is
 predictable}.}. Radixsort has no comparative branches at all. As a result, only
 flow control branches occur in radixsort, and they are all predictable.

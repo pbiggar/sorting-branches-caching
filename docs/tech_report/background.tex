@@ -27,7 +27,7 @@ is a record, and a function is defined to extract its key.  Comparisons are done
 via the \cc{less} function, and swapping is done using the \cc{exch} function.
 These are replaced with their actual functions by the C preprocessor. The code
 used for ADTs is in Figure \vref{Definitions used by the ADT}. The tests
-presented in this report use \cc{unsigned integer}s as Items, which were
+presented in this report use \n{unsigned integer}s as Items, which were
 compared using a simple \n{less-than} function\footnote{This abstraction broke
 down in several cases, such as where a \n{greater-than} function was required,
 i.e. in quicksort.}.  In this case, a record and key are equivalent, and the
@@ -42,10 +42,10 @@ are being compared, then the comparison would have a much higher cost than the
 exchange, since comparing keys could involved many comparisons - in the worst
 case one on each letter. 
 
-Sorts which are not comparison based also exist. These sorts are called counting
-based sorts, as they count the number of keys to be put in each segment of an
-array before putting them in place. The most important of these is radixsort,
-discussed in Chapter \ref{radix}.
+Sorts which are not comparison-based also exist. These sorts are called
+counting-based sorts, as they count the number of keys to be put in each segment
+of an array before putting them in place. The most important of these is
+radixsort, discussed in Chapter \ref{radix}.
 
 Sorts sometimes use a sentinel to avoid exceeding bounds of an array. If an
 algorithm spends its time moving a key right based on a comparison with the key
