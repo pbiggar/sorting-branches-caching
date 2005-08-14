@@ -91,21 +91,21 @@ instruction count is made up by the increase in cache misses, once the
 lists being sorted are larger than the cache. 
 
 As discussed above, it is necessary to insert either a bounds check or a
-sentinel.  If the partition to be sorted is the left most partition, then the
-smallest key in the partition will be chosen as the sentinel. No other
-partition needs a sentinel. A possible way to avoid the sentinel in that
-partition is to place zero at $0^{th}$ position in the list to be sorted, and
-sort whichever number was in this position back at the end. This sort could be
-done with one iteration of insertion sort, and would have just one branch miss.
-However, the number of level 2 cache misses would be great in this case,
-and the cost of this would be substantial. This could be reduced by
-choosing the key to remove from a small list, such as the eight keys at the
-start, middle and end of the array. This would introduce a constant number of
-cache misses, but would significantly reduce the chances of having to sort
-across the entire array at the end. This, however, is not implemented; instead a
-check is done to fetch a sentinel from the appropriate sub-file if required.
-This check isn't very expensive, and is significantly cheaper than either a
-bounds check or putting a sentinel into every sub-file.
+sentinel. If the partition to be sorted is the left most partition, then the
+smallest key in the partition will be chosen as the sentinel. No other partition
+needs a sentinel. A possible way to avoid the sentinel in that partition is to
+place zero at $0^{th}$ position in the list to be sorted, and sort whichever
+number was in this position back at the end. This sort could be done with one
+iteration of insertion sort, and would have just one branch miss.  However, the
+number of level 2 cache misses would be great in this case, and the cost of this
+would be substantial. This could be reduced by choosing the key to remove from a
+small list, such as the eight keys at the start, middle and end of the array.
+This would introduce a constant number of cache misses, but would significantly
+reduce the chances of having to sort across the entire array at the end. This,
+however, is not implemented; instead a check is done to fetch a sentinel from
+the appropriate sub-file if required.  This check isn't very expensive, and is
+significantly cheaper than either a bounds check or putting a sentinel into
+every sub-file.
 
 \section{Multi-Quicksort}
 
@@ -309,44 +309,41 @@ appear to be the same, though our results are not conclusive either way.
 memory-tuned and multi- quicksorts}
 
 Figure \ref{base, memory-tuned and multi- quicksorts-1} shows the behaviour of
-the indiviual branches in base quicksort. The \cc{i} branch is the loop control
+the indiviual branches in base quicksort. The \n{i} branch is the loop control
 branch for the index sweeping from left-to-right up the array during partition.
-The \cc{j} branch is the corresponding loop sweeping down the array. The
-partition step terminates when $i \geq j$, and the \cc{partition end} branch
-checks that condition. The \cc{insertion} branch is the comparison branch in the
+The \n{j} branch is the corresponding loop sweeping down the array. The
+partition step terminates when \n{i $\geq$ j}, and the \n{Partition End} branch
+checks that condition. The \n{Insertion} branch is the comparison branch in the
 insertion sort algorithm. Recall that our quicksort algorithm does not sort
 partitions which are smaller than 10 elements, but instead does a final pass of
 insertion sort over the whole array to sort these small partitions. Finally, the
-\cc{median} branch is the sum of the results for the branches involved in
+\n{Median} branch is the sum of the results for the branches involved in
 computing the median-of-three for each partition.
 
-The only difference between cache quicksort and base quicksort is that
-cache quicksort applies insertion sort to small partitions
-immediately, whereas base quicksort does a single insertion sort pass
-at the end. The result is that both algorithms perform almost
-identically from the viewpoint of branch prediction. Cache quicksort
-uses a very slightly smaller number of insertion sort comparison
-branches, because it sorts only within partitions and does not attempt
-to move array elements that have acted as pivots. (The reason that
-quicksort works is that after partitioning, the pivot is in its
-correct location, and must never move again). In practice, this
-reduction in branches is probably offset by the increase in
-mispredictions in the outer loop exit branch of the many insertion
-sorts.
+The only difference between memory-tuned quicksort and base quicksort is that
+memory-tuned quicksort applies insertion sort to small partitions immediately,
+whereas base quicksort does a single insertion sort pass at the end. The result
+is that both algorithms perform almost identically from the viewpoint of branch
+prediction. Memory-tuned quicksort uses a very slightly smaller number of
+insertion sort comparison branches, because it sorts only within partitions and
+does not attempt to move array elements that have acted as pivots. (The reason
+that quicksort works is that after partitioning, the pivot is in its correct
+location, and must never move again). In practice, this reduction in branches is
+probably offset by the increase in mispredictions in the outer loop exit branch
+of the many insertion sorts.
 
-Base quicksort has a 35\% branch misprediction rate, whereas the rate
-for cache quicksort is only 34\%. The main reason for this is the
-reduction in branches by not attempting to move the pivot elements.
-Attempting to move these elements usually results in a branch
-misprediction. The main reason is that most other elements move at
-least one position, and thus cause the insertion sort loop to iterate
-at least once. But the pivot elements never move --- they are already
-in the correct place.
+Base quicksort has a 35\% branch misprediction rate, whereas the rate for
+memory-tuned quicksort is only 34\%. The main reason for this is the reduction
+in branches by not attempting to move the pivot elements.  Attempting to move
+these elements usually results in a branch misprediction. The main reason is
+that most other elements move at least one position, and thus cause the
+insertion sort loop to iterate at least once. But the pivot elements never move
+-- they are already in the correct place.
 
 When we look at multi-quicksort, there is a 19\% drop in the number of
-iterations of the \cc{i} and \cc{j} loops, with a corresponding reduction in the
+iterations of the \n{i} and \n{j} loops, with a corresponding reduction in the
 number of mispredictions. Interestingly, the percentage misprediction rate of
-the \cc{i} and \cc{j} branches does not change --- it is 37\% in both cases.
+the \n{i} and \n{j} branches does not change -- it is 37\% in both cases.
 
 
 % Once the sort is larger than the cache, the number fo steps increases linearly
@@ -359,16 +356,16 @@ Multi-quicksort does, however, introduce a lot of additional branches. We
 already saw in Figure \ref{quick instructions}, that the binary search and
 sequential search variants increase the number of executed instructions by
 around 25\% and 50\% respectively. Figure \ref{base, memory-tuned and multi-
-quicksorts-3} shows additional measures of the \cc{binary left} and \cc{binary
-right} branches, which are the branches within the binary search code. The
-number of binary search branches is much greater than the reduction in \cc{i}
-and \cc{j} branches. Furthermore, these binary search branches are highly (43\%)
+quicksorts-3} shows additional measures of the \n{Binary Left} and \n{Binary
+Right} branches, which are the branches within the binary search code. The
+number of binary search branches is much greater than the reduction in \n{i}
+and \n{j} branches. Furthermore, these binary search branches are highly (43\%)
 unpredictable.
 
 The variation of multi-quicksort that uses sequential search dramatically
 increases the number of executed branches, but these branches are highly
-predictable. This version actually causes fewer branch mispredictions
-than cache quicksort.
+predictable. This version actually causes fewer branch mispredictions than
+memory-tuned quicksort.
 
 % Theres a lot of branches in the multi quicksort. WE saw in other results that
 % the mere instruction cost of this bogs down to algorithm significantly. in the
@@ -386,13 +383,13 @@ than cache quicksort.
 \sixplot{base_quicksort__no_median__0.eps}{base_quicksort__median_of_3__0.eps}{base_quicksort__pseudo_median_of_5__0.eps}{base_quicksort__pseudo_median_of_7__0.eps}{base_quicksort__pseudo_median_of_9__0.eps}{}{base quicksort without a median, with median of 3, and with pseudo-medians of 5, 7 and 9}
 
 \label{quicksort entropy}
-When we originally looked at quicksort, we expected that the \cc{i} and \cc{j}
+When we originally looked at quicksort, we expected that the \n{i} and \n{j}
 branches in quicksort would resolve in each direction. In fact, this is not the
 case. The main reason is that the chosen pivot is almost never the true median
-of the section of the array to be partitioned. Thus, the \cc{i} and \cc{j}
+of the section of the array to be partitioned. Thus, the \n{i} and \n{j}
 branches are almost always biased, which makes them predictable. According to
-Knuth, if the pivot element is chosen randomly, then the \cc{i} and \cc{j}
-branches will be taken (i.e.  the \cc{i} or \cc{j} loop will execute) twice as
+Knuth, if the pivot element is chosen randomly, then the \n{i} and \n{j}
+branches will be taken (i.e.  the \n{i} or \n{j} loop will execute) twice as
 often as they are not taken (i.e. the loop exits).
 
 In order to investigate this, we implemented a simple version of quicksort that
@@ -406,49 +403,49 @@ predictable, it is executed a very large number of times.}. The arrays we sort
 are random, so the value of this element will also be random. Figure \ref{base
 quicksort without a median, with median of 3, and with pseudo-medians of 5, 7
 and 9-1} shows the behaviour of each of the important branches in this code. We
-see that the \cc{i} and \cc{j} branches are indeed taken about twice as often as
-not-taken, and the \cc{i} and \cc{j} branches are correctly predicted around
-71\% of the time.
+see that the \n{i} and \n{j} branches are indeed taken about twice as often as
+not-taken, and the \n{i} and \n{j} branches are correctly predicted around 71\%
+of the time.
 
 The result that the branches are more predictable (71\%) than they are biased
 (66\%) is a particularly interesting finding. The reason is that the bias in the
 results is an average figure over a large number of partitions that quicksort
 performs to sort the array. On a particular partition, the bias will be more
-pronounced because the \cc{i} and \cc{j} branches will be biased in opposite
+pronounced because the \n{i} and \n{j} branches will be biased in opposite
 directions.
 
 For example, consider the case where the pivot element is larger than the true
 median. In this case, the final resting place of the pivot will be towards the
-right-hand end of the region to be partitioned. Thus, the \cc{i} loop will
-execute a large number of times, and thus the \cc{i} loop will be biased towards
-being taken. The \cc{j} loop, on the other hand, will be biased toward
-not-taken, because the average element is likely to be smaller than the pivot.
-Therefore, the \cc{j} loop will execute only a small number of times. Thus, we
-see that in a particular partition, we do not normally get an equal number of
-executions of the \cc{i} and \cc{j} loops. Instead we get a large number of
-executions in one loop (which makes its branch relatively predictable), whereas
-the other loop often does not enter at all (which makes its branch also
-predictable, although executed a much smaller number of times). Thus, although
-overall the \cc{i} and \cc{j} branches are taken twice as often as not-taken, on
-a particular partition one will usually be biased in the not-taken direction,
-and as a result will be executed a relativelty small number of times.
+right-hand end of the region to be partitioned. Thus, the \n{i} loop will
+execute a large number of times, and thus the \n{i} loop will be biased towards
+being taken. The \n{j} loop, on the other hand, will be biased toward not-taken,
+because the average element is likely to be smaller than the pivot.  Therefore,
+the \n{j} loop will execute only a small number of times. Thus, we see that in a
+particular partition, we do not normally get an equal number of executions of
+the \n{i} and \n{j} loops. Instead we get a large number of executions in one
+loop (which makes its branch relatively predictable), whereas the other loop
+often does not enter at all (which makes its branch also predictable, although
+executed a much smaller number of times). Thus, although overall the \n{i} and
+\n{j} branches are taken twice as often as not-taken, on a particular partition
+one will usually be biased in the not-taken direction, and as a result will be
+executed a relativelty small number of times.
 
-In the preceding paragraphs we have seen that the \cc{i} and \cc{j} branches are
+In the preceding paragraphs we have seen that the \n{i} and \n{j} branches are
 predictable when we have a pivot that is larger or smaller than the true median
 of the array section to be partitioned. An interesting question is the effect of
 choosing a better approximation of the true median on branch prediction. Figure
 \ref{base quicksort without a median, with median of 3, and with pseudo-medians
 of 5, 7 and 9-2} shows the behavior of these branches when median-of-three is
 used to select the pivot. Perhaps the biggest effect is that the number of
-executions of the \cc{i} and \cc{j} branches falls by around 15\%. This fall is
+executions of the \n{i} and \n{j} branches falls by around 15\%. This fall is
 partly offset by the comparison branches to compute the median, but these
 account for only around 1.25\% of the original branches from the no-median
 quicksort. Thus, there is a reduction of almost 14\% in the number of executed
 comparison branches. Even more interesting, however, is the bias in the
-remaining \cc{i} and \cc{j} branches. The no-median \cc{i} and \cc{j} branches
-are 66\% biased, but the median-of-three branches are only 60\% biased in the
-taken direction. The accuracy with which these branches are correctly predicted
-falls from 71\% to 64\%.
+remaining \n{i} and \n{j} branches. The no-median \n{i} and \n{j} branches are
+66\% biased, but the median-of-three branches are only 60\% biased in the taken
+direction. The accuracy with which these branches are correctly predicted falls
+from 71\% to 64\%.
 
 The reason for the reduction in bias and prediction accuracy is that
 median-of-three gives a much better estimate of the true median of the section

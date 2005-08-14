@@ -8,7 +8,7 @@ set offsets .1, .1, 0, 0
 set bmargin 3
 set title "base quicksort (pseudo-median-of-9) branch predictor results"
 set output '../data/plots/counter_base_quicksort__pseudo_median_of_9__0.eps'
-set xtics ("i" 0, "\nj" 1, "partition end" 2, "\ninsertion" 3, "median" 4, "" 5, "" 6)
+set xtics ("i" 0, "\nj" 1, "Partition End" 2, "\nInsertion" 3, "Median" 4, "" 5, "" 6)
 plot \
 '../data/counter_gnuplot_data/base_quicksort__pseudo_median_of_9__data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
 '../data/counter_gnuplot_data/base_quicksort__pseudo_median_of_9__data0' using ($0-.15):2 title 'correct' with boxes lt -1,\

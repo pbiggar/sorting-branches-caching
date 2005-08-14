@@ -311,17 +311,17 @@ unoptimized algorithm would not suffer as much.
 and memory-tuned heapsorts}
 
 Figure \ref{base and memory-tuned heapsorts-1}(a) shows the behaviour of each
-branch in the base heapsort algorithm. The `\n{Creation, has children}' branch
+branch in the base heapsort algorithm. The `\n{Creation, Has Children}' branch
 refers to the check as to whether a key has children, during the creation of the
-heap The `\n{Creation, child comparison}' branch is the comparison between the
-two children in the 2-heap, and the `\n{Creation, child promotion}' refers to
+heap The `\n{Creation, Child Comparison}' branch is the comparison between the
+two children in the 2-heap, and the `\n{Creation, Child Promotion}' refers to
 checking if the child is larger than it's parent. The same checks are later made
-during the destruction of the heap, and are referred to as `\n{Destruction, has
-children}', `\n{Destruction, child comparison}' and `\n{Desruction child
-promotion}'.
+during the destruction of the heap, and are referred to as `\n{Destruction, Has
+Children}', `\n{Destruction, Child Comparison}' and `\n{Destruction Child
+Promotion}'.
 
 In the memory-tuned heapsort, the creation phase is simpler, involving merely
-one branch, called `\n{fix-up}' here. The other columns refer to the
+one branch, called `\n{Fix-up}' here. The other columns refer to the
 destruction phase, where most of the work takes place in memory-tuned heapsoirt.
 When a 4-heap is now used, there are three comparisons instead of just one.
 Likewise, in an (8-heap), there are seven comparisons.
@@ -336,9 +336,9 @@ heap.
 
 The most interesting thing is the relation between the predictability of the
 comparisons during the destruction of the 2-, 4- and 8-heaps. Compare the
-columns marked `\n{Destruction, child comparison}' and `\n{Destruction, child
-promotion}' in Figure \ref{base and memory-tuned heapsorts-1} (the 2-heap), with
-the columns marked `\n{comparison 1}' to `\n{child promotion}' in Figure
+columns marked `\n{Destruction, Child Comparison}' and `\n{Destruction, Child
+Promotion}' in Figure \ref{base and memory-tuned heapsorts-1} (the 2-heap), with
+the columns marked `\n{Comparison 0}' to `\n{Child Promotion}' in Figure
 \ref{base and memory-tuned heapsorts-2} (the 4-heap) and Figures \ref{base and
 memory-tuned heapsorts-3} and \ref{base and memory-tuned heapsorts-4} (the
 8-heap).

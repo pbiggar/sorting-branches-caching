@@ -8,7 +8,7 @@ set offsets .1, .1, 0, 0
 set bmargin 3
 set title "multi-quicksort (binary search) branch predictor results"
 set output '../data/plots/counter_multi_quicksort__binary_search__0.eps'
-set xtics ("i" 0, "\nj" 1, "partition end" 2, "\nbinary left" 3, "binary right" 4, "\ninsertion" 5, "" 6)
+set xtics ("i" 0, "\nj" 1, "Partition End" 2, "\nBinary Left" 3, "Binary Right" 4, "\nInsertion" 5, "" 6)
 plot \
 '../data/counter_gnuplot_data/multi_quicksort__binary_search__data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
 '../data/counter_gnuplot_data/multi_quicksort__binary_search__data0' using ($0-.15):2 title 'correct' with boxes lt -1,\

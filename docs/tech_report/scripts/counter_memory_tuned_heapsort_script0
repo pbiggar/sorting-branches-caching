@@ -8,7 +8,7 @@ set offsets .1, .1, 0, 0
 set bmargin 3
 set title "memory-tuned heapsort (8-heap) branch predictor results 0"
 set output '../data/plots/counter_memory_tuned_heapsort_0.eps'
-set xtics ("has children" 0, "\ncomparison 0" 1, "comparison 1" 2, "\ncomparison 2" 3, "comparison 3" 4, "\ncomparison 4" 5, "comparison 5" 6)
+set xtics ("Has Children" 0, "\nComparison 0" 1, "Comparison 1" 2, "\nComparison 2" 3, "Comparison 3" 4, "\nComparison 4" 5, "Comparison 5" 6)
 plot \
 '../data/counter_gnuplot_data/memory_tuned_heapsort_data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
 '../data/counter_gnuplot_data/memory_tuned_heapsort_data0' using ($0-.15):2 title 'correct' with boxes lt -1,\

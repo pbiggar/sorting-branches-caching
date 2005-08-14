@@ -8,7 +8,7 @@ set offsets .1, .1, 0, 0
 set bmargin 3
 set title "base heapsort branch predictor results"
 set output '../data/plots/counter_base_heapsort_0.eps'
-set xtics ("Creation, has children" 0, "\nCreation, child comparison" 1, "Creation, child promotion" 2, "\nDestruction, has children" 3, "Destruction, child comparison" 4, "\nDestruction, child promotion" 5, "" 6)
+set xtics ("Creation, Has Children" 0, "\nCreation, Child Comparison" 1, "Creation, Child Promotion" 2, "\nDestruction, Has Children" 3, "Destruction, Child Comparison" 4, "\nDestruction, Child Promotion" 5, "" 6)
 plot \
 '../data/counter_gnuplot_data/base_heapsort_data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
 '../data/counter_gnuplot_data/base_heapsort_data0' using ($0-.15):2 title 'correct' with boxes lt -1,\

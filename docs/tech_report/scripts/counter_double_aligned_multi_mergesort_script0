@@ -8,7 +8,7 @@ set offsets .1, .1, 0, 0
 set bmargin 3
 set title "double-aligned multi-mergesort branch predictor results 0"
 set output '../data/plots/counter_double_aligned_multi_mergesort_0.eps'
-set xtics ("forwards left" 0, "\nforwards right" 1, "reverse left" 2, "\nreverse right" 3, "fix up" 4, "\nhas children" 5, "comparison 0" 6)
+set xtics ("Forwards Left" 0, "\nForwards Right" 1, "Reverse Left" 2, "\nReverse Right" 3, "Fix-Up" 4, "\nHas Children" 5, "Comparison 0" 6)
 plot \
 '../data/counter_gnuplot_data/double_aligned_multi_mergesort_data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
 '../data/counter_gnuplot_data/double_aligned_multi_mergesort_data0' using ($0-.15):2 title 'correct' with boxes lt -1,\

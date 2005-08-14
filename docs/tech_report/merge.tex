@@ -327,32 +327,49 @@ levels 1 and 2, emerges the winner.
 \sixplot{algorithm_n_0.eps}{algorithm_s_0.eps}{base_mergesort_0.eps}{double_aligned_tiled_mergesort_0.eps}{double_aligned_multi_mergesort_0.eps}{double_aligned_multi_mergesort_1.eps}{mergesorts}
 
 Figure \ref{mergesorts-1} shows that algorithm N has the same number of branches
-and branch mispredictions as algorithm S, shown in \ref{mergesorts-2}. Base
-mergesort has the same number of mispredictions (see Figure \ref{mergesorts-3},
-indicating a possible minimum number. It has a lower number of branches,
-probably due to performing a presort first. The presort has approximately 6.8
-misses per key (not shown in the graphs). In later mergesorts, an insertion sort
-is used instead.
+and branch mispredictions as algorithm S, shown in \ref{mergesorts-2}. The
+labels in the graphs correspond to the names of the steps in Knuth's algorithm,
+which also correspond with the labels in our code.
 
-Double-aligned tiled mergesort (which has the same results are tiled mergesort) has a
-predilection for merging forwards. This is likely to be due to the fact that the
-final merge goes forwards. The left merge step is also favoured, but this is
-merely due to the fact that it occurs first in the code. While there are more
-left branches, the actual number of branches taken are the same.
 
-In both double-aligned tiled mergesort and base mergesort, approximately two thirds are
-of the loops are taken, unlike Knuth's sorts. However, this appears to indicate
-an increase in branches, as opposed to a decrease in mispredictions. Overall
-this stay is line with the idea that there is a minimum number of branch misses,
-below which comparative sorts will not drop.
+Base mergesort has the same number of mispredictions as Knuth's sorts (see
+Figure \ref{mergesorts-3}, indicating a possible minimum number. `\n{Left}' and
+`\n{Right}' refer to interating through the first (or left-hand) and second (or
+right-hand) lists being compared, respectively.
+
+Base mergesort has a lower number of branches than Knuth's sorts, probably due
+to performing a presort first. The presort has approximately 6.8 misses per key
+(not shown in the graphs). In later mergesorts, an insertion sort is used
+instead.
+
+Double-aligned tiled mergesort (which has the same results are tiled mergesort)
+has a predilection for merging forwards, shown in \ref{mergesorts-4}. The
+`\n{Left}' and `\n{Right}' in the labels refer to the same as in
+\ref{mergesorts-3}, while `\n{Forwards}' and `\n{Reverse}' refer to whether the
+first or second part of the bitonic array segment is being merged.
+
+This predilication is likely to be due to the fact that the final merge goes
+forwards. The left merge step is also favoured, but this is merely due to the
+fact that it occurs first in the code. While there are more left branches, the
+actual number of branches taken are the same.
+
+In both double-aligned tiled mergesort and base mergesort, approximately two
+thirds are of the loops are taken, unlike Knuth's sorts. However, this appears
+to indicate an increase in branches, as opposed to a decrease in mispredictions.
+Overall this stay is line with the idea that there is a minimum number of branch
+misses, below which comparative sorts will not drop.
 
 Double multi-mergesort sorts the arrays fully in the cache, leaving them
-bitonically arranged. This means that there is no bias for the forward branches,
-as there was in tiled mergesort. This is shown in Figures \ref{mergesorts-5} and
-\ref{mergesorts-6}. While merging the number of branches is 20\% lower than base
-mergesort, while the number of mispredictions in only 10\% lower. This implies
-that most of the mispredictions occur early in the merging process, and not in
-the final merge, which multi-mergesort leaves out.
+bitonically arranged. This means that there is no final merge, and hence no bias
+for the forward branches, as there was in tiled mergesort. This is shown in
+Figures \ref{mergesorts-5} and \ref{mergesorts-6}. The labels in these graphs
+are the same as in Figure \ref{mergesorts-4} and \ref{base and memory-tuned
+heapsorts-2}.
+
+While merging, the number of branches is 20\% lower than base mergesort, while
+the number of mispredictions in only 10\% lower. This implies that most of the
+mispredictions occur early in the merging process, and not in the final merge,
+which multi-mergesort leaves out.
 
 Overall, when the k-ary heap is used, there are the same number of branch
 misses. This means that using the technique to reduce cache misses does not
