@@ -178,28 +178,59 @@ program counter. #7]
 \begin{document}
 
 \begin{titlepage}
-        \begin{center}
-                \vspace*{95mm}
-                \LARGE Sorting in the presence of branch predictors and caches.\\
-				\vspace{1em}
-                \large Fast Sorting on Modern Computers\\
+       \begin{center}
+				\vspace*{40mm}
+                \Huge Sorting in the Presence of Branch Prediction and Caches\\
                 \vspace{1em}
-                \large Paul Biggar, David Gregg\\
-                \large Department of Computer Science\\
-				\large University of Dublin, Trinity College
+                \Large Fast Sorting on Modern Computers\\
+                \vspace{2em}
+                \Large Paul Biggar \hspace{1cm} David Gregg\\
+				\vspace{2em}
+				\large Technical Report TR-CS-2005-XX\\
+                \large Department of Computer Science,\\
+				\large University of Dublin, Trinity College,\\
+				\large Dublin 2, Ireland.
         \end{center}
 \end{titlepage}
 
 
 \begin{abstract}
-This report describes the creation and analysis of sorts designed to take
-advantage of features of modern processors. The work on cache-conscious sorting
-by LaMarca and Ladner is the starting point; this is implemented and analysed
-using a hardware simulator. Results relating to a variety of cache and branch
-predictor configurations are obtained and analysed for a variety of sorts,
-beginning with insertion and selection sorts, bubblesort and shakersort, and
-continuing to heapsort, mergesort, quicksort and radixsort. Actual and expected
-results are compared together and to the results of LaMarca's research.
+Sorting is one of the most important and studied problems in computer
+science. Many good algorithms exist which offer various trade-offs in
+efficiency, simplicity and memory use. However most of these
+algorithms were discovered decades ago at a time when computer
+architectures were much simpler than today. Branch prediction and
+cache memories are two developments in computer architecture that have
+a particularly large impact on the performance of sorting algorithms.
+
+This report describes a study of the behaviour of sorting algorithms
+on branch predictors and caches. Our work on branch prediction is
+almost entirely new, and finds a number of important results. In
+particular we show that insertion sort causes the fewest branch
+mispredictions of any comparison-based algorithm, that optimizations,
+such as the choice of the pivot in quicksort, can have a large impact
+on the predictability of branches, and that advanced two-level branch
+predictors are usually worse at predicting branches in sorting
+algorithms than simpler branch predictors. In many cases it is
+possible to draw links between classical theoretical analyses of
+algorithms and their branch prediction behaviour.
+
+The other main work described in this report is an analysis of the
+behaviour of sorting algorithms on modern caches. Over the last decade
+there has been considerable interest in optimizing sorting algorithms
+to reduce the number of cache misses. We experimentally study the
+cache performance of both classical sorting algorithms, and a variety
+of cache-optimized algorithms, primarily those proposed by LaMarca and
+Ladner. Our experiments cover a much wider range of algorithms than
+other work, including the $O(N^2)$ sorts and shellsort, all within a
+single framework. We discover a number of new results, particularly
+relating to the branch prediction behaviour of cache-optimized sorts.
+
+We also developed a number of other improvements to the algorithms,
+such as removing the need for a sentinel in heapsort. Overall, we
+found that a cache-optimized radix sort was the fastest algorithm for
+all large arrays; the absence of comparison branches means that the
+algorithm causes almost no branch mispredictions.
 \end{abstract}
 
 \tableofcontents
