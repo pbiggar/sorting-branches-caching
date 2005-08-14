@@ -209,7 +209,7 @@ A 2-bit dynamic predictor is called a bimodal predictor. It is a simple 2-bit
 counter, each combination representing a state. In states 00 and 01, not-taken
 is predicted; in states 10 and 11, taken is predicted. Each taken prediction
 increments the count, to a maximum of 11, and each not-taken prediction
-decrements the counter, to a minimum of zero.
+decrements the counter, to a minimum of 00.
 
 In the sequence T-T-T-N-T-T-T-N, a 2-bit predictor will only mispredict once.
 In general, it will achieve 78 to 89\% accuracy.
@@ -245,7 +245,7 @@ reduce complexity. Quicksort, mergesort and heapsort are all of this type,
 whereas elementary sorts, such as insertion sort, selection sort, bubblesort and
 shakersort are $O(N^2)$ algorithms. Radixsort is $O(N)$, but can be more
 expensive than quicksort, due to the cost of each step. These are discussed in
-later chapters. The complexity of shellsort, meanwhile, is very complex, and is
+later chapters. The complexity of shellsort, meanwhile, is quite complex, and is
 discussed in \cite{Sedgewick96}.
 
 An important thing to note is that the time the algorithms take to execute are

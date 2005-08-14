@@ -243,12 +243,13 @@ The memory-tuned quicksort performed better than the base version, as predicted.
 Both the memory-tuned version and the base quicksort both have a significant
 increase once the arrays no longer fit in the cache, also as predicted.
 
-The results show again that direct mapped caches can perform better than fully
-associative ones. This is true in the case of all the quicksorts, as can be seen
-in Figures \ref{base quicksort (no median) level 2 misses} to
-\ref{multi-quicksort (sequential search) level 2 misses} graph that this is true
-in the case of all the quicksorts. As in Section \ref{mergesort replacement
-policy}, this is due to the replacement policy of the fully-associative cache.
+The results show again (see Section \ref{mergesort replacement policy}) that
+direct mapped caches can perform better than fully associative ones. This is
+true in the case of all the quicksorts, as can be seen in Figures \ref{base
+quicksort (no median) level 2 misses} to \ref{multi-quicksort (sequential
+search) level 2 misses} graph that this is true in the case of all the
+quicksorts. As in Section \ref{mergesort replacement policy}, this is due to the
+replacement policy of the fully-associative cache.
 
 The branch prediction results are shown in Figure \ref{quick branch misses}. As
 expected, there was a a dramatic increase in the binary search multi-quicksort
