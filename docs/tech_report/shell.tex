@@ -4,9 +4,9 @@ Shellsort is a derivative of insertion sort designed to offer a compromise
 between the performance of mergesort and radixsort, and the space efficiency of
 selection sort, bubblesort and insertion sort. It was designed by Donald Shell
 in 1959, and described in \cite{Shell59}\footnote{Shell describes the former
-sorts as ``Merging Pairs'' and ``floating decimal sort'', respectively, and the
-latter sorts as ``finding the smallest'', ``interchanging pairs'' and ``sifting'',
-respectively.}.
+sorts as \n{Merging Pairs} and \n{Floating Decimal Sort}, respectively, and the
+latter sorts as \n{Finding the Smallest}, \n{Interchanging Pairs} and
+\n{Sifting}, respectively.}.
 
 Shell begins by considering the array to be made up of $\frac{N}{2}$ sub-arrays
 of length two, where the elements of the sub-array are spaced $\frac{N}{2}$ keys
@@ -34,9 +34,9 @@ $\frac{5}{11}^{th}s$ of the previous increment.
 Two versions of Gonnet's sort were used. The first was taken directly from the
 code presented by Sedgewick, and only slightly modified to fit into the
 framework used.  The second was modified to reduce the complexity of the loop
-bounds, and to remove a sentinel check in the inner loop. Code for
-\cc{shellsort} and \cc{improved\_shellsort} is shown in Figures \ref{Shellsort
-code} and \ref{Improved Shellsort code}.
+bounds, and to remove a sentinel check in the inner loop. Code for shellsort and
+improved shellsort is shown in Figures \ref{Shellsort code} and \ref{Improved
+Shellsort code}.
 
 \code{Shellsort code}{shellsort.c}
 \code{Improved Shellsort code}{improved_shellsort.c}
