@@ -193,12 +193,18 @@ LaMarca's radixsort results are quite different to those presented here. His
 instruction count graph has a logarithmic shape: it begins very high and sharply
 falls before flattening out. By contrast, the graph here is almost completely
 flat. He shows a similar result in both cache miss graphs: a sharp dip, followed
-by a nearly flat-line. Also, in both cases, once the array no longer fits in the
-cache, the number of misses jumps to around 2.5, where they stay.
+by a nearly flat-line. This may be due to amortization, in which case the trend
+would not be expected in our graphs due to subtraction of the time taken to fill
+the array.
+
+Also, in both cases in LaMarca's graphs, once the array no longer fits in the
+cache, the number of misses jumps to around 3.25 (which would be equivalent to
+1.625 misses per key in our results), where they stay. Our results
+disagree, showing approximately 2.5 misses per key for base radixsort.
 
 However, LaMarca's conclusion - that radixsort is not as fast as quicksort - can
-be easily seen from the base radixsort results. Once an radixsort optimised for
-the cache is presented, these no longer hold, and the lack of branch
+be easily explained from the base radixsort results. Once an radixsort optimised
+for the cache is presented, these no longer hold, and the lack of branch
 misprediction results in a new fastest sort.
 
 \section{Future Work}
