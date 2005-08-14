@@ -27,7 +27,3 @@ asm: inline_asm.c
 
 clean:
 	rm -f $(MODULES) $(SORTS) fastsort asm
-
-# TODO add perfex and simple things here to check that they compile and work
-#perfex:
-#	$(CC) $(CFLAGS) 
