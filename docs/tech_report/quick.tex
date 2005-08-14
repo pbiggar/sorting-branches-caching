@@ -285,9 +285,7 @@ than the same misses in LaMarca's results. However, the multi-quicksort results
 appear to be the same, though our results are not conclusive either way.
 
 
-\section{Branch predictor results}
-
-\subsection{A more detailed look at branch prediction}
+\section{A More Detailed Look at Branch Prediction}
 
 %TODO
 % \textbf{[David] I'm not sure what to do with this section. Part of the
@@ -308,19 +306,17 @@ appear to be the same, though our results are not conclusive either way.
 \sixplot{base_quicksort__median_of_3__0.eps}{memory_tuned_quicksort_0.eps}{multi_quicksort__binary_search__0.eps}{multi_quicksort__sequential_search__0.eps}{}{}{base,
 memory-tuned and multi- quicksorts}
 
-Figure \ref{base, cache and multi quicksorts}(a) shows the behaviour
-of the indiviual branches in base quicksort. The $i$ branch is the
-loop control branch for the index sweeping from left-to-right up the
-array during partition. The $j$ branch is the corresponding loop
-sweeping down the array. The partition step terminates when $i \geq
-j$, and the $partition end$ branch checks that condition. The
-$insertion$ branch is the comparison branch in the insertion sort
-algorithm. Recall that our quicksort algorithm does not sort
-partitions which are smaller than 10 elements, but instead does a
-final pass of insertion sort over the whole array to sort these small
-partitions. Finally, the $median$ branch is the sum of the results for
-the branches involved in computing the median-of-three for each
-partition.
+Figure \ref{base, memory-tuned and multi- quicksorts-1} shows the behaviour of
+the indiviual branches in base quicksort. The \cc{i} branch is the loop control
+branch for the index sweeping from left-to-right up the array during partition.
+The \cc{j} branch is the corresponding loop sweeping down the array. The
+partition step terminates when $i \geq j$, and the \cc{partition end} branch
+checks that condition. The \cc{insertion} branch is the comparison branch in the
+insertion sort algorithm. Recall that our quicksort algorithm does not sort
+partitions which are smaller than 10 elements, but instead does a final pass of
+insertion sort over the whole array to sort these small partitions. Finally, the
+\cc{median} branch is the sum of the results for the branches involved in
+computing the median-of-three for each partition.
 
 The only difference between cache quicksort and base quicksort is that
 cache quicksort applies insertion sort to small partitions
@@ -346,10 +342,9 @@ at least once. But the pivot elements never move --- they are already
 in the correct place.
 
 When we look at multi-quicksort, there is a 19\% drop in the number of
-iterations of the $i$ and $j$ loops, with a corresponding reduction in
-the number of mispredictions. Interestingly, the percentage
-misprediction rate of the $i$ and $j$ branches does not change --- it
-is 37\% in both cases.
+iterations of the \cc{i} and \cc{j} loops, with a corresponding reduction in the
+number of mispredictions. Interestingly, the percentage misprediction rate of
+the \cc{i} and \cc{j} branches does not change --- it is 37\% in both cases.
 
 
 % Once the sort is larger than the cache, the number fo steps increases linearly
@@ -358,15 +353,15 @@ is 37\% in both cases.
 % keys), there shouldnt be a change in misprediction rates. And there sint.
 % Before: 63\%. After, 63\%. So no difference.
 
-Multi-quicksort does, however, introduce a lot of additional
-branches. We already saw in Figure \ref{quick instructions}, that the
-binary search and sequential search variants increase the number of
-executed instructions by around 25\% and 50\% respectively. Figure
-\ref{base, cache and multi quicksorts} shows additional measures of the $binary
-left$ and $binary right$ branches, which are the branches within the
-binary search code. The number of binary search branches is much
-greater than the reduction in $i$ and $j$ branches. Furthermore, these
-binary search branches are highly (43\%) unpredictable.
+Multi-quicksort does, however, introduce a lot of additional branches. We
+already saw in Figure \ref{quick instructions}, that the binary search and
+sequential search variants increase the number of executed instructions by
+around 25\% and 50\% respectively. Figure \ref{base, memory-tuned and multi-
+quicksorts-3} shows additional measures of the \cc{binary left} and \cc{binary
+right} branches, which are the branches within the binary search code. The
+number of binary search branches is much greater than the reduction in \cc{i}
+and \cc{j} branches. Furthermore, these binary search branches are highly (43\%)
+unpredictable.
 
 The variation of multi-quicksort that uses sequential search dramatically
 increases the number of executed branches, but these branches are highly
@@ -389,113 +384,107 @@ than cache quicksort.
 \sixplot{base_quicksort__no_median__0.eps}{base_quicksort__median_of_3__0.eps}{base_quicksort__pseudo_median_of_5__0.eps}{base_quicksort__pseudo_median_of_7__0.eps}{base_quicksort__pseudo_median_of_9__0.eps}{}{base quicksort without a median, with median of 3, and with pseudo-medians of 5, 7 and 9}
 
 \label{quicksort entropy}
-When we originally looked at quicksort, we expected that the $i$ and
-$j$ branches in quicksort would resolve in each direction. In fact,
-this is not the case. The main reason is that the chosen pivot is
-almost never the true median of the section of the array to be
-partitioned. Thus, the $i$ and $j$ branches are almost always biased,
-which makes them predictable. According to Knuth, if the pivot element
-is chosen randomly, then the $i$ and $j$ branches will be taken (i.e.
-the $i$ or $j$ loop will execute) twice as often as they are not taken
-(i.e. the loop exits).
+When we originally looked at quicksort, we expected that the \cc{i} and \cc{j}
+branches in quicksort would resolve in each direction. In fact, this is not the
+case. The main reason is that the chosen pivot is almost never the true median
+of the section of the array to be partitioned. Thus, the \cc{i} and \cc{j}
+branches are almost always biased, which makes them predictable. According to
+Knuth, if the pivot element is chosen randomly, then the \cc{i} and \cc{j}
+branches will be taken (i.e.  the \cc{i} or \cc{j} loop will execute) twice as
+often as they are not taken (i.e. the loop exits).
 
-In order to investigate this, we implemented a simple version of
-quicksort that uses the middle element as the pivot rather than a
-median-of-three\footnote{It is important to note that selecting
-the pivot based on only a single element can be particularly inefficient
-because it removes the natural sentinels at the top and bottom
-of the regions to be partitioned that we get from median-of-three. In
-Figure \ref{base quicksort without a median, with median of 3, and with pseudo medians of 5, 7 and 9} we see that this results in an additional branch to handle
-the edgecase without a sentinel. Although this branch is almost 100\%
-predictable, it is executed a very large number of times.}. The arrays we sort are random, so the value of this
-element will also be random. Figure \ref{base quicksort without a median, with median of 3, and with pseudo medians of 5, 7 and 9}(a)
-shows the behaviour of each of the important branches in this code. We
-see that the $i$ and $j$ branches are indeed taken about twice as
-often as not-taken, and the $i$ and $j$ branches are correctly
-predicted around 71\% of the time.
+In order to investigate this, we implemented a simple version of quicksort that
+uses the middle element as the pivot rather than a median-of-three\footnote{It
+is important to note that selecting the pivot based on only a single element can
+be particularly inefficient because it removes the natural sentinels at the top
+and bottom of the regions to be partitioned that we get from median-of-three. In
+Figure \ref{quick-predictors2} we see that this results in an additional branch
+to handle the edgecase without a sentinel. Although this branch is almost 100\%
+predictable, it is executed a very large number of times.}. The arrays we sort
+are random, so the value of this element will also be random. Figure \ref{base
+quicksort without a median, with median of 3, and with pseudo-medians of 5, 7
+and 9-1} shows the behaviour of each of the important branches in this code. We
+see that the \cc{i} and \cc{j} branches are indeed taken about twice as often as
+not-taken, and the \cc{i} and \cc{j} branches are correctly predicted around
+71\% of the time.
 
-The result that the branches are more predictable (71\%) than they are
-biased (66\%) is a particularly interesting finding. The reason is that
-the bias in the results is an average figure over a large number of
-partitions that quicksort performs to sort the array. On a particular
-partition, the bias will be more pronounced because the $i$ and $j$
-branches will be biased in opposite directions.
+The result that the branches are more predictable (71\%) than they are biased
+(66\%) is a particularly interesting finding. The reason is that the bias in the
+results is an average figure over a large number of partitions that quicksort
+performs to sort the array. On a particular partition, the bias will be more
+pronounced because the \cc{i} and \cc{j} branches will be biased in opposite
+directions.
 
-For example, consider the case where the pivot element is larger than
-the true median. In this case, the final resting place of the pivot
-will be towards the right-hand end of the region to be
-partitioned. Thus, the $i$ loop will execute a large number of times,
-and thus the $i$ loop will be biased towards being taken. The $j$
-loop, on the other hand, will be biased toward not-taken, because the
-average element is likely to be smaller than the pivot. Therefore, the
-$j$ loop will execute only a small number of times. Thus, we see that
-in a particular partition, we do not normally get an equal number of
-executions of the $i$ and $j$ loops. Instead we get a large number of
-executions in one loop (which makes its branch relatively
-predictable), whereas the other loop often does not enter at all
-(which makes its branch also predictable, although executed a much
-smaller number of times). Thus, although overall the $i$ and $j$
-branches are taken twice as often as not-taken, on a particular
-partition one will usually be biased in the not-taken direction, and
-as a result will be executed a relativelty small number of times.
+For example, consider the case where the pivot element is larger than the true
+median. In this case, the final resting place of the pivot will be towards the
+right-hand end of the region to be partitioned. Thus, the \cc{i} loop will
+execute a large number of times, and thus the \cc{i} loop will be biased towards
+being taken. The \cc{j} loop, on the other hand, will be biased toward
+not-taken, because the average element is likely to be smaller than the pivot.
+Therefore, the \cc{j} loop will execute only a small number of times. Thus, we
+see that in a particular partition, we do not normally get an equal number of
+executions of the \cc{i} and \cc{j} loops. Instead we get a large number of
+executions in one loop (which makes its branch relatively predictable), whereas
+the other loop often does not enter at all (which makes its branch also
+predictable, although executed a much smaller number of times). Thus, although
+overall the \cc{i} and \cc{j} branches are taken twice as often as not-taken, on
+a particular partition one will usually be biased in the not-taken direction,
+and as a result will be executed a relativelty small number of times.
 
-In the preceding paragraphs we have seen that the $i$ and $j$ branches
-are predictable when we have a pivot that is larger or smaller than
-the true median of the array section to be partitioned. An interesting
-question is the effect of choosing a better approximation of the true
-median on branch prediction. Figure \ref{base quicksort without a
-median, with median of 3, and with pseudo medians of 5, 7 and 9}(b)
-shows the behavior of these branches when median-of-three is used to
-select the pivot. Perhaps the biggest effect is that the number of
-executions of the $i$ and $j$ branches falls by around 15\%. This fall
-is partly offset by the comparison branches to compute the median, but
-these account for only around 1.25\% of the original branches from the
-no-median quicksort. Thus, there is a reduction of almost 14\% in the
-number of executed comparison branches. Even more interesting, however,
-is the bias in the remaining $i$ and $j$ branches. The no-median $i$ and
-$j$ branches are 66\% biased, but the median-of-three branches are
-only 60\% biased in the taken direction. The accuracy with which
-these branches are correctly predicted falls from 71\% to 64\%.
+In the preceding paragraphs we have seen that the \cc{i} and \cc{j} branches are
+predictable when we have a pivot that is larger or smaller than the true median
+of the array section to be partitioned. An interesting question is the effect of
+choosing a better approximation of the true median on branch prediction. Figure
+\ref{base quicksort without a median, with median of 3, and with pseudo-medians
+of 5, 7 and 9-2} shows the behavior of these branches when median-of-three is
+used to select the pivot. Perhaps the biggest effect is that the number of
+executions of the \cc{i} and \cc{j} branches falls by around 15\%. This fall is
+partly offset by the comparison branches to compute the median, but these
+account for only around 1.25\% of the original branches from the no-median
+quicksort. Thus, there is a reduction of almost 14\% in the number of executed
+comparison branches. Even more interesting, however, is the bias in the
+remaining \cc{i} and \cc{j} branches. The no-median \cc{i} and \cc{j} branches
+are 66\% biased, but the median-of-three branches are only 60\% biased in the
+taken direction. The accuracy with which these branches are correctly predicted
+falls from 71\% to 64\%.
 
 The reason for the reduction in bias and prediction accuracy is that
-median-of-three gives a much better estimate of the true median of the
-section to be partitioned. The final resting place of the pivot will
-usually be closer to the middle of the section, to there is less bias
-in the branches. Thus, although median-of-three gives around a 14\%
-reduction in executed comparison branches, each of those branches is
-much less likely to be correctly predicted. Overall there is actually
-a 6\% \textit{increase} in the total number of branch mispredictions.
+median-of-three gives a much better estimate of the true median of the section
+to be partitioned. The final resting place of the pivot will usually be closer
+to the middle of the section, to there is less bias in the branches. Thus,
+although median-of-three gives around a 14\% reduction in executed comparison
+branches, each of those branches is much less likely to be correctly predicted.
+Overall there is actually a 6\% \n{increase} in the total number of branch
+mispredictions.
 
-To further investigate this phenomenon, we measured the effects of
-using pseudo-medians-of-five, -seven and -nine to choose the pivot. A
-pseudo-median uses repeated medians-of-three for parts of the
-computation to reduce the number of comparisons in computing the
-pivot. The reductions in executed comparison branches are 16.5\%,
-17.8\% and 19.6\% respectively. However, the biases of the $i$ and $j$
-branches in these algorithms are only 57.8\%, 56.3\% and 55.1\%. The
-corresponding predictabilities are 61.6\%, 59.9\% and 58.3\%. Overall,
-the increases in comparison branch mispredictions (including computing
-the pseudo-median) are 9.2\%, 11.8\% and 14.3\%. 
+To further investigate this phenomenon, we measured the effects of using
+pseudo-medians-of-five, -seven and -nine to choose the pivot. A pseudo-median
+uses repeated medians-of-three for parts of the computation to reduce the number
+of comparisons in computing the pivot. The reductions in executed comparison
+branches are 16.5\%, 17.8\% and 19.6\% respectively. However, the biases of the
+$i$ and $j$ branches in these algorithms are only 57.8\%, 56.3\% and 55.1\%. The
+corresponding predictabilities are 61.6\%, 59.9\% and 58.3\%. Overall, the
+increases in comparison branch mispredictions (including computing the
+pseudo-median) are 9.2\%, 11.8\% and 14.3\%. 
 
-Picking a better estimate of the true median substantially reduces the
-number of executed branches, but each of those branches is much more
-unpredictable. Intuitively, this makes sense. Sorting the array
-involves putting an order on it, and thus reducing its entropy. If we
-want to sort it in a smaller number of steps, then each step must
-remove more randomness. Thus, we would expect that the outcome of the
-branch that removes the randomness would itself be more random.
+Picking a better estimate of the true median substantially reduces the number of
+executed branches, but each of those branches is much more unpredictable.
+Intuitively, this makes sense. Sorting the array involves putting an order on
+it, and thus reducing its entropy. If we want to sort it in a smaller number of
+steps, then each step must remove more randomness. Thus, we would expect that
+the outcome of the branch that removes the randomness would itself be more
+random.
 
-Figure \ref{quick_median_cycles} shows the cycle count of each of the quicksorts,
-showing that a pseduo-median-of-seven offers the greatest tradeoff
-between the reduced number of branches and instructions, and the
-increase in branch mispredictions.
+Figure \ref{quick_median_cycles} shows the cycle count of each of the
+quicksorts, showing that a pseduo-median-of-seven offers the greatest tradeoff
+between the reduced number of branches and instructions, and the increase in
+branch mispredictions.
 
-An additional advantage of using a higher order median is that it
-dramatically reduces the probability of quicksort exhibiting worst
-case ($O(N^2)$) time complexity. Although the average case reduction
-in running time is small, reducing the chance of worst-case
-performance, which might cause the program to pause for minutes or
-hours, is very valuable.
+An additional advantage of using a higher order median is that it dramatically
+reduces the probability of quicksort exhibiting worst case ($O(N^2)$) time
+complexity. Although the average case reduction in running time is small,
+reducing the chance of worst-case performance, which might cause the program to
+pause for minutes or hours, is very valuable.
 
 \begin{figure}
 \includegraphics{plots/quick_median_cycles.eps}

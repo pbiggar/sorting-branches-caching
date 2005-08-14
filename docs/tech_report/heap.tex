@@ -305,7 +305,7 @@ associativity: LaMarca's tests were performed on a DEC AlphaStation 250 with a
 direct mapped cache. The Pentium 4's cache is 8-way associative, and so the
 unoptimized algorithm would not suffer as much.
 
-\section{A more detailed look at branch prediction}
+\section{A More Detailed Look at Branch Prediction}
 
 \sixplot{base_heapsort_0.eps}{memory_tuned4_heapsort_0.eps}{memory_tuned_heapsort_0.eps}{memory_tuned_heapsort_1.eps}{}{}{base
 and memory-tuned heapsorts}
@@ -349,7 +349,7 @@ fanout increased, overall the number of branches increases.  In total, there are
 8-heap.
 
 More importantly, the accuracy of the each successive comparison increases in
-the same way as selection sort (see Section \ref{selection branches logn}),
+the same way as selection sort (see Section \ref{selection branches harmonics}),
 becoming more predictable as the fanout increases. For example, in the 8-heap,
 shown in Figures \ref{base and memory-tuned heapsorts-3} and \ref{base and
 memory-tuned heapsorts-4}, the first comparison is predicted correctly 50\% of

@@ -31,6 +31,11 @@
 \item[]%
 }{\end{list}}
 
+\newenvironment{spacedpars}{%for the abstract
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0ex}
+}
+
 %cc is used for
 % - unix commans or programs: gcc, sim-bpred etc
 \newcommand{\cc}[1]{\texttt{#1}}
@@ -193,7 +198,7 @@ program counter. #7]
         \end{center}
 \end{titlepage}
 
-
+\begin{spacedpars}
 \begin{abstract}
 Sorting is one of the most important and studied problems in computer
 science. Many good algorithms exist which offer various trade-offs in
@@ -232,6 +237,7 @@ found that a cache-optimized radix sort was the fastest algorithm for
 all large arrays; the absence of comparison branches means that the
 algorithm causes almost no branch mispredictions.
 \end{abstract}
+\end{spacedpars}
 
 \tableofcontents
 \listoffigures

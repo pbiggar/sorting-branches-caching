@@ -106,7 +106,7 @@ Overall, this leads to a reduction in cycle count of between 35 and 70\%, as
 seen in Figure \ref{shell cycles}.
 
 %TODO
-\section{Predictor Results}
+\section{A More Detailed Look at Branch Prediction}
 
 \sixplot{shellsort_0.eps}{improved_shellsort_0.eps}{}{}{}{}{Shellsorts}
 
@@ -115,16 +115,17 @@ In shellsort, almost exactly half of the important branches are mispredicted.
 Simply predicting that all branches are taken would result in a slightly higher
 prediction ratio of 50.8\%. Similarly, for improved shellsort, slightly more
 than half of the branches are correctly predicted, at 50.3\%, rising to 53\%
-using a strategy of predicting all branches as taken.
+using a strategy of predicting all branches as taken. These results can be seen
+in Figures \ref{Branch prediction performance for Shellsorts}.
 
 The results also show that in shellsort, a key moves only 1.03 places down the
 array, on average, during each iteration. In improved shellsort, each key moves
 over 1.07\% places each iteration, which in the final insertion sort, each key
 moves an average of 2.1 places.
 
-The expected number of branch mispredictions is $log_{(\frac{11}{5})}N$. In
-actual fact, it is almost exactly correct, being slightly lower (18.48
-mispredictions per key, instead of 19.34, for 4194304 keys).
+The expected number of branch mispredictions is $log_{(\frac{11}{5})}N$.  This
+is almost exactly correct, being slightly lower (18.48 mispredictions per key,
+instead of 19.34, for 4194304 keys).
 
 
 \section{Future Work}
