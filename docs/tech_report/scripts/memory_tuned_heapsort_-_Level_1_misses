@@ -10,5 +10,5 @@ set output '../data/plots/memory_tuned_heapsort_-_Level_1_misses.eps'
 set xlabel 'set size in keys'
 set ylabel 'Level 1 misses per key'
 plot \
-'../data/converted_simple_logs/memory_tuned_heapsort/memory_tuned_heapsort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:18 title 'Direct Mapped',\
-'../data/converted_simple_logs/memory_tuned_heapsort/memory_tuned_heapsort_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:18 title 'Fully Associative'
+'../data/converted_simple_logs/memory_tuned_heapsort/memory_tuned_heapsort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:18 title 'Direct-Mapped',\
+'../data/converted_simple_logs/memory_tuned_heapsort/memory_tuned_heapsort_sim-cache_-cache:dl1_dl1:1:32:256:l_-cache:dl2_dl2:1:32:65536:l_-cache:il1_il1:1:32:256:l_-cache:il2_dl2' using 1:18 title 'Fully-Associative'
