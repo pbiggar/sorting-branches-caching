@@ -253,11 +253,11 @@ replacement policy of the fully-associative cache.
 
 The branch prediction results are shown in Figure \ref{quick branch misses}. As
 expected, there was a a dramatic increase in the binary search multi-quicksort
-branch misses, but only when using a bimodal predictor. When using a 2-level
+branch misses, but only when using a bimodal predictor. When using a two-level
 adaptive predictor, the number of misses is, in general, slightly higher, but it
 does not spike due to the binary search. While it performs worse than the
-bimodal predictor, it appears that 2-level adaptive predictors can adapt to the
-erratic branches of a binary search.
+bimodal predictor, it appears that two-level adaptive predictors can adapt to
+the erratic branches of a binary search.
 
 The sequential search stops the increase of branch misses, since every key will
 only take one miss to find its proper place. The results of this on cycle

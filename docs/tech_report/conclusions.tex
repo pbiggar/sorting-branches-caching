@@ -33,7 +33,7 @@ that this does not necessarily translate to better performance. Our results show
 also that the level 1 cache needs to be taken into account, that the extra
 instruction in multi-mergesort make it slower than double-aligned tiled
 mergesort, and that multi-mergesort has regular branch predictive access
-patterns during the k-way merge, which can be taken advantage of by a 2-level
+patterns during the k-way merge, which can be taken advantage of by a two-level
 adaptive predictor.
 
 
@@ -90,7 +90,7 @@ discussed above. Despite this property, the number of mispredictions using an
 
 Using a k-way merge, multi-mergesort had a great number of extra branch
 predictions. While many of these were mispredicted using the bimodal predictor,
-the 2 level adaptive predictor was able to predict a higher
+the two-level adaptive predictor was able to predict a higher
 proportion correctly.
 
 
