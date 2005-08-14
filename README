@@ -118,7 +118,7 @@ Documents:
 	discussing cache performance.
 
 	The create the papers, run:
-*		$ make
+*		$ make again
 
 	in the respective directories. All the papers use plots from the
 	data/plots/ directory, and have sym-links to it. Some of the plots might be
