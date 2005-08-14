@@ -75,14 +75,14 @@ miss: \n{compulsory} or \n{cold-start} misses, \n{conflict} misses and
 from memory. Since it has not been accessed before, it cannot already be in the
 cache. A conflict miss occurs when the addressing scheme used by the cache
 causes two separate memory locations to be mapped to the same area of the cache.
-This only occurs in direct mapped or set-associative cache, described below.
+This only occurs in direct-mapped or set-associative cache, described below.
 Finally, a capacity miss occurs when the data sought has been ejected from the
 cache due to a lack of space.
 
-Caches range from direct mapped to fully associative. In a direct mapped cache,
+Caches range from direct-mapped to fully-associative. In a direct-mapped cache,
 every memory address has an exact position in the cache where it can be found.
 Since the cache is smaller than main memory, many addresses map to the same position.
-Fully associative is the opposite of this: data can be stored anywhere in the
+Fully-associative is the opposite of this: data can be stored anywhere in the
 cache. A set-associative cache is a mixture of both: more than one piece of data
 can be stored in the same place. A 4-way set-associative cache allows four items
 to be stored in the same place; when a fifth item needs to be stored in that
@@ -101,13 +101,13 @@ storage. Figure \vref{Address Division} shows how a memory address is divided.
 \label{Address Division}
 \end{figure}
 
-This cache is a 2MB direct mapped cache.  There is a 32-byte cache line, which
+This cache is a 2MB direct-mapped cache.  There is a 32-byte cache line, which
 is indexed by the 5 bit \n{offset}. There are $2^{16}$ cache lines, which are
 indexed by the middle 16 bits of the address. The most significant 11 bits form
 the \n{tag}. A cache line is tagged to check if the data stored at an index is
-the same as the data requested. For a fully associative cache, there is no
-index, and all the bits except the offset make up the tag. A fully associative
-cache has no conflict misses for this reason; similarly, a direct mapped cache
+the same as the data requested. For a fully-associative cache, there is no
+index, and all the bits except the offset make up the tag. A fully-associative
+cache has no conflict misses for this reason; similarly, a direct-mapped cache
 has no capacity misses, since even when full, misses are due to conflicts.
 
 The address used by the cache is not necessarily the address used by a program.

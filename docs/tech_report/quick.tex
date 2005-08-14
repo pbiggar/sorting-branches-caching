@@ -221,8 +221,8 @@ misses should not increase at all, and should flat-line from that point on.
 
 \subsection{Simulation Results}
 
-\plot{quick}{}{}{Results shown are for a direct mapped cache.}{Results shown are
-for a direct mapped cache.}{}{}{}
+\plot{quick}{}{}{Results shown are for a direct-mapped cache.}{Results shown are
+for a direct-mapped cache.}{}{}{}
 
 The instruction count, shown in Figure \ref{quick instructions} is mostly as
 predicted. The increase in instructions in both multi-quicksorts is as
@@ -245,7 +245,7 @@ Both the memory-tuned version and the base quicksort both have a significant
 increase once the arrays no longer fit in the cache, also as predicted.
 
 The results show again (see Section \ref{mergesort replacement policy}) that
-direct mapped caches can perform better than fully associative ones. This is
+direct-mapped caches can perform better than fully-associative ones. This is
 true in the case of all the quicksorts, as can be seen in Figures \ref{base
 quicksort (no median) level 2 misses} to \ref{multi-quicksort (sequential
 search) level 2 misses} graph that this is true in the case of all the

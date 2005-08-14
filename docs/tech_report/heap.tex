@@ -242,8 +242,8 @@ difference between the two types of heap. The slope of the base heapsort result
 is much greater than all the others, showing base heapsort's poor temporal
 locality, with the 8-heap having the fewest misses. This continues into the
 level 2 cache, where the flattest slope belongs to the 8-heap. The difference
-between fully associative and direct mapped is only minor, with the fully
-associative performing slightly better than the direct mapped cache.
+between fully-associative and direct-mapped is only minor, with the
+fully-associative performing slightly better than the direct-mapped cache.
 
 In the graph, the base heapsort's results flat-line for a step longer than the
 other heapsorts' results. This is due to being in-place, since twice as many
@@ -302,7 +302,7 @@ heapsort performs slightly better for small sets than the memory-tuned heapsort'
 the results presented here. LaMarca's results indicate that the memory-tuned heapsort
 has better results the entire way through the cache. This may relate to the
 associativity: LaMarca's tests were performed on a DEC AlphaStation 250 with a
-direct mapped cache. The Pentium 4's cache is 8-way associative, and so the
+direct-mapped cache. The Pentium 4's cache is 8-way associative, and so the
 unoptimized algorithm would not suffer as much.
 
 \section{A More Detailed Look at Branch Prediction}

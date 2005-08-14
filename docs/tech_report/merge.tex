@@ -246,7 +246,7 @@ performance should be very regular, so long as the data set fits in the cache. O
 the data set exceeds the cache, the number of cache misses should leap. For
 multi-mergesort, they should flatten out after this, perhaps with a slight
 slope to take into account the conflict misses of the aligned array segments. The
-fully associative caches should not have these misses, and the results should be
+fully-associative caches should not have these misses, and the results should be
 correspondingly lower. The double mergesorts should have
 better performance than their counterparts in level 1 misses, though there
 should be a slight increase in level 2 misses. It is expected that they should
@@ -260,8 +260,8 @@ passed.
 \subsection{Simulation Results}
 \label{Mergesort results}
 
-\plot{merge}{}{}{Results shown are for a direct mapped cache.}{Results shown are
-for a direct mapped cache.}{}{}
+\plot{merge}{}{}{Results shown are for a direct-mapped cache.}{Results shown are
+for a direct-mapped cache.}{}{}
 
 As expected, algorithm S has lower instruction count than algorithm N, and 
 also slightly outperforms base mergesort.  The number of instructions, shown in
@@ -277,11 +277,11 @@ expected. They perform roughly the same as base mergesort.
 \label{mergesort replacement policy}
 It is notable that our prediction of half a miss per key for multi-mergesort,
 which was taken from LaMarca, is exactly right. However, our assertion that the
-fully associative cache will perform slightly better is false. In actual fact,
-the direct mapped cache performs significantly better (see Figure
+fully-associative cache will perform slightly better is false. In actual fact,
+the direct-mapped cache performs significantly better (see Figure
 \vref{multi-mergesort level 2 misses}). This is due to the replacement policy:
-our fully associative cache removes the least recently used keys from the cache
-to make room, while the direct mapped caches are designed to make best use of
+our fully-associative cache removes the least recently used keys from the cache
+to make room, while the direct-mapped caches are designed to make best use of
 the keys while they are in the cache. They have, effectively, an optimised
 replacement policy.
 
