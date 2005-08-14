@@ -140,21 +140,25 @@ a large time scale, during which it may have been ejected from the cache.
 A branch is a conditional statement used to control the next instruction a
 machine must execute. Typically, these are \cc{if} and \cc{while} statements,
 or their derivatives. Branches cause delays in a processor's instruction
-pipeline.  The processor must wait until the branch is resolved before it knows
+pipeline. The processor must wait until the branch is resolved before it knows
 what the next instruction is, and so it cannot fetch that instruction, and must
 stall. To avoid this problem, modern processors use branch predictors, which
 guess the branch direction and allow the processors to execute subsequent
 instructions straight away.
 
-Each branch can be resolved in two ways: \n{taken} or \n{not-taken}. If the branch is
-taken, then the program counter moves to the address provided by the branch
-instruction. Otherwise, the program counter increments, and takes the next
-sequential instruction.
+Each branch can be resolved in two ways: \n{taken} or \n{not-taken}. If the
+branch is taken, then the program counter moves to the address provided by the
+branch instruction. Otherwise, the program counter increments, and takes the
+next sequential instruction.
 
 If a branch is mispredicted, then a long delay will occur, though this delay is
 the same as if a branch predictor had not been used. During this delay, the
 pipeline must be emptied, the instructions already executed must be discarded,
 and the next instruction must be fetched.
+
+Branch mispredictions are sometimes called \n{branch misses}, due to the
+similarity between dynamic predictors and caches. In this report, we use the
+terms interchangably.
 
 In this report, we split branches into two types. The first is a \n{flow
 control branch}. Flow control refers to controlling the flow of execution of a
