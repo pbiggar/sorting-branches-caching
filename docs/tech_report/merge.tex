@@ -334,7 +334,7 @@ which also correspond with the labels in our code.
 
 Base mergesort has the same number of mispredictions as Knuth's sorts (see
 Figure \ref{mergesorts-3}, indicating a possible minimum number. `\n{Left}' and
-`\n{Right}' refer to interating through the first (or left-hand) and second (or
+`\n{Right}' refer to iterating through the first (or left-hand) and second (or
 right-hand) lists being compared, respectively.
 
 Base mergesort has a lower number of branches than Knuth's sorts, probably due
@@ -348,7 +348,7 @@ has a predilection for merging forwards, shown in \ref{mergesorts-4}. The
 \ref{mergesorts-3}, while `\n{Forwards}' and `\n{Reverse}' refer to whether the
 first or second part of the bitonic array segment is being merged.
 
-This predilication is likely to be due to the fact that the final merge goes
+This predilection is likely to be due to the fact that the final merge goes
 forwards. The left merge step is also favoured, but this is merely due to the
 fact that it occurs first in the code. While there are more left branches, the
 actual number of branches taken are the same.

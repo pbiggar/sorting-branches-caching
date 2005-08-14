@@ -309,7 +309,7 @@ appear to be the same, though our results are not conclusive either way.
 memory-tuned and multi- quicksorts}
 
 Figure \ref{base, memory-tuned and multi- quicksorts-1} shows the behaviour of
-the indiviual branches in base quicksort. The \n{i} branch is the loop control
+the individual branches in base quicksort. The \n{i} branch is the loop control
 branch for the index sweeping from left-to-right up the array during partition.
 The \n{j} branch is the corresponding loop sweeping down the array. The
 partition step terminates when \n{i $\geq$ j}, and the \n{Partition End} branch
@@ -428,7 +428,7 @@ often does not enter at all (which makes its branch also predictable, although
 executed a much smaller number of times). Thus, although overall the \n{i} and
 \n{j} branches are taken twice as often as not-taken, on a particular partition
 one will usually be biased in the not-taken direction, and as a result will be
-executed a relativelty small number of times.
+executed a relatively small number of times.
 
 In the preceding paragraphs we have seen that the \n{i} and \n{j} branches are
 predictable when we have a pivot that is larger or smaller than the true median
@@ -475,7 +475,7 @@ the outcome of the branch that removes the randomness would itself be more
 random.
 
 Figure \ref{quick_median_cycles} shows the cycle count of each of the
-quicksorts, showing that a pseduo-median-of-seven offers the greatest tradeoff
+quicksorts, showing that a pseudo-median-of-seven offers the greatest trade-off
 between the reduced number of branches and instructions, and the increase in
 branch mispredictions.
 
@@ -519,7 +519,7 @@ since partitions are likely to be smaller than the threshold.}. Still, the
 problem is interesting and has applications in other algorithm designs.
 
 Finally, in multi-quicksort, it may be possible to choose better pivots.
-Choosing better (ie, more evenly distributed pivots) would reduce the number of
+Choosing better (i.e., more evenly distributed pivots) would reduce the number of
 containers. The advantage of this is that it reduces linearly the number of
 pivots to be searched by the sequential search. The most this can be reduced by
 is a factor of three, indicating perfectly distributed pivots. This would reduce
