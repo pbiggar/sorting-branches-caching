@@ -1,3 +1,6 @@
+set label "86970588\n   49.2%" at 0-0.25,10000000+86970588.1 font "Helvetica Bold,10"
+set label "43485163\n   97.6%" at 1-0.25,10000000+43485163.5 font "Helvetica Bold,10"
+set label "43485424\n   97.6%" at 2-0.25,10000000+43485424.6 font "Helvetica Bold,10"
 set term postscript eps
 set boxwidth 0.25 absolute
 set style fill pattern 0 border -1
