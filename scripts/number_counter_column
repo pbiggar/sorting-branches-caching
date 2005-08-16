@@ -1,0 +1,111 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+
+if (@ARGV == 0 or $ARGV[0] =~ /-h/) 
+{
+	print "Preprocesses a gnuplot script in the branch predictor format (ie dual columns) to add the actual numbers to the columns\n";
+	print "\tUsage: number_counter_column filename1 filename2\n";
+}
+
+
+foreach my $filename (@ARGV) 
+{
+	# check the file exists
+	die("file $filename doesnt exist") unless (-e $filename);
+#	print "file is: $filename\n";
+
+	# split the file into directort and filename
+	$filename =~ /(.*\/)?([^\/]+)/;
+	my $directory = $1;
+	unless (defined($directory)) { $directory = ""; }
+	my $file = $2;
+#	print "$directory - $file\n";
+
+	# open and read the file
+	open(FILE, $filename) or die("cant open $filename");
+	my @contents = <FILE>;
+	close(FILE);
+
+	if ($contents[0] =~ /label/)
+	{
+		@contents = grep {!/set label/ } @contents;
+	}
+
+	my $columns = 0;
+	my $next_is_plot = 0;
+	my $data_file;
+	foreach (@contents)
+	{
+		# find the xtics line
+		if (/^set +xtics/)
+		{
+			# get how many columns are to be filled
+			/"" (\d)/;
+			$columns = $1;
+			unless (defined($columns))
+			{
+				$columns = 7;
+			}
+#			print $columns."\n";
+		}
+
+		# find the filename to read from
+		if ($next_is_plot)
+		{
+			/^'([^']*)'/;
+			$data_file = $directory.$1;
+#			print $data_file."\n";
+			$next_is_plot = 0;
+		}
+
+		if (/^plot/)
+		{
+			$next_is_plot = 1;
+		}
+	}
+
+	# get the data
+	open(DATA_FILE, $data_file) or die("cant open $data_file");
+	my @data = <DATA_FILE>;	
+	close(DATA_FILE);
+
+	my $text = "";
+	my $i = 0;
+	foreach my $data_line (@data)
+	{
+		if ($data_line =~ /^#/) { next; } # skip comments
+		my @numbers = split (" +", $data_line);
+		my $total = $numbers[0];
+		my $correct = $numbers[1];
+		my $incorrect  = $numbers[2];
+		my $taken = $numbers[3];
+		my $not_taken = $numbers[4];
+
+		if ($total == 0)
+		{
+			last;
+		}
+		my $percentage = 100 * $correct / $total;
+		$percentage = sprintf("   %.1f%%", $percentage); # round to 1 digit
+		$percentage =~ s/(\d+)\.0%/ $1%/g; # strip a .0
+
+		my $total_string = $total;
+		$total_string =~ s/\..*//g;
+
+		$text .= "set label \"$total_string\\n$percentage\" at $i-0.25,10000000+$total font \"Helvetica Bold,10\"\n";
+		$i++;
+	}
+
+	# add it to the scripts
+	print $text;
+
+	open(SCRIPT, ">$filename") or die("couldnt open $filename for writing");
+	print SCRIPT $text;
+	print SCRIPT join("", @contents);
+	close(SCRIPT);
+
+}
+
