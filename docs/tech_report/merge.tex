@@ -326,58 +326,75 @@ levels 1 and 2, emerges the winner.
 
 \sixplot{algorithm_n_0.eps}{algorithm_s_0.eps}{base_mergesort_0.eps}{double_aligned_tiled_mergesort_0.eps}{double_aligned_multi_mergesort_0.eps}{double_aligned_multi_mergesort_1.eps}{mergesorts}
 
-Figure \ref{mergesorts-1} shows that algorithm N has the same number of branches
-and branch mispredictions as algorithm S, shown in \ref{mergesorts-2}. The
-labels in the graphs correspond to the names of the steps in Knuth's algorithm,
-which also correspond with the labels in our code.
+Figure \ref{mergesorts-1} shows the behaviour of the individual branches within
+algorithm N.  The labels in the graphs correspond to the names of the steps in
+Knuth's algorithm (we also used the same names for the labels of branch targets
+in our C source code. Branch N3 is the main comparison branch; it is used to
+choose the smaller of the elements from the start of the two sub-arrays being
+merged. The direction of this branch is completely random -- it depends entirely
+on the (in this case random) data. Figure \ref{mergesorts-1} also shows that
+this branch is almost entirely unpredictable using a bimodal predictor. The
+result for a two-level predictor is much the same, because there is no pattern
+in the outcome of these branches. Branches `\n{N3 i==j}' (check for the current
+merge being complete), `\n{N5}' and `\n{N9} (both checks for the end of a run of
+increasing elements) are control-flow branches, and are almost entirely
+predictable. Figure \ref{mergesorts-2} shows that the comparison branch in
+Algorithm S is just as unpredictable as that in algorithm N. However, given that
+the merge in algorithm S is entirely regular (see section \ref{Algorithm S}) it
+is possible to eliminate one of the control-flow branches.
 
+Base mergesort is an optimized algorithm that reverses the sorting direction of
+every second sub-array, pre-sorts small sub-arrays, and applies a number of
+other optimizations. As Figure \ref{mergesorts-3} shows, our base mergesort has
+eliminated some of the control-flow branches. The main comparison branch is
+split into two separate branches --- one iterating from left-to-right over the
+increasing sub-array (`\n{Left}'), and the other from right-to-left over the
+decreasing sub-array (`\n{Right}').  However, base mergesort appears to need a
+total of 50\% more comparison branches that either Algorithm S or N.
 
-Base mergesort has the same number of mispredictions as Knuth's sorts (see
-Figure \ref{mergesorts-3}, indicating a possible minimum number. `\n{Left}' and
-`\n{Right}' refer to iterating through the first (or left-hand) and second (or
-right-hand) lists being compared, respectively.
+In fact, base mergesort eliminated control-flow branches by using the same
+branch that is used for comparison to also deal with the case where one (or
+both) of the merging sub-arrays becomes empty. Thus, the sum of the number of
+executions of the branches `\n{Left}' and `\n{Right}' is almost exactly the same
+as the sum of the number of executions of the branches N3 and N3 i==j in
+Algorithm N. The total number of mispredictions is also almost the same.
 
-Base mergesort has a lower number of branches than Knuth's sorts, probably due
-to performing a presort first. The presort has approximately 6.8 misses per key
-(not shown in the graphs). In later mergesorts, an insertion sort is used
-instead.
+The comparison branch in double-aligned tiled mergesort is divided into four
+separate branches. As in base mergesort, there are `\n{Left}' and `\n{Right}'
+branches. However, for each of these there are separate branches for when
+creating a new sub-array in increasing order (`\n{Forwards}') or decreasing
+order (`\n{Reverse}'). There are slightly more executions of `\n{Forwards}' than
+`\n{Reverse}' because the final array is always sorted into increasing order.
+The left merge step is also favoured, but this is merely due to the fact that it
+occurs first in the code. While there are more left branches, the actual number
+of branches taken are the same.
 
-Double-aligned tiled mergesort (which has the same results are tiled mergesort)
-has a predilection for merging forwards, shown in \ref{mergesorts-4}. The
-`\n{Left}' and `\n{Right}' in the labels refer to the same as in
-\ref{mergesorts-3}, while `\n{Forwards}' and `\n{Reverse}' refer to whether the
-first or second part of the bitonic array segment is being merged.
+Double aligned multi-mergesort is an even more complicated algorithm.  It sorts
+the arrays fully in the cache, leaving them bitonically arranged (sorted into
+sub-arrays, sorted into alternatey increasing and decreasing order). The final
+merge is performed separately, and hence no bias for the forward branches, as
+there was in tiled mergesort. The final sort is performed with a $k$-way merge,
+which is implemented using a heap data structure. This is shown in Figures
+\ref{mergesorts-5} and \ref{mergesorts-6}. The `\n{Comparison}' branches are
+comparisons from the merge. The labels in these graphs are the same as in Figure
+\ref{mergesorts-4} and \ref{base and memory-tuned heapsorts-2}.
 
-This predilection is likely to be due to the fact that the final merge goes
-forwards. The left merge step is also favoured, but this is merely due to the
-fact that it occurs first in the code. While there are more left branches, the
-actual number of branches taken are the same.
+During regular two-way merging, the number of branches is 20\% lower than base
+mergesort, while the number of mispredictions in only 10\% lower. This implies
+that most of the mispredictions occur early in the merging process, and not in
+the final merge, which multi-mergesort leaves out.
 
-In both double-aligned tiled mergesort and base mergesort, approximately two
-thirds are of the loops are taken, unlike Knuth's sorts. However, this appears
-to indicate an increase in branches, as opposed to a decrease in mispredictions.
-Overall this stay is line with the idea that there is a minimum number of branch
-misses, below which comparative sorts will not drop.
-
-Double multi-mergesort sorts the arrays fully in the cache, leaving them
-bitonically arranged. This means that there is no final merge, and hence no bias
-for the forward branches, as there was in tiled mergesort. This is shown in
-Figures \ref{mergesorts-5} and \ref{mergesorts-6}. The labels in these graphs
-are the same as in Figure \ref{mergesorts-4} and \ref{base and memory-tuned
-heapsorts-2}.
-
-While merging, the number of branches is 20\% lower than base mergesort, while
-the number of mispredictions in only 10\% lower. This implies that most of the
-mispredictions occur early in the merging process, and not in the final merge,
-which multi-mergesort leaves out.
-
-Overall, when the k-ary heap is used, there are the same number of branch
-misses. This means that using the technique to reduce cache misses does not
-adversely affect branch prediction rates (it does, however, still affect the
-instruction count).  The rate of branch misses is much the same as that in
-heapsort, and progresses in the same manner (see Figure \ref{memory-tuned
-heapsort curve}). Note that `\n{comparison 0}' occurs every time, and would be
-optimized out by the compiler.
+Overall, when the $k$-ary heap is used, there are approximately the same total
+number of branch mispredictions as in the other mergesort algorithms. Although
+the final $k$-way merge executes a lot more comparison branches, these heap
+branches are quite predictables, as we saw in Section
+\ref{heapsort-branch-prediction}. This means that using the technique to reduce
+cache misses does not adversely affect branch prediction rates (it does,
+however, still affect the instruction count).  The rate of branch misses is much
+the same as that in heapsort, and progresses in the same manner (see Figure
+\ref{memory-tuned heapsort curve}). Note that `\n{comparison 0}' is included for
+illustration purposes only. It is guaranteed to be taken every time, and would
+be optimized out by the compiler.
 
 
 \section{Future Work}
