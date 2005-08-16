@@ -179,7 +179,8 @@ Tool versions:
 
 		- Valgrind: valgrind-2.4.0
 
-		- PapiEx: version and kernel patch version TODO
+		- PapiEx: 0.99rc1, with perfctl patch 2.6.8-rc2, using papi 3.0.8.1, on
+		  Linux 2.6.8.1
 		
 		- gcc: gcc (GCC) 3.3.5 (Debian 1:3.3.5-13)
 		
