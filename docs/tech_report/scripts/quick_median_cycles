@@ -11,7 +11,7 @@ set xlabel 'set size in keys'
 set ylabel 'Cycles per key'
 plot \
 '../data/processed_cycles_data' using 1:8 title 'base quicksort (no median)',\
-'../data/processed_cycles_data' using 1:7 title 'base quicksort',\
+'../data/processed_cycles_data' using 1:7 title 'base quicksort (median-of-three)',\
 '../data/processed_cycles_data' using 1:9 title 'base quicksort (pseudo-median-of-5)',\
 '../data/processed_cycles_data' using 1:10 title 'base quicksort (pseudo-median-of-7)',\
 '../data/processed_cycles_data' using 1:11 title 'base quicksort (pseudo-median-of-9)'
