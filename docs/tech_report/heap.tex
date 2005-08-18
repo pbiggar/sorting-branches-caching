@@ -358,18 +358,21 @@ which is shown in Figure \ref{memory-tuned heapsort curve}.
 The relationship between this number and $H_N-1$ is relatively straightforward.
 $H_N-1$ represents the cumulative number of changes in the minimum. Over a long
 array, this approximates the number of branch mispredictions, as almost every
-branch will not be taken, and the predictor will always predict not-taken. The
-graph shows us the rate of correct predictions, and each point is calculated
-using a seperate branch predictor. As a result, we expect $1-y = \frac{1}{x+1}$,
-where $x$ and $y$ are the cartesian coordinates of each point on the graph.
-$1-y$ is the number of mispredictions from the graph, while $\frac{1}{x+1}$ is
-the increase of $H_N$ for step $N$.
+branch will not be taken, and the predictor will always predict not-taken.
+
+Meanwhile, Figure \ref{memory-tuned heapsort curve} shows us the rate of correct
+predictions, and each point is calculated using a seperate branch predictor. As
+a result, we expect $1-y = \frac{1}{x+1}$, where $x$ and $y$ are the cartesian
+coordinates of each point on the graph.  $1-y$ is the number of mispredictions
+from the graph, while $\frac{1}{x+1}$ is the increase in $H_N$ for step $N$.
 
 When the array is short, as in this example, the branch predictor has too much
-feedback to be as accurate as $H_N$. For $N=2$, we would approximate a 33\%
+feedback to be close to $H_N$. For $N=2$, we would approximate a 33\%
 misprediction ratio using $H_N$, but we measure 39\%. The approximated and
 actual ratios become closer as $N$ increases, as we would expect, and for $N=7$,
-we approximate 12.5\% and measure 12.7\%. 
+we approximate 12.5\% and measure 12.7\%. We conclude that initial suggestion is
+correct: while the branch prediction ratio of finding the minimum is very close
+to $H_N-1$, the relationship is less accurate for very short arrays.
 
 
 \begin{figure}
