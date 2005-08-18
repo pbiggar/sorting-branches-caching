@@ -39,7 +39,7 @@ reduces the maximum size of the stack to $O(logN)$. In practice, two \cc{int}s,
 the left and the right index, are required for each partition.
 
 Sedgewick's second improvement is the use of an elementary sort for small
-sub-files.  Once a partition is smaller than an arbitrary threshold, insertion
+sub-files. Once a partition is smaller than an arbitrary threshold, insertion
 sort is used to sort the partition. Sedgewick states that roughly the same
 results are obtained for thresholds between 5 and 25. An additional reduction in
 instruction count can be had by doing the insertion sort over the entire array
@@ -96,27 +96,26 @@ smallest key in the partition will be chosen as the sentinel. No other partition
 needs a sentinel. A possible way to avoid the sentinel in that partition is to
 place zero at $0^{th}$ position in the list to be sorted, and sort whichever
 number was in this position back at the end. This sort could be done with one
-iteration of insertion sort, and would have just one branch miss.  However, the
+iteration of insertion sort, and would have just one branch miss. However, the
 number of level 2 cache misses would be great in this case, and the cost of this
 would be substantial. This could be reduced by choosing the key to remove from a
 small list, such as the eight keys at the start, middle and end of the array.
 This would introduce a constant number of cache misses, but would significantly
 reduce the chances of having to sort across the entire array at the end. This,
 however, is not implemented; instead a check is done to fetch a sentinel from
-the appropriate sub-file if required.  This check isn't very expensive, and is
+the appropriate sub-file if required. This check isn't very expensive, and is
 significantly cheaper than either a bounds check or putting a sentinel into
 every sub-file.
 
 \section{Multi-Quicksort}
 
-In the case that the array to be sorted fits in a particular level of
-the cache, then quicksort has excellent cache properties at that
-level. Once the array is larger than the cache, however, the
-number of misses increases dramatically. To fix this problem, LaMarca uses a
-technique similar to that used in multi-mergesort. Instead of multi-merging a
-series of sorted lists at the end, a \n{multi-way partition} is done at the
-start, moving all keys into cache sized containers which can be sorted
-individually.
+In the case that the array to be sorted fits in a particular level of the cache,
+then quicksort has excellent cache properties at that level. Once the array is
+larger than the cache, however, the number of misses increases dramatically. To
+fix this problem, LaMarca uses a technique similar to that used in
+multi-mergesort. Instead of multi-merging a series of sorted lists at the end, a
+\n{multi-way partition} is done at the start, moving all keys into cache sized
+containers which can be sorted individually.
 
 At the start of the algorithm, a set of pivots is chosen and sorted, and keys
 are put into containers based on which two pivots their value lies between. A
@@ -162,7 +161,7 @@ extra instructions.
 Once the entire array has been put into containers, each container is emptied
 in turn and the keys put back into the array. When a container is empty, the
 pivot greater than that container is put into position, which is guaranteed to
-be its final position.  The indices of these positions is pushed onto the
+be its final position. The indices of these positions is pushed onto the
 stack, and the sub-array is then sorted.
 
 While emptying the containers back into the array, an opportunity is taken to
@@ -194,7 +193,7 @@ of keys was larger than 174,762.
 \subsection{Expected Performance}
 
 The instruction count for each quicksort is expected to be $O(NlogN)$, though
-not as high as the other algorithms due to the efficient inner loop.  The number
+not as high as the other algorithms due to the efficient inner loop. The number
 of instructions for multi-quicksort should increase by about 50\% in the case of
 the sequential sort, and 25\% in the case of the binary sort. Memory-tuned
 quicksort should also have a slightly higher instruction count than base
@@ -228,10 +227,10 @@ The instruction count, shown in Figure \ref{quick instructions} is mostly as
 predicted. The increase in instructions in both multi-quicksorts is as
 predicted, with the binary search version increasing only 25\% against the
 sequential search version's 50\% increase. However, the increase we predicted in
-the instruction count of memory-tuned quicksort based on the results of both Sedgewick
-and LaMarca -  that is, once the efficient insertion sort was replaced with many
-small insertion sorts - we observe that the instruction count remains exactly
-the same.
+the instruction count of memory-tuned quicksort based on the results of both
+Sedgewick and LaMarca - that is, once the efficient insertion sort was replaced
+with many small insertion sorts - we observe that the instruction count remains
+exactly the same.
 
 The cache results in Figure \ref{quick level 2 misses} were similar to
 predictions, except that the multi-quicksorts did not behave as expected, and
@@ -333,12 +332,13 @@ probably offset by the increase in mispredictions in the outer loop exit branch
 of the many insertion sorts.
 
 Overall, base quicksort has a 35\% branch misprediction rate, whereas the rate
-for memory-tuned quicksort is only 34\%. The main reason for this is the
-reduction in branches by not attempting to move the pivot elements.  Attempting
-to move these elements usually results in a branch misprediction.  The main
-reason is that most other elements move at least one position, and thus cause
-the insertion sort loop to iterate at least once. But the pivot elements never
-move -- they are already in the correct place.
+for memory-tuned quicksort is only 34\%, while the number of branches also
+decreases. The main reason for this is the reduction in branches by not
+attempting to move the pivot elements. Attempting to move these elements
+usually results in a branch misprediction. The main reason is that most other
+elements move at least one position, and thus cause the insertion sort loop to
+iterate at least once. But the pivot elements never move -- they are already in
+the correct place.
 
 When we look at multi-quicksort, there is a 19\% drop in the number of
 iterations of the \n{i} and \n{j} loops, with a corresponding reduction in the
@@ -379,7 +379,7 @@ case. The main reason is that the chosen pivot is almost never the true median
 of the section of the array to be partitioned. Thus, the \n{i} and \n{j}
 branches are almost always biased, which makes them predictable. According to
 Knuth, if the pivot element is chosen randomly, then the \n{i} and \n{j}
-branches will be taken (i.e.  the \n{i} or \n{j} loop will execute) twice as
+branches will be taken (i.e. the \n{i} or \n{j} loop will execute) twice as
 often as they are not taken (i.e. the loop exits).
 
 In order to investigate this, we implemented a simple version of quicksort that
@@ -409,7 +409,7 @@ median. In this case, the final resting place of the pivot will be towards the
 right-hand end of the region to be partitioned. Thus, the \n{i} loop will
 execute a large number of times, and thus the \n{i} loop will be biased towards
 being taken. The \n{j} loop, on the other hand, will be biased toward not-taken,
-because the average element is likely to be smaller than the pivot.  Therefore,
+because the average element is likely to be smaller than the pivot. Therefore,
 the \n{j} loop will execute only a small number of times. Thus, we see that in a
 particular partition, we do not normally get an equal number of executions of
 the \n{i} and \n{j} loops. Instead we get a large number of executions in one
