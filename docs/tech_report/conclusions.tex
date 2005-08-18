@@ -85,8 +85,14 @@ TODO bubblesort
 
 In heapsort, we found a pattern of branch mispredictions when using a fanout in
 our 8-heap, and that this pattern matched closely that of selection sort,
-discussed above. Despite this property, the number of mispredictions using an
-8-heap was greater than when using a 4-heap.
+discussed above. We found that the approximated results using $H_N$ was similar to
+our expected results for large arrays, and followed a similar pattern for small
+arrays.
+
+Also in heapsort, the number of mispredictions decreases depending on how much
+the heap fans out.  Despite this property, the number of mispredictions using an
+8-heap was greater than when using a 4-heap, due to the increased total number
+of branches.
 
 Using a k-way merge, multi-mergesort had a great number of extra branch
 predictions. While many of these were mispredicted using the bimodal predictor,
