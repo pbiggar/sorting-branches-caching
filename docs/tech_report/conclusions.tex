@@ -128,10 +128,11 @@ mispredictions at all. This result, combined with its linear complexity, and its
 improved cache performance, mean that it is the fastest of any of the sorts
 presented here.
 
-TODO shell
-
-
-%TODO results from software predictors
+We are able to accurately predict the number of branch mispredictions in
+shellsort, using our results from insertion sort. We also found that the
+improvement mode to shellsort, seperating the final loop from the rest, results
+in keys being moved 1.07 places, up from 1.03, contributing to its improved
+performance.
 
 \section{Comparison with LaMarca's Results}
 

@@ -10,7 +10,7 @@ latter sorts as \n{Finding the Smallest}, \n{Interchanging Pairs} and
 
 Shell begins by considering the array to be made up of $\frac{N}{2}$ sub-arrays
 of length two, where the elements of the sub-array are spaced $\frac{N}{2}$ keys
-apart.  These sub-arrays are then sorted using insertion sort. The first
+apart. These sub-arrays are then sorted using insertion sort. The first
 iteration will be a simple exchange, but the keys which are exchanged move
 across the array by $\frac{N}{2}$ spaces. The sort then considers $\frac{N}{4}$
 arrays, whose elements are spaced $\frac{N}{4}$ keys apart, which are
@@ -33,7 +33,7 @@ $\frac{5}{11}^{th}s$ of the previous increment.
 
 Two versions of Gonnet's sort were used. The first was taken directly from the
 code presented by Sedgewick, and only slightly modified to fit into the
-framework used.  The second was modified to reduce the complexity of the loop
+framework used. The second was modified to reduce the complexity of the loop
 bounds, and to remove a sentinel check in the inner loop. Code for shellsort and
 improved shellsort is shown in Figures \ref{Shellsort code} and \ref{Improved
 shellsort code}.
@@ -60,7 +60,7 @@ sub-array is large than the cache. Once the increment is small enough that each
 sub-array fits within the cache (i.e. quickly for L2 cache, and much more slowly
 for the L1 cache), then temporal reuse will occur. Once an entire sub-array fits
 within an eighth of the size of the cache (eight being the number of keys
-that fit in a cache line), then spatial reuse will occur as well.  This reuse
+that fit in a cache line), then spatial reuse will occur as well. This reuse
 will only occur within a single iteration; once the increment with the next
 increment begins, most of the contents of the cache will be invalidated, unless
 the entire array fits within the cache.
@@ -97,7 +97,7 @@ heapsorts.
 Shellsort's cache misses are certainly in the range of an $O(NlogN)$ sort, and
 are not considerably worse than memory-tuned heapsort, and are in fact better
 than base heapsort. This occurs without any cache improvements being performed
-upon them.  Shellsort's branch mispredictions, are, as predicted
+upon them. Shellsort's branch mispredictions, are, as predicted
 $O(Nlog_{\frac{5}{11}}N)$. 
 
 Improved shellsort does improve on shellsort, having approximately 10\% fewer
@@ -105,12 +105,10 @@ instructions. It also has slightly fewer cache misses and branch mispredictions.
 Overall, this leads to a reduction in cycle count of between 35 and 70\%, as
 seen in Figure \ref{shell cycles}.
 
-%TODO
 \section{A More Detailed Look at Branch Prediction}
 
 \sixplot{shellsort_0.eps}{improved_shellsort_0.eps}{}{}{}{}{Shellsorts}
 
-%TODO see figure something
 In shellsort, almost exactly half of the important branches are mispredicted.
 Simply predicting that all branches are taken would result in a slightly higher
 prediction ratio of 50.8\%. Similarly, for improved shellsort, slightly more
@@ -120,11 +118,11 @@ in Figures \ref{Branch prediction performance for Shellsorts}.
 
 The results also show that in shellsort, a key moves only 1.03 places down the
 array, on average, during each iteration. In improved shellsort, each key moves
-over 1.07\% places each iteration, while in the final insertion sort, each key
+over 1.07 places each iteration, while in the final insertion sort, each key
 moves an average of 2.1 places.
 
-The expected number of branch mispredictions is $log_{(\frac{11}{5})}N$.  This
-is almost exactly correct, being slightly lower (18.48 mispredictions per key,
+The expected number of branch mispredictions is $log_{(\frac{11}{5})}N$. This
+is almost exactly correct, being slightly lower (18.48 mispredictions per key
 instead of 19.34, for 4194304 keys).
 
 
