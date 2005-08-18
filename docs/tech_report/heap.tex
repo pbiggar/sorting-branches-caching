@@ -311,29 +311,28 @@ unoptimized algorithm would not suffer as much.
 \sixplot{base_heapsort_0.eps}{memory_tuned4_heapsort_0.eps}{memory_tuned_heapsort_0.eps}{memory_tuned_heapsort_1.eps}{}{}{base
 and memory-tuned heapsorts}
 
-Figure \ref{base and memory-tuned heapsorts-1}(a) shows the behaviour of each
+Figure \ref{base and memory-tuned heapsorts-1} shows the behaviour of each
 branch in the base heapsort algorithm. The `\n{Creation, Has Children}' branch
 refers to the check as to whether a key has children, during the creation of the
-heap The `\n{Creation, Child Comparison}' branch is the comparison between the
+heap. The `\n{Creation, Child Comparison}' branch is the comparison between the
 two children in the 2-heap, and the `\n{Creation, Child Promotion}' refers to
 checking if the child is larger than it's parent. The same checks are later made
 during the destruction of the heap, and are referred to as `\n{Destruction, Has
-Children}', `\n{Destruction, Child Comparison}' and `\n{Destruction Child
+Children}', `\n{Destruction, Child Comparison}' and `\n{Destruction, Child
 Promotion}'.
 
 In the memory-tuned heapsort, the creation phase is simpler, involving merely
-one branch, called `\n{Fix-up}' here. The other columns refer to the
-destruction phase, where most of the work takes place in memory-tuned heapsort.
-When a 4-heap is now used, there are three comparisons instead of just one.
-Likewise, in an (8-heap), there are seven comparisons.
-
-%TODO read over the merged bits. might not be quite right
+one branch, called `\n{Fix-up}' here. The other columns refer to the destruction
+phase, where most of the work takes place in memory-tuned heapsort.  When a
+4-heap is used (see Figure \ref{base and memory-tuned heapsorts-2}), there are
+three comparisons instead of just one. Similarly, in an 8-heap (Figures
+\ref{base and memory-tuned heapsorts-3} and \ref{base and memory-tuned
+heapsorts-4}), there are seven comparisons.
 
 The results of the software predictor show the relation of the branches
-in the creation and destruction of the heap. The base heapsort results in
-Figure \ref{base and memory-tuned heapsorts-1} show that the time taken to
-create the heap is not significant relative to the time taken to sort from the
-heap.
+in the creation and destruction of the heap. The base heapsort results show that
+the time taken to create the heap is not significant relative to the time taken
+to sort from the heap.
 
 The most interesting thing is the relation between the predictability of the
 comparisons during the destruction of the 2-, 4- and 8-heaps. Compare the
@@ -352,11 +351,26 @@ fanout increased, overall the number of branches increases.  In total, there are
 More importantly, the accuracy of the each successive comparison increases in
 the same way as selection sort (see Section \ref{selection branches harmonics}),
 becoming more predictable as the fanout increases. For example, in the 8-heap,
-shown in Figures \ref{base and memory-tuned heapsorts-3} and \ref{base and
-memory-tuned heapsorts-4}, the first comparison is predicted correctly 50\% of
-the time, while the next is predicted correctly 61\% of the time, then 71\%,
-77\%, and so on in a curve, which is shown in Figure \ref{memory-tuned heapsort
-curve}.
+the first comparison is predicted correctly 50\% of the time, while the next is
+predicted correctly 61\% of the time, then 71\%, 78\%, and so on in a curve,
+which is shown in Figure \ref{memory-tuned heapsort curve}.
+
+The relationship between this number and $H_N-1$ is relatively straightforward.
+$H_N-1$ represents the cumulative number of changes in the minimum. Over a long
+array, this approximates the number of branch mispredictions, as almost every
+branch will not be taken, and the predictor will always predict not-taken. The
+graph shows us the rate of correct predictions, and each point is calculated
+using a seperate branch predictor. As a result, we expect $1-y = \frac{1}{x+1}$,
+where $x$ and $y$ are the cartesian coordinates of each point on the graph.
+$1-y$ is the number of mispredictions from the graph, while $\frac{1}{x+1}$ is
+the increase of $H_N$ for step $N$.
+
+When the array is short, as in this example, the branch predictor has too much
+feedback to be as accurate as $H_N$. For $N=2$, we would approximate a 33\%
+misprediction ratio using $H_N$, but we measure 39\%. The approximated and
+actual ratios become closer as $N$ increases, as we would expect, and for $N=7$,
+we approximate 12.5\% and measure 12.7\%. 
+
 
 \begin{figure}
 \includegraphics{plots/curve.eps}
@@ -365,13 +379,9 @@ curve}.
 \end{figure}
 
 \label{heapsort entropy}
-We observe here that the more branches there are, the more are correctly
-predicted, and that there is a threshold below which the number of branches will
-not drop. This is discussed in more Section \ref{quicksort entropy}.
-
-Also notable from the results is that branches are slightly more often not-taken
-then they are correctly predicted, implying that a semi-static predictor based
-on hints from the compiler could do a better job at making correct predictions.
+We observe also that the more branches there are, the more are correctly
+predicted, and that there may a threshold below which the number of branches will
+not drop. This is discussed further in Section \ref{quicksort entropy}.
 
 \section{Future Work}
 
@@ -380,3 +390,7 @@ Journal of Experimental Algorithms requires that source code be published, and
 comparing simulated results from there to the sorts created here might have
 interesting results and would explain the discrepancies highlighted in this
 chapter.
+
+It should be possible to more accurately model and therefore predict the branch
+prediction ratio when the array is short. Our results show us what we expect the
+answer to be, but have not generated a formula to predict it.
