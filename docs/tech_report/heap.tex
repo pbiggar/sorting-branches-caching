@@ -16,12 +16,12 @@ to two other nodes, which have the same structure. The first node is called the
 nodes as the previous level.
 
 A heap is a type of binary tree with several important properties. Firstly, the
-the data stored by the parent must always be greater than the data stored by its
-children. Secondly, in a binary tree there is no requirement that the tree be full.
-In a heap, it is important that every node's left child exists before its right
-child. With this property, a heap can be stored in an array without any wasted
-space, and the links are implied by a nodes position, rather than by a pointer
-or reference. A heap done in the fashion is called an \n{implicit heap}.
+data stored by the parent must always be greater than the data stored by its
+children. Secondly, in a binary tree there is no requirement that the tree be
+full.  In a heap, it is important that every node's left child exists before its
+right child. With this property, a heap can be stored in an array without any
+wasted space, and the links are implied by a nodes position, rather than by a
+pointer or reference. A heap done in the fashion is called an \n{implicit heap}.
 
 To take advantage of the heap structure, it must be possible to easily traverse
 the heap, going between parent and child, without the presence of links. This
