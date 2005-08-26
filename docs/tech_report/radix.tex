@@ -63,16 +63,16 @@ be reduced to zero since we choose an even radix. If the number of steps is odd,
 which is unlikely when sorting integers, then one copy at the end would be
 required. This is not needed in the implementation presented here.
 
-Memory-tuned radixsort should traverse the array only nine times: Once at the
-start to count the least significant bytes; six times (once per array per pass)
-as it copies using the three least significant bytes (counting the next least
-significant byte at the same time), and a final two as it copies using the most
-significant byte.
+For unsigned 32-bit integers, memory-tuned radixsort should traverse the two
+array only nine times in total: Once at the start to count the least significant
+bytes; six times (once per array per pass) as it copies using the three least
+significant bytes (counting the next least significant byte at the same time),
+and a final two as it copies using the most significant byte.
 
 
 \subsection{Aligned Memory-tuned Radixsort}
 In Section \ref{tiled mergesort}, mergesort is improved by aligning its array
-with reference to it auxiliary array. Specifically, extra memory is allocated
+with reference to its auxiliary array. Specifically, extra memory is allocated
 for the auxiliary array, which is then offset so that the start of the two
 arrays are exactly half the length of the cache apart. We further added an
 alignment for the level 1 cache (see Section \ref{double-aligned tiled
@@ -122,10 +122,10 @@ two misses per key, when the array doesn't fit into the array, though this
 depends on the placing of the auxiliary array.
 
 The number of branch prediction misses should be exceptionally low. In
-comparison-based sorts, a branch due to a comparison can not be predicted except
-in exceptional circumstances\footnote{See Section \ref{insertion is
-predictable}.}. Radixsort has no comparative branches at all. As a result, only
-flow control branches occur in radixsort, and they are all predictable.
+comparison-based sorts, there are generally frequent mispredictions\footnote{See
+Section \ref{insertion is predictable} for an exception.}. Radixsort has no
+comparative branches at all. As a result, only flow control branches occur in
+radixsort, and they are all predictable.
 
 Due to the reduced copying, memory-tuned radixsort should have a lower
 instruction count and fewer cache misses that base radixsort. There should be
@@ -163,14 +163,14 @@ are two compulsory misses per key - one for each array - which divided by the
 keys per cache line results in exactly one miss in four (although our graph
 obscures this, due to the initial subtraction of compulsory misses).
 
-Aligned memory-tuned radixsort performs exactly the same as memory-tuned radixsort in both
-level 1 and level 2 misses, indicating that the alignment, and the associated
-memory overhead, are not necessary.
+Aligned memory-tuned radixsort performs exactly the same as memory-tuned
+radixsort in both level 1 and level 2 misses, indicating that the alignment, and
+the associated memory overhead, are not necessary.
 
 The number of branch misses, shown in Figure \ref{radix branch misses} was also
 extremely low. Despite three branches per key, there was less than .02 of a branch
 miss per key. The number of branches itself is quite low, as several of the
-sorts considered had nearly that number of misses. However, it is not
+sorts considered had more thna that number of mispredictions. However, it is not
 unexpected. The number of branches reduces when copying back is removed, and
 while this reduces the number of mispredictions, there are so few to begin with
 that this result is not significant.
@@ -193,9 +193,9 @@ LaMarca's radixsort results are quite different to those presented here. His
 instruction count graph has a logarithmic shape: it begins very high and sharply
 falls before flattening out. By contrast, the graph here is almost completely
 flat. He shows a similar result in both cache miss graphs: a sharp dip, followed
-by a nearly flat-line. This may be due to amortization, in which case the trend
-would not be expected in our graphs due to subtraction of the time taken to fill
-the array.
+by a nearly flat-line. This is due to the instructions, time and compulsory
+misses being amortised over the ever larger array size. The trend is not
+expected in our graphs due to subtraction of the time taken to fill the array.
 
 Also, in both cases in LaMarca's graphs, once the array no longer fits in the
 cache, the number of misses jumps to around 3.25 (which would be equivalent to
