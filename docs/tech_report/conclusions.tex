@@ -107,11 +107,11 @@ and the rate of mispredictions. We conclude that LaMarca's improvment, which
 slightly improves quicksorts cache performance, also slightly improves it's
 branch prediction performance.
 
-However, his move to multi-quicksort, while not affecting the rate of branch
-mispredictions in the partitioning phase, results in a large increase in branch
-mispredictions due to the addition of a binary search. We determine that this
-while reducing the instruction count, the increase is actual running time due to
-branch mispredictions is significant.
+However, LaMarca's move to multi-quicksort, while not affecting the rate of
+branch mispredictions in the partitioning phase, results in a large increase in
+branch mispredictions due to the addition of a binary search. We determine that
+this while reducing the instruction count, the increase is actual running time
+due to branch mispredictions is significant.
 
 We also analysed the effects of different medians on quicksort. We deterine that
 not using a median to choose a pivot makes the branches more predictable than
@@ -153,7 +153,7 @@ LaMarca's base heapsort have the characteristics of an out-of-place heapsort.
 However, our results show that his implicit heap improvements have led to a
 significantly faster heapsort.
 
-LaMarca's initial improvements to base mergesort were due to reduce the
+LaMarca's initial improvements to base mergesort were expected to reduce the
 instruction count. We noted a reduction with each of the steps he prescribed. We
 note too that each of his improvement reduce level 2 cache misses, and the shape
 of our level 2 cache miss graphs exactly match his. We also note similar

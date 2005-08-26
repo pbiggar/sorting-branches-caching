@@ -1,12 +1,13 @@
 \label{shell}
 
 Shellsort is a derivative of insertion sort designed to offer a compromise
-between the performance of mergesort and radixsort, and the space efficiency of
-selection sort, bubblesort and insertion sort. It was designed by Donald Shell
-in 1959, and described in \cite{Shell59}\footnote{Shell describes the former
-sorts as \n{Merging Pairs} and \n{Floating Decimal Sort}, respectively, and the
-latter sorts as \n{Finding the Smallest}, \n{Interchanging Pairs} and
-\n{Sifting}, respectively.}.
+between the performance of mergesort and radixsort\footnote{Quicksort and
+heapsort were developed only later, so at the time there was no efficient
+in-place sort.}, and the space efficiency of selection sort, bubblesort and
+insertion sort. It was designed by Donald Shell in 1959, and described in
+\cite{Shell59}\footnote{Shell describes the former sorts as \n{Merging Pairs}
+and \n{Floating Decimal Sort}, respectively, and the latter sorts as \n{Finding
+the Smallest}, \n{Interchanging Pairs} and \n{Sifting}, respectively.}.
 
 Shell begins by considering the array to be made up of $\frac{N}{2}$ sub-arrays
 of length two, where the elements of the sub-array are spaced $\frac{N}{2}$ keys
@@ -27,7 +28,7 @@ has the increments $\frac{N}{2}$, $\frac{N}{4}$, $\frac{N}{8}$, $\frac{N}{16}$
 ........ $1$. \cite{Sedgewick96} discusses many increments used, and provides
 code for comparing these. Based on running the \cc{driver} program\footnote{See
 http://www.cs.princeton.edu/\textasciitilde{}rs/shell/}, Gonnet's shellsort was
-seen to be the fastest on the authors local machine. As a result, this was used
+seen to be the fastest on the authors' local machine. As a result, this was used
 to test the performance of shellsort. This uses increments which are
 $\frac{5}{11}^{th}s$ of the previous increment.
 
@@ -56,14 +57,14 @@ far from its next element, an entire cache line must be loaded for each key,
 which will be used once per iteration of the sort across the sub-array. If there
 are a large number of sub-arrays, as during the iterations with large increments,
 there will be no spatial reuse, and little temporal reuse, so long as the
-sub-array is large than the cache. Once the increment is small enough that each
+sub-array is larger than the cache. Once the increment is small enough that each
 sub-array fits within the cache (i.e. quickly for L2 cache, and much more slowly
 for the L1 cache), then temporal reuse will occur. Once an entire sub-array fits
-within an eighth of the size of the cache (eight being the number of keys
-that fit in a cache line), then spatial reuse will occur as well. This reuse
-will only occur within a single iteration; once the increment with the next
-increment begins, most of the contents of the cache will be invalidated, unless
-the entire array fits within the cache.
+within an eighth of the size of the cache (eight being the number of keys that
+fit in a cache line), then spatial reuse will occur as well. This reuse will
+only occur within a single iteration; once the increment with the next increment
+begins, most of the contents of the cache will be invalidated, unless the entire
+array fits within the cache.
 
 The branch performance of shellsort should be predictable. There are
 $log_{(\frac{11}{5})}N$ iterations, each with $N$ branch misses\footnote{See Section
@@ -102,7 +103,7 @@ $O(Nlog_{\frac{5}{11}}N)$.
 
 Improved shellsort does improve on shellsort, having approximately 10\% fewer
 instructions. It also has slightly fewer cache misses and branch mispredictions.
-Overall, this leads to a reduction in cycle count of between 35 and 70\%, as
+Overall, this leads to a reduction in cycle count of between 35\% and 70\%, as
 seen in Figure \ref{shell cycles}.
 
 \section{A More Detailed Look at Branch Prediction}
