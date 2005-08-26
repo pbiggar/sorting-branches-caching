@@ -30,24 +30,24 @@ the quicksort algorithm.
 
 \section{Base Quicksort}
 
-LaMarca uses the optimized quicksort described by Sedgewick for his base
-quicksort. This is an iterative quicksort which uses an explicit stack. In the
-worst case, this stack must be the same size as the array, and must be
-initialised at the start of the algorithm. To reduce the size of the stack,
-Sedgewick proposes sorting the smallest partition first. This optimization
-reduces the maximum size of the stack to $O(logN)$. In practice, two \cc{int}s,
-the left and the right index, are required for each partition.
+LaMarca uses the optimized quicksort described by Sedgewick in
+\cite{Sedgewick02} for his base quicksort. This is an iterative quicksort which
+uses an explicit stack. In the worst case, this stack must be the same size as
+the array, and must be initialised at the start of the algorithm. To reduce the
+size of the stack, Sedgewick proposes sorting the smallest partition first. This
+optimization reduces the maximum size of the stack to $O(logN)$. In practice,
+two \cc{int}s, the left and the right index, are required for each partition.
 
 Sedgewick's second improvement is the use of an elementary sort for small
 sub-files. Once a partition is smaller than an arbitrary threshold, insertion
 sort is used to sort the partition. Sedgewick states that roughly the same
-results are obtained for thresholds between 5 and 25. An additional reduction in
-instruction count can be had by doing the insertion sort over the entire array
-at the end, rather than across each small array as soon as the threshold is
-reached. At the end of the partition sorting, LaMarca places a sentinel at the
-end of the array and uses an insertion sort, eliminating the bounds check from
-the end. In this implementation, the sentinel is placed at the front, and the
-smallest of the first \cc{THRESHOLD} keys is used as a sentinel, in keeping
+results are obtained for thresholds between five and 25. An additional reduction
+in instruction count can be had by doing the insertion sort over the entire
+array at the end, rather than across each small array as soon as the threshold
+is reached. At the end of the partition sorting, LaMarca places a sentinel at
+the end of the array and uses an insertion sort, eliminating the bounds check
+from the end. In this implementation, the sentinel is placed at the front, and
+the smallest of the first \cc{THRESHOLD} keys is used as a sentinel, in keeping
 with our policy of not exceeding the bounds of the array.
 
 Choosing a pivot which is close to the median of the keys to be sorted ensures
@@ -199,11 +199,14 @@ the sequential sort, and 25\% in the case of the binary sort. Memory-tuned
 quicksort should also have a slightly higher instruction count than base
 quicksort, due to the change in use of insertion sort.
 
-LaMarca notes that quicksort is already very cache efficient as it has excellent
-spatial and temporal locality. Once it no longer fits in the cache, however, the
-number of misses should increase significantly. This is especially true in the
-case of the base quicksort, which does an insertion sort across then entire
-array at the end.
+LaMarca notes that quicksort is already very cache efficient\footnote{We
+speculate wildly at this point and suggest that since an average of 25\% of
+computing time is spent sorting (see \cite{TODO}), the development of caches has
+been subconsicously affected by the cache performance of quicksort.}, as it has
+excellent spatial and temporal locality. Once it no longer fits in the cache,
+however, the number of misses should increase significantly. This is especially
+true in the case of the base quicksort, which does an insertion sort across then
+entire array at the end.
 
 Memory-tuned quicksort should have fewer misses than base quicksort as soon as
 the array is larger than the cache. It is expected that these misses will make
@@ -374,13 +377,13 @@ version actually causes fewer branch mispredictions than memory-tuned quicksort.
 
 \label{quicksort entropy}
 When we originally looked at quicksort, we expected that the \n{i} and \n{j}
-branches in quicksort would resolve in each direction. In fact, this is not the
-case. The main reason is that the chosen pivot is almost never the true median
-of the section of the array to be partitioned. Thus, the \n{i} and \n{j}
-branches are almost always biased, which makes them predictable. According to
-Knuth, if the pivot element is chosen randomly, then the \n{i} and \n{j}
-branches will be taken (i.e. the \n{i} or \n{j} loop will execute) twice as
-often as they are not taken (i.e. the loop exits).
+branches in quicksort would resolve in each direction an equal number of times.
+In fact, this is not the case. The main reason is that the chosen pivot is
+almost never the true median of the section of the array to be partitioned.
+Thus, the \n{i} and \n{j} branches are almost always biased, which makes them
+predictable. According to Knuth, if the pivot element is chosen randomly, then
+the \n{i} and \n{j} branches will be taken (i.e. the \n{i} or \n{j} loop will
+execute) twice as often as they are not taken (i.e. the loop exits).
 
 In order to investigate this, we implemented a simple version of quicksort that
 uses the middle element as the pivot rather than a median-of-three\footnote{It
@@ -407,18 +410,18 @@ directions.
 For example, consider the case where the pivot element is larger than the true
 median. In this case, the final resting place of the pivot will be towards the
 right-hand end of the region to be partitioned. Thus, the \n{i} loop will
-execute a large number of times, and thus the \n{i} loop will be biased towards
-being taken. The \n{j} loop, on the other hand, will be biased toward not-taken,
-because the average element is likely to be smaller than the pivot. Therefore,
-the \n{j} loop will execute only a small number of times. Thus, we see that in a
-particular partition, we do not normally get an equal number of executions of
-the \n{i} and \n{j} loops. Instead we get a large number of executions in one
-loop (which makes its branch relatively predictable), whereas the other loop
-often does not enter at all (which makes its branch also predictable, although
-executed a much smaller number of times). Thus, although overall the \n{i} and
-\n{j} branches are taken twice as often as not-taken, on a particular partition
-one will usually be biased in the not-taken direction, and as a result will be
-executed a relatively small number of times.
+execute a large number of times, and thus the \n{i} branch will be biased
+towards being taken. The \n{j} branch, on the other hand, will be biased toward
+not-taken, because the average element is likely to be smaller than the pivot.
+Therefore, the \n{j} loop will execute only a small number of times. Thus, we
+see that in a particular partition, we do not normally get an equal number of
+executions of the \n{i} and \n{j} loops. Instead we get a large number of
+executions in one loop (which makes its branch relatively predictable), whereas
+the other loop often does not enter at all (which makes its branch also
+predictable, although executed a much smaller number of times). Thus, although
+overall the \n{i} and \n{j} branches are taken twice as often as not-taken, on a
+particular partition one will usually be biased in the not-taken direction, and
+as a result will be executed a relatively small number of times.
 
 In the preceding paragraphs we have seen that the \n{i} and \n{j} branches are
 predictable when we have a pivot that is larger or smaller than the true median
@@ -494,7 +497,9 @@ block. However, the partition is likely to occur across a cache block boundary,
 though this is not necessarily a bad thing; the next partition to be sorted will
 be adjacent to the current block, and will already be in memory. Observing how
 results, especially instruction count and branch misses, vary with changes 
-to the threshold may be interesting.
+to the threshold may be interesting. In particular, we expect that a larger
+threshold would be beneficial, as insertion sort causes far fewer branch
+mispredictions than quicksort.
 
 Two areas of current research into quicksort are those of equal keys, and
 median-of-greater-than-three. The former affects the algorithmic properties, and

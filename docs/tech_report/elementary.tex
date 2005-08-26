@@ -398,9 +398,12 @@ be significantly worse, or may stay the same. The results of this would be
 interesting.
 
 It should be possible to make more cache-conscious versions of these sorts.
-Making a bubblesort which performs a bubble across an entire cache line would
-be an example. However, these would only make a difference on large data sets,
+Making a bubblesort which performs a bubble across an entire cache line would be
+an example. Another would be a cache-conscious selection sort. It might switch
+the direction of the search to reuse lines at the end of the array. A
+cache-conscious bubblesort could also do something similar, which would make it
+into shakersort. However, these would only make a difference on large data sets,
 when better sorts such as quicksort should be used. In addition, the complexity
-of doing this means it may be easier to code a simple $O(NlogN)$ sort, which
-would perform better for the same effort. Due to this, a cache-conscious
-elementary sort is but an academic exercise.
+of improving elementary sorts means it may be easier to code a simple $O(NlogN)$
+sort, which would perform better for the same effort. Due to this, a
+cache-conscious elementary sort is but an academic exercise.

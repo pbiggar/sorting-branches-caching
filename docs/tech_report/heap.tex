@@ -11,9 +11,9 @@ it in its final position in the array, fixing the heap as it goes.
 
 A \n{binary tree} is a linked data structure where a node contains data and links
 to two other nodes, which have the same structure. The first node is called the
-\n{parent}, while the linked nodes are called \n{children}. One node is called the
-\n{root}, and the tree branches out from this, with each level having twice as many
-nodes as the previous level.
+\n{parent}, while the linked nodes are called \n{children}. There is one node
+with no parents, called the \n{root}, from which the tree branches out, with
+each level having twice as many nodes as the previous level.
 
 A heap is a type of binary tree with several important properties. Firstly, the
 data stored by the parent must always be greater than the data stored by its
@@ -70,8 +70,8 @@ Floyd suggested an improvement to this, where the new root is sifted straight
 down without regard for whether it is larger than its child. Typically, it will
 end near the bottom, so sifting up from here should save comparisons. Sedgewick
 notes speed improvements only when comparisons are move expensive than swaps,
-such as in the case of sorting strings. For integers, this step should not be
-done.
+such as in the case of sorting strings. In our case, the comparisons are very
+predictable moving down the heap, and so this step should not be done.
 
 \subsubsection{Out-of-place Sorting}
 Up until this point, the heap property used has been that a parent will be
@@ -104,11 +104,11 @@ LaMarca overcomes the problem by inserting a maximal key at the end of a heap if
 there's an even number of nodes in the array. This gives a second child to the
 last element of the heap. This is an effective technique for building the heap,
 as the number of keys is static. When destroying the heap, however, the
-maximal key must be added to every second operation. This can be avoided
-relatively simply with no extra instructions. If the last key in the heap is
-left in place as well as being sifted down the heap, it will provide a
-sentinel for the sift-down operation. The key from the top of the heap is then
-put into place at the end. This technique reduces instruction count by
+maximal key must be added to every second operation. We found this can be
+avoided with an innovative technique, with no extra instructions. If the last
+key in the heap is left in place as well as being sifted down the heap, it will
+provide a sentinel for the sift-down operation. The key from the top of the heap
+is then put into place at the end. This technique reduces instruction count by
 approximately 10\%.
 
 The only other optimization used is to unroll the loop while destroying the
@@ -217,7 +217,7 @@ and the parent is predictable. However, the comparisons to decide which child is
 smallest are not predictable. In a 2-heap, there is one comparison between
 children, meaning that half the branches will probably be correctly predicted.
 An 8-heap has seven comparisons between children, and will probably have about
-2.58 mispredictions, as it behaves similarly to selection sort (See \ref{selection
+1.59 mispredictions, as it behaves similarly to selection sort (See \ref{selection
 branches harmonics}). It is possible, therefore, that the 8-heap will have slightly
 fewer mispredictions (about 36\%) due to the combination of the shallower heap
 and the larger fan-out.

@@ -388,14 +388,15 @@ the final merge, which multi-mergesort leaves out.
 Overall, when the $k$-ary heap is used, there are approximately the same total
 number of branch mispredictions as in the other mergesort algorithms. Although
 the final $k$-way merge executes a lot more comparison branches, these heap
-branches are quite predictables, as we saw in Section
+branches are quite predictable, as we saw in Section
 \ref{heapsort-branch-prediction}. This means that using the technique to reduce
 cache misses does not adversely affect branch prediction rates (it does,
 however, still affect the instruction count).  The rate of branch misses is much
 the same as that in heapsort, and progresses in the same manner (see Figure
 \ref{memory-tuned heapsort curve}). Note that `\n{comparison 0}' is included for
-illustration purposes only. It is guaranteed to be taken every time, and would
-be optimized out by the compiler.
+illustration purposes only. It is a comparison between two values, one of which
+has just been assigned to the other, and which are therefore equal. It is
+guaranteed to be taken every time, and would be optimized out by the compiler. 
 
 
 \section{Future Work}
