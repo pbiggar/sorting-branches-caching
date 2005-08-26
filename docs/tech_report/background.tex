@@ -215,8 +215,8 @@ is predicted; in states 10 and 11, taken is predicted. Each taken prediction
 increments the count, to a maximum of 11, and each not-taken prediction
 decrements the counter, to a minimum of 00.
 
-In the sequence T-T-T-N-T-T-T-N, a 2-bit predictor will only mispredict once.
-In general, it will achieve 78 to 89\% accuracy.
+In the sequence T-T-T-N-T-T-T-N, a 2-bit predictor will only mispredict once per
+loop iteration. In general, it will achieve 78 to 89\% accuracy.
 
 \subsubsection{Two-Level Adaptive}
 A two-level adaptive predictor uses branch history to predict future branches. A
@@ -234,8 +234,9 @@ Big O notation is used to describe the complexity of an algorithm. It says that
 the algorithm will complete in a certain number of steps, in relation to number
 of items of data being worked on, without giving specifics of how many
 instructions each step will take to execute. It is possible, therefore, that an
-algorithm with a lower complexity will complete slower than an algorithm where
-each step is executed very quickly, but which has a greater order of complexity.
+algorithm with a lower complexity will complete more slowly than an algorithm
+where each step is executed very quickly, but which has a greater order of
+complexity.
 
 Big O notation is used to describe how an algorithm scales. Doubling the number
 of elements to be sorted by an $O(N)$ algorithm will roughly double the time it

@@ -1,6 +1,6 @@
 \label{ordernsquared} Elementary sorts are also referred to as $O(N^2)$ sorts.
 This is due to the manner in which they check every key in the array in order to
-sort a single key; for every key to be sorted, every other key is checked.  Four
+sort a single key; for every key to be sorted, every other key is checked. Four
 of these sorts are discussed here: insertion sort, selection sort, bubblesort
 and shakersort, along with improved versions of bubblesort and shakersort.
 
@@ -32,19 +32,19 @@ cost of comparing them. Conversely, for large keys with small records, the cost
 of selection sort may be higher than for other simple sorts.
 
 The performance of selection sort is not affected by input, so the instruction
-count varies very little.  Its cache behaviour is also not affected by input,
+count varies very little. Its cache behaviour is also not affected by input,
 and selection sort performs very badly from a cache perspective. There are $N$
 traversals of the array, leading to bad temporal reuse. If the array doesn't fit
 inside the cache, then there will be no temporal reuse.
 
-The level 1 cache should have bad performance as a result. Since it is smaller
-than the array, the performance of the level 1 cache should simulate the
-performance of the level 2 cache.
+The level 1 cache should have bad performance as a result. Since the level 1
+cache is smaller that the arrays tested, it should perform analagiously to a
+level 2 cache being tested with a much larger array.
 
 \label{selection branches harmonics}
 The branch prediction performance is not expected to be bad. Flow
 control predictions are very straightforward, and should result in
-very few misses.  Comparison predictions, however, are very
+very few misses. Comparison predictions, however, are very
 numerous. Each traversal of the array has an average of $N/2$
 comparisons, as we search for the smallest key in the unsorted part of
 the array. During the search, the algorithm compares each key with the
@@ -55,7 +55,7 @@ comparison branch rather unpredictable. However, as the traversal
 continues, the left-to-right minimum will become smaller, and thus
 more difficult to displace. It will become very unusual to find a
 smaller key, and thus the branch will almost always resolve in the
-same direction.  Therefore, the comparison branch will quickly become
+same direction. Therefore, the comparison branch will quickly become
 very predictable.
 
 Knuth \cite{Knuth97} analyses the number of changes to the
@@ -67,18 +67,19 @@ $$H_N = 1 + \frac{1}{2} + \frac{1}{3} + ... + \frac{1}{N} =  \sum_{k=1}^{N}
 \frac{1}{k},  \hspace{0.4cm}  N \geq 1$$
 
 Within practical sorting ranges, $H_N$ grows at a rate similar to
-$log(N)$. Thus, in the average case, we can expect that the comparison
-branch will mostly go in the same direction, making the branch highly
-predictable.
+$log(N)$\footnote{This seems like an error, since $H_N$ is very similar to
+$log_eN$. It is not. We mean that $H_N$ is very similar to $log_2N$.}. Thus, in
+the average case, we can expect that the comparison branch will mostly go in the
+same direction, making the branch highly predictable.
 
 Knuth also presents the number of changes to the left-to-right minimum
-in the best case (0 changes) and worst cases ($N-1$ changes).  In the
+in the best case (0 changes) and worst cases ($N-1$ changes). In the
 worst case, the array is sorted in reverse order, and so the
 left-to-right minimum changes on every element. Interestingly, the
 worst cases for the number of changes is not the worst case for branch
 mispredictions. If the minimum changes for every element, then the
 comparison branch will always resolve in the same direction, and thus
-be almost perfectly predictable.  From the point of view of branch
+be almost perfectly predictable. From the point of view of branch
 prediction, frequent changes (preferably with no simple pattern) are
 the main indicator of poor performance, rather than the absolute
 number of times that the branch resolves in each direction. The worst
@@ -112,7 +113,7 @@ sample code in Figure \vref{Insertion sort code}.
 \code{Insertion sort code}{insertsort.c}
 \subsection{Testing}
 \subsubsection{Expected Performance}
-These instruction count observations are again due to Sedgewick.  Insertion sort
+These instruction count observations are again due to Sedgewick. Insertion sort
 performs in linear time on a sorted list, or slightly unsorted list. With a
 random list, there are, on average, there are $N^2/4$ comparisons and $N^2/4$
 half-exchanges\footnote{A half-exchange is where only one part of the swap is
@@ -148,12 +149,12 @@ sorted. Sample bubblesort code is in Figure \vref{Bubblesort code}.
 \code{Bubblesort code}{bubblesort.c}
 \subsection{Testing}
 \subsubsection{Expected Performance}
-These instruction count observations are again due to Sedgewick.  Bubblesort has
+These instruction count observations are again due to Sedgewick. Bubblesort has
 $N^2/2$ comparisons and exchanges. The number of passes over the array, and size
 of each pass is the same as selection sort, and similar instruction count
-results are expected.  The extra check to see if the array is sorted adds
+results are expected. The extra check to see if the array is sorted adds
 $O(NlogN)$ instructions, but this is small in comparison to the number of
-instructions saved if the sort ended early.
+instructions saved if the sort ends early.
 
 The cache performance of bubblesort should be the same as that of selection
 sort. Each key loaded into the cache is used just once, and will be ejected from
@@ -204,7 +205,7 @@ than twice the size of the cache, then the keys in the centre of the array are
 not ejected from the cache at all.
 
 Finally, the branch prediction results are expected to be the same as in bubble
-sort, with one difference.  Keys which must travel the entire way across the
+sort, with one difference. Keys which must travel the entire way across the
 array are taken care of earlier in the sort. If the largest key is in the
 leftmost position, it must be moved the entire way right, which causes misses
 for every move in bubblesort, since each move is disjoint from the next. In

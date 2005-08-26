@@ -19,7 +19,7 @@ and change in branch prediction accuracy as a result of these changes.
 \item Determine if any changes can be made to improved the sorts' performance.
 \end{itemize}
 
-Several steps were necessary to prepare for the research.  A framework was
+Several steps were necessary to prepare for the research. A framework was
 required by which sorts could be tested as they were being developed. This is
 discussed in Section \ref{Main}. It was also necessary to fully understand the
 technologies to be used in the report. Several texts were used for this: cache
@@ -49,7 +49,7 @@ clear, the paper describing the algorithm was used to clarify the meaning.
 Once the algorithm was written, a testing framework was used. This tested for
 edge-cases in the algorithms by testing sorts sized from \cc{8} to \cc{255}
 keys, with different random data sets. Testing was also performed on a very
-large data set.  This test was timed and the results were considered. The
+large data set. This test was timed and the results were considered. The
 results of this test were not accurate: the program took up to a minute to run,
 during which time the computer was being used by multiple users and processes,
 leading to context switches, sharing of resources and scheduling. Despite these
@@ -88,7 +88,7 @@ array and four smaller segments. The first two large segments have been merged
 into one segment in the target array. The third of these has been merged into
 the corresponding target array segment. The first of the smaller segments has
 begun being merged with the other small segments. The rest of the target array
-is uninitialised.  Below that is a small amount of debugging information. $i ==
+is uninitialised. Below that is a small amount of debugging information. $i ==
 j$ is a key point in the program and is printed as debugging information. In the
 two arrays below this, the merge continues.
 
@@ -122,16 +122,16 @@ blame apportioned appropriately.
 \section{Tools}
 
 \subsection{SimpleScalar} \n{SimpleScalar} is an architecture simulator. It
-works by compiling code into its native instruction set, PISA, then emulating a
-processor as it runs the program.  SimpleScalar can be found at
+works by compiling code into its native instruction set, \n{PISA}, then
+emulating a processor as it runs the program. SimpleScalar can be found at
 \n{http://www.simplescalar.com}. Documentation on how to use and modify
 SimpleScalar are \cite{Burger97}, \cite{Austin02}, \cite{Tutorialv4},
 \cite{Tutorialv2} and \cite{SimpleScalarUserGuide}.
 
 SimpleScalar works by compiling code into its own instruction set. It provides a
 compiler - a port of gcc - with related tools such as a linker and assembler.
-Several simulators are then provided: \cc{sim-fast} only counts instruction,
-quickly; \cc{sim-cache} simulates a cache and counts level 1 and level 2 cache
+Several simulators are then provided: \cc{sim-fast} only counts instructions
+executed; \cc{sim-cache} simulates a cache and counts level 1 and level 2 cache
 misses; \cc{sim-bpred} simulates a branch predictor and counts branch hits and
 misses. Other simulators are provided, but they were not used in our tests.
 
@@ -152,13 +152,13 @@ needed to be offset by the cost of filling the array with random variables, and
 scaled to so that the y-axis could be in the form of \n{plotted data per key},
 both to be more readable, and to be consistent with LaMarca's graphs. Once the
 data was converted, it was necessary to generate a gnuplot script for each
-graph.  The number of graphs required made this an impossible manual task, and
-so another script had to be written.  Some graphs still needed to be tweaked by
+graph. The number of graphs required made this an impossible manual task, and
+so another script had to be written. Some graphs still needed to be tweaked by
 hand, due to difficulties in the script, but the task was much shortened by
 this, and the tweaking was mostly accomplished using macros in the development
 platform.
 
-Finally, a script to compare the data together was required.  This compared each
+Finally, a script to compare the data together was required. This compared each
 sort against each other sort in key metrics, such a branch or cache misses. It
 also compared each cache size against other cache sizes for a particular sort,
 and branch predictors against other branch predictors for each sort. 
@@ -175,7 +175,7 @@ sample of this code.
 
 \subsection{Valgrind}
 \label{Valgrind}
-\n{Valgrind} is a set of tools which are used for debugging and profiling.  By
+\n{Valgrind} is a set of tools which are used for debugging and profiling. By
 default it works as a memory checker, and detects errors such as the use of
 uninitialised memory and accessing memory off the end of an array. This use
 makes it particularly useful for bounds checking. No configuration was required
@@ -183,8 +183,8 @@ for this, and simply running \cc{valgrind a.out} ran the program through
 valgrind. The homepage for valgrind is at \n{http://valgrind.kde.org/}.
 
 \subsection{PapiEx}
-\cc{PapiEx} is a tool used to access performance counters on a Pentium 4. It
-uses the PAPI framework to count certain characteristics across a program's
+\n{PapiEx} is a tool used to access performance counters on a Pentium 4. It uses
+the \n{PAPI} framework to count certain characteristics across a program's
 execution. We used it to count the number of cycles a sort took to run. This
 provided an accurate measure of how fast a sort executes on a Pentium 4. The
 PapiEx homepage is at \n{http://icl.cs.utk.edu/\textasciitilde{}mucci/papiex/}.
@@ -260,7 +260,7 @@ was deemed to be too time-consuming, despite its good performance.
 
 As a result, a mergesort was written partially based on the outline of algorithm
 N. The outer loop was very similar, but the number of merges required were
-calculated in advance, and the indices of each merge step.  It was very simple
+calculated in advance, and the indices of each merge step. It was very simple
 to turn this into a bitonic array; adding pre-sorting reduced the instruction
 count, as did unrolling the loop. The reduction in instruction count from the
 initial version, which performed the same number of instructions as the same as
@@ -268,7 +268,7 @@ algorithm N, and the optimized version, was about 30\%.
 
 A tiled mergesort was then written, based on LaMarca's guidance. Firstly, this
 was aligned in memory so that the number of misses due to conflicts would be
-reduced.  Then it fully sorted segments of the array, each half the size of the
+reduced. Then it fully sorted segments of the array, each half the size of the
 cache, so that temporal locality would be exploited. Finally, all these segments
 were merged together in the remaining merge steps.
 
