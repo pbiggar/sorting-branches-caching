@@ -32,20 +32,19 @@ We found that algorithm S has a lower instruction count than algorithm N, but
 that this does not necessarily translate to better performance. Our results show
 also that the level 1 cache needs to be taken into account, that the extra
 instruction in multi-mergesort make it slower than double-aligned tiled
-mergesort, and that multi-mergesort has regular branch predictive access
-patterns during the k-way merge, which can be taken advantage of by a two-level
-adaptive predictor.
+mergesort, and that multi-mergesort has regular access patterns during the k-way
+merge, which can be taken advantage of by a two-level adaptive predictor.
 
 
 \subsection{Quicksort}
 
 Our results show base quicksort being the fastest of the quicksorts. We note our
-lowest instruction count occurs with the median-of-7 partitioning. We also see
-that using a binary search slows multi-quicksort down compared to a sequential
-search, but that its extra instructions make it slower than memory-tuned
-quicksort.  Despite being slower in our tests, our simulations show tuned
-quicksort to have fewer cache misses, instructions and branch mispredictions
-than base quicksort.
+lowest instruction count occurs with the median-of-three partitioning. We also
+see that using a binary search slows multi-quicksort down compared to a
+sequential search due to branch mispredictions, but that its extra instructions
+make it slower than memory-tuned quicksort. Despite being slower in our tests,
+our simulations show memory-tuned quicksort to have fewer cache misses,
+instructions and branch mispredictions than base quicksort.
 
 \subsection{Radixsort}
 
@@ -65,11 +64,11 @@ We were also able to measure it's branch mispredictions, and determine a formula
 to calculate them.
 
 \section{Branch Results}
-%TODO this section has to be reread by David
 
 No results for the branch prediction performance of sorting algorithm yet
 exists. We discovered some interesting new results.
 
+\subsection{Elementary Sorts}
 Insertion sort has exactly one miss per key. Using this result we were able to
 make several other sorts faster by replacing their simple inline sorts with
 insertion sorts.
@@ -79,10 +78,10 @@ of which match up well to Knuth's calculation. We found as well that bubblesort
 and shakersort have incredibly bad branch prediction performance. Both are
 $O(N^2)$ sorts, and the number of branches and branch misses have the same
 complexity.
-%TODO i dont like how this reads
 
 TODO bubblesort
 
+\subsection{Heapsort}
 In heapsort, we found a pattern of branch mispredictions when using a fanout in
 our 8-heap, and that this pattern matched closely that of selection sort,
 discussed above. We found that the approximated results using $H_N$ was similar to
@@ -94,10 +93,14 @@ the heap fans out.  Despite this property, the number of mispredictions using an
 8-heap was greater than when using a 4-heap, due to the increased total number
 of branches.
 
+\subsection{Mergesort}
+
 Using a k-way merge, multi-mergesort had a great number of extra branch
 predictions. While many of these were mispredicted using the bimodal predictor,
 the two-level adaptive predictor was able to predict a higher
 proportion correctly.
+
+\subsection{Quicksort}
 
 Sedgewick proposed removing individual insertion sorts in quicksort with one
 elegant sweep at the end. LaMarca proposed replacing the large number of
@@ -123,10 +126,14 @@ mispredictions. We determine that reducing entropy is not the best way of making
 quicksort perform faster, and that using a median-of-three actually achieves the
 higher performance.
 
+\subsection{Radixsort}
+
 As predicted, radixsort is highly predictable, having no comparison
 mispredictions at all. This result, combined with its linear complexity, and its
 improved cache performance, mean that it is the fastest of any of the sorts
 presented here.
+
+\subsection{Shellsort}
 
 We are able to accurately predict the number of branch mispredictions in
 shellsort, using our results from insertion sort. We also found that the
@@ -142,6 +149,8 @@ shape to LaMarca's, can be calculated exactly or almost exactly using his
 methods, or can be seen to be equivalent when scaled by an appropriate ratio
 (due to different test parameters).
 
+\subsection{Heapsort}
+
 LaMarca's heapsort graphs were equivalent to ours in the areas of level 1
 misses, instruction count and cycle count. Like LaMarca, we found that a four
 heap lowered our instruction count. Our level 2 misses also concurred with
@@ -152,6 +161,8 @@ cache misses between these two sorts when the array does fit in the cache.
 LaMarca's base heapsort have the characteristics of an out-of-place heapsort.
 However, our results show that his implicit heap improvements have led to a
 significantly faster heapsort.
+
+\subsection{Mergesort}
 
 LaMarca's initial improvements to base mergesort were expected to reduce the
 instruction count. We noted a reduction with each of the steps he prescribed. We
@@ -177,6 +188,7 @@ level 1 cache. When we aligned the arrays for the level 1 cache, the results
 were much closer to LaMarca's results, and showed what an improvement his
 techniques brought to those algorithms.
 
+\subsection{Quicksort}
 
 Our quicksort results, again, we very similar to LaMarca's. We showed an
 increase is instruction count of 25\% due to multi-quicksort - very close to
@@ -202,6 +214,8 @@ changing multi-mergesort's sequential search to a binary search decreased the
 instruction count, it greatly increased the number of branch mispredictions
 incurred, and slowed the sort down accordingly.
 
+\subsection{Radixsort}
+
 LaMarca determines that radixsort could not be improved in the same was as the
 comparison-based sorts, and that due to poor cache performance, it ran more
 slowly than quicksort. We showed, however, that one of the improvements applied
@@ -209,12 +223,6 @@ to mergesort could be applied to it, and that its resulting cache performance is
 sufficiently good that its low instruction count and lack of branch
 mispredictions make it the fastest sort in our survey.
 
-
-\section{Important Results and Contributions}
-
-%TODO lamarca does an overall comparison. we should do the same
-
-\section{Instruction Count Results}
 
 \section{Cache Results}
 
