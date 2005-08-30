@@ -219,8 +219,8 @@ children, meaning that half the branches will probably be correctly predicted.
 An 8-heap has seven comparisons between children, and will probably have about
 1.59 mispredictions, as it behaves similarly to selection sort (See \ref{selection
 branches harmonics}). It is possible, therefore, that the 8-heap will have slightly
-fewer mispredictions (about 36\%) due to the combination of the shallower heap
-and the larger fan-out.
+fewer mispredictions due to the combination of the shallower heap and the larger
+fan-out.
 
 However, the creation of the heap will have fewer misses with a larger fanout,
 due to the reduced height. In practice though, the implications of this are
@@ -254,7 +254,7 @@ populated.
 
 The branch prediction behaves differently to the expected results, as the
 prediction ratio gets worse as the fanout gets larger. The reason we predicted
-differently was due to selection sort's $O(H_N)$ mispredictions; however, this
+differently was due to selection sort's $O(H_N-1)$ mispredictions; however, this
 is over the entire length of the array, and it is not accurate to extrapolate
 these results over a sequence only seven keys long.
 
@@ -394,6 +394,8 @@ comparing simulated results from there to the sorts created here might have
 interesting results and would explain the discrepancies highlighted in this
 chapter.
 
-It should be possible to more accurately model and therefore predict the branch
-prediction ratio when the array is short. Our results show us what we expect the
-answer to be, but have not generated a formula to predict it.
+The formula we use to explain selection sort's branch prediction preformance
+breaks down for short arrays, as in our 8-heap. It should be possible to more
+accurately model and therefore predict the branch prediction ratio when the
+array is short. Our results show us what we expect the answer to be, but we have
+not attempted to create a formula to predict it.
