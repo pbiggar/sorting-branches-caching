@@ -10,12 +10,16 @@ The following were the objectives of the research:
 \begin{itemize}
 \item Implement heapsort, mergesort, quicksort, radixsort, shellsort and the four
 elementary sorts: insertion sort, selection sort, bubblesort and shakersort.
-\item Simulate these sorts using the SimpleScalar architecture simulator, using a
-variety of branch predictors and cache configurations.
 \item Implement cache-conscious sorts from \cite{LaMarca96} and
 \cite{LaMarca99}.
+\item Simulate these sorts using the SimpleScalar architecture simulator, using a
+variety of branch predictors and cache configurations.
+\item Measure the performance of these sorts using the PapiEx performance
+counters.
+\item Simulate bimodal branch predictors in software and use them to measure the
+sorts.
 \item Investigate and analyse the increase in speed, reduction in cache misses, 
-and change in branch prediction accuracy as a result of these changes.
+and change in branch prediction accuracy as a result of the changes made.
 \item Determine if any changes can be made to improved the sorts' performance.
 \end{itemize}
 
@@ -269,8 +273,9 @@ algorithm N, and the optimized version, was about 30\%.
 A tiled mergesort was then written, based on LaMarca's guidance. Firstly, this
 was aligned in memory so that the number of misses due to conflicts would be
 reduced. Then it fully sorted segments of the array, each half the size of the
-cache, so that temporal locality would be exploited. Finally, all these segments
-were merged together in the remaining merge steps.
+cache, so that temporal locality would be exploited. It also fully sorted
+segements within the level 1 cache. Finally, all these segments were merged
+together in the remaining merge steps.
 
 LaMarca's final step was to create a multi-mergesort. This attempted to reduce
 the number of cache misses in the final merge steps of tiled mergesort by
@@ -280,12 +285,13 @@ heap, which had been developed as part of heapsort.
 %TODO this bit also has to be checked once we fix mergesort. if w fix mergesort
 Once these sorts were written it was attempted to improve them slightly.
 Instead of a tiled mergesort, a double-aligned tiled mergesort was written.
-This attempted to completely sort in the level 1 cache, then to completely sort
-in the level 2 cache. Double-aligned multi-mergesort was a combination of this
-and of multi-mergesort. The rewrite was based on the base mergesort, and was
-written far more cleanly, being more readable and efficient. These were also
-found to reduce the instruction count, as well as the level 2 cache miss count.
-These results are discussed in more detail in Section \ref{Mergesort results}.
+This aligned the arrays to avoid conflicts in the level 1 cache, at a slight
+cost to level 2 cache performance. Double-aligned multi-mergesort was a
+combination of this and of multi-mergesort. The rewrite was based on the base
+mergesort, and was written far more cleanly, being more readable and efficient.
+These were also found to reduce the instruction count, as well as the level 2
+cache miss count. These results are discussed in more detail in Section
+\ref{Mergesort results}.
 
 Each of these sort variations had to be fully written from the descriptions in
 LaMarca's thesis. Only the base algorithm was available from textbooks, and this
@@ -297,7 +303,7 @@ feature.
 Radixsort, shellsort and each of the four $O(NlogN)$ sorts were treated in this
 fashion.
 
-\section{Testing details}
+\section{Testing Details}
 
 Our tests were designed so that we could compare our results to LaMarca's, and
 so that our results would hold in the general case. Both our testing method and
