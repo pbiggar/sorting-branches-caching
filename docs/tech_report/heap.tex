@@ -361,14 +361,14 @@ array, this approximates the number of branch mispredictions, as almost every
 branch will not be taken, and the predictor will always predict not-taken.
 
 Meanwhile, Figure \ref{memory-tuned heapsort curve} shows us the rate of correct
-predictions, and each point is calculated using a seperate branch predictor. As
-a result, we expect $1-y = \frac{1}{x+1}$, where $x$ and $y$ are the cartesian
+predictions, and each point is calculated using a separate branch predictor. As
+a result, we expect $1-y = \frac{1}{x+1}$, where $x$ and $y$ are the Cartesian
 coordinates of each point on the graph.  $1-y$ is the number of mispredictions
 from the graph, while $\frac{1}{x+1}$ is the increase in $H_N$ for step $N$.
 
 When the array is short, as in this example, the branch predictor has too much
-feedback to be close to $H_N$. For $N=2$, we would approximate a 33\%
-misprediction ratio using $H_N$, but we measure 39\%. The approximated and
+feedback to be close to $H_N-1$. For $N=2$, we would approximate a 33\%
+misprediction ratio using $H_N-1$, but we measure 39\%. The approximated and
 actual ratios become closer as $N$ increases, as we would expect, and for $N=7$,
 we approximate 12.5\% and measure 12.7\%. We conclude that initial suggestion is
 correct: while the branch prediction ratio of finding the minimum is very close
@@ -394,7 +394,7 @@ comparing simulated results from there to the sorts created here might have
 interesting results and would explain the discrepancies highlighted in this
 chapter.
 
-The formula we use to explain selection sort's branch prediction preformance
+The formula we use to explain selection sort's branch prediction performance
 breaks down for short arrays, as in our 8-heap. It should be possible to more
 accurately model and therefore predict the branch prediction ratio when the
 array is short. Our results show us what we expect the answer to be, but we have
