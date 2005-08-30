@@ -373,7 +373,7 @@ Double aligned multi-mergesort is an even more complicated algorithm. It sorts
 the arrays fully in the cache, leaving them bitonically arranged (sorted into
 sub-arrays, sorted into alternately increasing and decreasing order). The final
 merge is performed separately, and hence no bias for the forward branches, as
-there was in tiled mergesort. The final sort is performed with a $k$-way merge,
+there was in tiled mergesort. The final sort is performed with a k-way merge,
 which is implemented using a heap data structure. This is shown in Figures
 \ref{mergesorts-5} and \ref{mergesorts-6}. The `\n{Comparison}' branches are
 comparisons from the merge. The labels in these graphs are the same as in Figure
@@ -386,7 +386,7 @@ the final merge, which multi-mergesort leaves out.
 
 Overall, when the $k$-ary heap is used, there are approximately the same total
 number of branch mispredictions as in the other mergesort algorithms. Although
-the final $k$-way merge executes a lot more comparison branches, these heap
+the final k-way merge executes a lot more comparison branches, these heap
 branches are quite predictable, as we saw in Section
 \ref{heapsort-branch-prediction}. This means that using the technique to reduce
 cache misses does not adversely affect branch prediction rates (it does,
