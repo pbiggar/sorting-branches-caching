@@ -200,13 +200,13 @@ quicksort should also have a slightly higher instruction count than base
 quicksort, due to the change in use of insertion sort.
 
 LaMarca notes that quicksort is already very cache efficient\footnote{We
-speculate wildly at this point and suggest that since an average of 25\% of
-computing time is spent sorting (see \cite{TODO}), the development of caches has
-been subconsciously affected by the cache performance of quicksort.}, as it has
-excellent spatial and temporal locality. Once it no longer fits in the cache,
-however, the number of misses should increase significantly. This is especially
-true in the case of the base quicksort, which does an insertion sort across then
-entire array at the end.
+speculate wildly at this point and suggest that since, historically, an average
+of 25\% of computing time has been spent sorting (see \cite[Page 3]{Knuth97}),
+the development of caches has been subconsciously affected by the cache
+performance of quicksort.}, as it has excellent spatial and temporal locality.
+Once it no longer fits in the cache, however, the number of misses should
+increase significantly. This is especially true in the case of the base
+quicksort, which does an insertion sort across then entire array at the end.
 
 Memory-tuned quicksort should have fewer misses than base quicksort as soon as
 the array is larger than the cache. It is expected that these misses will make
