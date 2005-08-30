@@ -18,7 +18,7 @@ each level having twice as many nodes as the previous level.
 A heap is a type of binary tree with several important properties. Firstly, the
 data stored by the parent must always be greater than the data stored by its
 children. Secondly, in a binary tree there is no requirement that the tree be
-full.  In a heap, it is important that every node's left child exists before its
+full. In a heap, it is important that every node's left child exists before its
 right child. With this property, a heap can be stored in an array without any
 wasted space, and the links are implied by a nodes position, rather than by a
 pointer or reference. A heap done in the fashion is called an \n{implicit heap}.
@@ -138,11 +138,11 @@ LaMarca's first step is to increase spatial locality. When sifting down the
 heap, it is necessary to compare the parent with both children. Therefore it is
 important that both children reside in the same cache block. If a heap starts at
 the start of a cache block, then the sibling of the last child in the cache
-block will be in the next cache block.  For a cache block fitting four keys,
-this means that half the children will cross cache block boundaries. This can be
+block will be in the next cache block. For a cache block fitting four keys, this
+means that half the children will cross cache block boundaries. This can be
 avoided by padding the start of the heap. Since the sort is out of place, an
-extra cache block can be allocated, and the root of the heap is placed at the end of
-the first block. Now, all siblings will reside in the same block.
+extra cache block can be allocated, and the root of the heap is placed at the
+end of the first block. Now, all siblings will reside in the same block.
 
 \begin{figure}[h]
 \centering
@@ -153,8 +153,8 @@ the first block. Now, all siblings will reside in the same block.
 A second point about heapsort's spatial locality is that when a block is loaded,
 only one set of children will be used though two or four sets may be loaded. The
 solution is to use a heap higher \n{fanout}, that is, a larger number of
-children.  The heap used so far could be described as a 2-heap, since each
-parent has two children.  LaMarca proposes using a \n{d-heap}, where $d$ is the
+children. The heap used so far could be described as a 2-heap, since each
+parent has two children. LaMarca proposes using a \n{d-heap}, where $d$ is the
 number of keys which fit in a cache line. In this manner, every time a block is
 loaded, it is fully used. The number of cache blocks loaded is also decreased,
 since the height of the tree is halved by this.
@@ -185,7 +185,7 @@ this increase will be an order of magnitude lower than the bounds check.
 \section{Results}
 All simulations presented here were performed on 32-byte cache lines. As a
 result, 8-heaps were used for heapsort, since 8 4-byte \cc{int}s fit the cache
-line.  LaMarca used 64 bit ints, and while this doesn't affect results, it means
+line. LaMarca used 64 bit ints, and while this doesn't affect results, it means
 that fewer keys fit into his cache lines. Since modern cache lines are typically
 longer than 4 ints, we stick with 32-byte cache lines. \cc{UINT\_MAX} was used
 as the sentinel.
@@ -266,20 +266,20 @@ key.
 The difference between different types of predictors is also visible in the
 results, shown in Figure \ref{heap branch misses}. The largest table size is
 shown for the two-level predictor. The smallest table size is shown for the
-bimodal predictor, as all the bimodal table sizes show identical results.  In
-the case of the 2- and 8-heaps, the bimodal predictor works better than the
+bimodal predictor, as all the bimodal table sizes show identical results. In the
+case of the 2- and 8-heaps, the bimodal predictor works better than the
 two-level adaptive predictor. The warm-up time of the table-driven predictors is
 visible in the base heapsort results, though it's amortised for larger data
 sets.
 
 Figure \ref{heap cycles} shows the actual time taken for heap sort on a Pentium
-4 machine.  The figure shows that the base heapsort performs best when the data
+4 machine. The figure shows that the base heapsort performs best when the data
 set fits in the cache. After that point, the 8-heap performs best, and its cycle
 count increases with a smaller slope. This shows the importance of LaMarca's
 cache-conscious design even nine years after his thesis. It also shows the
 importance of reduced branch mispredictions: the base heapsort has more
 instructions and level 1 cache misses, but still outperforms the 4-heap, until
-level 2 cache misses take over.  However, this is hardly conclusive: the lower
+level 2 cache misses take over. However, this is hardly conclusive: the lower
 level 2 cache misses may account for this.
 
 The similarities to LaMarca's results are startling. The shape of the
@@ -323,7 +323,7 @@ Promotion}'.
 
 In the memory-tuned heapsort, the creation phase is simpler, involving merely
 one branch, called `\n{Fix-up}' here. The other columns refer to the destruction
-phase, where most of the work takes place in memory-tuned heapsort.  When a
+phase, where most of the work takes place in memory-tuned heapsort. When a
 4-heap is used (see Figure \ref{base and memory-tuned heapsorts-2}), there are
 three comparisons instead of just one. Similarly, in an 8-heap (Figures
 \ref{base and memory-tuned heapsorts-3} and \ref{base and memory-tuned
@@ -344,7 +344,7 @@ memory-tuned heapsorts-3} and \ref{base and memory-tuned heapsorts-4} (the
 8-heap).
 
 Though the number of times each comparison is used shrinks as the size of the
-fanout increased, overall the number of branches increases.  In total, there are
+fanout increased, overall the number of branches increases. In total, there are
 50\% more comparisons in the 4-heap than the 2-heap, and 150\% more in the
 8-heap.
 
@@ -363,7 +363,7 @@ branch will not be taken, and the predictor will always predict not-taken.
 Meanwhile, Figure \ref{memory-tuned heapsort curve} shows us the rate of correct
 predictions, and each point is calculated using a separate branch predictor. As
 a result, we expect $1-y = \frac{1}{x+1}$, where $x$ and $y$ are the Cartesian
-coordinates of each point on the graph.  $1-y$ is the number of mispredictions
+coordinates of each point on the graph. $1-y$ is the number of mispredictions
 from the graph, while $\frac{1}{x+1}$ is the increase in $H_N$ for step $N$.
 
 When the array is short, as in this example, the branch predictor has too much

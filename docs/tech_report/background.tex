@@ -2,7 +2,7 @@
 \section{Sorting}
 
 Sorting algorithms are used to arrange items consisting of \n{record}s and
-\n{key}s. A key gives order to a collection of data called a record.  A real-life
+\n{key}s. A key gives order to a collection of data called a record. A real-life
 example is a phone book: the records, phone numbers, are sorted by their keys,
 names and addresses.
 
@@ -23,22 +23,22 @@ function, which performs a sort on an arbitrary data type based on a comparative
 function passed to it.
 
 The ADT interface used here is taken from \cite{Sedgewick02}. An \cc{Item}
-is a record, and a function is defined to extract its key.  Comparisons are done
+is a record, and a function is defined to extract its key. Comparisons are done
 via the \cc{less} function, and swapping is done using the \cc{exch} function.
 These are replaced with their actual functions by the C preprocessor. The code
 used for ADTs is in Figure \vref{Definitions used by the ADT}. The tests
-presented in this report use \n{unsigned integer}s as Items, which were
-compared using a simple \n{less-than} function\footnote{This abstraction broke
-down in several cases, such as where a \n{greater-than} function was required,
-i.e. in quicksort.}.  In this case, a record and key are equivalent, and the
-word \n{key} is used to refer to items to be sorted.
+presented in this report use \n{unsigned integer}s as Items, which were compared
+using a simple \n{less-than} function\footnote{This abstraction broke down in
+several cases, such as where a \n{greater-than} function was required, i.e. in
+quicksort.}. In this case, a record and key are equivalent, and the word \n{key}
+is used to refer to items to be sorted.
 
 \code{Definitions used by the ADT}{adt.h}
 
 There are special cases among sorts, where some sorts perform better on some
-types of data. Most data to be sorted generally involves a small key.  This type
-of data has low-cost comparisons and low-cost exchanges.  However, if strings
-are being compared, then the comparison would have a much higher cost than the
+types of data. Most data to be sorted generally involves a small key. This type
+of data has low-cost comparisons and low-cost exchanges. However, if strings are
+being compared, then the comparison would have a much higher cost than the
 exchange, since comparing keys could involved many comparisons - in the worst
 case one on each letter. 
 
@@ -101,8 +101,8 @@ storage. Figure \vref{Address Division} shows how a memory address is divided.
 \label{Address Division}
 \end{figure}
 
-This cache is a 2MB direct-mapped cache.  There is a 32-byte cache line, which
-is indexed by the 5 bit \n{offset}. There are $2^{16}$ cache lines, which are
+This cache is a 2MB direct-mapped cache. There is a 32-byte cache line, which is
+indexed by the 5 bit \n{offset}. There are $2^{16}$ cache lines, which are
 indexed by the middle 16 bits of the address. The most significant 11 bits form
 the \n{tag}. A cache line is tagged to check if the data stored at an index is
 the same as the data requested. For a fully-associative cache, there is no
@@ -201,12 +201,12 @@ a program's execution. Examples of this type of predictor are \n{1-bit},
 \n{bimodal} and \n{two-level adaptive}.
 
 \subsubsection{1-bit}
-A 1-bit dynamic predictor uses a single bit to store whether a particular branch was last
-taken or not-taken.  If there is a misprediction, then the bit is changed. 1-bit
-predictors have the potential to mispredict every time, if the branch is
-alternately taken and not taken. In the case of a loop with the sequence
-T-T-T-N-T-T-T-N, a 1-bit predictor will mispredict twice per loop, or about half
-the time.  Typically, though, it achieves an accuracy of 77 to 79\%.
+A 1-bit dynamic predictor uses a single bit to store whether a particular branch
+was last taken or not-taken. If there is a misprediction, then the bit is
+changed. 1-bit predictors have the potential to mispredict every time, if the
+branch is alternately taken and not taken. In the case of a loop with the
+sequence T-T-T-N-T-T-T-N, a 1-bit predictor will mispredict twice per loop, or
+about half the time. Typically, though, it achieves an accuracy of 77 to 79\%.
 
 \subsubsection{Bimodal}
 A 2-bit dynamic predictor is called a bimodal predictor. It is a simple 2-bit
@@ -225,9 +225,10 @@ this to index a table of 2-bit predictors, which predict the result of the
 branch. Frequently, the program counter is also included, either concatenated or
 exclusive-ORed with the branch history to form the table index.
 
-This type of predictor can predict the two cases above perfectly.  However, the
+This type of predictor can predict the two cases above perfectly. However, the
 table can take time to fill, leading to cold-start misses, much like those of a
-cache. Typically, a two-level adaptive predictor will be accurate 93\% of the time.
+cache. Typically, a two-level adaptive predictor will be accurate 93\% of the
+time.
 
 \section{Big O Notation}
 Big O notation is used to describe the complexity of an algorithm. It says that
@@ -243,7 +244,7 @@ of elements to be sorted by an $O(N)$ algorithm will roughly double the time it
 takes to execute, but will quadruple the running time of an $O(N^2)$ algorithm.
 
 An algorithm which is $O(N)$ is said to complete in linear time. An algorithm
-which is $O(N^2)$ is said to complete in quadratic time.  $O(NlogN)$ algorithms
+which is $O(N^2)$ is said to complete in quadratic time. $O(NlogN)$ algorithms
 may take several orders of magnitude more time than $O(N)$ algorithms, and
 typically use the \n{divide-and-conquer} principle, or use a binary tree to
 reduce complexity. Quicksort, mergesort and heapsort are all of this type,

@@ -321,16 +321,16 @@ of the many insertion sorts.
 Overall, base quicksort has a 35\% branch misprediction rate, whereas the rate
 for memory-tuned quicksort is only 34\%, while the number of branches also
 decreases. The main reason for this is the reduction in branches by not
-attempting to move the pivot elements. Attempting to move these elements
-usually results in a branch misprediction. The main reason is that most other
-elements move at least one position, and thus cause the insertion sort loop to
-iterate at least once. But the pivot elements never move -- they are already in
-the correct place.
+attempting to move the pivot elements. Attempting to move these elements usually
+results in a branch misprediction. The main reason is that most other elements
+move at least one position, and thus cause the insertion sort loop to iterate at
+least once. But the pivot elements never move - they are already in the correct
+place.
 
 When we look at multi-quicksort, there is a 19\% drop in the number of
 iterations of the \n{i} and \n{j} loops, with a corresponding reduction in the
 number of mispredictions. Interestingly, the percentage misprediction rate of
-the \n{i} and \n{j} branches does not change -- it is 37\% in both cases.
+the \n{i} and \n{j} branches does not change - it is 37\% in both cases.
 
 
 % Once the sort is larger than the cache, the number fo steps increases linearly

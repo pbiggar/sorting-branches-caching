@@ -45,7 +45,7 @@ to Knuth's algorithm S.
 \subsection{Algorithm S}
 \label{Algorithm S}
 
-Algorithm S is a \n{straight} merge, and works as described above.  A
+Algorithm S is a \n{straight} merge, and works as described above. A
 disadvantage of this method is that if an array has slightly more than $2^x$
 keys, an entire extra merge step would be required, which would considerably
 slow the algorithm. This problem is shared by all other versions of mergesort
@@ -83,14 +83,14 @@ The overhead of preparing arrays to be merged is small. However, for small
 lists, the overhead is large enough that it can be more efficient to sort using
 a much simpler sort, such as insertion, selection or bubblesort. In Section
 \ref{insertion is predictable}, it is shown that insertion sort is the fastest
-elementary sort.  Sedgewick's quicksort uses this, and LaMarca recommends the
-use of a simple inline pre-sort, which can be made from insertion sort. To make
-lists of length four, the smallest of the four keys is found, and exchanged
-with the first key, in order to act as a sentinel. The next three keys are
-sorted with insertion sort. The next set of four keys is sorted in reverse
-using the same method. It is possible to hard code this behaviour, in an attempt
-to reduce the instruction count, but in fact the instruction count stays the
-same, and the branch prediction suffers as a result.
+elementary sort. Sedgewick's quicksort uses this, and LaMarca recommends the use
+of a simple inline pre-sort, which can be made from insertion sort. To make
+lists of length four, the smallest of the four keys is found, and exchanged with
+the first key, in order to act as a sentinel. The next three keys are sorted
+with insertion sort. The next set of four keys is sorted in reverse using the
+same method. It is possible to hard code this behaviour, in an attempt to reduce
+the instruction count, but in fact the instruction count stays the same, and the
+branch prediction suffers as a result.
 
 Finally, the inner loop is \n{unrolled}\footnote{Unrolling a loop means
 executing several steps of the loop between iterations and reducing the number
@@ -169,8 +169,8 @@ added to the queue, and then put into the final target array. This reduces the
 problem of the search overhead, but does not reduce the problem of
 \n{thrashing}\footnote{Thrashing occurs when two arrays are mapped to the same
 cache block, and the constant access of one followed by the other causes every
-access to be a miss.}.  To avoid this, an entire cache line is added at a time
-to the priority queue. There will still be conflict misses, but there will be no
+access to be a miss.}. To avoid this, an entire cache line is added at a time to
+the priority queue. There will still be conflict misses, but there will be no
 thrashing since the keys overwritten in the cache will not be needed again.
 
 LaMarca used a 4-heap for his priority queue, and an 8-heap is used here, for
@@ -181,10 +181,9 @@ The heap is then fixed.
 
 LaMarca uses a special tag to mark the last key from each list inserted into
 the array. No more details are provided on this, and a sorted list of length $k$
-is used here, in its place.  If the key at the top of the heap is the same as
-the smallest value in the list, another eight keys are added from the array
-segment to which the number belonged. This continues until the array is full
-sorted.
+is used here, in its place. If the key at the top of the heap is the same as the
+smallest value in the list, another eight keys are added from the array segment
+to which the number belonged. This continues until the array is full sorted.
 
 Using a sorted list instead of LaMarca's tagging leads to a variety of problems.
 The reason the sorted list is used is that no details of the tagging is
@@ -265,7 +264,7 @@ passed.
 for a direct-mapped cache.}{}{}
 
 As expected, algorithm S has lower instruction count than algorithm N, and 
-also slightly outperforms base mergesort.  The number of instructions, shown in
+also slightly outperforms base mergesort. The number of instructions, shown in
 Figure \ref{merge instructions} is exactly as predicted, with a 50\% spike at
 multi-mergesort. 
 
@@ -328,11 +327,11 @@ levels 1 and 2, emerges the winner.
 \sixplot{algorithm_n_0.eps}{algorithm_s_0.eps}{base_mergesort_0.eps}{double_aligned_tiled_mergesort_0.eps}{double_aligned_multi_mergesort_0.eps}{double_aligned_multi_mergesort_1.eps}{mergesorts}
 
 Figure \ref{mergesorts-1} shows the behaviour of the individual branches within
-algorithm N.  The labels in the graphs correspond to the names of the steps in
+algorithm N. The labels in the graphs correspond to the names of the steps in
 Knuth's algorithm (we also used the same names for the labels of branch targets
 in our C source code. Branch N3 is the main comparison branch; it is used to
 choose the smaller of the elements from the start of the two sub-arrays being
-merged. The direction of this branch is completely random -- it depends entirely
+merged. The direction of this branch is completely random - it depends entirely
 on the (in this case random) data. Figure \ref{mergesorts-1} also shows that
 this branch is almost entirely unpredictable using a bimodal predictor. The
 result for a two-level predictor is much the same, because there is no pattern
@@ -348,9 +347,9 @@ Base mergesort is an optimized algorithm that reverses the sorting direction of
 every second sub-array, pre-sorts small sub-arrays, and applies a number of
 other optimizations. As Figure \ref{mergesorts-3} shows, our base mergesort has
 eliminated some of the control-flow branches. The main comparison branch is
-split into two separate branches --- one iterating from left-to-right over the
+split into two separate branches - one iterating from left-to-right over the
 increasing sub-array (`\n{Left}'), and the other from right-to-left over the
-decreasing sub-array (`\n{Right}').  However, base mergesort appears to need a
+decreasing sub-array (`\n{Right}'). However, base mergesort appears to need a
 total of 50\% more comparison branches that either Algorithm S or N.
 
 In fact, base mergesort eliminated control-flow branches by using the same
@@ -370,7 +369,7 @@ The left merge step is also favoured, but this is merely due to the fact that it
 occurs first in the code. While there are more left branches, the actual number
 of branches taken are the same.
 
-Double aligned multi-mergesort is an even more complicated algorithm.  It sorts
+Double aligned multi-mergesort is an even more complicated algorithm. It sorts
 the arrays fully in the cache, leaving them bitonically arranged (sorted into
 sub-arrays, sorted into alternatey increasing and decreasing order). The final
 merge is performed separately, and hence no bias for the forward branches, as
@@ -391,7 +390,7 @@ the final $k$-way merge executes a lot more comparison branches, these heap
 branches are quite predictable, as we saw in Section
 \ref{heapsort-branch-prediction}. This means that using the technique to reduce
 cache misses does not adversely affect branch prediction rates (it does,
-however, still affect the instruction count).  The rate of branch misses is much
+however, still affect the instruction count). The rate of branch misses is much
 the same as that in heapsort, and progresses in the same manner (see Figure
 \ref{memory-tuned heapsort curve}). Note that `\n{comparison 0}' is included for
 illustration purposes only. It is a comparison between two values, one of which

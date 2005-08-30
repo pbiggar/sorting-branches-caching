@@ -89,7 +89,7 @@ our expected results for large arrays, and followed a similar pattern for small
 arrays.
 
 Also in heapsort, the number of mispredictions decreases depending on how much
-the heap fans out.  Despite this property, the number of mispredictions using an
+the heap fans out. Despite this property, the number of mispredictions using an
 8-heap was greater than when using a 4-heap, due to the increased total number
 of branches.
 
@@ -192,14 +192,14 @@ techniques brought to those algorithms.
 
 Our quicksort results, again, we very similar to LaMarca's. We showed an
 increase is instruction count of 25\% due to multi-quicksort - very close to
-LaMarca's 20\%.  The shape of our instruction count graphs were the same, and
+LaMarca's 20\%. The shape of our instruction count graphs were the same, and
 switching to a binary search in multi-quicksort reduces the instruction count.
 Like him, we found that the base quicksort had very few cache misses, and that
 not using Sedgewick's insertion sort improvement reduces cache misses. We found
-that multi-quicksort's k-way sort changes the slope of the graph, but our
-result were not conclusive as to whether this would eventually make
-multi-quicksort faster than the other versions. Our results do show it being
-slower for all our test cases, due to the increase in instruction count.
+that multi-quicksort's k-way sort changes the slope of the graph, but our result
+were not conclusive as to whether this would eventually make multi-quicksort
+faster than the other versions. Our results do show it being slower for all our
+test cases, due to the increase in instruction count.
 
 LaMarca predicts two cache misses per key, which translated to one miss per key
 with our 32 bit integers. We found this calculation to be true, as is his
@@ -227,7 +227,7 @@ mispredictions make it the fastest sort in our survey.
 \section{Cache Results}
 
 % TODO more details in this
-The test results in this report mostly agreed with LaMarca's results.  The
+The test results in this report mostly agreed with LaMarca's results. The
 heapsort graphs had nearly exactly the same shape as LaMarca's, and the ratios
 between the base and cache-conscious versions were nearly identical. The
 multi-mergesort results were slightly different: instruction count was
@@ -317,7 +317,7 @@ measured on a Pentium 4 using hardware performance counters.}
 The best stable sort is radixsort. The best comparison-based stable sort is
 double-aligned tiled mergesort. The best in-place sort is quicksort. The best in-place
 stable sort is, sadly, insertion sort. The best elementary sort is also
-insertion sort; as such it should be only used for very small data sets.  The
+insertion sort; as such it should be only used for very small data sets. The
 best sort for very large data sets is radixsort. The fastest overall sort was
 memory-tuned radixsort, though quicksort is very close.
 % TODO redo above paragraph

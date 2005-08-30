@@ -43,26 +43,24 @@ cache is smaller that the arrays tested, it should perform analagiously to a
 level 2 cache being tested with a much larger array.
 
 \label{selection branches harmonics}
-The branch prediction performance is not expected to be bad. Flow
-control predictions are very straightforward, and should result in
-very few misses. Comparison predictions, however, are very
-numerous. Each traversal of the array has an average of $N/2$
-comparisons, as we search for the smallest key in the unsorted part of
-the array. During the search, the algorithm compares each key with the
-smallest key seen so far. In a random array, we would expect that the
-candidate for the smallest key (the left-to-right minimum) would
-change frequently towards the start of the array, making the
-comparison branch rather unpredictable. However, as the traversal
-continues, the left-to-right minimum will become smaller, and thus
-more difficult to displace. It will become very unusual to find a
-smaller key, and thus the branch will almost always resolve in the
-same direction. Therefore, the comparison branch will quickly become
-very predictable.
+The branch prediction performance is not expected to be bad. Flow control
+predictions are very straightforward, and should result in very few misses.
+Comparison predictions, however, are very numerous. Each traversal of the array
+has an average of $N/2$ comparisons, as we search for the smallest key in the
+unsorted part of the array. During the search, the algorithm compares each key
+with the smallest key seen so far. In a random array, we would expect that the
+candidate for the smallest key (the left-to-right minimum) would change
+frequently towards the start of the array, making the comparison branch rather
+unpredictable. However, as the traversal continues, the left-to-right minimum
+will become smaller, and thus more difficult to displace. It will become very
+unusual to find a smaller key, and thus the branch will almost always resolve in
+the same direction. Therefore, the comparison branch will quickly become very
+predictable.
 
-Knuth \cite{Knuth97} analyses the number of changes to the
-left-to-right minimum when searching for the minimum element of an
-array. He shows that for $N$ elements, the number of changes is $H_N -
-1$, where $H_N$ is the harmonic series:
+Knuth \cite{Knuth97} analyses the number of changes to the left-to-right minimum
+when searching for the minimum element of an array. He shows that for $N$
+elements, the number of changes is $H_N - 1$, where $H_N$ is the harmonic
+series:
 
 $$H_N = 1 + \frac{1}{2} + \frac{1}{3} + ... + \frac{1}{N} =  \sum_{k=1}^{N}
 \frac{1}{k},  \hspace{0.4cm}  N \geq 1$$
@@ -83,7 +81,7 @@ and thus be almost perfectly predictable. From the point of view of branch
 prediction, frequent changes (preferably with no simple pattern) are the main
 indicator of poor performance, rather than the absolute number of times that the
 branch resolves in each direction. The worst case for selection sort would
-probably be an array which is partially sorted in reverse order --- the
+probably be an array which is partially sorted in reverse order - the
 left-to-right minimum would change frequently, but not predictably so.
 
 \section{Insertion Sort}
@@ -353,7 +351,7 @@ The branch behaviour of bubblesort is particularly interesting when compared to
 selection sort. Although we usually think of the two algorithms as being
 different, they are actually very similar. Like selection sort, bubblesort finds
 the smallest (or largest) key in the unsorted part of the array and moves it to
-start (end) of the array.  Thus, we would expect that bubblesort's branch
+start (end) of the array. Thus, we would expect that bubblesort's branch
 prediction behaviour would be similar to that of selection sort.
 
 However, in the process of moving the smallest element into position, bubblesort
