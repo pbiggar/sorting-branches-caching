@@ -149,7 +149,7 @@ However, LaMarca's move to multi-quicksort, while not affecting the rate of
 branch mispredictions in the partitioning phase, results in a large increase in
 branch mispredictions due to the addition of a binary search. We determine that
 while this reduces the instruction count and number of memory accesses, the
-increase is actual running time due to branch mispredictions is significant.
+increase in actual running time due to branch mispredictions is significant.
 
 We also analysed the effects of different medians on quicksort. We determine that
 not using a median to choose a pivot makes the branches more predictable than
@@ -195,7 +195,7 @@ misses, instruction count and cycle count. Like LaMarca, we found that a four
 heap lowered our instruction count. Our level 2 misses also concurred with
 LaMarca, with only one difference: memory-tuned heapsort, being an out-of-place sort,
 fills the cache fully with a smaller number of keys than base heapsort, which is
-in place. LaMarca's results do not show this. Nor do they show a difference in
+in-place. LaMarca's results do not show this. Nor do they show a difference in
 cache misses between these two sorts when the array does fit in the cache.
 LaMarca's base heapsort have the characteristics of an out-of-place heapsort.
 However, our results show that his implicit heap improvements have led to a
@@ -215,10 +215,10 @@ However, we disagree with his results in several key places. Firstly, we note
 that an inlined sorting method does not perform as fast as insertion sort. We
 find it difficult to perform his improvements on either algorithm N or algorithm
 S, and write our own mergesort instead. We expected that mergesort would have
-half the instruction count of heapsort we found instead they were very similar.
+half the instruction count of heapsort; we found instead they were very similar.
 
-LaMarca did not include details of his tagging system in multi-mergesort. As a
-result, we used a search, which greatly increased the instruction count. As a
+LaMarca did not include details of his tagging system in multi-mergesort.
+Instead we used a search, which greatly increased the instruction count. As a
 result, multi-mergesort did not perform as well as the mergesorts which had only
 been tiled. 
 
@@ -243,11 +243,11 @@ faster than the other versions. Our results do show it being slower for all our
 test cases, due to the increase in instruction count.
 
 LaMarca predicts two cache misses per key, which translated to one miss per key
-with our 32 bit integers. We found this calculation to be true, as is his
+with our 32-bit integers. We found this calculation to be true, as is his
 calculation of a decrease of one cache miss in four: we note a reduction of one
 cache miss in eight.
 
-Where LaMarca found that using Sedgewick's insertion sort optimisation decreased
+Where LaMarca found that using Sedgewick's insertion sort optimization decreased
 instruction count, we found the opposite. We also found that despite
 improvements due to cache performance and instruction count, our base quicksort
 performed faster than our memory-tuned version. Finally, we found that although
@@ -308,11 +308,10 @@ measured on a Pentium 4 using hardware performance counters.}
 
 The best stable sort is radixsort. The best comparison-based stable sort is
 double-aligned tiled mergesort. The best in-place sort is quicksort. The best in-place
-stable sort is, sadly, insertion sort. The best elementary sort is also
-insertion sort; as such it should be only used for very small data sets. The
-best sort for very large data sets is radixsort. The fastest overall sort was
-memory-tuned radixsort, though quicksort is very close.
-% TODO redo above paragraph
+stable sort we examine in this report is insertion sort. The best elementary
+sort is also insertion sort; as such it should be only used for very small data
+sets. The best sort for very large data sets is radixsort. The fastest overall
+sort was memory-tuned radixsort, though quicksort is very close.
 
 
 \section{Contributions}
@@ -321,12 +320,11 @@ memory-tuned radixsort, though quicksort is very close.
 This section lists the contributions of this report. Each of these is novel  
 and was discovered or developed during the course of this research.
 
-The primary contribution of this report is that it repeats the work of LaMarca
+The first main contribution of this report is that it repeats the work of LaMarca
 on cache-conscious sorting, and validates many of his claims, while questioning
-others. The next most important contribution is having performed a branch
-prediction analysis of major sorts - which to my knowledge has not been done
-before - and developing a framework by which these results can be repeated and
-expanded upon.
+others. The other main contribution is having performed a branch prediction
+analysis of major sorts - which to our knowledge has not been done before - and
+developing a framework by which these results can be repeated and expanded upon.
 
 %TODO claims that it backed
 % TODO claims that it refuted or found problems with
@@ -335,7 +333,7 @@ expanded upon.
 
 
 Several discoveries were made and analysed: insertion sort has one misprediction
-per key; selection sort has $log_2(N/2)$ branch mispredictions per key - an
+per key; selection sort has $H_N-1$ branch mispredictions per key - an
 explanation of this was also provided; tiling mergesort can be done in two
 steps, reducing the cache miss count; it is possible to avoid using a
 sentinel and still remove the bounds check from a standard 2-heap, simply by
@@ -346,16 +344,3 @@ searches across small lists, due to a low branch misprediction rate.
 % - avoid copying back in mergesort
 % - remove bounds check without sentinel in base heapsort
 % - double-tiling
-
-
-%TODO look over these
-In addition, several ideas were conceived although not implemented, which relate
-to sorting algorithms: it should be possible to reduce the conflict misses of
-tiled mergesort without padding, by slightly reducing the size of the array
-segments sorted in the first sorting phase; it may be possible to reduce the
-cost of an insertion sort or selection sort by considering more than one key at
-a time; it may be possible to reduce the number of partitions - and hence the
-increase in instruction count - of multi-quicksort by choosing from a larger
-selection of pivots. Finally, it should be possible to reduce by half the number
-of cache misses in radixsort, by counting earlier and by copying back and forth
-between two arrays.

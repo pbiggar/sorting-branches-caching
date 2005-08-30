@@ -137,7 +137,7 @@ cache, on average only 5\% of subsets will be larger than the cache.
 Since the maximum number of keys which must fit in a container is not known, it
 is necessary to implement containers using linked lists. Each list contains a
 block of a few thousand keys. LaMarca notes very little performance difference
-between 100 and 5,000 keys in each block. The size is therefore chosen so that
+between 100 and 5000 keys in each block. The size is therefore chosen so that
 each list fits exactly into a page of memory. When a list is filled, another
 list is linked to it, and these lists hold all the keys in the container.
 
@@ -186,9 +186,9 @@ as 4 words were used by the particular version of \cc{malloc} used by
 SimpleScalar\footnote{This particular \cc{malloc} forms part of
 \n{glibc}, the GNU C library, version 1.09.}.
 
-A 2MB cache was assumed, so the number of 32 bit integer keys which fit in the
-cache for this in-place sort is 524,288. Multi-quicksort began once the number
-of keys was larger than 174,762.
+A 2MB cache was assumed, so the number of 32-bit integer keys which fit in the
+cache for this in-place sort is 524288. Multi-quicksort began once the number
+of keys was larger than 174762.
 
 \subsection{Expected Performance}
 

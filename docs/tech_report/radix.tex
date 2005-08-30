@@ -9,7 +9,7 @@ regard for other keys. For radix of two, these small parts are bits, and for a
 radix of 10, these parts would be digits. 
 
 The steps to sort by radix are simple. First a radix is chosen, based on the
-size of the part to be sorted. For 32 bit integers, a byte is used. This means
+size of the part to be sorted. For 32-bit integers, a byte is used. This means
 the radix is 256, as there are 256 possible byte values. An array of 256
 counters is created to count the number of keys with a particular least
 significant byte. The counters are then summed in turn to store the cumulative
@@ -115,7 +115,7 @@ arrays. In fact, we have no idea where is being accessed in the source array, so
 it is unlikely that the alignment will have a great effect.
 
 The number of iterations across the array is constant, however, proportional to
-$(bitsPerInt/log_2(Radix))$. For a 32 bit integer and a radix of 256, this is
+$(bitsPerInt/log_2(Radix))$. For a 32-bit integer and a radix of 256, this is
 four steps and each step has four passes over the array, for a total of 16
 passes over the array. With eight keys per cache line, there should be about two
 misses per key, when the array doesn't fit into the array, though this depends
@@ -203,7 +203,7 @@ cache, the number of misses jumps to around 3.25 (which would be equivalent to
 disagree, showing approximately 2.5 misses per key for base radixsort.
 
 However, LaMarca's conclusion - that radixsort is not as fast as quicksort - can
-be easily explained from the base radixsort results. Once an radixsort optimised
+be easily explained from the base radixsort results. Once an radixsort optimized
 for the cache is presented, these no longer hold, and the lack of branch
 misprediction results in a new fastest sort.
 
