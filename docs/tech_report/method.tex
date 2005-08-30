@@ -282,16 +282,15 @@ the number of cache misses in the final merge steps of tiled mergesort by
 merging all the sorted arrays in one step. This required the use of an k-ary
 heap, which had been developed as part of heapsort.
 
-%TODO this bit also has to be checked once we fix mergesort. if w fix mergesort
 Once these sorts were written it was attempted to improve them slightly.
 Instead of a tiled mergesort, a double-aligned tiled mergesort was written.
 This aligned the arrays to avoid conflicts in the level 1 cache, at a slight
 cost to level 2 cache performance. Double-aligned multi-mergesort was a
-combination of this and of multi-mergesort. The rewrite was based on the base
-mergesort, and was written far more cleanly, being more readable and efficient.
-These were also found to reduce the instruction count, as well as the level 2
-cache miss count. These results are discussed in more detail in Section
-\ref{Mergesort results}.
+combination of this and of multi-mergesort. We also rewrote base mergesort far
+more cleanly, with the results being more readable and efficient.  These were
+also found to reduce the instruction count, as well as the level 2 cache miss
+count. These results are discussed in more detail in Section \ref{Mergesort
+results}.
 
 Each of these sort variations had to be fully written from the descriptions in
 LaMarca's thesis. Only the base algorithm was available from textbooks, and this
