@@ -39,7 +39,7 @@ traversals of the array, leading to bad temporal reuse. If the array doesn't fit
 inside the cache, then there will be no temporal reuse.
 
 The level 1 cache should have bad performance as a result. Since the level 1
-cache is smaller that the arrays tested, it should perform analagiously to a
+cache is smaller that the arrays tested, it should perform analogously to a
 level 2 cache being tested with a much larger array.
 
 \label{selection branches harmonics}
@@ -391,7 +391,7 @@ much more quickly. Eventually, the array becomes so close to fully sorted that
 the branch becomes increasingly predictable in the other direction, and the
 number of correct predictions again approaches the number of executed branches.
 However, during the intermediate stage, a huge number of branch mispredictions
-have already occured. Paradoxically, by partially sorting the array, bubblesort
+have already occurred. Paradoxically, by partially sorting the array, bubblesort
 greatly increases the number of branch mispredictions and thus greatly increases
 its running time. Bubblesort would be substantially faster if, instead of
 attempting partially sort these intermediate elements, it simply left them

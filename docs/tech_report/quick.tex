@@ -202,7 +202,7 @@ quicksort, due to the change in use of insertion sort.
 LaMarca notes that quicksort is already very cache efficient\footnote{We
 speculate wildly at this point and suggest that since an average of 25\% of
 computing time is spent sorting (see \cite{TODO}), the development of caches has
-been subconsicously affected by the cache performance of quicksort.}, as it has
+been subconsciously affected by the cache performance of quicksort.}, as it has
 excellent spatial and temporal locality. Once it no longer fits in the cache,
 however, the number of misses should increase significantly. This is especially
 true in the case of the base quicksort, which does an insertion sort across then
@@ -375,7 +375,7 @@ is important to note that selecting the pivot based on only a single element can
 be particularly inefficient because it removes the natural sentinels at the top
 and bottom of the regions to be partitioned that we get from median-of-three. In
 Figure \ref{quick-predictors2} we see that this results in an additional branch
-to handle the edgecase without a sentinel. Although this branch is almost 100\%
+to handle the edge-case without a sentinel. Although this branch is almost 100\%
 predictable, it is executed a very large number of times.}. The arrays we sort
 are random, so the value of this element will also be random. Figure \ref{base
 quicksort without a median, with median of 3, and with pseudo-medians of 5, 7

@@ -106,7 +106,7 @@ Sedgewick proposed removing individual insertion sorts in quicksort with one
 elegant sweep at the end. LaMarca proposed replacing the large number of
 insertion sorts in order to reduce cache misses. We note that attempting to move
 the pivots, as Sedgewick does, actually increases both the number of branches
-and the rate of mispredictions. We conclude that LaMarca's improvment, which
+and the rate of mispredictions. We conclude that LaMarca's improvement, which
 slightly improves quicksorts cache performance, also slightly improves it's
 branch prediction performance.
 
@@ -116,10 +116,10 @@ branch mispredictions due to the addition of a binary search. We determine that
 this while reducing the instruction count, the increase is actual running time
 due to branch mispredictions is significant.
 
-We also analysed the effects of different medians on quicksort. We deterine that
+We also analysed the effects of different medians on quicksort. We determine that
 not using a median to choose a pivot makes the branches more predictable than
 they are biased, though at a cost of a large increase in instructions (and also
-significantly greater possability of a worst-case $O(N^2)$ sort). We also saw
+significantly greater possibility of a worst-case $O(N^2)$ sort). We also saw
 that the more keys considered when determining the median, the lower the number
 of branches. However, this can result in an increase in the rate of branch
 mispredictions. We determine that reducing entropy is not the best way of making
@@ -137,7 +137,7 @@ presented here.
 
 We are able to accurately predict the number of branch mispredictions in
 shellsort, using our results from insertion sort. We also found that the
-improvement mode to shellsort, seperating the final loop from the rest, results
+improvement mode to shellsort, separating the final loop from the rest, results
 in keys being moved 1.07 places, up from 1.03, contributing to its improved
 performance.
 
