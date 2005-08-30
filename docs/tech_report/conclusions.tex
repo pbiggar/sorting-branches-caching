@@ -88,7 +88,7 @@ No results for the branch prediction performance of sorting algorithm yet
 exists. We discovered some interesting new results. 
 
 Among them is the fact that bimodal branch predictors have performed better than
-2-level adpative ones in almost every case in this research. This holds across
+2-level adaptive ones in almost every case in this research. This holds across
 all comparative branches in all the sorts we surveyed, and we believe that where
 explicit patterns - which can be exploited by 2-level adaptive predictors - do
 not exist, a bimodal predictors perform better.
@@ -266,17 +266,6 @@ sufficiently good that its low instruction count and lack of branch
 mispredictions make it the fastest sort in our survey.
 
 
-\section{Branch Prediction Results}
-%TODO mergre this section
-
-It is also shown that bimodal branch predictors generally out-perform two-level
-adaptive predictors when resolving comparative misses. This is shown by the
-results of insertion sort, bubblesort, shakersort, heapsort and quicksort. In
-the cases where the two-level adaptive predictor does perform as well, the table
-required is much larger than that required by the bimodal predictors to get the
-same results.
-
-
 \section{Best Sort}
 
 The results also helped answer the question of which is the best sort. However,
@@ -326,21 +315,27 @@ others. The other main contribution is having performed a branch prediction
 analysis of major sorts - which to our knowledge has not been done before - and
 developing a framework by which these results can be repeated and expanded upon.
 
-%TODO claims that it backed
-% TODO claims that it refuted or found problems with
-% - cache in heapsort
-% - algorithm N, can those improvements really be made
-
-
 Several discoveries were made and analysed: insertion sort has one misprediction
-per key; selection sort has $H_N-1$ branch mispredictions per key - an
-explanation of this was also provided; tiling mergesort can be done in two
-steps, reducing the cache miss count; it is possible to avoid using a
-sentinel and still remove the bounds check from a standard 2-heap, simply by
-reordering the steps involved; sequential searches are far cheaper than binary
-searches across small lists, due to a low branch misprediction rate.
+per key; selection sort has $H_N-1$ branch mispredictions per key, which applies
+to long arrays, though short arrays become more predictable the longer they
+get, as in heapsort; tiling mergesort can be done in two steps, reducing the
+cache miss count; aligning mergesort for a level 2 cache alone is
+counter-productive - aligning it for level 1 and level 2 is significantly
+faster; it is possible to avoid using a sentinel and still remove the bounds
+check from a standard 2-heap, simply by reordering the steps involved;
+sequential searches are far cheaper than binary searches across small lists, due
+to a low branch misprediction rate. Bubblesort has terrible branch performance
+in the middle, due to being partially sorted - it performs much worse than
+selection sort as a result; multi-mergesort contains regular access patterns
+which can be exploited by a 2-level adaptive branch predictor; in almost all
+other cases, a bimodal predictor out-performs a 2-level adaptive predictor. A
+median-of-3 quicksort outperforms other medians; radix sort has no branch
+mispredictions; shellsort has easily calculable branch mispredictions, and
+performs very similarly to an $O(NlogN)$ so.
 
-%TODO add novel contributions
-% - avoid copying back in mergesort
-% - remove bounds check without sentinel in base heapsort
-% - double-tiling
+In addition, we provide an analysis of most major sorts currently used, a
+comparison of $O(NlogN)$ sorts, of different medians for quicksort, of $O(N^2)$
+sorts and of cache conscious sorts. We present branch prediction performance
+figures for most major sorts, and adapt cache-conscious strategies from
+mergesort to make an improved radixsort the fastest performing sort in our
+tests.
