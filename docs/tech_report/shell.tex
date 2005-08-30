@@ -154,3 +154,8 @@ different results.
 
 We note that improved shellsort performed in cases where $h = 5$ occurred.
 Shellsort should also be investigated with this change made.
+
+A cache-conscious shellsort could be created, which would switch the direction
+of the sweep after each h-sort, to reuse cache lines from the end of the array.
+This would be especially useful when the array is only slightly larger than the
+cache, but would have a smaller effect after that.
