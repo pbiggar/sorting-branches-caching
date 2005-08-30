@@ -274,7 +274,7 @@ A tiled mergesort was then written, based on LaMarca's guidance. Firstly, this
 was aligned in memory so that the number of misses due to conflicts would be
 reduced. Then it fully sorted segments of the array, each half the size of the
 cache, so that temporal locality would be exploited. It also fully sorted
-segements within the level 1 cache. Finally, all these segments were merged
+segments within the level 1 cache. Finally, all these segments were merged
 together in the remaining merge steps.
 
 LaMarca's final step was to create a multi-mergesort. This attempted to reduce
