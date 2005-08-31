@@ -127,10 +127,10 @@ blame apportioned appropriately.
 
 \subsection{SimpleScalar} \n{SimpleScalar} is an architecture simulator. It
 works by compiling code into its native instruction set, \n{PISA}, then
-emulating a processor as it runs the program. SimpleScalar can be found at
-\n{http://www.simplescalar.com}. Documentation on how to use and modify
-SimpleScalar are \cite{Burger97}, \cite{Austin02}, \cite{Tutorialv4},
-\cite{Tutorialv2} and \cite{SimpleScalarUserGuide}.
+emulating a processor as it runs the program. Documentation on how to use and
+modify SimpleScalar are \cite{Burger97}, \cite{Austin02}, \cite{Tutorialv4},
+\cite{Tutorialv2} and \cite{SimpleScalarUserGuide}. SimpleScalar can be found at
+\n{http://www.simplescalar.com}.
 
 SimpleScalar works by compiling code into its own instruction set. It provides a
 compiler - a port of gcc - with related tools such as a linker and assembler.
@@ -363,9 +363,9 @@ history so it is likely to be a two-level adaptive predictor.
 
 \subsection{Data}
 
-Both our SimpleScalar simulations and our software predictor tests used truly
-random data from \n{http://www.random.org}. The software predictor used ten
-sections containing 4194304 \n{unsigned integer}s, and the SimpleScalar
+Both our SimpleScalar simulations and our software predictor tests used
+\n{http://www.random.org} to provide truly random data. The software predictor
+used ten sections containing 4194304 \n{unsigned integer}s, and the SimpleScalar
 simulations used the same ten sections. When SimpleScalar simulations were run
 on sized smaller than 4194304 keys, only the left hand side of the sections were
 used.
