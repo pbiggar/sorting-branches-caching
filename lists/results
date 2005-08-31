@@ -65,7 +65,7 @@ radix:
 
 +- he didnt optimise radixsort, though the techniques from mergesort were applicable
 
-
+------------------------------------------------------------------------------------------------------------------------------------------
 * results
 
 
@@ -99,7 +99,7 @@ heap results:
 
 merge results:
 *- leevel 1 needs to be taken into account
-*- algorithm S is 15% faster than N
+*- algorithm S is 15% faster than N - not TRUE
 *- double tiled is the best
 *- multi is too expensive
 *- algorithm n and s are bad cache performers
@@ -125,6 +125,8 @@ new techniques:
 *: heapsort sentinel
 - reorders the moves during the destruction of the heap in base heapsort so that a sentinel isnt required
 *: merging with a different intial size to avoid the final copy back (did LaMarca suggest this. not in the phd)?
+* applying copy back to radixsort
+* double tiling and alignment
 
 
 

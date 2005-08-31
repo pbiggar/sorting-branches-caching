@@ -211,7 +211,7 @@ static int get_count(const int N)
 }
 
 void
-double_aligned_multi_mergesort(unsigned int a[], int N)
+multi_mergesort(unsigned int a[], int N)
 {
 	/* track keeps an eye on where i started last */
 	/* outer track keeps and eye on which cache_sized/2 segemnt i started in last */

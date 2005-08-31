@@ -352,9 +352,9 @@ main(int argc, char** args)
 	predictor_run(memory_tuned_heapsort, 11, "memory-tuned heapsort");
 	predictor_run(memory_tuned4_heapsort, 7, "memory-tuned4 heapsort");
 
-*/	predictor_run(algorithm_n, 8, "algorithm N");
+	predictor_run(algorithm_n, 8, "algorithm N");
 	predictor_run(algorithm_s, 10, "algorithm S");
-/*	predictor_run(base_mergesort, 33, "base mergesort");
+	predictor_run(base_mergesort, 33, "base mergesort");
 	predictor_run(tiled_mergesort, 46, "tiled mergesort");
 	predictor_run(multi_mergesort, 59, "multi-mergesort");
 	predictor_run(double_aligned_tiled_mergesort, 46, "double-aligned tiled mergesort");
