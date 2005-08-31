@@ -355,7 +355,7 @@ the first comparison is predicted correctly 50\% of the time, while the next is
 predicted correctly 61\% of the time, then 71\%, 78\%, and so on in a curve,
 which is shown in Figure \ref{memory-tuned heapsort curve}.
 
-The relationship between these numbers and $H_N-1$ is relatively straighforward.
+The relationship between these numbers and $H_N-1$ is relatively straightforward.
 $H_N-1$ represents the cumulative number of changes in the minimum. There first
 element is guaranteed to be the minimum. The second element has a 50\% chance of
 being smaller than the first. If we examine a third element, then the chances of
@@ -386,7 +386,7 @@ to result in a misprediction in this state (because they are almost always
 not-taken).
 
 We investigated the trade-offs in these two effects and we discovered that using
-a single branch does indeed cause the branches for the ealier comparisons to
+a single branch does indeed cause the branches for the earlier comparisons to
 become more predictable. However, this improvement is outweighed by a loss in
 predictability of the later comparisons. The overall prediction accuracy fell by
 around 2\% when we used a single branch, rather than unrolling the loop. This

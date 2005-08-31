@@ -2,7 +2,7 @@
 This section presents a summary of the results from previous chapters, lists
 important branch prediction results and discoveries, compares our results with
 LaMarca's and discusses important cache results, discusses the best sort that we
-found in a number of catagories, and suggests contributions made to computer
+found in a number of categories, and suggests contributions made to computer
 science by this research.
 
 \section{Results Summary}
@@ -186,7 +186,7 @@ shellsort, using our results from insertion sort.
 In several cases, we found that direct-mapped caches performed better than
 fully-associative ones, resulting in fewer misses. This was due to they're
 replacement policy, and that the sorts in question were heavily optimized for
-the direct-mapped caches. None of the changes slowed the fully-associatvive
+the direct-mapped caches. None of the changes slowed the fully-associative
 caches however.
 
 Over the course of this research, the vast majority of our results have
@@ -237,10 +237,10 @@ cache. When we aligned the arrays for the level 1 cache, the results were much
 closer to LaMarca's results, and showed what an improvement his techniques
 brought to those algorithms.
 
-In addition to the double alignement, we also added two new improvements. The
+In addition to the double alignment, we also added two new improvements. The
 mergesorts were tiled for the level 1 caches as well as the level 2, slightly
 reducing the number of level 1 cache misses, and we removed the need for a step
-to copy the array back from the auxilliary array; instead, we presort a step
+to copy the array back from the auxiliary array; instead, we presort a step
 further in cases where this occurs, and find the merge naturally ends in the
 correct destination.
 
