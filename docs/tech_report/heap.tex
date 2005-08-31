@@ -355,16 +355,45 @@ the first comparison is predicted correctly 50\% of the time, while the next is
 predicted correctly 61\% of the time, then 71\%, 78\%, and so on in a curve,
 which is shown in Figure \ref{memory-tuned heapsort curve}.
 
-The relationship between this number and $H_N-1$ is relatively straightforward.
-$H_N-1$ represents the cumulative number of changes in the minimum. Over a long
-array, this approximates the number of branch mispredictions, as almost every
-branch will not be taken, and the predictor will always predict not-taken.
+The relationship between these numbers and $H_N-1$ is relatively straighforward.
+$H_N-1$ represents the cumulative number of changes in the minimum. There first
+element is guaranteed to be the minimum. The second element has a 50\% chance of
+being smaller than the first. If we examine a third element, then the chances of
+that element being smaller than two other elements is one in three. Therefore,
+this branch will be taken one third of the time. As the number of elements we
+examine increases, the probability of the nth element being smaller than all
+elements seen so far is $\frac{1}{n}$.
 
-Meanwhile, Figure \ref{memory-tuned heapsort curve} shows us the rate of correct
-predictions, and each point is calculated using a separate branch predictor. As
-a result, we expect $1-y = \frac{1}{x+1}$, where $x$ and $y$ are the Cartesian
-coordinates of each point on the graph. $1-y$ is the number of mispredictions
-from the graph, while $\frac{1}{x+1}$ is the increase in $H_N$ for step $N$.
+Meanwhile, Figure \ref{memory-tuned heapsort curve} shows the rate of correct
+predictions. The loop has been fully unrolled, so there is a separate branch
+(with its own predictor) for each of the seven comparisons.  As a result, we
+expect $1-y = \frac{1}{x+1}$, where $x$ and $y$ are the Cartesian coordinates of
+each point on the graph. $1-y$ is the number of mispredictions from the graph,
+while $\frac{1}{x+1}$ is the increase in $H_N$ for step $N$.
+
+An interesting question is whether fully unrolling this loop, and thus
+separating the comparison branch into seven separate branches, has an impact on
+branch prediction. Essentially, there are two effects at work if we replace the
+sequence of branches with a single branch. First, the single branch predictor
+will spend most of its time in the state where it predicts not-taken, rather
+than taken. This is because all branches apart from the first are biased in the
+taken direction. This should improve accuracy. On the other hand, on those
+occasions when the bi-modal branch predictor is pushed towards predicting taken,
+the next branch is highly likely to be mispredicted. This is especially true
+because the first two or three branches are most likely to push the predictor in
+the taken direction, whereas the later branches are those that are mostly likely
+to result in a misprediction in this state (because they are almost always
+not-taken).
+
+We investigated the trade-offs in these two effects and we discovered that using
+a single branch does indeed cause the branches for the ealier comparisons to
+become more predictable. However, this improvement is outweighed by a loss in
+predictability of the later comparisons. The overall prediction accuracy fell by
+around 2\% when we used a single branch, rather than unrolling the loop. This
+result is interesting because it shows that relatively small changes in the way
+that an algorithm is implemented can have an effect on branch prediction
+accuracy. In this case, unrolling does not just remove loop overhead. It also
+improves the predictability of the branches within the loop.
 
 When the array is short, as in this example, the branch predictor has too much
 feedback to be close to $H_N-1$. For $N=2$, we would approximate a 33\%

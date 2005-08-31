@@ -88,9 +88,9 @@ No results for the branch prediction performance of sorting algorithm yet
 exists. We discovered some interesting new results. 
 
 Among them is the fact that bimodal branch predictors have performed better than
-2-level adaptive ones in almost every case in this research. This holds across
+two-level adaptive ones in almost every case in this research. This holds across
 all comparative branches in all the sorts we surveyed, and we believe that where
-explicit patterns - which can be exploited by 2-level adaptive predictors - do
+explicit patterns - which can be exploited by two-level adaptive predictors - do
 not exist, a bimodal predictors perform better.
 
 
@@ -131,8 +131,8 @@ of branches.
 
 Using a k-way merge, multi-mergesort had a great number of extra branch
 predictions. While many of these were mispredicted using the bimodal predictor,
-the two-level adaptive predictor was able to predict a higher
-proportion correctly.
+the two-level adaptive predictor was able to predict a higher proportion
+correctly.
 
 
 \subsection{Quicksort}
@@ -197,7 +197,7 @@ LaMarca, with only one difference: memory-tuned heapsort, being an out-of-place 
 fills the cache fully with a smaller number of keys than base heapsort, which is
 in-place. LaMarca's results do not show this. Nor do they show a difference in
 cache misses between these two sorts when the array does fit in the cache.
-LaMarca's base heapsort have the characteristics of an out-of-place heapsort.
+LaMarca's base heapsort has the characteristics of an out-of-place heapsort.
 However, our results show that his implicit heap improvements have led to a
 significantly faster heapsort.
 
@@ -316,10 +316,10 @@ analysis of major sorts - which to our knowledge has not been done before - and
 developing a framework by which these results can be repeated and expanded upon.
 
 Several discoveries were made and analysed: insertion sort has one misprediction
-per key; selection sort has $H_N-1$ branch mispredictions per key, which applies
-to long arrays, though short arrays become more predictable the longer they
-get, as in heapsort; tiling mergesort can be done in two steps, reducing the
-cache miss count; aligning mergesort for a level 2 cache alone is
+per key; selection sort has $O(H_N-1)$ branch mispredictions per key, which
+applies to long arrays, though short arrays become more predictable the longer
+they get, as in heapsort; tiling mergesort can be done in two steps, reducing
+the cache miss count; aligning mergesort for a level 2 cache alone is
 counter-productive - aligning it for level 1 and level 2 is significantly
 faster; it is possible to avoid using a sentinel and still remove the bounds
 check from a standard 2-heap, simply by reordering the steps involved;
@@ -327,15 +327,16 @@ sequential searches are far cheaper than binary searches across small lists, due
 to a low branch misprediction rate. Bubblesort has terrible branch performance
 in the middle, due to being partially sorted - it performs much worse than
 selection sort as a result; multi-mergesort contains regular access patterns
-which can be exploited by a 2-level adaptive branch predictor; in almost all
-other cases, a bimodal predictor out-performs a 2-level adaptive predictor. A
+which can be exploited by a two-level adaptive branch predictor; in almost all
+other cases, two-level branch predictors are measurably less accurate than
+simple bimodal predictors at predicting branches in sorting algorithms. A
 median-of-3 quicksort outperforms other medians; radix sort has no branch
 mispredictions; shellsort has easily calculable branch mispredictions, and
-performs very similarly to an $O(NlogN)$ so.
+performs very similarly to an $O(NlogN)$ so. 
 
 In addition, we provide an analysis of most major sorts currently used, a
 comparison of $O(NlogN)$ sorts, of different medians for quicksort, of $O(N^2)$
 sorts and of cache conscious sorts. We present branch prediction performance
 figures for most major sorts, and adapt cache-conscious strategies from
 mergesort to make an improved radixsort the fastest performing sort in our
-tests.
+tests, and to make mergesort itself significantly faster.

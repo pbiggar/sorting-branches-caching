@@ -66,10 +66,8 @@ $$H_N = 1 + \frac{1}{2} + \frac{1}{3} + ... + \frac{1}{N} =  \sum_{k=1}^{N}
 \frac{1}{k},  \hspace{0.4cm}  N \geq 1$$
 
 Within practical sorting ranges, $H_N$ grows at a rate similar to
-$log(N)$\footnote{This seems like an error, since $H_N$ is very similar to
-$log_eN$. It is not. We mean that $H_N$ is very similar to $log_2N$.}. Thus, in
-the average case, we can expect that the comparison branch will mostly go in the
-same direction, making the branch highly predictable.
+$log(N)$. Thus, in the average case, we can expect that the comparison branch
+will mostly go in the same direction, making the branch highly predictable.
 
 Knuth also presents the number of changes to the left-to-right minimum in the
 best case (0 changes) and worst cases ($N-1$ changes). In the worst case, the
