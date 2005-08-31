@@ -332,13 +332,6 @@ iterations of the \n{i} and \n{j} loops, with a corresponding reduction in the
 number of mispredictions. Interestingly, the percentage misprediction rate of
 the \n{i} and \n{j} branches does not change - it is 37\% in both cases.
 
-
-% Once the sort is larger than the cache, the number fo steps increases linearly
-% (since it does a sort of counting like radix sort). Theres a decrease of 19 \%.
-% Since the sort at this point is NlogM where M is the size of the cache (in
-% keys), there shouldnt be a change in misprediction rates. And there sint.
-% Before: 63\%. After, 63\%. So no difference.
-
 Multi-quicksort does, however, introduce a lot of additional branches. We
 already saw in Figure \ref{quick instructions}, that the binary search and
 sequential search variants increase the number of executed instructions by

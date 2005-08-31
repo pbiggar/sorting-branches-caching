@@ -67,7 +67,7 @@ misses, instructions and branch mispredictions than base quicksort.
 We were able to reduce the number of cache misses considerably using a technique
 adapted from LaMarca's tiled mergesort, and managed to make memory-tuned radixsort the
 fastest sort in our tests. This is due to its low instruction count, few cache
-misses and lack of branch mispredictions. Although we attempted to align it
+misses and lack of any branch mispredictions. Although we attempted to align it
 using another technique from mergesort, we found this decreased its performance.
 
 
@@ -75,15 +75,15 @@ using another technique from mergesort, we found this decreased its performance.
 
 Based on our tests, shellsort performs very similarly to an $O(NlogN)$ sort,
 outperforming heapsort. We note that our improved version is considerably
-faster, mostly due to its reduced instruction count.
+faster, mostly due to its reduced instruction count. We also measured its branch
+mispredictions, and determined a formula to accurately calculate them.
 
-We were also able to measure it's branch mispredictions, and determine a formula
-to calculate them.
+The improvement made to shellsort, separating the final loop from the rest, also
+results in a significantly faster loop, with an extra speed boost from a
+side-effect skipping an iteration with $h = 2$.
 
 
-
-
-\section{Branch Results}
+\section{Branch Prediction Results}
 
 
 No results for the branch prediction performance of sorting algorithm yet
@@ -93,7 +93,7 @@ Among them is the fact that bimodal branch predictors have performed better than
 two-level adaptive ones in almost every case in this research. This holds across
 all comparative branches in all the sorts we surveyed, and we believe that where
 explicit patterns - which can be exploited by two-level adaptive predictors - do
-not exist, a bimodal predictors perform better.
+not exist, bimodal predictors perform better.
 
 
 \subsection{Elementary Sorts}
@@ -121,12 +121,12 @@ In heapsort, we found a pattern of branch mispredictions when using a fanout in
 our 8-heap, and that this pattern matched closely that of selection sort,
 discussed above. We found that though our approximated results using $H_N-1$
 were not identical to our actual results - due to the arrays being very small -
-our actual results did become more predictable in a similar fashion.
+our results showed the branches becoming more predictable in a similar fashion.
 
-Also in heapsort, the number of mispredictions decreases depending on how much
-the heap fans out. Despite this property, the number of mispredictions using an
-8-heap was greater than when using a 4-heap, due to the increased total number
-of branches.
+The result of this is that the number of mispredictions decreases depending on
+how much the heap fans out. Despite this property, the number of mispredictions
+using an 8-heap was greater than when using a 4-heap, due to the increased total
+number of branches.
 
 
 \subsection{Mergesort}
@@ -139,13 +139,13 @@ correctly.
 
 \subsection{Quicksort}
 
-Sedgewick proposed removing individual insertion sorts in quicksort with one
-elegant sweep at the end. LaMarca proposed replacing the large number of
-insertion sorts in order to reduce cache misses. We note that attempting to move
-the pivots, as Sedgewick does, actually increases both the number of branches
-and the rate of mispredictions. We conclude that LaMarca's improvement, which
-slightly improves quicksorts cache performance, also slightly improves it's
-branch prediction performance.
+Sedgewick proposed replacing individual insertion sorts in quicksort with one
+elegant sweep at the end. LaMarca proposed replacing this with the previous
+large number of insertion sorts in order to reduce cache misses. We note that
+attempting to move the pivots, as Sedgewick does, actually increases both the
+number of branches and the rate of mispredictions. We conclude that LaMarca's
+improvement, which slightly improves quicksorts cache performance, also slightly
+improves it's branch prediction performance.
 
 However, LaMarca's move to multi-quicksort, while not affecting the rate of
 branch mispredictions in the partitioning phase, results in a large increase in
@@ -158,10 +158,11 @@ not using a median to choose a pivot makes the branches more predictable than
 they are biased, though at a cost of a large increase in instructions (and also
 significantly greater possibility of a worst-case $O(N^2)$ sort). We also saw
 that the more keys considered when determining the median, the lower the number
-of branches. However, this can result in an increase in the rate of branch
-mispredictions. We determine that reducing entropy is not the best way of making
-quicksort perform faster, and that using a median-of-three actually achieves the
-higher performance.
+of branches. However, this results in an increase not only in the rate of branch
+mispredictions, but also in the number of actual branch misprediction. We
+determine that reducing entropy is not the best way of making quicksort perform
+faster, and that using a median-of-three actually achieves the higher
+performance.
 
 
 \subsection{Radixsort}
@@ -175,14 +176,15 @@ presented here.
 \subsection{Shellsort}
 
 We are able to accurately predict the number of branch mispredictions in
-shellsort, using our results from insertion sort. We also found that the
-improvement mode to shellsort, separating the final loop from the rest, results
-in a significantly faster loop, with an extra speed boost from a side-effect
-skipping an iteration with $h = 2$.
+shellsort, using our results from insertion sort. 
 
+\section{Cache Results and Comparison with LaMarca's Results}
 
-\section{Comparison with LaMarca's Results}
-
+In several cases, we found that direct-mapped caches performed better than
+fully-associative ones, resulting in fewer misses. This was due to they're
+replacement policy, and that the sorts in question were heavily optimized for
+the direct-mapped caches. None of the changes slowed the fully-associatvive
+caches however.
 
 Over the course of this research, the vast majority of our results have
 correlated exactly with LaMarca's. Many of our graphs are exactly the same
@@ -193,25 +195,27 @@ methods, or can be seen to be equivalent when scaled by an appropriate ratio.
 \subsection{Heapsort}
 
 LaMarca's heapsort graphs were equivalent to ours in the areas of level 1
-misses, instruction count and cycle count. Like LaMarca, we found that a four
-heap lowered our instruction count. Our level 2 misses also concurred with
-LaMarca, with only one difference: memory-tuned heapsort, being an out-of-place sort,
-fills the cache fully with a smaller number of keys than base heapsort, which is
-in-place. LaMarca's results do not show this. Nor do they show a difference in
-cache misses between these two sorts when the array does fit in the cache.
-LaMarca's base heapsort has the characteristics of an out-of-place heapsort.
-However, our results show that his implicit heap improvements have led to a
-significantly faster heapsort.
+misses, instruction count and cycle count. Like LaMarca, we found that a 4-heap
+lowered our instruction count, and we found better results by using an 8-heap
+instead, as an 8-heap filled our cache lines exactly. Our level 2 misses also
+concurred with LaMarca, with only one difference: memory-tuned heapsort, being
+an out-of-place sort, fills the cache fully with a smaller number of keys than
+base heapsort, which is in-place. LaMarca's results do not show this. Nor do
+they show a difference in cache misses between these two sorts when the array
+does fit in the cache. LaMarca's base heapsort has the characteristics of an
+out-of-place heapsort. However, our results show that his implicit heap
+improvements have led to a significantly faster heapsort.
 
 
 \subsection{Mergesort}
 
 LaMarca's initial improvements to base mergesort were expected to reduce the
-instruction count. We noted a reduction with each of the steps he prescribed. We
-note too that each of his improvement reduce level 2 cache misses, and the shape
-of our level 2 cache miss graphs exactly match his. We also note similar
-characteristics: LaMarca mentions a wobble in the instruction count graphs, due to
-having to copy the final merge back; we note this same wobble.
+instruction count. We noted such a reduction with each of the steps he
+proscribed. We note too that each of his improvement reduce level 2 cache
+misses, and the shape of our level 2 cache miss graphs exactly match his. Our
+graphs also have similar characteristics: LaMarca mentions a wobble in the
+instruction count graphs, due to having to copy the final merge back; we note
+this same wobble.
 
 However, we disagree with his results in several key places. Firstly, we note
 that an inlined sorting method does not perform as fast as insertion sort. We
@@ -224,11 +228,18 @@ Instead we used a search, which greatly increased the instruction count. As a
 result, multi-mergesort did not perform as well as the mergesorts which had only
 been tiled. 
 
-We note also that aligning the level 2 cache alone leads to worse
-performance than not making any improvements at all, due to the thrashing of the
-level 1 cache. When we aligned the arrays for the level 1 cache, the results
-were much closer to LaMarca's results, and showed what an improvement his
-techniques brought to those algorithms.
+We note also that aligning the level 2 cache alone leads to worse performance
+than not making any improvements at all, due to the thrashing of the level 1
+cache. When we aligned the arrays for the level 1 cache, the results were much
+closer to LaMarca's results, and showed what an improvement his techniques
+brought to those algorithms.
+
+In addition to the double alignement, we also added two new improvements. The
+mergesorts were tiled for the level 1 caches as well as the level 2, slightly
+reducing the number of level 1 cache misses, and we removed the need for a step
+to copy the array back from the auxilliary array; instead, we presort a step
+further in cases where this occurs, and find the merge naturally ends in the
+correct destination.
 
 
 \subsection{Quicksort}
@@ -236,13 +247,13 @@ techniques brought to those algorithms.
 Our quicksort results, again, we very similar to LaMarca's. We showed an
 increase is instruction count of 25\% due to multi-quicksort - very close to
 LaMarca's 20\%. The shape of our instruction count graphs were the same, and
-switching to a binary search in multi-quicksort reduces the instruction count.
-Like him, we found that the base quicksort had very few cache misses, and that
-not using Sedgewick's insertion sort improvement reduces cache misses. We found
-that multi-quicksort's k-way sort changes the slope of the graph, but our result
-were not conclusive as to whether this would eventually make multi-quicksort
-faster than the other versions. Our results do show it being slower for all our
-test cases, due to the increase in instruction count.
+switching to a binary search in multi-quicksort reduced the instruction count.
+Like LaMarca, we found that the base quicksort had very few cache misses, and
+that not using Sedgewick's insertion sort improvement reduces cache misses. We
+found that multi-quicksort's k-way sort changed the slope of the graph, but our
+result were not conclusive as to whether this would eventually make
+multi-quicksort faster than the other versions. Our results do show it being
+slower for all our test cases, due to the increase in instruction count.
 
 LaMarca predicts two cache misses per key, which translated to one miss per key
 with our 32-bit integers. We found this calculation to be true, as is his
@@ -264,8 +275,8 @@ LaMarca determines that radixsort could not be improved in the same was as the
 comparison-based sorts, and that due to poor cache performance, it ran more
 slowly than quicksort. We showed, however, that one of the improvements applied
 to mergesort could be applied to it, and that its resulting cache performance is
-sufficiently good that its low instruction count and lack of branch
-mispredictions make it the fastest sort in our survey.
+sufficiently good that - partially due to its low instruction count and lack of
+branch mispredictions - it is the fastest sort in our survey.
 
 
 \section{Best Sort}
@@ -273,7 +284,7 @@ mispredictions make it the fastest sort in our survey.
 The results also helped answer the question of which is the best sort. However,
 it is important to remember that sorts have different purposes and properties,
 so this shall be considered. A comparative chart of the fastest sorts is shown
-in Figure \ref{All cycles}. This shows the cycles per key of each of the major
+in Figure \vref{All cycles}. This shows the cycles per key of each of the major
 sorts and their derivatives, measured using Pentium 4 performance counters.
 None of the elementary sorts or heapsorts are on the chart, as their results
 are significantly worse than the other results, which makes it difficult to
@@ -297,12 +308,13 @@ measured on a Pentium 4 using hardware performance counters.}
 \newpage
 }
 
-The best stable sort is radixsort. The best comparison-based stable sort is
-double-aligned tiled mergesort. The best in-place sort is quicksort. The best in-place
-stable sort we examine in this report is insertion sort. The best elementary
-sort is also insertion sort; as such it should be only used for very small data
-sets. The best sort for very large data sets is radixsort. The fastest overall
-sort was memory-tuned radixsort, though quicksort is very close.
+The best stable sort is memory-tuned radixsort. The best comparison-based stable
+sort is double-aligned tiled mergesort. The best in-place sort is base
+quicksort. The best in-place stable sort we examine in this report is insertion
+sort. The best elementary sort is also insertion sort; as such it should be only
+used for very small data sets. The best sort for very large data sets is
+memory-tuned radixsort. The fastest overall sort was memory-tuned radixsort,
+though all the base and memory-tuned quicksort are both very close.
 
 
 \section{Contributions}
@@ -332,13 +344,14 @@ selection sort as a result; multi-mergesort contains regular access patterns
 which can be exploited by a two-level adaptive branch predictor; in almost all
 other cases, two-level branch predictors are measurably less accurate than
 simple bimodal predictors at predicting branches in sorting algorithms. A
-median-of-3 quicksort outperforms other medians; radix sort has no branch
+median-of-three quicksort outperforms other medians; radixsort has no branch
 mispredictions; shellsort has easily calculable branch mispredictions, and
-performs very similarly to an $O(NlogN)$ so. 
+performs very similarly to an $O(NlogN)$ sort. 
 
 In addition, we provide an analysis of most major sorts currently used, a
 comparison of $O(NlogN)$ sorts, of different medians for quicksort, of $O(N^2)$
-sorts and of cache conscious sorts. We present branch prediction performance
+sorts and of cache-conscious sorts. We present branch prediction performance
 figures for most major sorts, and adapt cache-conscious strategies from
-mergesort to make an improved radixsort the fastest performing sort in our
-tests, and to make mergesort itself significantly faster.
+mergesort to not only significantly increase the performance of mergesort, but
+also to make memory-tuned radixsort the fastest performing sort in our tests.
+
