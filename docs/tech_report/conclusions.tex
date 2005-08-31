@@ -18,7 +18,7 @@ harmonics formula. We found that bubblesort and shakersort have poor branch
 prediction performance, and that this cripples their performance, especially
 compared to selection sort which is otherwise similar in behaviour. We
 determined that bubblesort has better branch performance at the start and end of
-its sorting, then in the middle.
+its sorting, than in the middle.
 
 We also found that reducing the number of runs performed by shakersort and
 bubblesort is counter-productive due to additional book-keeping cost. We found
@@ -85,9 +85,8 @@ side-effect skipping an iteration with $h = 2$.
 
 \section{Branch Prediction Results}
 
-
-No results for the branch prediction performance of sorting algorithm yet
-exists. We discovered some interesting new results. 
+To our knowledge, this is the first large-scale, systematic study of branch
+prediction in sorting algorithms. We discovered some interesting new results. 
 
 Among them is the fact that bimodal branch predictors have performed better than
 two-level adaptive ones in almost every case in this research. This holds across
@@ -119,9 +118,13 @@ arranged; at the end, it is largely sorted and is predictable again.
 
 In heapsort, we found a pattern of branch mispredictions when using a fanout in
 our 8-heap, and that this pattern matched closely that of selection sort,
-discussed above. We found that though our approximated results using $H_N-1$
-were not identical to our actual results - due to the arrays being very small -
-our results showed the branches becoming more predictable in a similar fashion.
+discussed above. We found that the number of mispredictions was close to, but
+measurably higher than, $H_N-1$. The main reason was that the number of items
+from which the selection was being made was small. Although the comparisons are
+mostly biased in one direction, the early ones are sufficiently unpredictable
+that the branch predictor often predicts the less likely direction. The later
+comparisons are highly predictable, and yield prediction accuracies much closer
+to that indicated by $H_N-1$.
 
 The result of this is that the number of mispredictions decreases depending on
 how much the heap fans out. Despite this property, the number of mispredictions
