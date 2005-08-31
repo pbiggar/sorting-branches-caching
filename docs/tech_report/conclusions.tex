@@ -1,7 +1,9 @@
 \label{conclusions}
-This section presents a summary of the results from previous chapters, compares
-our results with LaMarca's, lists important results and discoveries, and
-suggests contributions made to computer science by this research.
+This section presents a summary of the results from previous chapters, lists
+important branch prediction results and discoveries, compares our results with
+LaMarca's and discusses important cache results, discusses the best sort that we
+found in a number of catagories, and suggests contributions made to computer
+science by this research.
 
 \section{Results Summary}
 
@@ -16,12 +18,12 @@ harmonics formula. We found that bubblesort and shakersort have poor branch
 prediction performance, and that this cripples their performance, especially
 compared to selection sort which is otherwise similar in behaviour. We
 determined that bubblesort has better branch performance at the start and end of
-its sorting.
+its sorting, then in the middle.
 
 We also found that reducing the number of runs performed by shakersort and
-bubblesort is counter productive due to additional book-keeping cost. We found
-also that of the elementary sorts, only insertion sort has good cache
-performance, as the others do not exploit any temporal locality.
+bubblesort is counter-productive due to additional book-keeping cost. We found
+that of the elementary sorts, only insertion sort has good cache performance, as
+the others do not exploit any temporal locality.
 
 
 \subsection{Heapsort}
@@ -34,30 +36,30 @@ increasing the fanout increases branch mispredictions.
 
 Additionally, we created an improvement to heapsort using a 2-heap, which
 removed the need for a sentinel, without introducing any more instructions. We
-found that a $k$-ary heap has similar branch prediction performance to selection
-sort, though not exactly, in that the fanout becomes more predictable the larger
-it is.
+found that a $k$-ary heap has similar, though not the same, branch prediction
+performance as selection sort, in that the fanout becomes more predictable the
+larger it is.
 
 
 \subsection{Mergesort}
 
 We found that algorithm S has a lower instruction count than algorithm N, but
-that this does not necessarily translate to better performance. Our results show
-also that the level 1 cache needs to be taken into account, that the extra
-instruction in multi-mergesort make it slower than tiled mergesort, and that
-multi-mergesort has regular access patterns during the k-way merge, which can be
-taken advantage of by a two-level adaptive predictor.
+that this does not translate to better performance. Our results show also that
+the level 1 cache needs to be taken into account, both in tiling and in
+alignment; that the extra instructions in multi-mergesort make it slower than
+tiled mergesort, and that multi-mergesort has regular access patterns during the
+k-way merge, which can be taken advantage of by a two-level adaptive predictor.
 
 
 \subsection{Quicksort}
 
 Our results show base quicksort being the fastest of the quicksorts. We note our
-lowest instruction count occurs with the median-of-three partitioning. We also
-see that using a binary search slows multi-quicksort down compared to a
-sequential search due to branch mispredictions, but that its extra instructions
-make it slower than memory-tuned quicksort. Despite being slower in our tests,
-our simulations show memory-tuned quicksort to have fewer cache misses,
-instructions and branch mispredictions than base quicksort.
+lowest instruction count occurs with median-of-three partitioning. We also see
+that using a binary search slows multi-quicksort down compared to a sequential
+search due to branch mispredictions, but that both have too many extra
+instructions to compete against memory-tuned quicksort. Despite being slower in
+our tests, our simulations show memory-tuned quicksort to have fewer cache
+misses, instructions and branch mispredictions than base quicksort.
 
 
 \subsection{Radixsort}

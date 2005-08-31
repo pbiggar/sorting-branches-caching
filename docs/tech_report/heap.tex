@@ -377,7 +377,7 @@ branch prediction. Essentially, there are two effects at work if we replace the
 sequence of branches with a single branch. First, the single branch predictor
 will spend most of its time in the state where it predicts not-taken, rather
 than taken. This is because all branches apart from the first are biased in the
-taken direction. This should improve accuracy. On the other hand, on those
+not-taken direction. This should improve accuracy. On the other hand, on those
 occasions when the bi-modal branch predictor is pushed towards predicting taken,
 the next branch is highly likely to be mispredicted. This is especially true
 because the first two or three branches are most likely to push the predictor in
