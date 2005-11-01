@@ -11,7 +11,7 @@ set offsets .1, .1, 0, 0
 set bmargin 3
 set title "algorithm s branch predictor results"
 set output '../data/plots/counter_algorithm_s_0.eps'
-set xtics ("S3" 0, "\nS5" 1, "S8" 2, "" 3, "" 4, "" 5, "" 6)
+set xtics ("S3" 0, "\nS5" 1, "S9" 2, "" 3, "" 4, "" 5, "" 6)
 plot \
 '../data/counter_gnuplot_data/algorithm_s_data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
 '../data/counter_gnuplot_data/algorithm_s_data0' using ($0-.15):2 title 'correct' with boxes lt -1,\

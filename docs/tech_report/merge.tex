@@ -326,21 +326,22 @@ levels 1 and 2, emerges the winner.
 \sixplot{algorithm_n_0.eps}{algorithm_s_0.eps}{base_mergesort_0.eps}{double_aligned_tiled_mergesort_0.eps}{double_aligned_multi_mergesort_0.eps}{double_aligned_multi_mergesort_1.eps}{mergesorts}
 
 Figure \ref{mergesorts-1} shows the behaviour of the individual branches within
-algorithm N. The labels in the graphs correspond to the names of the steps in
-Knuth's algorithm (we also used the same names for the labels of branch targets
-in our C source code. Branch N3 is the main comparison branch; it is used to
-choose the smaller of the elements from the start of the two sub-arrays being
-merged. The direction of this branch is completely random - it depends entirely
-on the (in this case random) data. Figure \ref{mergesorts-1} also shows that
-this branch is almost entirely unpredictable using a bimodal predictor. The
-result for a two-level predictor is much the same, because there is no pattern
-in the outcome of these branches. Branches `\n{N3 i==j}' (check for the current
-merge being complete), `\n{N5}' and `\n{N9} (both checks for the end of a run of
-increasing elements) are control-flow branches, and are almost entirely
-predictable. Figure \ref{mergesorts-2} shows that the comparison branch in
-Algorithm S is just as unpredictable as that in algorithm N. However, given that
-the merge in algorithm S is entirely regular (see section \ref{Algorithm S}) it
-is possible to eliminate one of the control-flow branches.
+algorithm N. The labels in the graphs of algorithms N and S correspond to the
+names of the steps in Knuth's algorithm (we also used the same names for the
+labels of branch targets in our C source code. Branch `\n{N3}' is the main
+comparison branch; it is used to choose the smaller of the elements from the
+start of the two sub-arrays being merged. The direction of this branch is
+completely random - it depends entirely on the (in this case random) data.
+Figure \ref{mergesorts-1} also shows that this branch is almost entirely
+unpredictable using a bimodal predictor. The result for a two-level predictor is
+much the same, because there is no pattern in the outcome of these branches.
+Branches `\n{N3 i==j}' (check for the current merge being complete), `\n{N5}'
+and `\n{N9} (both checks for the end of a run of increasing elements) are
+control-flow branches, and are almost entirely predictable. Figure
+\ref{mergesorts-2} shows that the comparison branch in Algorithm S is just as
+unpredictable as that in algorithm N. However, given that the merge in algorithm
+S is entirely regular (see section \ref{Algorithm S}) it is possible to
+eliminate one of the control-flow branches.
 
 Base mergesort is an optimized algorithm that reverses the sorting direction of
 every second sub-array, pre-sorts small sub-arrays, and applies a number of
