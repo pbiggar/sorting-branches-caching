@@ -66,8 +66,8 @@ Software branch predictors:
 
 	To run the branch predictors, enter the code/ directory, and ensure that
 	-D_USE_SOFTWARE_PREDICTOR is set in the CFLAGS line. Then:
-*		$ make
-*		$ ./fastsort
+		$ make
+		$ ./fastsort
 
 	
 	The software counters will appear in data/counters/. To process these,
@@ -80,8 +80,11 @@ Software branch predictors:
 
 	This creates the gnuplot data files in data/counter_gnuplot_data and
 	gnuplot scripts in the data/counter_gnuplot_generated_scripts/ directory.
-	To create the images, enter the scripts directory and run:
-		$ gnuplot *
+	To create the images, enter the data/ directory and run:
+*		$ gnuplot counter_gnuplot_generated_scripts/*
+
+			or, if that fails:
+*		$ for i in counter_gnuplot_generated_scripts/*; do gnuplot $i; done
 
 	The images are put into the /data/plots directory.
 		
@@ -102,12 +105,15 @@ Simplescalar:
 *		$ ../scripts/do_all_convert
 
 	To create the gnuplot scripts for these files, run:
-		$ ../scripts/do_all_plot
+*		$ ../scripts/do_all_plot
 
 	Though this doesn't actually run gnuplot, despite its name.  do_all_convert
 	creates gnuplot data files in data/converted_simple_logs/, and do_all_plot
 	creates gnuplot scripts for each sort type and each sort, stored in
 	data/simplescalar_generated_gnuplot_scripts.
+
+	To create the images, enter the data/ directory and run:
+*		$ gnuplot simplescalar_generated_gnuplot_scripts/*
 
 
 Documents:
@@ -140,7 +146,10 @@ Documents:
 
 	Some extra images will need to be created as well. From the data directory:
 *		$ ../scripts/process_two_point_counter counters/bubblesort
+*		$ gnuplot counter_gnuplot_generated_scripts/two_point_counter_bubblesort
 *		$ ../scripts/process_two_point_counter counters/improved\ bubblesort
+*		$ gnuplot \
+		  counter_gnuplot_generated_scripts/two_point_counter_improved_bubblesort
 
 
 Data:
