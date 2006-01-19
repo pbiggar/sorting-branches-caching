@@ -193,7 +193,7 @@ foreach $argument (@ARGV)
 							$result =~ s/\s//g; # remove whitespace
 							if (!($result eq "xxxxxxxxxxxxx"))
 							{
-				#				print "results{$simulator}{$param}{$n}{$keyword}{$i} = $result\n";
+	#							print "results{$simulator}{$param}{$n}{$keyword}{$i} = $result\n";
 								$results{$simulator}{$param}{$n}{$keyword}{$i} = $result;
 							}
 						}
@@ -207,26 +207,27 @@ foreach $argument (@ARGV)
 	my $tmp;
 	foreach $simulator (@simulators)
 	{
-#		print "simulator = $simulator\n";
+		print "simulator = $simulator\n";
 		foreach $param (@{$params{$simulator}})
 		{
-#			print "param = $param\n";
+			print "param = $param\n";
 			$comment = sprintf("%19s ", "#set_size_in_keys");
 			$output = "";
 			foreach $n (@sizes)
 			{
-#				print "n = $n\n";
+				print "n = $n\n";
 #				$output .= "$n ";
 				$output .= sprintf("%19s ", $n);
 				foreach $keyword (@{$keywords{$simulator}})
 				{
-#					print "keyword = $keyword\n";
+					print "keyword = $keyword\n";
 					if ($average)
 					{
 						$result = 0;
-						for($i = 0; $i < 10; $i++)
+						for($i = 0; $i <= 10; $i++)
 						{
 							$tmp = $results{$simulator}{$param}{$n}{$keyword}{$i};
+#							print "\$tmp = $tmp, \$i = $i, \$result = $result\n";
 							if (defined($tmp)) 
 							{
 								if (!($tmp =~ m/\D/))
@@ -249,7 +250,7 @@ foreach $argument (@ARGV)
 								else
 								{
 									$result /= $i;
-									#print "after dividing by $i, getting $result\n";
+#									print "after dividing by $i, getting $result\n";
 								}
 								last;
 							}
@@ -277,7 +278,7 @@ foreach $argument (@ARGV)
 						if ($scale && $number)
 						{
 #							$output .= ($result/$n)." ";
-							#print "scaling $result by $n and getting ".($result/$n)."\n";
+							print "scaling $result by $n and getting ".($result/$n)."\n";
 							$output .= sprintf("%36f ", $result/$n);
 
 						}
@@ -285,6 +286,7 @@ foreach $argument (@ARGV)
 						{
 #							$output .= "$result ";
 							$output .= sprintf("%36s ", $result);
+							print "outputting $result\n";
 						}
 
 					}
