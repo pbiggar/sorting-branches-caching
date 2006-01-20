@@ -1,0 +1,16 @@
+set key top left Left reverse
+set xrange [4096:65536]
+set yrange [0:]
+set xtics (8192,16384,32768,65536)
+set format x "%8.0f"
+set logscale x
+set data style linespoints
+set term postscript eps
+set output 'plots/branch_paper_fig2.eps'
+set xlabel 'set size in keys'
+set ylabel 'Branch misses per key'
+plot \
+'../data/converted_simple_logs/improved_bubblesort/improved_bubblesort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'bubblesort - bimodal',\
+'../data/converted_simple_logs/improved_bubblesort/improved_bubblesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:12 title 'bubblesort - two-level adaptive',\
+'../data/converted_simple_logs/improved_shakersort/improved_shakersort_sim-bpred_-bpred_bimod_-bpred:bimod_512' using 1:12 title 'shakersort - bimodal',\
+'../data/converted_simple_logs/improved_shakersort/improved_shakersort_sim-bpred_-bpred_2lev_-bpred:2lev_1_512_10_1' using 1:12 title 'shakersort - two-level adaptive'
