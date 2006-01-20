@@ -1,6 +1,7 @@
 \documentclass[acmtocl]{acmtrans2m}
 
 \usepackage{graphicx}
+\usepackage{subfigure}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{conjecture}[theorem]{Conjecture}
@@ -9,6 +10,9 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newdef{definition}[theorem]{Definition}
 \newdef{remark}[theorem]{Remark}
+
+\newcommand{\subscale}{0.50}
+\newcommand{\mainscale}{1}
 
 \newcommand{\comment}[1]{}
 
@@ -108,9 +112,15 @@ branches as insertion sort.
 Although we know the approximate number of comparisons that each
 algorithm performs, and important question is whether there is any
 difference of the predictability of the branches in each algorithm.
-Figure \ref{} shows the number of mispredictions per key for both the
+Figure \ref{Predictability-of-insertion-and-selection-sorts} shows the number of mispredictions per key for both the
 algorithms using random data, and varying data set sizes, measured
 using the Simplescalar processor simulator.
+
+\begin{figure}[h]
+\includegraphics[scale=\mainscale]{plots/bpred_misses_insert_select.eps}
+\caption{TODO: Predictability of insertion and selection sorts}
+\label{Predictability-of-insertion-and-selection-sorts}
+\end{figure}
 
 There are three notable features in this data. Firstly, the number of
 mispredictions is very low. If the behaviour of these branches were
@@ -208,12 +218,18 @@ shakersort) alternates the direction of the inner loop to take
 more advantage of this partial sorting to reduce the number of
 outer-loop iterations.
 
-Figure \ref{} shows the number of branch mispredictions per key for
+Figure \ref{Predictability-of-bubblesort-and-shakersort} shows the number of branch mispredictions per key for
 bubble- and shakersort.  Nearly one in four comparisons in bubblesort
 are mispredicted. As the data sets gets large, there are nearly 10000
 branch mispredictions per key key. Shakersort executes a lot fewer
 branches, and so has fewer mispredictions, but the rate of
 misprediction is similar.
+
+\begin{figure}[h]
+\includegraphics[]{plots/bpred_misses_bubble_shaker.eps}
+\caption{TODO: Predictability of bubble and shaker sorts}
+\label{Predictability-of-bubblesort-and-shakersort}
+\end{figure}
 
 The branch behaviour of bubblesort is particularly interesting when
 compared to selection sort. Although we usually think of the two
@@ -238,8 +254,8 @@ the array which is, in bubblesort, the last place that we look. Thus,
 the candidate minimum is changed much more often than if we were
 searching a randomly ordered array.
 
-\begin{figure}
-\includegraphics{plots/two_point_counter_bubblesort.eps}
+\begin{figure}[h]
+\includegraphics{plots/bpred_bubble_progress.eps}
 \caption{Behaviour of branches in bubblesort compared to the ``sweep'' number}
 \label{Predictability-of-branches-in-bubblesort-compared-to-sweep-number}
 \end{figure}
@@ -329,17 +345,25 @@ move a very large number of places in each insertion sort pass,
 possibly causing a cache miss for every place that it moves.  To
 further investigate this effect, we measured the number of first and
 second-level cache misses caused by our implementation of shellsort
-(see figure \ref{}). In fact, the number of mispredictions caused by
+(see figure \ref{Cache-misses-in-shellsort}). In fact, the number of mispredictions caused by
 our shellsort is significant, but not much greater than other sorting
 algorithms such as heapsort and merge sort (see sections \ref{} and
 \ref{}). The main reason is that using Gonnet's increments on average
 keys move only 0.9744 places on each pass, so very large numbers of
 references in diverse parts of the array are not needed.
 
+\begin{figure}[h]
+\subfigure[Caption1]{\includegraphics[scale=\subscale]{plots/cache_misses_level_2_shell.eps}}
+\subfigure[Caption2]{\includegraphics[scale=\subscale]{plots/cache_misses_level_2_shell.eps}}
+\caption{TODO: Predictability of insertion and selection sorts}
+\label{Cache-misses-in-shellsort}
+\end{figure}
+
+
 \section{Heapsort}
 Heapsort is an in-place sort which works in $O(NlogN)$ time in the
 average and worst case. It begins by creating a structure known as a
-\n{heap}, a binary tree in which a parent is always larger its child,
+heap, a binary tree in which a parent is always larger its child,
 and the largest key is at the top of the heap. It then repeatedly
 removes the largest key from the top and places it in its final
 position in the array, fixing the heap as it goes.
@@ -391,7 +415,7 @@ cache entries between passes. Given that there is little reuse between
 passes, it would be better to reduce the number of passes by dividing
 the array into a larger number of partitions on each pass. LaMarca
 uses a technique similar to that used in multi-mergesort, in that a
-\n{multi-way partition} is done at the start, moving all keys into
+multi-way partition is done at the start, moving all keys into
 cache sized containers which can be sorted individually.
 
 Implementing a multi-way partition is complicated. At the start of the

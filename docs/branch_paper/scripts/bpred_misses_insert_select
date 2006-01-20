@@ -6,7 +6,7 @@ set format x "%8.0f"
 set logscale x
 set data style linespoints
 set term postscript eps
-set output 'plots/branch_paper_fig1.eps'
+set output 'plots/bpred_misses_insert_select.eps'
 set xlabel 'set size in keys'
 set ylabel 'Branch misses per key'
 plot \

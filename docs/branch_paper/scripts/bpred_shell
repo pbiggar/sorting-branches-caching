@@ -6,7 +6,7 @@ set format x "%8.0f"
 set logscale x
 set data style linespoints
 set term postscript eps
-set output 'plots/fig5a.eps'
+set output 'plots/bpred_shell.eps'
 set xlabel 'set size in keys'
 set ylabel 'Branches per key'
 plot \

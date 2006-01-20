@@ -5,7 +5,7 @@ set xtics (1024,2048,3072,4096,5120,6144,7168,8192)
 unset logscale
 set xrange [0:8177]
 set yrange [0:81910]
-set output 'plots/fig4.eps'
+set output 'plots/bpred_bubble_progress.eps'
 set xlabel 'iteration number'
 set ylabel 'number of branches'
 plot \
