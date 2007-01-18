@@ -1,0 +1,601 @@
+--------------------
+The Technical Report
+--------------------
+
+@techreport{BiggarGregg05,
+	author      ="Biggar, Paul and Gregg, David",
+	title       ="Sorting in the presence of branch prediction and caches.",
+	number      ="TCD-CS-05-57",
+	institution ="University of Dublin, Trinity College",
+	month       ="August",
+	year        ="2005",
+	documentURL ="https://www.cs.tcd.ie/publications/tech-reports/reports.05/TCD-CS-2005-57.pdf"
+}
+
+------------------------------------------------------------------------------
+Simplescalar
+------------------------------------------------------------------------------
+@article{Burger97,
+	author = {Doug Burger and Todd M. Austin},
+	title = {The SimpleScalar tool set, version 2.0},
+	journal = {SIGARCH Comput. Archit. News},
+	volume = {25},
+	number = {3},
+	year = {1997},
+	issn = {0163-5964},
+	pages = {13--25},
+	doi = {http://doi.acm.org/10.1145/268806.268810},
+	publisher = {ACM Press},
+}
+@article{Austin02,
+	author = {Todd Austin and Eric Larson and Dan Ernst},
+	title = {SimpleScalar: An Infrastructure for Computer System Modeling},
+	journal = {Computer},
+	volume = {35},
+	number = {2},
+	year = {2002},
+	issn = {0018-9162},
+	pages = {59--67},
+	doi = {http://dx.doi.org/10.1109/2.982917},
+	publisher = {IEEE Computer Society Press},
+}
+
+
+@manual{SimpleScalarTutorialv4,
+	author = "Todd Austin and Dan Ernst and Eric Larson and Chris Weaver and Raj Desikan,
+	Ramadass Nagarajan and Jaehyuk Huh and Bill Yoder and Doug Burger and Steve Keckler",
+	title = "SimpleScalar Tutorial (for release 4.0)",
+	url = "http://www.simplescalar.com/docs/simple_tutorial_v4.pdf",
+	year = {2001}
+}
+
+@manual{PapiExManual,
+      author = {Philip J. Mucci},
+      title = {PapiEx Man Page},
+      url = {http://icl.cs.utk.edu/~mucci/papiex/papiex-man.html},
+      year = {2004}
+}
+
+@manual{Tutorialv2,
+	author = "Todd Austin and Doug Burger",
+	title = "SimpleScalar Tutorial (for tool set release 2.0)",
+	url = "http://www.simplescalar.com/docs/simple_tutorial_v2.pdf",
+	year = {1997}
+}
+
+@manual{SimpleScalarInstall,
+	author = "Doug Burger",
+	title = "SimpleScalar version 2.0 installation guide",
+	year = "1997",
+	url = "http://www.simplescalar.com/docs/install_guide_v2.txt",
+}
+
+@manual{SimpleScalarUserGuide,
+	author = "Doug Burger and Todd M. Austin",
+	title = "The SimpleScalar Tool Set, Version 2.0",
+	url = "http://www.simplescalar.com/docs/users_guide_v2.pdf",
+	year = "1997"
+}
+
+------------------------------------------------------------------------------
+LaMarcas Cache stuff
+------------------------------------------------------------------------------
+@phdthesis{LaMarca96a,
+	author ="Anthony G. LaMarca",
+	title ="Caches and algorithms",
+	year ="1996",
+	school = "University of Washington"
+}
+
+@article{LaMarca96b,
+	author = {Anthony LaMarca and Richard Ladner},
+	title = {The influence of caches on the performance of heaps},
+	journal = {J. Exp. Algorithmics},
+	volume = {1},
+	year = {1996},
+	issn = {1084-6654},
+	pages = {4},
+	doi = {http://doi.acm.org/10.1145/235141.235145},
+	publisher = {ACM Press},
+}
+
+@inproceedings{LaMarca97,
+	author = {Anthony LaMarca and Richard E. Ladner},
+	title = {The influence of caches on the performance of sorting},
+	booktitle = {Proceedings of the eighth annual ACM-SIAM symposium on Discrete algorithms},
+	year = {1997},
+	isbn = {0-89871-390-0},
+	pages = {370--379},
+	location = {New Orleans, Louisiana, United States},
+	publisher = {Society for Industrial and Applied Mathematics},
+}
+
+
+----------------------------------------------
+Cache and memory conscious sorting in general
+----------------------------------------------
+
+@inproceedings{Nyberg+94,
+ author = {Chris Nyberg and Tom Barclay and Zarka Cvetanovic and Jim Gray and Dave Lomet},
+ title = {AlphaSort: a RISC machine sort},
+ booktitle = {SIGMOD '94: Proceedings of the 1994 ACM SIGMOD international conference on Management of data},
+ year = {1994},
+ isbn = {0-89791-639-5},
+ pages = {233--242},
+ location = {Minneapolis, Minnesota, United States},
+ doi = {http://doi.acm.org/10.1145/191839.191884},
+ publisher = {ACM Press},
+ address = {New York, NY, USA},
+ }
+
+@inproceedings{Agarwal96,
+    author = "Ramesh C. Agarwal",
+    title = "A super scalar sort algorithm for {RISC} processors",
+    pages = "240--246",
+    year = "1996",
+    url = "citeseer.ist.psu.edu/agarwal96super.html" }
+
+@article{Rahman+01,
+ author = {Naila Rahman and Rajeev Raman},
+ title = {Adapting Radix Sort to the Memory Hierarchy},
+ journal = {J. Exp. Algorithmics},
+ volume = {6},
+ year = {2001},
+ issn = {1084-6654},
+ pages = {7},
+ doi = {http://doi.acm.org/10.1145/945394.945401},
+ publisher = {ACM Press},
+ address = {New York, NY, USA},
+ }
+
+@article{Wickremesinghe+02,
+ author = {Rajiv Wickremesinghe and Lars Arge and Jeffrey S. Chase and Jeffrey Scott Vitter},
+ title = {Efficient sorting using registers and caches},
+ journal = {J. Exp. Algorithmics},
+ volume = {7},
+ year = {2002},
+ issn = {1084-6654},
+ pages = {9},
+ doi = {http://doi.acm.org/10.1145/944618.944627},
+ publisher = {ACM Press},
+ address = {New York, NY, USA},
+ }
+
+@article{Xiao+00,
+ author = {Li Xiao and Xiaodong Zhang and Stefan A. Kubricht},
+ title = {Improving memory performance of sorting algorithms},
+ journal = {J. Exp. Algorithmics},
+ volume = {5},
+ year = {2000},
+ issn = {1084-6654},
+ pages = {3},
+ doi = {http://doi.acm.org/10.1145/351827.384245},
+ publisher = {ACM Press},
+ address = {New York, NY, USA},
+ }
+
+@INPROCEEDINGS{Sanders+04,
+AUTHOR = {Sanders, Peter and Winkel, Sebastian},
+EDITOR = {Albers, Susanne and Radzik, Tomasz},
+TITLE = {Super Scalar Sample Sort},
+BOOKTITLE = {Algorithms . ESA 2004: 12th Annual European Symposium},
+PUBLISHER = {Springer},
+YEAR = {2004},
+VOLUME = {3221},
+PAGES = {784--796},
+SERIES = {Lecture Notes in Computer Science},
+ADDRESS = {Bergen, Norway},
+MONTH = {September},
+ISBN = {3540230254},
+}
+
+-----------------------------
+General sorting optimizations
+-----------------------------
+
+@inproceedings{Li+05,
+ author = {Xiaoming Li and Maria Jesus Garzaran and David Padua},
+ title = {Optimizing Sorting with Genetic Algorithms},
+ booktitle = {CGO '05: Proceedings of the international symposium on Code generation and optimization},
+ year = {2005},
+ isbn = {0-7695-2298-X},
+ pages = {99--110},
+ doi = {http://dx.doi.org/10.1109/CGO.2005.24},
+ publisher = {IEEE Computer Society},
+ address = {Washington, DC, USA},
+ }
+
+
+------------------------------------------------------------------------------
+Text books
+------------------------------------------------------------------------------
+
+@book{Sedgewick02,
+	author = {Robert Sedgewick},
+	title = {Algorithms in C},
+        edition = {3rd},
+	year = {2002},
+	isbn = {0201849372},
+	publisher = {Addison-Wesley Longman Publishing Co., Inc.},
+}
+
+@book{Gonnet+91,
+ author = {G. H. Gonnet and R. Baeza-Yates},
+ title = {Handbook of algorithms and data structures: in Pascal and C (2nd ed.)},
+ year = {1991},
+ isbn = {0-201-41607-7},
+ publisher = {Addison-Wesley Longman Publishing Co., Inc.},
+ address = {Boston, MA, USA},
+ }
+
+------------------------------------------------------------------------------
+branch prediction
+------------------------------------------------------------------------------
+@article{Uht+97,
+	author = {Augustus K. Uht and Vijay Sindagi and Sajee Somanathan},
+	title = {Branch Effect Reduction Techniques},
+	journal = {Computer},
+	volume = {30},
+	number = {5},
+	year = {1997},
+	issn = {0018-9162},
+	pages = {71--81},
+	doi = {http://dx.doi.org/10.1109/2.589913},
+	publisher = {IEEE Computer Society Press},
+}
+
+came up with the combined predictor (2 level), with either global or local history
+@techreport{McFarling93,
+	author      ="McFarling, Scott",
+	title       ="Combining Branch Predictors",
+	number      ="TN-36",
+	institution ="Digital Equipment Corporation, Western Research Lab",
+	month       ="June",
+	year        ="1993",
+	scope       ="instrpar",
+	abstractURL ="http://www.research.digital.com/wrl/techreports/abstracts/TN-36.html",
+	documentURL ="ftp://gatekeeper.dec.com/pub/DEC/WRL/research-reports/WRL-TN-36.ps"
+}
+
+discusses bimodal and simpler predictors
+@inproceedings{Smith81,
+	author = {James E. Smith},
+	title = {A study of branch prediction strategies},
+	booktitle = {Proceedings of the 8th annual symposium on Computer Architecture},
+	year = {1981},
+	pages = {135--148},
+	location = {Minneapolis, Minnesota, United States},
+	publisher = {IEEE Computer Society Press},
+}
+
+gods of hardware
+@book{HennessyPatterson90,
+	author = {David A. Patterson and John L. Hennessy},
+	title = {Computer Architecture: A Quantitative Approach},
+	year = {1990},
+	isbn = {1-55880-069-8},
+	publisher = {Morgan Kaufmann Publishers Inc.},
+}
+
+-----------------------------
+Branch Prediction and Sorting
+-----------------------------
+
+@techreport{Mudge+96,
+    author = "Trevor Mudge and I-Cheng Chen and John Coffey",
+    title = "Limits to Branch Prediction",
+    number = "CSE-TR-282-96",
+    month = "2",
+    year = "1996",
+    url = "citeseer.ist.psu.edu/mudge96limits.html" }
+
+@inproceedings{Brodal+05,
+  author = "Gerth Stølting Brodal and Rolf Fagerberg and Gabriel Moruz",
+  booktitle = "Proc. 7th Workshop on Algorithm Engineering and Experiments",
+  pages = "130-140",
+  title = "On the Adaptiveness of Quicksort",
+  year = "2005"
+}
+
+@inproceedings{BrodalMoruz05,
+  author    = {Gerth St{\o}lting Brodal and
+               Gabriel Moruz},
+  title     = {Tradeoffs Between Branch Mispredictions and Comparisons
+               for Sorting Algorithms.},
+  booktitle = {WADS},
+  year      = {2005},
+  pages     = {385-395},
+  ee        = {http://dx.doi.org/10.1007/11534273_34},
+  bibsource = {DBLP, http://dblp.uni-trier.de}
+}
+
+---------------------------------
+Knuth TAOCP References.
+---------------------------------
+
+@inbook{KnuthVol1_97,
+	author = {Donald E. Knuth},
+	title = {The Art Of Computer Programming, Volume 1 (3rd ed.): Fundamental Algorithms},
+	year = {1997},
+	isbn = {0-201-89683-4},
+        pages = {pp120--160, pp73--78},
+	publisher = {Addison Wesley Longman Publishing Co., Inc.},
+	address = {Redwood City, CA, USA},
+}
+
+@inbook{KnuthVol3_98,
+	author = {Donald E. Knuth},
+	title = {The Art Of Computer Programming, Volume 3 (2nd ed.): Sorting And Searching},
+	year = {1998},
+	isbn = {0-201-89685-0},
+        pages = {p110, p175, pp73--180, pp158-168},
+	publisher = {Addison Wesley Longman Publishing Co., Inc.},
+	address = {Redwood City, CA, USA},
+}
+
+@book{Knuth97,
+	author = {Donald E. Knuth},
+	title = {The art of computer programming, volume 1 (3rd ed.): fundamental algorithms},
+	year = {1997},
+	isbn = {0-201-89683-4},
+	publisher = {Addison Wesley Longman Publishing Co., Inc.},
+	address = {Redwood City, CA, USA},
+}
+
+------------------------------------------------------------------------------
+Misc stuff
+------------------------------------------------------------------------------
+
+discusses loop unrolling
+@article{Lowney93,
+	author = {P. Geoffrey Lowney and Stefan M. Freudenberger and Thomas J. Karzes and W. D. Lichtenstein and Robert P. Nix and John S. O'Donnell and John Ruttenberg},
+	title = {The multiflow trace scheduling compiler},
+	journal = {J. Supercomput.},
+	volume = {7},
+	number = {1-2},
+	year = {1993},
+	issn = {0920-8542},
+	pages = {51--142},
+	publisher = {Kluwer Academic Publishers},
+}
+
+@MISC{Random,
+   AUTHOR       = {Mads Haahr},
+   TITLE        = {Random.org: True Random Number Service},
+   YEAR         = {2006},
+   NOTE         = {Web resource, available at \url{http://www.random.org}}
+}
+
+
+------------------------------------------------------------------------------
+merging
+------------------------------------------------------------------------------
+first paper on merging
+@article{Friend56_merging,
+	author = {Edward H. Friend},
+	title = {Sorting on Electronic Computer Systems},
+	journal = {J. ACM},
+	volume = {3},
+	number = {3},
+	year = {1956},
+	issn = {0004-5411},
+	pages = {134--168},
+	doi = {http://doi.acm.org/10.1145/320831.320833},
+	publisher = {ACM Press},
+}
+
+talks about loop titling
+used in mergesort
+@inproceedings{Wolfe89,
+	author = {M. Wolfe},
+	title = {More iteration space tiling},
+	booktitle = {Proceedings of the 1989 ACM/IEEE conference on Supercomputing},
+	year = {1989},
+	isbn = {0-89791-341-8},
+	pages = {655--664},
+	location = {Reno, Nevada, United States},
+	doi = {http://doi.acm.org/10.1145/76263.76337},
+	publisher = {ACM Press},
+}
+
+has algorithm N and stuff
+@book{Knuth98,
+	author = {Donald E. Knuth},
+	title = {The art of computer programming,  volume 3: (2nd ed.) sorting and searching},
+	year = {1998},
+	isbn = {0-201-89685-0},
+	publisher = {Addison Wesley Longman Publishing Co., Inc.},
+}
+
+
+@article{Katajainen+96,
+ author = {Jyrki Katajainen and Tomi Pasanen and Jukka Teuhola},
+ title = {Practical in-place mergesort},
+ journal = {Nordic J. of Computing},
+ volume = {3},
+ number = {1},
+ year = {1996},
+ issn = {1236-6064},
+ pages = {27--40},
+ publisher = {Publishing Association Nordic Journal of Computing},
+ address = {, Finland},
+ }
+
+
+
+-------------------------------------------------------------------------------
+shellsort
+------------------------------------------------------------------------------
+@article{Shell59,
+	author = {D. L. Shell},
+	title = {A high-speed sorting procedure},
+	journal = {Commun. ACM},
+	volume = {2},
+	number = {7},
+	year = {1959},
+	issn = {0001-0782},
+	pages = {30--32},
+	doi = {http://doi.acm.org/10.1145/368370.368387},
+	publisher = {ACM Press},
+}
+
+@inproceedings{Sedgewick96,
+	author = {Robert Sedgewick},
+	title = {Analysis of Shellsort and Related Algorithms},
+	booktitle = {Proceedings of the Fourth Annual European Symposium on Algorithms},
+	year = {1996},
+	isbn = {3-540-61680-2},
+	pages = {1--11},
+	publisher = {Springer-Verlag},
+	address = {London, UK},
+}
+
+-------------------------------------------------------------------------------
+radixsort
+------------------------------------------------------------------------------
+
+@article{Friend56,
+	author = {Edward H. Friend},
+	title = {Sorting on Electronic Computer Systems},
+	journal = {J. ACM},
+	volume = {3},
+	number = {3},
+	year = {1956},
+	issn = {0004-5411},
+	pages = {152},
+	doi = {http://doi.acm.org/10.1145/320831.320833},
+	publisher = {ACM Press},
+}
+
+-------------
+Heapsort
+-------------
+
+@article{Floyd64,
+	author = {R. W. Floyd},
+	title = {Treesort 3: Algorithm 245},
+	journal = {Communications of the ACM},
+	volume = {7},
+	number = {12},
+	year = {1964},
+	pages = {701},
+	publisher = {ACM Press},
+}
+
+@article{Williams64,
+	author = {J. W. J. Williams},
+	title = {Heapsort: Algorithm 232},
+	journal = {Communications of the ACM},
+	volume = {7},
+	number = {6},
+	year = {1964},
+	pages = {347--348},
+	publisher = {ACM Press},
+}
+
+
+
+-------------------------------------------------------------------------------
+quicksort
+------------------------------------------------------------------------------
+
+@inproceedings{Kaligosi+06,
+        author = {Kanela Kaligosi and Peter Sanders},
+        title = {How Branch Mispredictions Affect Quicksort},
+        year = {2006},
+	booktitle = {Proceedings of The 14th Annual European Symposium on Algorithms (ESA 2006)},
+	location = {ETH Zürich, Zürich, Switzerland},
+        note = {(to appear)}
+}
+
+@inproceedings{SedgewickBentley02,
+	author="Robert Sedgewick and Jon Bentley",
+	title = "Quicksort is Optimal",
+	year = "2002",
+	location = "Knuthfest, Stanford University, Stanford"
+}
+
+C quicksort. reimplemented in later glibc versions
+@article{Bentley+93,
+	author = {Jon L. Bentley and M. Douglas McIlroy},
+	title = {Engineering a sort function},
+	journal = {Softw. Pract. Exper.},
+	volume = {23},
+	number = {11},
+	year = {1993},
+	issn = {0038-0644},
+	pages = {1249--1265},
+	publisher = {John Wiley \& Sons, Inc.},
+}
+
+original quicksort
+@article{Hoare62,
+	author = 	"C. A. R. Hoare",
+	title = 	"Quicksort",
+	journal = 	"Computer Journal",
+	year = 		1962,
+	mon =		apr,
+	volume = 	5,
+	number = 	1,
+	pages = 	"10--15"
+}
+
+code for partition
+@article{HoarePartition61,
+	author = {C. A. R. Hoare},
+	title = {Algorithm 63: partition},
+	journal = {Commun. ACM},
+	volume = {4},
+	number = {7},
+	year = {1961},
+	issn = {0001-0782},
+	pages = {321},
+	doi = {http://doi.acm.org/10.1145/366622.366642},
+	publisher = {ACM Press},
+}
+
+code for quicksort
+@article{HoareQuicksort61,
+	author = {C. A. R. Hoare},
+	title = {Algorithm 64: Quicksort},
+	journal = {Commun. ACM},
+	volume = {4},
+	number = {7},
+	year = {1961},
+	issn = {0001-0782},
+	pages = {321},
+	doi = {http://doi.acm.org/10.1145/366622.366644},
+	publisher = {ACM Press},
+}
+
+removes recursion, adds small subfiles, median of 3, and smallest partition first
+also talks about unrolling, which we didnt do
+@article{Sedgewick78,
+	author = {Robert Sedgewick},
+	title = {Implementing Quicksort programs},
+	journal = {Commun. ACM},
+	volume = {21},
+	number = {10},
+	year = {1978},
+	issn = {0001-0782},
+	pages = {847--857},
+	doi = {http://doi.acm.org/10.1145/359619.359631},
+	publisher = {ACM Press},
+}
+
+
+-----------------------------------------
+Pentium 4
+-----------------------------------------
+
+@techreport{Intel248966-010,
+	author = {Intel},
+	title = {IA-32 Intel Architecture Optimization - Reference Manual},
+	year = {2004}
+}
+
+@techreport{Intel249438-01,
+	author = {Intel},
+	title = {Desktop Performance and Optimization for Intel Pentium 4 Processor},
+	year = {2001}
+}

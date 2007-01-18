@@ -1,7 +1,7 @@
 %!PS-Adobe-2.0 EPSF-2.0
-%%Title: plots/bpred_misses_bubble_shaker.eps
+%%Title: ./heapsort_branch_misses.eps
 %%Creator: gnuplot 4.0 patchlevel 0
-%%CreationDate: Fri Jan 20 15:15:13 2006
+%%CreationDate: Mon Jan 15 15:49:41 2007
 %%DocumentFonts: (atend)
 %%BoundingBox: 50 50 410 302
 %%Orientation: Portrait
@@ -12,7 +12,7 @@ gnudict begin
 /Solid false def
 /gnulinewidth 5.000 def
 /userlinewidth gnulinewidth def
-/vshift -46 def
+/vshift -66 def
 /dl {10.0 mul} def
 /hpt_ 31.5 def
 /vpt_ 31.5 def
@@ -288,114 +288,144 @@ gsave
 0.050 0.050 scale
 0 setgray
 newpath
-(Helvetica) findfont 140 scalefont setfont
+(Times Roman) findfont 200 scalefont setfont
 1.000 UL
 LTb
-882 420 M
+900 600 M
 63 0 V
-6017 0 R
+5897 0 R
 -63 0 V
-798 420 M
+780 600 M
 gsave 0 setgray
 ( 0) Rshow
 grestore
 1.000 UL
 LTb
-882 1162 M
+900 1125 M
 63 0 V
-6017 0 R
+5897 0 R
 -63 0 V
--6101 0 R
+-6017 0 R
 gsave 0 setgray
-( 2000) Rshow
+( 2) Rshow
 grestore
 1.000 UL
 LTb
-882 1904 M
+900 1650 M
 63 0 V
-6017 0 R
+5897 0 R
 -63 0 V
--6101 0 R
+-6017 0 R
 gsave 0 setgray
-( 4000) Rshow
+( 4) Rshow
 grestore
 1.000 UL
 LTb
-882 2646 M
+900 2175 M
 63 0 V
-6017 0 R
+5897 0 R
 -63 0 V
--6101 0 R
+-6017 0 R
 gsave 0 setgray
-( 6000) Rshow
+( 6) Rshow
 grestore
 1.000 UL
 LTb
-882 3388 M
+900 2700 M
 63 0 V
-6017 0 R
+5897 0 R
 -63 0 V
--6101 0 R
+-6017 0 R
 gsave 0 setgray
-( 8000) Rshow
+( 8) Rshow
 grestore
 1.000 UL
 LTb
-882 4130 M
+900 3225 M
 63 0 V
-6017 0 R
+5897 0 R
 -63 0 V
--6101 0 R
+-6017 0 R
 gsave 0 setgray
-( 10000) Rshow
+( 10) Rshow
 grestore
 1.000 UL
 LTb
-882 4872 M
+900 3750 M
 63 0 V
-6017 0 R
+5897 0 R
 -63 0 V
--6101 0 R
+-6017 0 R
 gsave 0 setgray
-( 12000) Rshow
+( 12) Rshow
 grestore
 1.000 UL
 LTb
-6962 420 M
+900 4275 M
+63 0 V
+5897 0 R
+-63 0 V
+-6017 0 R
+gsave 0 setgray
+( 14) Rshow
+grestore
+1.000 UL
+LTb
+900 4800 M
+63 0 V
+5897 0 R
+-63 0 V
+-6017 0 R
+gsave 0 setgray
+( 16) Rshow
+grestore
+1.000 UL
+LTb
+6264 600 M
 0 63 V
-0 4389 R
+0 4137 R
 0 -63 V
-0 -4529 R
+0 -4337 R
 gsave 0 setgray
-(   65536) Cshow
+( 2097152) Cshow
 grestore
 1.000 UL
 LTb
-5442 420 M
+5072 600 M
 0 63 V
-0 4389 R
+0 4137 R
 0 -63 V
-0 -4529 R
+0 -4337 R
+gsave 0 setgray
+(  524288) Cshow
+grestore
+1.000 UL
+LTb
+3880 600 M
+0 63 V
+0 4137 R
+0 -63 V
+0 -4337 R
+gsave 0 setgray
+(  131072) Cshow
+grestore
+1.000 UL
+LTb
+2688 600 M
+0 63 V
+0 4137 R
+0 -63 V
+0 -4337 R
 gsave 0 setgray
 (   32768) Cshow
 grestore
 1.000 UL
 LTb
-3922 420 M
+1496 600 M
 0 63 V
-0 4389 R
+0 4137 R
 0 -63 V
-0 -4529 R
-gsave 0 setgray
-(   16384) Cshow
-grestore
-1.000 UL
-LTb
-2402 420 M
-0 63 V
-0 4389 R
-0 -63 V
-0 -4529 R
+0 -4337 R
 gsave 0 setgray
 (    8192) Cshow
 grestore
@@ -403,123 +433,171 @@ grestore
 LTb
 1.000 UL
 LTb
-882 420 M
-6080 0 V
-0 4452 V
--6080 0 V
-882 420 L
+900 600 M
+5960 0 V
+0 4200 V
+-5960 0 V
+900 600 L
 LTb
-140 2646 M
+200 2700 M
 gsave 0 setgray
 currentpoint gsave translate 90 rotate 0 0 M
-(Branch misses per key) Cshow
+(Branch mispredictions per key) Cshow
 grestore
 grestore
 LTb
-3922 70 M
+3880 100 M
 gsave 0 setgray
-(set size in keys) Cshow
+(Set size in keys) Cshow
 grestore
 1.000 UP
 1.000 UP
 1.000 UL
 LT0
 LTb
-1533 4739 M
+1803 4637 M
 gsave 0 setgray
-(bubblesort - bimodal) Lshow
+(Base heapsort) Lshow
 grestore
 LT0
-1050 4739 M
-399 0 V
-882 637 M
-2402 853 L
-1520 434 V
-1520 867 V
-6962 3892 L
-882 637 Pls
-2402 853 Pls
-3922 1287 Pls
-5442 2154 Pls
-6962 3892 Pls
-1250 4739 Pls
+1140 4637 M
+543 0 V
+900 2374 M
+596 131 V
+596 132 V
+596 130 V
+596 131 V
+596 131 V
+596 131 V
+596 132 V
+596 131 V
+596 131 V
+596 131 V
+900 2374 Pls
+1496 2505 Pls
+2092 2637 Pls
+2688 2767 Pls
+3284 2898 Pls
+3880 3029 Pls
+4476 3160 Pls
+5072 3292 Pls
+5668 3423 Pls
+6264 3554 Pls
+6860 3685 Pls
+1412 4637 Pls
 1.000 UP
 1.000 UL
 LT1
 LTb
-1533 4599 M
+1803 4437 M
 gsave 0 setgray
-(bubblesort - two-level adaptive) Lshow
+(Cache optimized heapsort \(4 heap\): Two-level adaptive) Lshow
 grestore
 LT1
-1050 4599 M
-399 0 V
-882 656 M
-2402 914 L
-1520 496 V
-1520 976 V
-6962 4325 L
-882 656 Crs
-2402 914 Crs
-3922 1410 Crs
-5442 2386 Crs
-6962 4325 Crs
-1250 4599 Crs
+1140 4437 M
+543 0 V
+900 2572 M
+596 139 V
+596 142 V
+596 151 V
+596 155 V
+596 156 V
+596 156 V
+596 158 V
+596 156 V
+596 159 V
+596 156 V
+900 2572 Crs
+1496 2711 Crs
+2092 2853 Crs
+2688 3004 Crs
+3284 3159 Crs
+3880 3315 Crs
+4476 3471 Crs
+5072 3629 Crs
+5668 3785 Crs
+6264 3944 Crs
+6860 4100 Crs
+1412 4437 Crs
 1.000 UP
 1.000 UL
 LT2
 LTb
-1533 4459 M
+1803 4237 M
 gsave 0 setgray
-(shakersort - bimodal) Lshow
+(Cache optimized heapsort \(4 heap\): Bimodal) Lshow
 grestore
 LT2
-1050 4459 M
-399 0 V
-882 547 M
-2402 675 L
-3922 930 L
-1520 506 V
-6962 2450 L
-882 547 Star
-2402 675 Star
-3922 930 Star
-5442 1436 Star
-6962 2450 Star
-1250 4459 Star
+1140 4237 M
+543 0 V
+900 2562 M
+596 162 V
+596 151 V
+596 167 V
+596 152 V
+596 165 V
+596 151 V
+596 167 V
+596 150 V
+596 166 V
+596 150 V
+900 2562 Star
+1496 2724 Star
+2092 2875 Star
+2688 3042 Star
+3284 3194 Star
+3880 3359 Star
+4476 3510 Star
+5072 3677 Star
+5668 3827 Star
+6264 3993 Star
+6860 4143 Star
+1412 4237 Star
 1.000 UP
 1.000 UL
 LT3
 LTb
-1533 4319 M
+1803 4037 M
 gsave 0 setgray
-(shakersort - two-level adaptive) Lshow
+(Cache optimized heapsort \(8 heap\)) Lshow
 grestore
 LT3
-1050 4319 M
-399 0 V
-882 591 M
-2402 753 L
-1520 303 V
-1520 590 V
-6962 2815 L
-882 591 Box
-2402 753 Box
-3922 1056 Box
-5442 1646 Box
-6962 2815 Box
-1250 4319 Box
+1140 4037 M
+543 0 V
+900 2583 M
+596 164 V
+596 141 V
+596 210 V
+596 171 V
+596 137 V
+596 208 V
+596 165 V
+596 140 V
+596 210 V
+596 164 V
+900 2583 Box
+1496 2747 Box
+2092 2888 Box
+2688 3098 Box
+3284 3269 Box
+3880 3406 Box
+4476 3614 Box
+5072 3779 Box
+5668 3919 Box
+6264 4129 Box
+6860 4293 Box
+1412 4037 Box
 1.000 UL
 LTb
-882 420 M
-6080 0 V
-0 4452 V
--6080 0 V
-882 420 L
+900 600 M
+5960 0 V
+0 4200 V
+-5960 0 V
+900 600 L
 1.000 UP
 stroke
 grestore
 end
 showpage
 %%Trailer
-%%DocumentFonts: Helvetica
+%%DocumentFonts: Times Roman
