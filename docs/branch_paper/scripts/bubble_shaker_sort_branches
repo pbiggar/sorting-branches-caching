@@ -1,0 +1,20 @@
+unset tics
+unset ticscale
+set key top left Left reverse
+set xrange [4096:65536]
+set yrange [0:]
+set xtics (8192,16384,32768,65536)
+set format y "%1.0f"
+set format x "%8.0f"
+set logscale x
+set data style linespoints
+set term postscript eps "Times Roman" 20
+set output '../plots/bubble_shaker_sort_branches.eps'
+set xlabel 'Set size in keys'
+set ylabel 'Branch mispredictions per key'
+plot \
+'../data/converted_simple_logs/bubblesort/bubblesort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:12 title 'Bubble sort: Bimodal',\
+'../data/converted_simple_logs/bubblesort/bubblesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:12 title 'Bubble sort: Two-level adaptive',\
+'../data/converted_simple_logs/shakersort/shakersort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:12 title 'Shaker sort: Bimodal',\
+'../data/converted_simple_logs/shakersort/shakersort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:12 title 'Shaker sort: Two-level adaptive'
+

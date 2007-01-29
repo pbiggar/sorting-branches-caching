@@ -1,0 +1,27 @@
+set term postscript eps "Times Roman" 20
+set boxwidth 0.25 absolute
+set style fill pattern 0 border -1
+set format y "%1.0f"
+set yrange [0:100]
+set ylabel "% Branches"
+set ticscale 0 0
+set offsets .1, .1, 10, 0
+set bmargin 3
+set title ""
+set output '../plots/counter_base_quicksort__median_of_3__0.eps'
+#set xtics ("i" 0, "\nj" 1, "partition end" 2, "\ninsertion" 3, "median" 4, "" 5, "" 6)
+set xtics ("i" 0, "j" 1, "insertion" 2, "median" 3, "" 4)
+
+plot \
+'./counter_quicksort_data/base_quicksort_median3_nick' using ($0-.15):(100*$2/$1) title 'Correct' with boxes lt -1, \
+'./counter_quicksort_data/base_quicksort_median3_nick' using ($0+.15):(100*$4/$1) title 'Taken' with boxes lt -1
+
+
+#plot \
+#'../data/counter_gnuplot_data/base_quicksort__median_of_3__data0' using ($0-.15):($2+$3) title 'incorrect' with boxes lt -1,\
+#'../data/counter_gnuplot_data/base_quicksort__median_of_3__data0' using ($0-.15):2 title 'correct' with boxes lt -1,\
+#'../data/counter_gnuplot_data/base_quicksort__median_of_3__data0' using ($0+.15):($4+$5) title 'not taken' with boxes lt -1,\
+#'../data/counter_gnuplot_data/base_quicksort__median_of_3__data0' using ($0+.15):4 title 'taken' with boxes lt -1
+
+
+

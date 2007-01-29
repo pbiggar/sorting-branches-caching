@@ -1,0 +1,19 @@
+set key top left Left reverse
+set xrange [4096:131072]
+set yrange [0:]
+set xtics (8192,16384,32768,65536,131072)
+set format x "%1.0f"
+set format y "%6.0f"
+set logscale x
+set data style linespoints
+set term postscript eps "Times Roman" 20
+set output '../plots/elementary_cycles.eps'
+set xlabel 'Set size in keys'
+set ylabel 'Cycles per key'
+plot \
+'../data/processed_cycles_data' using 1:27 title 'Selection sort',\
+'../data/processed_cycles_data' using 1:13 title 'Bubble sort',\
+'../data/processed_cycles_data' using 1:17 title 'Shaker sort',\
+'../data/processed_cycles_data' using 1:19 title 'Insertion sort'
+
+

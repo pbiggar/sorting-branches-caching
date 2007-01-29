@@ -1,0 +1,15 @@
+set key top left Left reverse
+set xrange [4096:4194304]
+set yrange [0:]
+set xtics (8192,32768,131072,524288,2097152)
+set format x "%8.0f"
+set logscale x
+set data style linespoints
+set term postscript eps "Times Roman" 20
+set output '../plots/shell_heap_cache_misses.eps'
+set xlabel 'Set size in keys'
+set ylabel 'Level 1 misses per key'
+plot \
+'../data/converted_simple_logs/shellsort/shellsort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:18 title 'Shellsort',\
+'../data/converted_simple_logs/base_heapsort/base_heapsort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:18 title 'Heapsort'
+

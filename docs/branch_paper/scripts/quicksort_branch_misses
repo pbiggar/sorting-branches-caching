@@ -1,0 +1,17 @@
+set key top left Left reverse
+set xrange [4096:4194304]
+set yrange [0:]
+set xtics (8192,32768,131072,524288,2097152)
+set format x "%8.0f"
+set logscale x
+set data style linespoints
+set term postscript eps "Times Roman" 20
+set output '../plots/quicksort_branch_misses.eps'
+set xlabel 'Set size in keys'
+set ylabel 'Branch misses per key'
+plot \
+'../data/converted_simple_logs/base_quicksort/base_quicksort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:12 title 'Base quicksort',\
+'../data/converted_simple_logs/memory_tuned_quicksort/memory_tuned_quicksort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:12 title 'Memory-tuned quicksort',\
+'../data/converted_simple_logs/multi_quicksort/multi_quicksort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:12 title 'Multi-quicksort (binary search): Two-level adaptive',\
+'../data/converted_simple_logs/multi_quicksort/multi_quicksort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:12 title 'Multi-quicksort (binary search): Bimodal',\
+'../data/converted_simple_logs/multi_quicksort_seq/multi_quicksort_seq_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:12 title 'Multi-quicksort (sequential search)'

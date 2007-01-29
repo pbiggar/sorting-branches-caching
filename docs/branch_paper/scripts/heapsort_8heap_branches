@@ -1,0 +1,20 @@
+set term postscript eps
+set boxwidth 0.25 absolute
+set style fill pattern 0 border -1
+set format y "%1.0f"
+set yrange [0:100]
+set ticscale 0 0
+set offsets .1, .1, 0, 0
+set bmargin 3
+set ylabel "% Branches"
+set xlabel "Comparison number"
+set title ""
+set output '../plots/heapsort_8heap_branches.eps'
+set xtics ("1" 0,  "2" 1, "3" 2, "4" 3,  "5" 4, "6" 5, "7" 6)
+plot \
+'../data/counter_gnuplot_data/combined_8heapsort_data' using ($0-.15):(100*$2/$1) title 'Correct' with boxes lt -1,\
+'../data/counter_gnuplot_data/combined_8heapsort_data' using ($0+.15):(100*$4/$1) title 'Taken' with boxes lt -1
+
+#'../data/counter_gnuplot_data/base_quicksort__median_of_3__data0' using ($0-.15):(100*$2/$1) title 'Correct' with boxes lt -1, \
+#'../data/counter_gnuplot_data/base_quicksort__median_of_3__data0' using ($0+.15):(100*$4/$1) title 'Taken' with boxes lt -1
+

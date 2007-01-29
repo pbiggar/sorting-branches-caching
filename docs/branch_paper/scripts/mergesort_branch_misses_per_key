@@ -1,0 +1,17 @@
+set key top left Left reverse
+set xrange [4096:4194304]
+set yrange [0:]
+set xtics (8192,32768,131072,524288,2097152)
+set format x "%8.0f"
+set logscale x
+set data style linespoints
+set term postscript eps "Times Roman" 20
+set output '../plots/mergesort_branch_misses.eps'
+set xlabel 'Set size in keys'
+set ylabel 'Branch mispredictions per key'
+plot \
+'../data/converted_simple_logs/base_mergesort/base_mergesort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:12 title 'Base mergesort',\
+'../data/converted_simple_logs/double_aligned_tiled_mergesort/double_aligned_tiled_mergesort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:12 title 'Tiled mergesort',\
+'../data/converted_simple_logs/double_aligned_multi_mergesort/double_aligned_multi_mergesort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:12 title 'Multi-mergesort: Two-level adaptive',\
+'../data/converted_simple_logs/double_aligned_multi_mergesort/double_aligned_multi_mergesort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:12 title 'Multi-mergesort: Bimodal'
+

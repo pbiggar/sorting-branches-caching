@@ -1,0 +1,22 @@
+set key top left Left reverse
+set xrange [4096:4194304]
+set yrange [0:]
+set xtics (8192,32768,131072,524288,2097152)
+set format x "%8.0f"
+set logscale x
+set data style linespoints
+set term postscript eps "Times Roman" 20
+set output '../plots/quicksort_cycles.eps'
+set xlabel 'set size in keys'
+set ylabel 'Cycles per key'
+plot \
+'../data/processed_cycles_data' using 1:7 title 'Base quicksort',\
+'../data/processed_cycles_data' using 1:22 title 'Memory-tuned quicksort',\
+'../data/processed_cycles_data' using 1:25 title 'Multi-quicksort (binary search)',\
+'../data/processed_cycles_data' using 1:26 title 'Multi-quicksort (sequential search)'
+
+
+#'../data/processed_cycles_data' using 1:11 title 'base quicksort9',\
+#'../data/processed_cycles_data' using 1:8 title 'base quicksort1',\
+#'../data/processed_cycles_data' using 1:9 title 'base quicksort5',\
+#'../data/processed_cycles_data' using 1:10 title 'base quicksort7',\

@@ -1,0 +1,12 @@
+set key top left Left reverse
+set xrange [1:8191]
+set yrange [0.48:1]
+#set xtics (1,1000,2000,3000,4000,5000,6000,7000,8000)
+set format x "%1.0f"
+#set logscale x
+set data style lines
+set term postscript eps "Times Roman" 20
+set output '../plots/bubble_predictability.eps'
+set xlabel 'Sweep number'
+set ylabel 'Predictability'
+plot './misc/bubble_predictability.in' title ''

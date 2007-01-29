@@ -1,0 +1,13 @@
+unset logscale
+set term postscript eps "Times Roman" 20
+set data style lines
+set format y "%1.0f" 
+set xrange [0:8191]
+set yrange [0:8191]
+set xlabel "Sweep number"
+set ylabel "Number of branches"
+set output '../plots/bubble_sweep_misses.eps'
+plot \
+'./misc/a' using 1:2 title 'Total executed',\
+'./misc/a' using 1:3 title 'Total correctly predicted'
+#'./bubble_predictability.in' using 1:((8191-$1)*$2) title 'Analytical'

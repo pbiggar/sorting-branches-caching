@@ -1,0 +1,16 @@
+set key top left Left reverse
+set xrange [4096:4194304]
+set yrange [0:]
+set xtics (8192,32768,131072,524288,2097152)
+set format x "%8.0f"
+set logscale x
+set data style linespoints
+set term postscript eps "Times Roman" 20
+set output '../plots/quicksort_cache_misses.eps'
+set xlabel 'Set size in keys'
+set ylabel 'Level 2 misses per key'
+plot \
+'../data/converted_simple_logs/base_quicksort/base_quicksort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'Base quicksort',\
+'../data/converted_simple_logs/memory_tuned_quicksort/memory_tuned_quicksort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'Memory-tuned quicksort',\
+'../data/converted_simple_logs/multi_quicksort/multi_quicksort_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'Multi-quicksort (binary search)',\
+'../data/converted_simple_logs/multi_quicksort_seq/multi_quicksort_seq_sim-cache_-cache:dl1_dl1:256:32:1:l_-cache:dl2_dl2:65536:32:1:l_-cache:il1_il1:256:32:1:l_-cache:il2_dl2' using 1:28 title 'Multi-quicksort (sequential search)'

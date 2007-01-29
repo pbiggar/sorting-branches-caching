@@ -1,0 +1,17 @@
+set key top left Left reverse
+set xrange [4096:4194304]
+set yrange [0:]
+set xtics (8192,32768,131072,524288,2097152)
+set format x "%8.0f"
+set logscale x
+set data style linespoints
+set term postscript eps "Times Roman" 20
+set output '../plots/heapsort_branch_misses.eps'
+set xlabel 'Set size in keys'
+set ylabel 'Branch mispredictions per key'
+plot \
+'../data/converted_simple_logs/base_heapsort/base_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:12 title 'Base heapsort',\
+'../data/converted_simple_logs/memory_tuned4_heapsort/memory_tuned4_heapsort_sim-bpred_-bpred_2lev_-bpred:2lev_1_4096_10_1' using 1:12 title 'Cache optimized heapsort (4 heap): Two-level adaptive',\
+'../data/converted_simple_logs/memory_tuned4_heapsort/memory_tuned4_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:12 title 'Cache optimized heapsort (4 heap): Bimodal',\
+'../data/converted_simple_logs/memory_tuned_heapsort/memory_tuned_heapsort_sim-bpred_-bpred_bimod_-bpred:bimod_1024' using 1:12 title 'Cache optimized heapsort (8 heap)'
+

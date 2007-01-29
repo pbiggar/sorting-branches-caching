@@ -1,0 +1,15 @@
+set key top left Left reverse
+set xrange [4096:4194304]
+set yrange [0:]
+set xtics (8192,32768,131072,524288,2097152)
+set format x "%1.0f"
+set logscale x
+set data style linespoints
+set term postscript eps "Times Roman" 20
+set output '../plots/mergesort_cycle_counts.eps'
+set xlabel 'Set size in keys'
+set ylabel 'Cycles per key'
+plot \
+'../data/processed_cycles_data' using 1:6 title 'Base mergesort',\
+'../data/processed_cycles_data' using 1:15 title 'Tiled mergesort',\
+'../data/processed_cycles_data' using 1:14 title 'Multi-mergesort'
