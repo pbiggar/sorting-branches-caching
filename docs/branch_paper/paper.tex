@@ -50,9 +50,10 @@ are almost always superior to bimodal predictors in general.
 \end{abstract}
 
 \category{E.5}{Data}{Files}[Sorting/Searching]
-\category{C.1.1}{Computer Systems Organization}{Processor Architectures, Single Data Stream Architectures}[Pipeline architectures]
+\category{C.1.1}{Computer Systems Organization}{Processor Architectures, Other
+Architecture Styles}[Pipeline processors]
 \terms{Algorithms, Experimentation, Measurement, Performance}
-\keywords{Sorting, Branch prediction}
+\keywords{Sorting, Branch Prediction, Pipeline Architectures, Caching}
 
 \begin{document}
 
@@ -311,7 +312,7 @@ mispredict exactly once per key.
 \begin{figure}
 \centering
 \begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{plots/selection_insertion_sort_branches.eps} & \includegraphics[width=0.5\textwidth]{plots/bubble_shaker_sort_branches.eps} \\
+\includegraphics[width=0.48\textwidth]{plots/selection_insertion_sort_branches.eps} & \includegraphics[width=0.48\textwidth]{plots/bubble_shaker_sort_branches.eps} \\
 (a) & (b) \\
 \end{tabular}
 \caption{(a) Shows the branch mispredictions for selection and insertion sort
@@ -446,7 +447,7 @@ Figure \ref{bubble_predictability}(a).
 \begin{figure}
 \centering
 \begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{plots/bubble_predictability.eps} & \includegraphics[width=0.5\textwidth]{plots/bubble_sweep_misses.eps} \\
+\includegraphics[width=0.48\textwidth]{plots/bubble_predictability.eps} & \includegraphics[width=0.48\textwidth]{plots/bubble_sweep_misses.eps} \\
 (a) & (b) \\
 \end{tabular}
 \caption{(a) Shows $CP(Q^k_{avg})$ as the sweep number, $k$, increases (i.e. as
@@ -504,7 +505,7 @@ predictor for shaker sort, as is shown in Figure \ref{elementary_sorts}(b).
 \begin{figure}
 \centering
 \begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{plots/elementary_cache1_misses.eps} & \includegraphics[width=0.5\textwidth]{plots/elementary_cycles.eps}\\
+\includegraphics[width=0.48\textwidth]{plots/elementary_cache1_misses.eps} & \includegraphics[width=0.48\textwidth]{plots/elementary_cycles.eps}\\
 (a) & (b) \\
 \end{tabular}
 \caption{(a) Shows the level 1 cache misses of the elementary sorting
@@ -608,9 +609,9 @@ in an array.
 \begin{figure}
 \centering
 \begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{plots/shellsort_branch_misses.eps} & \includegraphics[width=0.5\textwidth]{plots/shell_heap_cache_misses.eps} \\
+\includegraphics[width=0.48\textwidth]{plots/shellsort_branch_misses.eps} & \includegraphics[width=0.48\textwidth]{plots/shell_heap_cache_misses.eps} \\
 (a) & (b) \\
-\includegraphics[width=0.5\textwidth]{plots/shell_heap_L2_misses.eps} & \includegraphics[width=0.5\textwidth]{plots/shell_heap_cycles.eps} \\
+\includegraphics[width=0.48\textwidth]{plots/shell_heap_L2_misses.eps} & \includegraphics[width=0.48\textwidth]{plots/shell_heap_cycles.eps} \\
 (a) & (b) \\
 \end{tabular}
 \caption{(a) Shows the average branches misses per key for shellsort using a
@@ -763,9 +764,9 @@ CP\left(\frac{1}{7}\sum^7_{i=1}\frac{1}{1 + i} \right) \approx 0.706
 \begin{figure}
 \centering
 \begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{plots/heapsort_branch_counts.eps} & \includegraphics[width=0.5\textwidth]{plots/heapsort_branch_misses.eps}\\
+\includegraphics[width=0.48\textwidth]{plots/heapsort_branch_counts.eps} & \includegraphics[width=0.48\textwidth]{plots/heapsort_branch_misses.eps}\\
 (a) & (b) \\
-\includegraphics[width=0.5\textwidth]{plots/heapsort_cycle_counts.eps} & \includegraphics[width=0.5\textwidth]{plots/heapsort_8heap_branches.eps} \\
+\includegraphics[width=0.48\textwidth]{plots/heapsort_cycle_counts.eps} & \includegraphics[width=0.48\textwidth]{plots/heapsort_8heap_branches.eps} \\
 (c) & (d) \\
 \end{tabular}
 \caption{Branch prediction and performance characteristics of our heapsort
@@ -879,9 +880,9 @@ its performance to be inferior to tiled mergesort.
 \begin{figure}
 \centering
 \begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{plots/mergesort_branches_per_key.eps} & \includegraphics[width=0.5\textwidth]{plots/mergesort_branch_misses.eps} \\
+\includegraphics[width=0.48\textwidth]{plots/mergesort_branches_per_key.eps} & \includegraphics[width=0.48\textwidth]{plots/mergesort_branch_misses.eps} \\
 (a) & (b) \\
-\includegraphics[width=0.5\textwidth]{plots/mergesort_level_2_misses.eps} & \includegraphics[width=0.5\textwidth]{plots/mergesort_cycle_counts.eps} \\
+\includegraphics[width=0.48\textwidth]{plots/mergesort_level_2_misses.eps} & \includegraphics[width=0.48\textwidth]{plots/mergesort_cycle_counts.eps} \\
 (c) & (d) \\
 \end{tabular}
 \caption{(a) Shows the branches per key executed by our mergesort variations.
@@ -948,9 +949,9 @@ by using either a sequential or binary search.
 \begin{figure}
 \centering
 \begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{plots/counter_base_quicksort__median_of_3__0.eps} & \includegraphics[width=0.5\textwidth]{plots/counter_memory_tuned_quicksort_0.eps} \\
+\includegraphics[width=0.48\textwidth]{plots/counter_base_quicksort__median_of_3__0.eps} & \includegraphics[width=0.48\textwidth]{plots/counter_memory_tuned_quicksort_0.eps} \\
 (a) Basic quicksort & (b) Memory-tuned quicksort \\ 
-\includegraphics[width=0.5\textwidth]{plots/counter_multi_quicksort__binary_search__0.eps} & \includegraphics[width=0.5\textwidth]{plots/counter_multi_quicksort__sequential_search__0.eps} \\
+\includegraphics[width=0.48\textwidth]{plots/counter_multi_quicksort__binary_search__0.eps} & \includegraphics[width=0.48\textwidth]{plots/counter_multi_quicksort__sequential_search__0.eps} \\
 (c) Multi-quicksort (binary search) & (d) Multi-quicksort (sequential search)
 \end{tabular}
 \caption{Overview of branch prediction behaviour in our quicksort
@@ -1054,9 +1055,9 @@ out-performs memory-tuned quicksort on our non-simulated hardware test as Figure
 \begin{figure}
 \centering
 \begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{plots/quicksort_cache_misses.eps} & \includegraphics[width=0.5\textwidth]{plots/quicksort_instruction_counts.eps} \\
+\includegraphics[width=0.48\textwidth]{plots/quicksort_cache_misses.eps} & \includegraphics[width=0.48\textwidth]{plots/quicksort_instruction_counts.eps} \\
 (a) & (b) \\ 
-\includegraphics[width=0.5\textwidth]{plots/quicksort_branch_misses.eps} & \includegraphics[width=0.5\textwidth]{plots/quicksort_cycles.eps} \\
+\includegraphics[width=0.48\textwidth]{plots/quicksort_branch_misses.eps} & \includegraphics[width=0.48\textwidth]{plots/quicksort_cycles.eps} \\
 (c) & (d) \\
 \end{tabular}
 \caption{(a) Shows the 2nd level cache misses for our quicksort implementations.
@@ -1240,9 +1241,9 @@ because each array is accessed once per iteration.
 \begin{figure}
 \centering
 \begin{tabular}{cc}
-\includegraphics[width=0.5\textwidth]{plots/radix_cycles.eps} & \includegraphics[width=0.5\textwidth]{plots/radix_versus_quick_level_2_misses.eps} \\
+\includegraphics[width=0.48\textwidth]{plots/radix_cycles.eps} & \includegraphics[width=0.48\textwidth]{plots/radix_versus_quick_level_2_misses.eps} \\
 (a) & (b) \\
-\includegraphics[width=0.5\textwidth]{plots/radix_branch_misses.eps} & \includegraphics[width=0.5\textwidth]{plots/radix_branches.eps} \\
+\includegraphics[width=0.48\textwidth]{plots/radix_branch_misses.eps} & \includegraphics[width=0.48\textwidth]{plots/radix_branches.eps} \\
 (c) & (d) \\
 \end{tabular}
 \caption{(a) Shows the cycles per key of our radix sort implementations
