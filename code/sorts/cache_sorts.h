@@ -1,7 +1,7 @@
 #ifndef _CACHE_SORTS_H_
 #define _CACHE_SORTS_H_
 
-#include "../aux/utils.h"
+#include "../auxilliary/utils.h"
 
 
 void memory_tuned_heapsort(unsigned int a[], int N); /* aligned 8 heap */

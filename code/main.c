@@ -11,8 +11,8 @@
 #include "sorts/base_sorts.h"
 #include "sorts/branch_sorts.h"
 #include "sorts/cache_sorts.h"
-#include "aux/visual_sorts.h"
-#include "aux/utils.h"
+#include "auxilliary/visual_sorts.h"
+#include "auxilliary/utils.h"
 
 
 #define RANDOM_SIZE (4194304)
@@ -28,7 +28,7 @@
 #define RUN_VISUAL 0
 #define VISUAL_SIZE (128)
 
-#include "aux/predictor.h"
+#include "auxilliary/predictor.h"
 
 unsigned int sorted_array[RANDOM_SIZE];
 unsigned int random_array[RANDOM_SIZE];

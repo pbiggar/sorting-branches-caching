@@ -14,7 +14,7 @@ BRANCH_SORTS = multi_quicksort_seq predicated_quicksort
 
 SORTS = $(BASE_SORTS) $(BRANCH_SORTS) $(CACHE_SORTS) $(ON2_SORTS) do_nothing
 AUX = predictor utils visual_sorts
-MODULES =  main.o $(addprefix sorts/, $(addsuffix .o, $(SORTS))) $(addprefix aux/, $(addsuffix .o, $(AUX))) $(addsuffix .o, $(MAINS))
+MODULES =  main.o $(addprefix sorts/, $(addsuffix .o, $(SORTS))) $(addprefix auxilliary/, $(addsuffix .o, $(AUX))) $(addsuffix .o, $(MAINS))
 
 fastsort: $(MODULES)
 	$(CC) $(CFLAGS) $(MODULES) -o fastsort
