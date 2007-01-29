@@ -81,12 +81,9 @@ Software branch predictors:
 	This creates the gnuplot data files in data/counter_gnuplot_data and
 	gnuplot scripts in the data/counter_gnuplot_generated_scripts/ directory.
 	To create the images, enter the data/ directory and run:
-*		$ gnuplot counter_gnuplot_generated_scripts/*
-
-			or, if that fails:
 *		$ for i in counter_gnuplot_generated_scripts/*; do gnuplot $i; done
 
-	The images are put into the /data/plots directory.
+	The images are put into the data/plots directory.
 		
 
 Simplescalar:
@@ -120,8 +117,7 @@ Documents:
 
 	The are three documents in docs/. tech_report/ is the technical report
 	incorporating everything you see here. branch_paper/ is the first paper,
-	mostly discussing branch prediction, and cache_paper/ is the other paper,
-	discussing cache performance.
+	mostly discussing branch prediction.
 
 	The create the papers, run:
 *		$ make again
@@ -140,11 +136,12 @@ Documents:
 	
 	to resolve this.
 
-	All the macros used to present the graphics are in report.tex. The code is
-	in docs/*/code/ and has been edited for readability from that which is
-	in code/.
+	All the macros used to present the graphics are in report.tex or paper.tex.
+	The code is in docs/*/code/ and has been edited for readability from that
+	which is in code/.
 
-	Some extra images will need to be created as well. From the data directory:
+	Some extra images will need to be created for the technical report. From
+	data/:
 *		$ ../scripts/process_two_point_counter counters/bubblesort
 *		$ gnuplot counter_gnuplot_generated_scripts/two_point_counter_bubblesort
 *		$ ../scripts/process_two_point_counter counters/improved\ bubblesort
