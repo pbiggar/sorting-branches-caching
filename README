@@ -8,6 +8,33 @@ Most of the results are included in this package in their rawest form. It is
 necessary to generate some graphs and process some results. Commands which must
 be run to be able to create the docs are marked with a * below.
 
+
+Data:
+
+	To generate the data, download the random data from www.random.org. From
+	the data/ directory:
+*		$ wget http://www.random.org/files/10megs.001+
+*		$ wget http://www.random.org/files/10megs.002
+*		$ wget http://www.random.org/files/10megs.003
+*		$ wget http://www.random.org/files/10megs.004
+*		$ wget http://www.random.org/files/10megs.005
+*		$ wget http://www.random.org/files/10megs.006
+*		$ wget http://www.random.org/files/10megs.007
+*		$ wget http://www.random.org/files/10megs.008
+*		$ wget http://www.random.org/files/10megs.009
+*		$ wget http://www.random.org/files/10megs.010
+*		$ wget http://www.random.org/files/10megs.011
+*		$ wget http://www.random.org/files/10megs.012
+*		$ wget http://www.random.org/files/10megs.013
+*		$ wget http://www.random.org/files/10megs.014
+*		$ wget http://www.random.org/files/10megs.015
+*		$ wget http://www.random.org/files/10megs.016
+	
+	Download these files, and concatenate them using 'cat':
+*		$ cat 10megs* > BIG;
+
+
+
 main.c:
 
 	Enter the code directory. In main.c there are a list of sorts to be tested
@@ -73,6 +100,9 @@ Software branch predictors:
 	The software counters will appear in data/counters/. To process these,
 	from the data/ directory, run (after unbzipping some files):
 *		$ ../scripts/process_counter counters/*
+
+	Warnings from process_counter probably mean that the .bz2 files weren't
+	unzipped.
 
 	This will print out the maximum branches. If this isn't slightly lower than
 	the y-axis in the gnuplot scripts, it will need to be changed (On line 8 of
@@ -147,31 +177,6 @@ Documents:
 *		$ ../scripts/process_two_point_counter counters/improved\ bubblesort
 *		$ gnuplot \
 		  counter_gnuplot_generated_scripts/two_point_counter_improved_bubblesort
-
-
-Data:
-
-	To generate the data, download the random data from www.random.org. From
-	the data/ directory:
-*		$ wget http://www.random.org/files/10megs.001+
-*		$ wget http://www.random.org/files/10megs.002
-*		$ wget http://www.random.org/files/10megs.003
-*		$ wget http://www.random.org/files/10megs.004
-*		$ wget http://www.random.org/files/10megs.005
-*		$ wget http://www.random.org/files/10megs.006
-*		$ wget http://www.random.org/files/10megs.007
-*		$ wget http://www.random.org/files/10megs.008
-*		$ wget http://www.random.org/files/10megs.009
-*		$ wget http://www.random.org/files/10megs.010
-*		$ wget http://www.random.org/files/10megs.011
-*		$ wget http://www.random.org/files/10megs.012
-*		$ wget http://www.random.org/files/10megs.013
-*		$ wget http://www.random.org/files/10megs.014
-*		$ wget http://www.random.org/files/10megs.015
-*		$ wget http://www.random.org/files/10megs.016
-	
-	Download these files, and concatenate them using 'cat':
-*		$ cat 10megs* > BIG;
 
 	All these tests were done on a Pentium 4, which is little-endian, and using
 	a little-endian version of simple-scalar. If your machine is big-endian,

@@ -207,20 +207,20 @@ foreach $argument (@ARGV)
 	my $tmp;
 	foreach $simulator (@simulators)
 	{
-		print "simulator = $simulator\n";
+#		print "simulator = $simulator\n";
 		foreach $param (@{$params{$simulator}})
 		{
-			print "param = $param\n";
+#			print "param = $param\n";
 			$comment = sprintf("%19s ", "#set_size_in_keys");
 			$output = "";
 			foreach $n (@sizes)
 			{
-				print "n = $n\n";
+#				print "n = $n\n";
 #				$output .= "$n ";
 				$output .= sprintf("%19s ", $n);
 				foreach $keyword (@{$keywords{$simulator}})
 				{
-					print "keyword = $keyword\n";
+#					print "keyword = $keyword\n";
 					if ($average)
 					{
 						$result = 0;
@@ -278,7 +278,7 @@ foreach $argument (@ARGV)
 						if ($scale && $number)
 						{
 #							$output .= ($result/$n)." ";
-							print "scaling $result by $n and getting ".($result/$n)."\n";
+#							print "scaling $result by $n and getting ".($result/$n)."\n";
 							$output .= sprintf("%36f ", $result/$n);
 
 						}
@@ -286,7 +286,7 @@ foreach $argument (@ARGV)
 						{
 #							$output .= "$result ";
 							$output .= sprintf("%36s ", $result);
-							print "outputting $result\n";
+#							print "outputting $result\n";
 						}
 
 					}
