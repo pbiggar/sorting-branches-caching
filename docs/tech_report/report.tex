@@ -72,11 +72,10 @@
 % plots graphs across 3 pages
 \newcommand{\plot}[7]{
 % 3 figures first, then 3 page for them
-\afterpage{
+\afterpage{\clearpage
 \setcounter{subfigure}{0}
 
 \thispagestyle{empty}
-\clearpage
 \enlargethispage{14em}
 \vspace*{-8em}
 \begin{figure}[H]
@@ -90,10 +89,9 @@
 \caption{Simulated instruction count and empiric cycle count for #1sort}
 \label{Simulated instruction count and empiric cycle count for #1sort}
 \end{figure}
-\newpage
 
-\thispagestyle{empty}
 \clearpage
+\thispagestyle{empty}
 \enlargethispage{14em}
 \vspace*{-8em}
 \begin{figure}[H]
@@ -111,12 +109,11 @@ line. #5]
 \caption{Cache simulation results for #1sort}
 \label{Cache simulation results for #1sort}
 \end{figure}
-\newpage
 
-\thispagestyle{empty}
 \clearpage
+\thispagestyle{empty}
 \enlargethispage{14em}
-\vspace*{-7em}
+\vspace*{-8em}
 \begin{figure}[H]
 \begin{changemargin}
 \centering
@@ -128,10 +125,11 @@ predictor used a 10-bit branch history register which was XOR-ed with the
 program counter. #7]
 {\label{#1 branch misses}\includegraphics[scale=\myscale]{plots/#1_-_Branch_misses.eps}}
 \end{changemargin}
-\vspace*{6em}
+\vspace*{7em}
 \caption{Branch simulation results for #1sort}
 \label{Branch simulation results for #1sort}
 \end{figure}
+\clearpage
 }}
 
 
@@ -221,12 +219,14 @@ bimodal predictor.}
                 \vspace{2em}
                 \Large Paul Biggar \hspace{1cm} David Gregg\\
 				\vspace{2em}
-				\large Technical Report TCD-CS-2005-57\\
-                \large Department of Computer Science,\\
-				\large University of Dublin, Trinity College,\\
-				\large Dublin 2, Ireland.\\
+					\large Technical Report TCD-CS-2005-57\\
+					\large Department of Computer Science,\\
+					\large University of Dublin, Trinity College,\\
+					\large Dublin 2, Ireland.\\
 				\vspace{2em}
-				\large August, 2005\\
+					\large August, 2005\\
+               \vspace{1em}
+					\normalsize Revision 1 - January, 2007\\
         \end{center}
 \end{titlepage}
 

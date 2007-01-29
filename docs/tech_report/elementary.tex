@@ -225,11 +225,10 @@ than its original form.
 
 % I'm doing a slightly different result here. Level 2 doesn't interest us, so put
 % in 2 prediction results instead - 1 for select/insert, 1 for bubble/shaker
-\afterpage{
+\afterpage{\clearpage
 \label{Elementary sort results}
 
 \thispagestyle{empty}
-\clearpage
 \enlargethispage{14em}
 \vspace*{-8em}
 \begin{figure}[H]
@@ -243,10 +242,9 @@ than its original form.
 \caption{Simulated instruction count and empiric cycle count for elementary sorts}
 \label{Simulated instruction count and empiric cycle count for elementary sorts}
 \end{figure}
-\newpage
 
-\thispagestyle{empty}
 \clearpage
+\thispagestyle{empty}
 \enlargethispage{14em}
 \vspace*{-8em}
 \begin{figure}[H]
@@ -262,10 +260,9 @@ separate instruction cache. Results shown are for a direct-mapped cache.]
 \caption{Cache and branch prediction simulation results for elementary sorts}
 \label{Cache and branch prediction simulation results for elementary sorts}
 \end{figure}
-\newpage
 
-\thispagestyle{empty}
 \clearpage
+\thispagestyle{empty}
 \enlargethispage{14em}
 \vspace*{-8em}
 \begin{figure}[H]
@@ -286,6 +283,7 @@ program counter. Results shown are for a 512 byte bimodal predictor.]
 \caption{Branch simulation results for elementary sorts}
 \label{Branch simulation results for elementary sorts}
 \end{figure}
+\clearpage
 }
 
 Figure \ref{elementary instructions} shows the instruction count of each
