@@ -1,3 +1,9 @@
+This file describes the experimental framework used in the technical report
+"Sorting in the Presence of Branch Prediction and Caches", by Paul Biggar and
+David Gregg, and the paper "An Experimental Study of Sorting and Branch
+Prediction", by Paul Biggar, Nicholas Nash, Kevin Williams and David Gregg.
+
+
 NB: Most of the scripts and programs used here are hard coded, and will only
 work from the working directories specified below.
 
@@ -32,7 +38,6 @@ Data:
 	
 	Download these files, and concatenate them using 'cat':
 *		$ cat 10megs* > BIG;
-
 
 
 main.c:
@@ -92,7 +97,7 @@ Hardware counters:
 Software branch predictors:
 
 	To run the branch predictors, enter the code/ directory, and ensure that
-	-D_USE_SOFTWARE_PREDICTOR is set in the CFLAGS line. Then:
+	-D_USE_SOFTWARE_PREDICTOR is set in the CFLAGS line in the Makefile. Then:
 		$ make
 		$ ./fastsort
 
