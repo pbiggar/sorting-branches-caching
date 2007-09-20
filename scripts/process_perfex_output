@@ -4,9 +4,6 @@
 
 # first get it out of the file and into a data thing
 
-my $keynum = "1024";
-print STDOUT "Hard coded to $keynum keys. Edit the source to change this\n";
-
 open(DATA, $ARGV[0]);
 
 
@@ -64,7 +61,7 @@ foreach $size (@keys)
 		{
 			$value = $data{$sort}{$size};
 			$value /= $iteration_count{$sort}{$size};
-			$value -= ($data{"do_nothing"}{$size}/693);
+			$value -= ($data{"do_nothing"}{$size}/$iteration_count{"do_nothing"}{$size});
 			$value /= $size;
 			printf OUTPUT "%36f", $value;
 		}
