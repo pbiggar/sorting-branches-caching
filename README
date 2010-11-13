@@ -15,31 +15,6 @@ necessary to generate some graphs and process some results. Commands which must
 be run to be able to create the docs are marked with a * below.
 
 
-Data:
-
-	To generate the data, download the random data from www.random.org. From
-	the data/ directory:
-*		$ wget http://www.random.org/files/10megs.001+
-*		$ wget http://www.random.org/files/10megs.002
-*		$ wget http://www.random.org/files/10megs.003
-*		$ wget http://www.random.org/files/10megs.004
-*		$ wget http://www.random.org/files/10megs.005
-*		$ wget http://www.random.org/files/10megs.006
-*		$ wget http://www.random.org/files/10megs.007
-*		$ wget http://www.random.org/files/10megs.008
-*		$ wget http://www.random.org/files/10megs.009
-*		$ wget http://www.random.org/files/10megs.010
-*		$ wget http://www.random.org/files/10megs.011
-*		$ wget http://www.random.org/files/10megs.012
-*		$ wget http://www.random.org/files/10megs.013
-*		$ wget http://www.random.org/files/10megs.014
-*		$ wget http://www.random.org/files/10megs.015
-*		$ wget http://www.random.org/files/10megs.016
-	
-	Download these files, and concatenate them using 'cat':
-*		$ cat 10megs* > BIG;
-
-
 main.c:
 
 	Enter the code directory. In main.c there are a list of sorts to be tested
